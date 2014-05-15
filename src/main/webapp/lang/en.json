@@ -60,7 +60,7 @@
     "MENU_DEVICES": "Devices",
     "LOADING": "Loading",
     "REGISTER_WELCOME": "Welcome!",
-    "REGISTER_HELP": "You are not registered yet! Please chose an username to complete the registration process",
+    "REGISTER_HELP": "You are not registered yet! Please indicate your name and surname or your startup name to complete the registration process.",
     "REGISTER_USERNAME": "Username",
     "DELETE_TITLE": "Warning",
     "DELETE_HELP": "Are you sure you want to delete this item?",

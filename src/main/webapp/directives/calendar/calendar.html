@@ -1,0 +1,33 @@
+<table class="{{class}}" width="98%">
+    <colgroup>
+        <col style="width:14%">
+        <col style="width:14%">
+        <col style="width:14%">
+        <col style="width:14%">
+        <col style="width:14%">
+        <col style="width:14%">
+        <col style="width:14%">
+    </colgroup>
+    <tbody>
+        <tr class="day-of-week">
+            <td>{{"MONDAY" | translate}}</td>
+            <td>{{"TUESDAY" | translate}}</td>
+            <td>{{"WEDNESDAY" | translate}}</td>
+            <td>{{"THURSDAY" | translate}}</td>
+            <td>{{"FRIDAY" | translate}}</td>
+            <td>{{"SATURDAY" | translate}}</td>
+            <td>{{"SUNDAY" | translate}}</td>
+        </tr>
+        <tr ng-repeat="week in cal">
+            <td ng-repeat="cell in week" 
+                ng-class="{
+                    today : cell.today, 
+                            selected: cell.number === date.getDate() && !cell.otherMonth, 
+                            other_month : cell.otherMonth}"
+                ng-click="select(cell.id)"
+                >
+                {{cell.number}}
+            </td>
+        </tr>
+    </tbody>
+</table>

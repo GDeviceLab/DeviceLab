@@ -1,0 +1,36 @@
+<div snap-drawer>
+    <div ng-controller="MenuCtrl">
+        <h2>{{myName()}}</h2>
+        <p>
+            <a href="#/calendar" snap-close><span class="icon-calendar"></span> {{'MENU_CALENDAR' | translate}}</a>
+        </p>
+        <p>
+            <a href="#/news" snap-close><span class="icon-comment"></span> {{'MENU_NEWS' | translate}}</a>
+        </p>
+        <p cal-show-local>
+            <a href="#/news/new" snap-close><span class="icon-edit"></span> {{'MENU_NEWS_ADD' | translate}}</a>
+        </p>
+        <p cal-show-local>
+            <a href="#/stats" snap-close><span class="icon-globe"></span> {{'MENU_STATS_LOCATION' | translate}}</a>
+        </p>
+        <p>
+            <a href="#/stats/me" snap-close><span class="icon-profile"></span> {{'MENU_STATS' | translate}}</a>
+        </p>
+        <p>
+            <a href="#/apply" snap-close><span class="icon-bookmark"></span> {{'MENU_APPLY' | translate}}</a>
+        </p>
+        <h3 cal-show-local>{{'MENU_SETTINGS' | translate}}</h3>
+        <p cal-show-local>
+            <a href="#/location/edit/{{location()}}" snap-close><span class="icon-user"></span> {{'MENU_LOCATION' | translate}}</a>
+        </p>
+        <p cal-show-global>
+            <a href="#/location/list" snap-close><span class="icon-globe"></span> {{'MENU_LOCATIONS' | translate}}</a>
+        </p>
+        <p cal-show-local>
+            <a href="#/asset/list" snap-close><span class="icon-mobile-phone"></span> {{'MENU_DEVICES' | translate}}</a>
+        </p>
+    </div>
+    <p id="ack">
+        Developed by Google with the support of Revevol, Intel
+    </p>
+</div>

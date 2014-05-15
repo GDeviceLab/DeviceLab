@@ -1,0 +1,108 @@
+<div class="topcoat-navigation-bar mid" ng-click="pick = !pick">
+    <div class="topcoat-navigation-bar__item center">
+        <h1 class="topcoat-navigation-bar__title">{{date| date : 'EEEE d MMM'}}</h1>
+    </div>
+</div>
+<div class="topcoat-list__header" ng-show="pick" cal-show-owner>
+    <cal-endar date="date" class="cal" />
+</div>
+<div class="topcoat-navigation-bar mid" ng-click="show_hours = !show_hours">
+    <div class="topcoat-navigation-bar__item center">
+        <h1 class="topcoat-navigation-bar__title">{{ 'FROM' | translate }} {{r.start | hours}} {{ 'TO' | translate }} {{r.end | hours}}</h1>
+    </div>
+</div>
+<div ng-show="show_hours" class="topcoat-list__header" cal-show-owner>
+    <div class="padded">
+        <label for="from">{{ 'FROM' | translate }}</label>
+        <select ng-model="r.start" class="topcoat-text-input" id="from">
+            <option value="15">7h30</option>
+            <option value="16">8h</option>
+            <option value="17">8h30</option>
+            <option value="18">9h</option>
+            <option value="19">9h30</option>
+            <option value="20">10h</option>
+            <option value="21">10h30</option>
+            <option value="22">11h</option>
+            <option value="23">11h30</option>
+            <option value="24">12h</option>
+            <option value="25">12h30</option>
+            <option value="26">13h</option>
+            <option value="27">13h30</option>
+            <option value="28">14h</option>
+            <option value="29">14h30</option>
+            <option value="30">15h</option>
+            <option value="31">15h30</option>
+            <option value="32">16h</option>
+            <option value="33">16h30</option>
+            <option value="34">17h</option>
+            <option value="35">17h30</option>
+            <option value="36">18h</option>
+        </select>
+    </div>
+    <div class="padded">
+        <label for="to">{{ 'TO' | translate }}</label>
+        <select ng-model="r.end" class="topcoat-text-input" id="to">
+            <option value="16">8h</option>
+            <option value="17">8h30</option>
+            <option value="18">9h</option>
+            <option value="19">9h30</option>
+            <option value="20">10h</option>
+            <option value="21">10h30</option>
+            <option value="22">11h</option>
+            <option value="23">11h30</option>
+            <option value="24">12h</option>
+            <option value="25">12h30</option>
+            <option value="26">13h</option>
+            <option value="27">13h30</option>
+            <option value="28">14h</option>
+            <option value="29">14h30</option>
+            <option value="30">15h</option>
+            <option value="31">15h30</option>
+            <option value="32">16h</option>
+            <option value="33">16h30</option>
+            <option value="34">17h</option>
+            <option value="35">17h30</option>
+            <option value="36">18h</option>
+            <option value="37">18h30</option>
+        </select>
+    </div>
+</div>
+<div class="padded">
+
+    <input cal-enable-owner="{{r.person}}" type="text" class="topcoat-text-input" placeholder="{{ 'TITLE' | translate }}" ng-model="r.title">
+    <input ng-show="r.person" type="text" class="topcoat-text-input" placeholder="{{ 'USER' | translate }}" ng-model="r.person" disabled>
+
+</div>
+<h3 class="topcoat-list__header">{{ 'DEVICES' | translate }}</h3>
+<div class="padded">
+    <table class="multiselect">
+        <tr ng-repeat="asset in sassets">
+            <td ng-click="removeAsset(asset.number)" cal-show-owner="{{r.person}}">
+                <span class="icon-x-altx-alt"></span>
+            </td>
+            <td>
+                <select ng-show="!asset.raw || asset.raw.active" cal-enable-owner="{{r.person}}" class="topcoat-text-input" ng-model="asset.value" ng-options="t.id as t.name for t in assets"></select>
+                <input ng-hide="!asset.raw || asset.raw.active" class="topcoat-text-input"  type="text" value="{{asset.raw.name}} (device deleted)" disabled />
+            </td>
+        </tr>
+        <tr cal-show-owner="{{r.person}}">
+            <td ng-click="addAsset()">
+                <span class="icon-plus-square"></span>
+            </td>
+            <td>
+                <select class="topcoat-text-input" ng-options="t.id as t.name for t in assets" disabled></select>
+            </td>
+        </tr>
+    </table>
+
+</div>
+<div class="alert" ng-show="error.collision || error.deleted">
+    <p ng-show="error.collision">{{'ERR_COLLISION'| translate}}</p>
+    <p ng-show="error.deleted">{{'ERR_DELETED'| translate}}</p>
+</div>
+<div class="padded" cal-show-owner="{{r.person}}">
+    <button class="topcoat-button--cta" ng-click="submit()">{{'BUTTON_SAVE'| translate}}</button>
+</div>
+<div class="padded" ng-show="r.id" cal-show-owner="{{r.person}}">
+    <button class="topcoat-button" ng-click="delete()">{{'BUTTON_DELETE'| translate}}</button>
+</div>

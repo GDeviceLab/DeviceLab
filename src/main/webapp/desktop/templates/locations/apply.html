@@ -1,0 +1,20 @@
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h1 class="panel-title">{{'LOCATION_APPLY' | translate}}</h1>
+            </div>
+            <div class="panel-body">
+                <p class="help">{{'LOCATION_APPLY_HELP' | translate}}</p>
+            </div>
+            <ul class="list-group">
+                <li class="list-group-item clickable" ng-repeat="l in locations" 
+                    ng-click="apply(l.id)">
+                    {{l.name}}
+                    <span ng-show="pending(l.id)" class="label label-warning pull-right">{{'STATUS_PENDING' | translate}}</span>
+                    <span ng-show="user(l.id)" class="label label-success pull-right">{{'STATUS_REGISTERED' | translate}}</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

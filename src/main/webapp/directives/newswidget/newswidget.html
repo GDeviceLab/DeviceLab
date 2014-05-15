@@ -1,0 +1,12 @@
+<span class="topcoat-notification label" ng-click="open()" ng-show="count">{{count}}</span>
+<div ng-show="show" class="modal" ng-click="close()">
+    <div class="modal-pane news-feed">
+        <div class="news-item" ng-repeat="n in news">
+            <h1>{{n.title}}</h1>
+            <div class="padded">
+                <p ng-bind-html="n.content | linky:'_blank'"></p>
+                <p><small>{{n.author}} - {{n.date| date: 'EEEE d MMMM'}}</small></p>
+            </div>
+        </div>
+    </div>
+</div>

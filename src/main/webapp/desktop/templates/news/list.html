@@ -1,0 +1,30 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">{{'NEWS' | translate}}</div>
+            <ul class="list-group">
+                <li class="list-group-item" ng-repeat="n in news">
+                    <h4 class="list-group-item-heading">
+                        {{n.title}}
+                        <span class="actions">
+                            <span ng-show="n.broadcast" cal-show-global>
+                                <a href="#/news/edit/{{n.id}}">
+                                    <span class="icon-edit"></span>
+                                </a>
+                                <cal-delete action="delete(n.id)" b-class="icon-x-altx-alt"></cal-delete>
+                            </span>
+                            <span ng-hide="n.broadcast" cal-show-local>
+                                <a href="#/news/edit/{{n.id}}">
+                                    <span class="icon-edit"></span>
+                                </a>
+                                <cal-delete action="delete(n.id)" b-class="icon-x-altx-alt"></cal-delete>
+                            </span>
+                        </span>
+                    </h4>
+                    <p ng-bind-html="n.content | linky:'_blank'"></p>
+                    <p><small>{{n.author}} - {{n.date| date: 'EEEE d MMMM'}}</small></p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

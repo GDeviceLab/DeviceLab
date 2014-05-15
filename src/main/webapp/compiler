@@ -1,0 +1,20 @@
+import re
+
+def gather(folder, file, target):
+    print("---- Gathering "+folder+" : "+file)
+    input = open( folder+"/"+file, "r" )
+    output = open(target+"/compiled."+folder+"."+file, "w")
+    for line in input:
+        print(line.strip());
+        current = open(folder+"/"+line.strip(), "r")
+        for c_line in current:
+            output.write(c_line.strip())
+            output.write("\n")
+        current.close()
+    input.close()
+    output.close()
+
+gather("mobile", "js", "app")
+gather("mobile", "css", "css")
+gather("desktop", "js", "app")
+gather("desktop", "css", "css")

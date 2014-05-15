@@ -1,0 +1,26 @@
+<div style="position:relative;">
+    <div class="button-right" ng-click="toggle()">
+        <span class="icon-search"></span>
+    </div>
+    <div class="search-modal" ng-show="show" 
+         style="
+         z-index: 99999999;
+         ">
+        <div class="padded">
+            <select multiple ng-options="a.id as a.name for a in data" ng-model="search.assets" class="topcoat-text-input">
+                <option value="">{{'CAL_FILTER' | translate}}</option>
+            </select>
+        </div>
+        <div class="padded">
+            <label class="topcoat-switch">
+                <input type="checkbox" class="topcoat-switch__input" ng-model="togglePerson">
+                <div class="topcoat-switch__toggle"></div>
+            </label>
+            <span class="toggle-text">{{'CAL_FILTER_MINE' | translate}}</span>
+            <div class="button-right" ng-click="toggle()">
+                <span class="icon-times"></span>
+            </div>
+        </div>
+
+    </div>
+</div>

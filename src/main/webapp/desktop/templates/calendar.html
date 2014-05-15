@@ -1,0 +1,77 @@
+<div class="row">
+    <div class="col-md-12">
+        <news-feed p-class="content" rank="0" limit="1" ></news-feed>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-2">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h1 class="panel-title">{{date | date : 'MMMM'}}</h1>
+            </div>
+            <div class="panel-body no-padding">
+                <cal-endar date="date" class="cal" />
+            </div>
+        </div>
+
+        <div class="well">
+            <div>
+                <select multiple class="form-control" ng-options="a.id as a.name for a in devices" ng-model="search.assets">
+                    <option value=''>{{'CAL_FILTER' | translate}}</option>
+                </select>
+            </div>
+            <div>
+                <input type="checkbox" ng-click="toggle()">
+                {{ 'CAL_FILTER_MINE' | translate}}
+            </div>
+
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h1 class="panel-title">{{date | date : 'EEEE d MMMM'}}</h1>
+            </div>
+            <div class="panel-body no-padding">
+                <cal-hour-picker min="8" max="18" id="calhour0" class="day" date="date" offset="0" filter="search" />
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h1 class="panel-title">{{datePlus(1) | date : 'EEEE d MMMM'}}</h1>
+            </div>
+            <div class="panel-body no-padding">
+                <cal-hour-picker min="8" max="18" id="calhour1" class="day" date="date" offset="1" filter="search" />
+            </div>
+        </div>
+    </div><div class="col-md-2">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h1 class="panel-title">{{datePlus(2) | date : 'EEEE d MMMM'}}</h1>
+            </div>
+            <div class="panel-body no-padding">
+                <cal-hour-picker min="8" max="18" id="calhour2" class="day" date="date" offset="2" filter="search" />
+            </div>
+        </div>
+    </div><div class="col-md-2">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h1 class="panel-title">{{datePlus(3) | date : 'EEEE d MMMM'}}</h1>
+            </div>
+            <div class="panel-body no-padding">
+                <cal-hour-picker min="8" max="18" id="calhour3" class="day" date="date" offset="3" filter="search" />
+            </div>
+        </div>
+    </div><div class="col-md-2">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h1 class="panel-title">{{datePlus(4) | date : 'EEEE d MMMM'}}</h1>
+            </div>
+            <div class="panel-body no-padding">
+                <cal-hour-picker min="8" max="18" id="calhour4" class="day" date="date" offset="4" filter="search" />
+            </div>
+        </div>
+    </div>
+</div>

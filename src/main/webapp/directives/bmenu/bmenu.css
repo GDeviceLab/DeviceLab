@@ -1,0 +1,48 @@
+.menu-button{
+    height: 3em;
+    width: 3em;
+    padding: 0px;
+    border-radius: 1.5em;
+    float: right;
+}
+
+.inline{
+    margin-right: 3.5em;
+}
+
+.menu{
+    width: 160px;
+    background-color: #4b4d4e;
+    border: 1px solid #333434;
+    border-right-width: 0px;
+    right: -7px;
+    bottom: 7px;
+    border-top-left-radius: 7px;
+    border-bottom-left-radius: 7px;
+}
+
+.search-modal{
+    background-color: #4b4d4e;
+    border: 1px solid #131414;
+    border-right-width: 0px;
+    border-bottom-width: 0px;
+    position: fixed;
+    width: 80%;
+    right: 0px;
+    border-top-left-radius: 25px;
+    bottom: 0px;
+    padding-left: 20px;
+}
+.button-right{
+    position: fixed;
+    bottom: 3px;
+    right: 3px;
+    width: 24px;
+    height: 24px;
+    border-radius: 25px;
+    background-color: #131414;
+    color:#fff;
+    text-align: center;
+    padding: 13px;
+    font-size: 22px;
+}

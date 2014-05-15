@@ -1,0 +1,24 @@
+<h3 class="topcoat-list__header">{{'DEVICE' | translate}}</h3>
+<div class="padded">
+    <input type="text" ng-model="a.name" placeholder="{{'DEVICE_NAME' | translate}}" class="topcoat-text-input"/>
+</div>
+<div class="padded">
+    <input type="text" ng-model="a.type" placeholder="{{'DEVICE_TYPE' | translate}}" class="topcoat-text-input"/>
+</div>
+
+<h3 class="topcoat-list__header">{{'DEVICE_COLOR' | translate}}</h3>
+<div class="padded">
+    <div style="
+         padding: 3px;
+         border: 1px solid rgb({{rgb.r}},{{rgb.g}},{{rgb.b}});
+         background-color: rgba({{rgb.r}},{{rgb.g}},{{rgb.b}},0.5);
+        ">
+             {{'DEVICE_COLOR' | translate}}
+    </div>
+</div>
+<div class="padded">
+    <color-pick model="rgb" />
+</div>
+<div class="padded">
+    <button class="topcoat-button--cta" ng-click="submit()">{{'BUTTON_SAVE' | translate}}</button>
+</div>

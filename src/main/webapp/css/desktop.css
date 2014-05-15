@@ -1,0 +1,89 @@
+/* 
+    Created on : 26 mars 2014, 12:00:09
+    Author     : Clement <clement.hannicq@revevol.eu>
+*/
+a:hover, a:active{
+    text-decoration: none;
+}
+
+.snap-drawer{
+    padding-left: 10px;
+    font-weight: bold;
+}
+
+.snap-drawer p{
+    padding-left: 5px;
+}
+
+.snap-content{
+    background-color: #fafafa;
+    box-shadow: 0 0 5px 5px #888;
+}
+
+ul{
+    padding: 0px;
+    list-style: none;
+}
+
+#header{
+    font-weight: normal;
+    border: 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    text-align: center;
+    box-shadow: inset 0 -1px #9daca9, 0 1px #d6dcdb;
+    background-color: #dfe2e2;
+    margin-bottom: 10px;
+}
+
+.no-padding{
+    padding: 0px !important;
+}
+
+.multiselect{
+width: 100%;
+}
+
+.multiselect tr td:first-child{
+width: 2.1rem;
+font-size: 2rem;
+}
+
+.clickable{
+cursor: pointer;
+}
+
+.clickable:hover{
+background-color: #b3b6b6;
+}
+
+.actions {
+    float: right;
+    font-size: 18px;
+}
+
+.today {
+    color: grey;
+}
+
+.today.selected{
+    color: white;
+}
+
+h1.panel-title {
+    text-align: center;
+    font-weight: bold;
+}
+
+.help{
+    text-align: center;
+    font-style: italic;
+}
+
+#ack{
+    position:absolute;
+    bottom: 0;
+    font-weight: bold;
+    font-style: italic;
+}

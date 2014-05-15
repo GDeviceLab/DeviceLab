@@ -1,0 +1,15 @@
+<div class="topcoat-list">
+    <h3 class="topcoat-list__header">
+        <span class="pull-left" ng-click="yesterday()">&lt;</span>
+        <span class="pull-right" ng-click="tomorrow()">&gt;</span>
+        <span class="center" ng-click="changeDate()">
+            {{date | date : 'EEEE d MMMM'}}
+        </span>
+
+    </h3>
+    <div id="datePicker" ng-show="pick">
+        <cal-endar date="date" class="cal" />
+    </div>
+    <cal-hour-picker min="8" max="18" id="calhour" class="topcoat-list__container day" date="date" offset="0" filter="search" />
+</div>
+<cal-menu search="search" in="devices"></cal-menu>

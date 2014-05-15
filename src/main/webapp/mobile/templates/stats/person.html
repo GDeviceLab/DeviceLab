@@ -1,0 +1,13 @@
+<div class="topcoat-list">
+    <h3 class="topcoat-list__header">{{stats.person.name}}</h3>
+    <ul class="topcoat-list__container">
+        <li class="topcoat-list__item" ng-repeat="line in stats.data">
+            <a href="#/stats/device/{{line.asset.id}}">
+                {{line.asset.name}}
+                <span class="actions">
+                    {{line.hoursPast | hours}} (+{{line.hoursFuture | hours}})
+                </span>
+            </a>
+        </li>
+    </ul>
+</div>

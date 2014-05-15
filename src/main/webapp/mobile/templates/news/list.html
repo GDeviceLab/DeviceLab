@@ -1,0 +1,16 @@
+<div class="topcoat-list">
+    <h3 class="topcoat-list__header">{{'NEWS' | translate}}</h3>
+    <ul class="topcoat-list__container">
+        <li class="topcoat-list__item" ng-repeat="n in news">
+            <a href="#/news/edit/{{n.id}}">{{n.title}}</a>
+            <span class="actions">
+                <span ng-show="n.broadcast" cal-show-global>
+                    <cal-delete b-class="icon-x-altx-alt" action="delete(n.id)"></cal-delete>
+                </span>
+                <span ng-hide="n.broadcast" cal-show-local>
+                    <cal-delete b-class="icon-x-altx-alt" action="delete(n.id)"></cal-delete>
+                </span>
+            </span>
+        </li>
+    </ul>
+</div>

@@ -1,0 +1,9 @@
+<div snap-drawer="right">
+    <div ng-controller="LocationDrawer">
+        <h2 ng-click="refresh()">{{'LOCATION_AVAILABLE' | translate}}</h2>
+        <p ng-repeat="location in locations">
+            <span  ng-click="set(location.id)" snap-close>{{location.name}}</span> 
+            <cal-star location="location.id"></cal-star>
+        </p>
+    </div>
+</div>

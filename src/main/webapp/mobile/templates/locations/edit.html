@@ -1,0 +1,103 @@
+<div ng-show="selected" class="modal" ng-click="selected = ''">
+    <div class="modal-pane">
+        <h1><span ng-show="selected.globalAdmin" class="icon-star"></span>{{selected.name}}</h1>
+        <p>{{selected.mail}}</p>
+        <div ng-show="state == 'admins'">
+            <p>{{'LOCATION_ADMIN' | translate}}</p>
+            <div class="topcoat-button-bar">
+                <div class="topcoat-button-bar__item">
+                    <button class="topcoat-button-bar__button" ng-click="toUser(selected.mail)">{{'BUTTON_TO_USER' | translate}}</button>
+                </div>
+                <div class="topcoat-button-bar__item">
+                    <button class="topcoat-button-bar__button" ng-click="delete(selected.mail)">{{'BUTTON_DELETE' | translate}}</button>
+                </div>
+            </div>
+        </div>
+        <div ng-show="state == 'users'">
+            <p>{{'LOCATION_USER' | translate}}</p>
+            <div class="topcoat-button-bar">
+                <div class="topcoat-button-bar__item">
+                    <button class="topcoat-button-bar__button" ng-click="delete(selected.mail)">{{'BUTTON_DELETE' | translate}}</button>
+                </div>
+                <div class="topcoat-button-bar__item">
+                    <button class="topcoat-button-bar__button" ng-click="toAdmin(selected.mail)">{{'BUTTON_TO_ADMIN' | translate}}</button>
+                </div>
+            </div>
+        </div>
+        <div ng-show="state == 'pending'">
+            <p>{{'STATUS_PENDING' | translate}}</p>
+            <div class="topcoat-button-bar">
+                <div class="topcoat-button-bar__item">
+                    <button class="topcoat-button-bar__button" ng-click="toUser(selected.mail)">{{'BUTTON_ACCEPT' | translate}}</button>
+                </div>
+                <div class="topcoat-button-bar__item">
+                    <button class="topcoat-button-bar__button" ng-click="delete(selected.mail)">{{'BUTTON_REJECT' | translate}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h3 class="topcoat-list__header">{{'LOCATION_NAME' | translate}}</h3>
+<div class="padded">
+    <input type="text" ng-model="name" placeholder="{{'LOCATION_NAME' | translate}}" class="topcoat-text-input"/>
+</div>
+<div class="padded" cal-show-global>
+    <button class="topcoat-button--cta" ng-click="submit()">Save</button>
+</div>
+<div ng-show="id">
+    <div class="tabs">
+        <div ng-click="state = 'pending'" ng-class="{active: state == 'pending'}">
+            {{'STATUS_PENDING' | translate}}
+        </div>
+        <div ng-click="state = 'users'" ng-class="{active: state == 'users'}">
+            {{'LOCATION_USERS' | translate}}
+        </div>
+        <div ng-click="state = 'admins'" ng-class="{active: state == 'admins'}">
+            {{'LOCATION_ADMINS' | translate}}
+        </div>
+    </div>
+    <div ng-show="state == 'admins'">
+        <div class="topcoat-list">
+            <ul class="topcoat-list__container">
+                <li class="topcoat-list__item" ng-repeat="admin in admins" ng-click="select(admin)">
+                    <span>
+                        {{admin.name}}
+                    </span>
+                </li>  
+            </ul>
+            <h3 class="topcoat-list__header">{{'LOCATION_ADMIN_NEW' | translate}}</h3>
+            <div class="padded">
+                <input type="text" ng-model="admin" placeholder="{{'LOCATION_ADMIN_NEW' | translate}}" class="topcoat-text-input"/>
+            </div>
+            <div class="padded">
+                <button class="topcoat-button--cta" ng-click="toAdmin(admin)">{{'BUTTON_ADD' | translate}}</button>
+            </div>
+        </div>
+    </div>
+    <div ng-show="state == 'pending'">
+        <div class="topcoat-list">
+            <ul class="topcoat-list__container">
+                <li class="topcoat-list__item" ng-repeat="user in pendings" ng-click="select(user)">
+                    {{user.name}}
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div ng-show="state == 'users'">
+        <div class="topcoat-list">
+            <ul class="topcoat-list__container">
+                <li class="topcoat-list__item" ng-repeat="user in users" ng-click="select(user)">
+                    {{user.name}}
+                </li>
+            </ul>
+            <h3 class="topcoat-list__header">{{'LOCATION_USER_NEW' | translate}}</h3>
+            <div class="padded">
+                <input type="text" ng-model="user" placeholder="{{'LOCATION_USER_NEW' | translate}}" class="topcoat-text-input"/>
+            </div>
+            <div class="padded">
+                <button class="topcoat-button--cta" ng-click="toUser(user)">{{'BUTTON_ADD' | translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>

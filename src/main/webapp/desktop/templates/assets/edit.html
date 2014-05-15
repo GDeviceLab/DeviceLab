@@ -1,0 +1,33 @@
+<div class="col-md-4">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">{{'DEVICE' | translate}}</h3>
+        </div>
+        <div class="panel-body">
+            <p>
+            <input type="text" ng-model="a.name" placeholder="{{'DEVICE_NAME' | translate}}" class="form-control"/>
+            </p>
+            <p>
+            <input type="text" ng-model="a.type" placeholder="{{'DEVICE_TYPE' | translate}}" class="form-control"/>
+            </p>
+            <p style="
+                 padding: 3px;
+                 border: 1px solid rgb({{rgb.r}},{{rgb.g}},{{rgb.b}});
+                 background-color: rgba({{rgb.r}},{{rgb.g}},{{rgb.b}},0.5);
+                 ">
+                {{'DEVICE_COLOR' | translate}}
+            </p>
+            <button class="btn btn-primary btn-block" ng-click="submit()">{{'BUTTON_SAVE' | translate}}</button>
+        </div>
+    </div>
+</div>
+<div class="col-md-8">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">{{'DEVICE_COLOR' | translate}}</h3>
+        </div>
+        <div class="panel-body">
+            <color-pick model="rgb" />
+        </div>
+    </div>
+</div>

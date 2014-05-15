@@ -1,0 +1,20 @@
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">{{ 'DEVICE' | translate }} : {{stats.asset.name}}</h3>
+            </div>
+            <table class="table">
+                <tr ng-repeat="line in stats.data">
+                    <td>
+                        <a href="#/stats/person/{{line.person.mail}}">
+                            {{line.person.name}}
+                        </a>
+                    </td>
+                    <td>{{line.hoursPast | hours}} (+{{line.hoursFuture | hours}})</td>
+                    <td>{{line.count}} {{ 'reservations' | translate }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

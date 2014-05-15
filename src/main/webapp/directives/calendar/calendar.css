@@ -1,0 +1,40 @@
+/* 
+    Created on : 26 mars 2014, 12:00:02
+    Author     : Clement <clement.hannicq@revevol.eu>
+*/
+h3.cal{
+   text-align: center;
+}
+
+table.cal{
+    margin-right: auto;
+    margin-left: auto;
+    table-layout: fixed;
+    border-collapse: collapse;
+    margin-top: 7px;
+    margin-bottom: 7px;
+    color: black;
+}
+
+.cal tbody tr td{
+    padding-top: 7px;
+    padding-bottom: 7px;
+    text-align: center;
+}
+
+.other_month{
+    background-color: #9daca9;
+}
+
+.selected {
+    background-color: #ec514e;
+}
+
+.today {
+    color: white;
+}
+
+.day-of-week{
+    font-size: 0.8rem;
+    border-bottom: 1px solid #9daca9;
+}

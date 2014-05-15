@@ -1,0 +1,39 @@
+/* 
+    Created on : 25 mars 2014, 15:52:40
+    Author     : Clement <clement.hannicq@revevol.eu>
+*/
+.range{
+    background:rgba(170,0,0,0.5);
+    border-top: 1px solid rgba(170,0,0,1);
+    border-bottom: 1px solid rgba(170,0,0,1);
+    border-left: 1px solid rgba(170,0,0,1);
+    position: absolute;
+    display: none;
+    overflow: hidden;
+}
+
+.noclick{
+    pointer-events:none;
+}
+
+.day li{
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+.inside p{
+    margin-left: 3px;
+    margin-top: 3px;
+    padding: 0px;
+    text-overflow: ellipsis;
+}
+
+.hp-hours, .hp-picker{
+    list-style: none;
+}
+
+ul.hp-hours, .hp-hours li, ul.hp-picker, .hp-picker li{
+    margin: 0px;
+    padding: 0px;
+    display: block;
+}

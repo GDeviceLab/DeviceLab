@@ -1,0 +1,55 @@
+/* 
+    Created on : 1 avr. 2014, 16:01:30
+    Author     : Clement <clement.hannicq@revevol.eu>
+*/
+
+.modal{
+    background-color:rgba(10,10,10,0.7);
+    position:fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    z-index: 99999999999999;
+}
+
+.modal-content{
+    font-size: 3em;
+    color: white;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.modal-pane{
+    text-align: justify;
+    padding: 15px;
+    max-width: 300px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 30px;
+    margin-bottom: auto;
+    border: 1px solid rgb(10,10,10);
+    border-radius: 7px;
+    background:#4a4d4e;
+    color: white;
+}
+
+.modal div h1{
+    text-align: center;
+}
+
+.modal div input{
+    width: 100%
+}
+
+.modal div button{
+    width: 100%
+}
+
+#modal-close{
+    position: absolute;
+    top: 2px;
+    right: 2px;
+}

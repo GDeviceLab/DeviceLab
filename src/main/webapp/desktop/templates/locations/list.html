@@ -1,0 +1,15 @@
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">{{'LOCATIONS' | translate}}</div>
+            <div class="panel-body">
+                <a href="#/location/new" class="btn btn-primary btn-block">{{'BUTTON_NEW' | translate}}</a>
+            </div>
+            <ul class="list-group">
+                <li class="list-group-item clickable" ng-repeat="l in locations.items">
+                    <a href="#/location/edit/{{l.id}}">{{l.name}}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

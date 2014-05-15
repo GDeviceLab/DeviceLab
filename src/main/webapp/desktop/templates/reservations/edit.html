@@ -1,0 +1,118 @@
+<div class="row">
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h1 class="panel-title">{{date| date : 'EEEE d MMMM'}}</h1>
+            </div>
+            <div class="panel-body no-padding">
+                <cal-endar date="date" class="cal"/>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h1 class="panel-title">{{ 'FROM' | translate }} {{r.start | hours}} {{ 'TO' | translate }} {{r.end | hours}}</h1>
+            </div>
+            <div class="panel-body">
+                <form role="form">
+                    <div class="form-group">
+                        <label for="from">{{ 'FROM' | translate }}</label>
+                        <select ng-model="r.start" class="form-control" id="from">
+                            <option value="15">7h30</option>
+                            <option value="16">8h</option>
+                            <option value="17">8h30</option>
+                            <option value="18">9h</option>
+                            <option value="19">9h30</option>
+                            <option value="20">10h</option>
+                            <option value="21">10h30</option>
+                            <option value="22">11h</option>
+                            <option value="23">11h30</option>
+                            <option value="24">12h</option>
+                            <option value="25">12h30</option>
+                            <option value="26">13h</option>
+                            <option value="27">13h30</option>
+                            <option value="28">14h</option>
+                            <option value="29">14h30</option>
+                            <option value="30">15h</option>
+                            <option value="31">15h30</option>
+                            <option value="32">16h</option>
+                            <option value="33">16h30</option>
+                            <option value="34">17h</option>
+                            <option value="35">17h30</option>
+                            <option value="36">18h</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="to">{{ 'TO' | translate }}</label>
+                        <select ng-model="r.end" class="form-control" id="to">
+                            <option value="16">8h</option>
+                            <option value="17">8h30</option>
+                            <option value="18">9h</option>
+                            <option value="19">9h30</option>
+                            <option value="20">10h</option>
+                            <option value="21">10h30</option>
+                            <option value="22">11h</option>
+                            <option value="23">11h30</option>
+                            <option value="24">12h</option>
+                            <option value="25">12h30</option>
+                            <option value="26">13h</option>
+                            <option value="27">13h30</option>
+                            <option value="28">14h</option>
+                            <option value="29">14h30</option>
+                            <option value="30">15h</option>
+                            <option value="31">15h30</option>
+                            <option value="32">16h</option>
+                            <option value="33">16h30</option>
+                            <option value="34">17h</option>
+                            <option value="35">17h30</option>
+                            <option value="36">18h</option>
+                            <option value="37">18h30</option>
+                        </select>
+                    </div>
+                </form>
+            <p>
+                <input cal-enable-owner="{{r.person}}" type="text" class="form-control" placeholder="{{ 'RESERVATION_TITLE' | translate }}" ng-model="r.title">
+            </p>
+            <p ng-show="r.person">
+                <input type="text" class="form-control" placeholder="{{ 'USER' | translate }}" ng-model="r.person" disabled>
+            </p>
+            <div class="alert alert-danger" ng-show="error.collision || error.deleted">
+                <p ng-show="error.collision">{{'ERR_COLLISION' | translate}}</p>
+                <p ng-show="error.deleted">{{'ERR_DELETED' | translate}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-md-4">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h1 class="panel-title">{{'DEVICES' | translate}}</h1>
+        </div>
+        <div class="panel-body">
+            <table class="multiselect">
+                <tr ng-repeat="asset in sassets">
+                    <td ng-click="removeAsset(asset.number)" cal-show-owner="{{r.person}}">
+                        <span class="icon-x-altx-alt"></span>
+                    </td>
+                    <td>
+                        <select ng-show="!asset.raw || asset.raw.active" cal-enable-owner="{{r.person}}" class="form-control" ng-model="asset.value" ng-options="t.id as t.name for t in assets"></select>
+                        <input class="form-control" ng-hide="!asset.raw || asset.raw.active" type="text" value="{{asset.raw.name}} ({{'DEVICE_DELETED'|translate}})" disabled />
+                    </td>
+                </tr>
+                <tr cal-show-owner="{{r.person}}">
+                    <td ng-click="addAsset()">
+                        <span class="icon-plus-square"></span>
+                    </td>
+                    <td>
+                        <select class="form-control" ng-options="t.id as t.name for t in assets" disabled></select>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+</div>
+
+<button cal-show-owner="{{r.person}}" class="btn btn-primary btn-block" ng-click="submit()">{{'BUTTON_SAVE' | translate}}</button>
+<button cal-show-owner="{{r.person}}" ng-show="r.id" class="btn btn-danger btn-block" ng-click="delete()">{{'BUTTON_DELETE' | translate}}</button>

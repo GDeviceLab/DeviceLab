@@ -1,0 +1,171 @@
+/* 
+    Created on : 26 mars 2014, 12:00:09
+    Author     : Clement <clement.hannicq@revevol.eu>
+*/
+a{
+    color: inherit;
+    text-decoration: inherit;
+}
+
+body{
+    background-image: -ms-linear-gradient(bottom, #543131 0%, #960606 100%);
+    background-image: -moz-linear-gradient(bottom, #543131 0%, #960606 100%);
+    background-image: -o-linear-gradient(bottom, #543131 0%, #960606 100%);
+    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #543131), color-stop(1, #960606));
+    background-image: -webkit-linear-gradient(bottom, #543131 0%, #960606 100%);
+    background-image: linear-gradient(to top, #543131 0%, #960606 100%);
+    background-repeat: repeat-x;
+    background-color: #543131;
+    color: #ffffff;
+}
+
+input, select, textarea{
+    width: 100%;
+    font-size: 1em !important;
+}
+
+textarea{
+    line-height: 1em !important;
+    padding: 1em !important;
+}
+
+select{
+    height: 44px;
+    width: 100% !important;
+}
+
+input.small{
+    width: 3em;
+    display: inline;
+}
+
+.pull-left{
+    float: left;
+    width: 40px;
+    text-align: left;
+}
+
+.pull-right{
+    float: right;
+    width: 40px;
+    text-align: right;
+}
+
+.center{
+    display: block;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+#datePicker{
+    padding: 0px;
+    position: absolute;
+    width: 100%;
+    background: #595b5b;
+    color: #fff;
+    box-shadow: inset 0 -1px #333434, 0 1px #454646;
+    z-index: 999999;
+}
+
+.padded{
+    padding: 7px;
+}
+
+.padded button{
+    width: 100%;
+}
+
+.snap-drawer{
+    padding-left: 10px;
+    color: white;
+    font-weight: bold;
+}
+.snap-drawer p{
+    padding-left: 5px;
+}
+
+.snap-content{
+    box-shadow: 0 0 5px 5px #111;
+    background-color: #4b4d4e;
+}
+
+.hover{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 99999999999;
+    background-color: black;
+    color: white;
+}
+
+#header{
+    font-weight: normal;
+    color: #fff;
+    border: 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    text-align: center;
+    box-shadow: inset 0 -1px #333434,0 1px #454646;
+}
+
+.tabs{
+    border-bottom: 1px solid #333434;
+    box-shadow: inset 0 -1px #333434, 0 1px #454646;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 12px;
+    margin-top: 15px;
+}
+
+.tabs div{
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    display: inline;
+    border: 1px solid #333434;
+    border-bottom: 0px;
+    padding: 12px;
+    margin-left: 3px;
+    background-color: #3f4041;
+    color: #c6c8c8;
+    cursor: pointer;
+}
+
+.tabs .active{
+    background-color: #288edf;
+    color: white;
+}
+
+.multiselect{
+    width: 100%;
+}
+
+.multiselect tr td:first-child{
+    width: 2.1rem;
+    font-size: 2rem;
+}
+
+.toggle-text{
+    margin: 0.5em; 
+    position: relative; 
+    top: 1em;
+}
+
+.actions {
+    float: right;
+    font-size: 18px;
+}
+
+.alert{
+    border: 0px solid #960606;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    background-color: #ec514e;
+}
+
+#ack{
+    position:absolute;
+    bottom: 0;
+    font-weight: bold;
+    font-style: italic;
+}

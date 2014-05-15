@@ -1,0 +1,83 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">{{'LOCATION_NAME' | translate}}</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-8">
+                        <input cal-enable-global type="text" ng-model="name" placeholder="{{'LOCATION_NAME' | translate}}" class="form-control"/>
+                    </div>
+                    <div class="col-md-4">
+                        <button cal-show-global class="btn btn-primary btn-block" ng-click="submit()">{{'BUTTON_SAVE' | translate}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row" ng-show="id">
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">{{'LOCATION_PENDING' | translate}}</h3>
+            </div>
+            <ul class="list-group">
+                <li class="list-group-item" ng-repeat="user in pendings">
+                    {{user.name}} ({{user.mail}})
+                    <span class="actions">
+                        <span class="icon-check-alt" ng-click="toUser(user.mail)"></span>
+                        <span class="icon-x-altx-alt" ng-click="delete(user.mail)"></span>
+                    </span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">{{'LOCATION_USERS' | translate}}</h3>
+            </div>
+            <div class="panel-body">
+                <p>
+                    <input type="text" ng-model="user" placeholder="{{'LOCATION_USER_NEW' | translate}}" class="form-control"/>
+                </p>
+                <button class="btn btn-block" ng-click="toUser(user)">{{'BUTTON_ADD' | translate}}</button>
+            </div>
+            <ul class="list-group">
+                <li ng-repeat="user in users" class="list-group-item">
+                    {{user.name}} ({{user.mail}})
+                    <span class="actions">
+                        <span class="icon-arrow-up-alt1" ng-click="toAdmin(user.mail)"></span>
+                        <cal-delete action="delete(user.mail)" b-class="icon-x-altx-alt"></cal-delete>
+                    </span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">{{'LOCATION_ADMINS' | translate}}</h3>
+            </div>
+            <div class="panel-body">
+                <p>
+                    <input type="text" ng-model="admin" placeholder="{{'LOCATION_ADMIN_NEW' | translate}}" class="form-control"/>
+                </p>
+                <button class="btn btn-block" ng-click="toAdmin(admin)">{{'BUTTON_ADD' | translate}}</button>
+            </div>
+            <ul class="list-group">
+                <li ng-repeat="admin in admins" class="list-group-item">
+                    <span>
+                        {{admin.name}} ({{admin.mail}})
+                        <span class="actions">
+                            <span class="icon-arrow-down-alt1" ng-click="toUser(admin.mail)"></span>
+                            <cal-delete action="delete(admin.mail)" b-class="icon-x-altx-alt"></cal-delete>
+                        </span>
+                    </span>
+                </li>  
+            </ul>
+        </div>
+    </div>
+</div>

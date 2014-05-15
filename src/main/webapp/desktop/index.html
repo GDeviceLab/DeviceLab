@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <title>Calendar</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="../app/compiled.desktop.js"></script>
+        <!--<link rel="stylesheet" href="../css/bootstrap/bootstrap.min.css">
+        <link rel="stylesheet" href="../css/angular-snap.css">
+        <link rel="stylesheet" href="../directives/calendar/calendar.css">
+        <link rel="stylesheet" href="../directives/hourpicker/hourpicker.css">
+        <link rel="stylesheet" href="../directives/colorpicker/colorpicker.css">
+        <link rel="stylesheet" href="../css/icomoon/style.css">
+        <link rel="stylesheet" href="../css/register.css">
+        <link rel="stylesheet" href="../css/desktop.css">-->
+        <link rel="stylesheet" href="../css/compiled.desktop.css">
+
+    </head>
+    <body ng-app="cal">
+        <div ng-controller="RegisterCtrl">
+            <div ng-include="'/fragments/register.html'"></div>
+            <div ng-include="'/fragments/loading.html'"></div>
+        </div>
+        <div snap-drawers>
+            <div ng-include="'/fragments/menu.html'"></div>
+            <div ng-include="'/fragments/locations.html'"></div>
+        </div>
+        <div snap-content>
+            <div id="header" snap-dragger>
+                <h1>
+                    <span class="pull-left" snap-toggle="left"><span class="icon-bars"></span></span>
+                    <span class="pull-right" snap-toggle="right"><span class="icon-globe"></span></span>
+                    <span snap-toggle="left">Calendar</span>
+                </h1>
+            </div>
+            <div class="container-fluid">
+                <div ui-view></div>
+            </div>
+        </div>
+
+    </body>
+</html>

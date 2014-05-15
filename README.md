@@ -1,7 +1,11 @@
 App Engine Java Application
 Copyright (C) 2010-2012 Google Inc.
 
-## Skeleton application for use with App Engine Java.
+## Calendar application
+
+Contains a [Google Cloud Endpoints] API and frontends (mobile and desktop) [AngularJS].
+Styles were created using [Bootstrap] and [Topcoat] (http://topcoat.io) for Desktop and Mobile frontends respectively.
+Icon set from [icoMoon].
 
 Requires [Apache Maven](http://maven.apache.org) 3.0 or greater, and JDK 6+ in order to run.
 

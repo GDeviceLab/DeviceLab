@@ -7,6 +7,11 @@ a{
     text-decoration: inherit;
 }
 
+.news a{
+    color: blue !important;
+    text-decoration: underline !important;
+}
+
 body{
     background-image: -ms-linear-gradient(bottom, #543131 0%, #960606 100%);
     background-image: -moz-linear-gradient(bottom, #543131 0%, #960606 100%);

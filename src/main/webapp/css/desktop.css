@@ -2,6 +2,12 @@
     Created on : 26 mars 2014, 12:00:09
     Author     : Clement <clement.hannicq@revevol.eu>
 */
+
+.news a{
+    color: blue !important;
+    text-decoration: underline !important;
+}
+
 a:hover, a:active{
     text-decoration: none;
 }

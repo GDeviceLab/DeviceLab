@@ -70,5 +70,7 @@
     "THURSDAY": "Thu",
     "FRIDAY": "Fri",
     "SATURDAY": "Sat",
-    "SUNDAY": "Sun"
+    "SUNDAY": "Sun",
+    "ERROR_ASSET_COLOR": "Please choose a color for this device.",
+    "ERROR_ASSET_NAME": "Please enter a name for this device."
 }

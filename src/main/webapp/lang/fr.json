@@ -70,5 +70,7 @@
     "THURSDAY": "Jeu",
     "FRIDAY": "Ven",
     "SATURDAY": "Sam",
-    "SUNDAY": "Dim"
+    "SUNDAY": "Dim",
+    "ERROR_ASSET_NAME": "Veuillez choisir un nom pour cet appareil.",
+    "ERROR_ASSET_COLOR": "Veuillez choisir une couleur pour cet appareil."
 }

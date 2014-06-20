@@ -17,6 +17,9 @@
                  ">
                 {{'DEVICE_COLOR' | translate}}
             </p>
+            <p class="alert alert-danger" ng-show="error">
+                {{error | translate}}
+            </p>
             <button class="btn btn-primary btn-block" ng-click="submit()">{{'BUTTON_SAVE' | translate}}</button>
         </div>
     </div>

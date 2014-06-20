@@ -19,6 +19,9 @@
 <div class="padded">
     <color-pick model="rgb" />
 </div>
+<div class="alert" ng-show="error">
+    <p class="padded">{{error | translate}}</p>
+</div>
 <div class="padded">
     <button class="topcoat-button--cta" ng-click="submit()">{{'BUTTON_SAVE' | translate}}</button>
 </div>

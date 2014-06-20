@@ -12,6 +12,14 @@ calApp.controller("ListAssetCtrl", function($scope, endpoint) {
 calApp.controller("NewAssetCtrl", function($scope, endpoint) {
     $scope.a = {};
     $scope.submit = function() {
+        if(!$scope.rgb){
+            $scope.error = "ERROR_ASSET_COLOR";
+            return;
+        }
+        if(!$scope.a.name){
+            $scope.error = "ERROR_ASSET_NAME";
+            return;
+        }
         $scope.a.r = $scope.rgb.r;
         $scope.a.g = $scope.rgb.g;
         $scope.a.b = $scope.rgb.b;

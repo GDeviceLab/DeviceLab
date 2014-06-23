@@ -79,10 +79,12 @@ calApp.controller("LocationDrawer", function($scope, endpoint, $window) {
     });
 });
 
-calApp.controller("GlobalCtrl", function($scope, endpoint, $window) {
+calApp.controller("GlobalCtrl", function($scope, endpoint) {
     $scope.add = function() {
         endpoint.person.grantGlobal($scope.admin).success(function() {
-            $window.location.href = "/";
+            $scope.feedback = "GLOBAL_SUCCESS";
+        }).error(function(){
+            $scope.feedback = "GLOBAL_FAILURE";
         });
     }
 });

@@ -116,7 +116,9 @@ calApp.factory('endpoint', ['$http', '$rootScope', '$window', '$q', function($ht
         service.person.grantGlobal = function(usr) {
             loading++;
             return $http.get(url("person", "grant/global", {user: usr}))
-                    .success(success).error(error);
+                    .success(success).error(function(){
+                        loading--;
+                    });
         };
         service.person.status = function() {
             loading++;

@@ -1430,7 +1430,9 @@ return $http.get(url("person", "grant/local", {location: loc, user: usr}))
 service.person.grantGlobal = function(usr) {
 loading++;
 return $http.get(url("person", "grant/global", {user: usr}))
-.success(success).error(error);
+.success(success).error(function(){
+loading--;
+});
 };
 service.person.status = function() {
 loading++;
@@ -1732,10 +1734,12 @@ $scope.refresh();
 });
 });
 
-calApp.controller("GlobalCtrl", function($scope, endpoint, $window) {
+calApp.controller("GlobalCtrl", function($scope, endpoint) {
 $scope.add = function() {
 endpoint.person.grantGlobal($scope.admin).success(function() {
-$window.location.href = "/";
+$scope.feedback = "GLOBAL_SUCCESS";
+}).error(function(){
+$scope.feedback = "GLOBAL_FAILURE";
 });
 }
 });

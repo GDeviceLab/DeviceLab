@@ -4,6 +4,7 @@ import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.appengine.api.NamespaceManager;
 import com.google.appengine.api.oauth.OAuthRequestException;
+import com.googlecode.objectify.LoadResult;
 import com.googlecode.objectify.ObjectifyService;
 import eu.revevol.calendar.model.ACL;
 import eu.revevol.calendar.model.News;
@@ -40,6 +41,8 @@ public class NewsEndpoint {
             n.date = new Date();
         }
         n.author = user;
+        Person author = ObjectifyService.ofy().load().type(Person.class).id(user).now();
+        n.authorName = author.name;
         if (n.broadcast) {
             Require.globalAdmin(user);
 

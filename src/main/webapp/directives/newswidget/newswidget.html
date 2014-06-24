@@ -5,7 +5,7 @@
             <h1>{{n.title}}</h1>
             <div class="padded">
                 <p class="news" ng-bind-html="n.content | linky:'_blank'"></p>
-                <p><small>{{n.author}} - {{n.date| date: 'EEEE d MMMM'}}</small></p>
+                <p><small>{{n.authorName}} - {{n.date| date: 'EEEE d MMMM'}}</small></p>
             </div>
         </div>
     </div>

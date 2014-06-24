@@ -2267,11 +2267,16 @@ templateUrl: '/directives/calendar/calendar.html',
 restrict: 'E',
 scope: {
 date: '=',
-class: '@'
+class: '@',
+btnClass: '@'
 },
 controller: function($scope) {
 $scope.changeMonth = function(offset){
 $scope.date = new Date($scope.date.getFullYear(), $scope.date.getMonth() + offset, 1 );
+}
+
+$scope.today = function(){
+$scope.date = new Date();
 }
 
 function refreshCal() {

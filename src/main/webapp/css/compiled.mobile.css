@@ -503,6 +503,19 @@ color: white;
 font-size: 0.8rem;
 border-bottom: 1px solid #9daca9;
 }
+
+.cal-to-left{
+text-align: left;
+}
+
+.cal-to-center{
+text-align: center;
+font-weight: bold;
+}
+
+.cal-to-right{
+text-align: right;
+}
 .menu-button{
 height: 3em;
 width: 3em;

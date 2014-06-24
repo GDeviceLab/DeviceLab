@@ -35,6 +35,9 @@ calApp.directive("calEndar", function() {
             class: '@'
         },
         controller: function($scope) {
+            $scope.changeMonth = function(offset){
+                $scope.date = new Date($scope.date.getFullYear(), $scope.date.getMonth() + offset, 1 );
+            }
             
             function refreshCal() {
                 var d = new Date($scope.date);

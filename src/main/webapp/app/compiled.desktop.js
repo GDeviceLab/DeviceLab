@@ -1350,8 +1350,12 @@ loading--;
 function fetchToken() {
 return $http.get("/auth")
 .success(function(data) {
+if (data.redirect) {
+$window.location.href = data.redirect;
+} else {
 token = data.hash;
 origin = data.user;
+}
 });
 }
 
@@ -1402,7 +1406,7 @@ return $http.get(url("person", "list/admins", {location: loc}))
 service.person.register = function(pseudo) {
 loading++;
 return $http.get(url("person", "register", {username: pseudo}))
-.success(success).error(error).success(function(){
+.success(success).error(error).success(function() {
 user.name = pseudo;
 user.mail = origin;
 });
@@ -1430,7 +1434,7 @@ return $http.get(url("person", "grant/local", {location: loc, user: usr}))
 service.person.grantGlobal = function(usr) {
 loading++;
 return $http.get(url("person", "grant/global", {user: usr}))
-.success(success).error(function(){
+.success(success).error(function() {
 loading--;
 });
 };
@@ -1499,7 +1503,7 @@ service.location = {};
 service.location.list = function() {
 loading++;
 return $http.get(url("location", "list", {}))
-.success(success).error(error).success(function(data){
+.success(success).error(error).success(function(data) {
 locations = data;
 });
 };
@@ -1593,7 +1597,7 @@ service.loc = function() {
 return location;
 };
 
-service.show = function(){
+service.show = function() {
 return show;
 };
 
@@ -1616,35 +1620,35 @@ return loading > 0;
 
 // PRIVILEGES
 
-$scope.$watch(function(){
+$scope.$watch(function() {
 return location;
-}, function(){
+}, function() {
 local = "";
-if(location && location !== -1){
-$http.get(url("location", "acl", {location: location})).success(function(data){
+if (location && location !== -1) {
+$http.get(url("location", "acl", {location: location})).success(function(data) {
 local = data.status;
 });
 }
 });
 
-service.global = function(){
+service.global = function() {
 return user.globalAdmin;
 };
 
-service.local = function (){
+service.local = function() {
 return service.global() || local === "ADMIN";
 };
 
-service.owner = function (mail){
+service.owner = function(mail) {
 return !mail || service.local() || mail === origin;
 };
 
-fetchToken().success(function(){
+fetchToken().success(function() {
 console.log("Token loaded");
-service.callMe().success(function(){
+service.callMe().success(function() {
 console.log("Personal Data loaded");
 response.resolve(service);
-}).error(function(){
+}).error(function() {
 console.log("Going to register");
 show = true;
 response.resolve(service);

@@ -58,6 +58,7 @@
     "MENU_LOCATION": "Users",
     "MENU_LOCATIONS": "Locations",
     "MENU_DEVICES": "Devices",
+    "MENU_LOGOUT": "Logout",
     "LOADING": "Loading",
     "REGISTER_WELCOME": "Welcome!",
     "REGISTER_HELP": "You are not registered yet! Please indicate your name and surname or your startup name to complete the registration process.",

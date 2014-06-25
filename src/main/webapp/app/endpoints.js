@@ -10,7 +10,7 @@ calApp.factory('endpoint', ['$http', '$rootScope', '$window', '$q', function($ht
         var redirect = false;
         var show = false;
         var local = "";
-        
+
         ///////////////
         // CALLBACKS //
         ///////////////
@@ -36,8 +36,12 @@ calApp.factory('endpoint', ['$http', '$rootScope', '$window', '$q', function($ht
         function fetchToken() {
             return $http.get("/auth")
                     .success(function(data) {
-                        token = data.hash;
-                        origin = data.user;
+                        if (data.redirect) {
+                            $window.location.href = data.redirect;
+                        } else {
+                            token = data.hash;
+                            origin = data.user;
+                        }
                     });
         }
 
@@ -88,10 +92,10 @@ calApp.factory('endpoint', ['$http', '$rootScope', '$window', '$q', function($ht
         service.person.register = function(pseudo) {
             loading++;
             return $http.get(url("person", "register", {username: pseudo}))
-                    .success(success).error(error).success(function(){
-                        user.name = pseudo;
-                        user.mail = origin;
-                    });
+                    .success(success).error(error).success(function() {
+                user.name = pseudo;
+                user.mail = origin;
+            });
         };
         service.person.promote = function(usr, loc) {
             loading++;
@@ -116,9 +120,9 @@ calApp.factory('endpoint', ['$http', '$rootScope', '$window', '$q', function($ht
         service.person.grantGlobal = function(usr) {
             loading++;
             return $http.get(url("person", "grant/global", {user: usr}))
-                    .success(success).error(function(){
-                        loading--;
-                    });
+                    .success(success).error(function() {
+                loading--;
+            });
         };
         service.person.status = function() {
             loading++;
@@ -185,9 +189,9 @@ calApp.factory('endpoint', ['$http', '$rootScope', '$window', '$q', function($ht
         service.location.list = function() {
             loading++;
             return $http.get(url("location", "list", {}))
-                    .success(success).error(error).success(function(data){
-                        locations = data;
-                    });
+                    .success(success).error(error).success(function(data) {
+                locations = data;
+            });
         };
         service.location.listActives = function() {
             loading++;
@@ -231,7 +235,7 @@ calApp.factory('endpoint', ['$http', '$rootScope', '$window', '$q', function($ht
         service.news.latest = function() {
             //loading++; //No point displaying a loading screen in that case
             return $http.get(url("news", "latest", {location: location}));
-                    //.success(success).error(error);
+            //.success(success).error(error);
         };
         service.news.delete = function(id) {
             loading++;
@@ -278,8 +282,8 @@ calApp.factory('endpoint', ['$http', '$rootScope', '$window', '$q', function($ht
         service.loc = function() {
             return location;
         };
-        
-        service.show = function(){
+
+        service.show = function() {
             return show;
         };
 
@@ -299,43 +303,43 @@ calApp.factory('endpoint', ['$http', '$rootScope', '$window', '$q', function($ht
         service.loading = function() {
             return loading > 0;
         };
-        
+
         // PRIVILEGES
-        
-        $scope.$watch(function(){
+
+        $scope.$watch(function() {
             return location;
-        }, function(){
+        }, function() {
             local = "";
-            if(location && location !== -1){
-                $http.get(url("location", "acl", {location: location})).success(function(data){
+            if (location && location !== -1) {
+                $http.get(url("location", "acl", {location: location})).success(function(data) {
                     local = data.status;
                 });
             }
         });
-        
-        service.global = function(){
+
+        service.global = function() {
             return user.globalAdmin;
         };
-        
-        service.local = function (){
+
+        service.local = function() {
             return service.global() || local === "ADMIN";
         };
-        
-        service.owner = function (mail){
+
+        service.owner = function(mail) {
             return !mail || service.local() || mail === origin;
         };
-        
-        fetchToken().success(function(){
+
+        fetchToken().success(function() {
             console.log("Token loaded");
-            service.callMe().success(function(){
+            service.callMe().success(function() {
                 console.log("Personal Data loaded");
                 response.resolve(service);
-            }).error(function(){
+            }).error(function() {
                 console.log("Going to register");
                 show = true;
                 response.resolve(service);
             });
         });
-        
+
         return response.promise;
     }]);

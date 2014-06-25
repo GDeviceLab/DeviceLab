@@ -58,6 +58,7 @@
     "MENU_LOCATION": "Utilisateurs",
     "MENU_LOCATIONS": "Zones",
     "MENU_DEVICES": "Appareils",
+    "MENU_LOGOUT": "Se déconnecter",
     "LOADING": "Chargement",
     "REGISTER_WELCOME": "Bienvenue!",
     "REGISTER_HELP": "Vous n'êtes pas incrit, veuillez renseigner un nom d'utilisateur.",

@@ -6,8 +6,8 @@
                 <a href="#/location/new" class="btn btn-primary btn-block">{{'BUTTON_NEW' | translate}}</a>
             </div>
             <ul class="list-group">
-                <li class="list-group-item clickable" ng-repeat="l in locations.items">
-                    <a href="#/location/edit/{{l.id}}">{{l.name}}</a>
+                <li class="list-group-item clickable" ng-repeat="l in locations.items" cal-link="#/location/edit/{{l.id}}">
+                    {{l.name}}
                 </li>
             </ul>
         </div>

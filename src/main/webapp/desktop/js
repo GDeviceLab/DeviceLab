@@ -27,3 +27,4 @@
 ../directives/newsfeed/newsfeed.js
 ../directives/calsecurity/calsecurity.js
 ../directives/delete/delete.js
+../directives/linkify/linkify.js

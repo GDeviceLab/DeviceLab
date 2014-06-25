@@ -91,6 +91,7 @@ calApp.factory('endpoint', ['$http', '$rootScope', '$window', '$q', function($ht
         /////////////////
         service.person.register = function(pseudo) {
             loading++;
+            redirect = true; //redirect was false is the user wasn't registered, now it's true
             return $http.get(url("person", "register", {username: pseudo}))
                     .success(success).error(error).success(function() {
                 user.name = pseudo;

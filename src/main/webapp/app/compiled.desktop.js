@@ -1661,10 +1661,28 @@ calApp.controller("ReloadCtrl", function($window) {
 $window.location.hash = "#/calendar";
 });
 
-calApp.controller("CalendarCtrl", function($scope, endpoint) {
+calApp.controller("CalendarCtrl", function($scope, $rootScope, endpoint) {
 $scope.search = {};
 $scope.search.person = '';
+if(!$rootScope.appState){
+$rootScope.appState = {};
+}
 var d = new Date();
+if(!$rootScope.appState.date){
+console.log("creating date");
+$rootScope.appState.date = d;
+} else {
+console.log("loading date");
+d = $rootScope.appState.date;
+}
+
+$scope.$watch(function(){
+return $scope.date.toDateString();
+}, function(){
+console.log("updating date");
+$rootScope.appState.date = $scope.date;
+});
+
 $scope.date = new Date(d.getFullYear(), d.getMonth(), d.getDate());
 
 $scope.datePlus = function(offset){

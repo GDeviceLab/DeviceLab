@@ -28,3 +28,4 @@
 ../directives/calsecurity/calsecurity.js
 ../directives/delete/delete.js
 ../directives/linkify/linkify.js
+../directives/devicepicker/devicepicker.js

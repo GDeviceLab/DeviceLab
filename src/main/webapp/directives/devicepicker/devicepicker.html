@@ -1,0 +1,22 @@
+<div style="height:80px; overflow-y: scroll">
+    <div ng-repeat="d in devices" 
+         style="
+         height: 20px; 
+         cursor: pointer;
+         background-color: {{background()}};"
+         ng-click="click()"
+         >
+        <div style="
+             height:14px;
+             width: 14px;
+             margin:3px;
+             float:left;
+             background-color:rgb({{d.r}},{{d.g}},{{d.b}});"
+             ></div>
+        <div style="
+             margin:3px;
+             margin-left:23px;">
+            {{d.name}}
+        </div>
+    </div>
+</div>

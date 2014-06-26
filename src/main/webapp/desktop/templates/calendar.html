@@ -13,9 +13,7 @@
 
         <div class="well">
             <div>
-                <select multiple class="form-control" ng-options="a.id as a.name for a in devices" ng-model="search.assets">
-                    <option value=''>{{'CAL_FILTER' | translate}}</option>
-                </select>
+                <device-picker filter="search.assets"></device-picker>
             </div>
             <div>
                 <input type="checkbox" ng-click="toggle()">

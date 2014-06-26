@@ -10,17 +10,14 @@ calApp.controller("CalendarCtrl", function($scope, $rootScope, endpoint) {
     }
     var d = new Date();
     if(!$rootScope.appState.date){
-        console.log("creating date");
         $rootScope.appState.date = d;
     } else {
-        console.log("loading date");
         d = $rootScope.appState.date;
     }
     
     $scope.$watch(function(){
         return $scope.date.toDateString();
     }, function(){
-        console.log("updating date");
         $rootScope.appState.date = $scope.date;
     });
     

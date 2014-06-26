@@ -331,12 +331,9 @@ calApp.factory('endpoint', ['$http', '$rootScope', '$window', '$q', function($ht
         };
 
         fetchToken().success(function() {
-            console.log("Token loaded");
             service.callMe().success(function() {
-                console.log("Personal Data loaded");
                 response.resolve(service);
             }).error(function() {
-                console.log("Going to register");
                 show = true;
                 response.resolve(service);
             });

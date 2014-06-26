@@ -1645,12 +1645,9 @@ return !mail || service.local() || mail === origin;
 };
 
 fetchToken().success(function() {
-console.log("Token loaded");
 service.callMe().success(function() {
-console.log("Personal Data loaded");
 response.resolve(service);
 }).error(function() {
-console.log("Going to register");
 show = true;
 response.resolve(service);
 });
@@ -1670,17 +1667,14 @@ $rootScope.appState = {};
 }
 var d = new Date();
 if(!$rootScope.appState.date){
-console.log("creating date");
 $rootScope.appState.date = d;
 } else {
-console.log("loading date");
 d = $rootScope.appState.date;
 }
 
 $scope.$watch(function(){
 return $scope.date.toDateString();
 }, function(){
-console.log("updating date");
 $rootScope.appState.date = $scope.date;
 });
 
@@ -2153,8 +2147,6 @@ controller: function($scope, $window, endpoint) {
 function dte(){
 return new Date($scope.date.getFullYear(), $scope.date.getMonth(), $scope.date.getDate() + $scope.offset*1);
 }
-console.log($scope.date);
-console.log(dte());
 
 endpoint.then(function(endpoint) {
 $scope.goto = function(id){
@@ -2637,7 +2629,6 @@ restrict: 'E',
 templateUrl: "/directives/delete/delete.html",
 replace: true,
 controller: function($scope){
-console.log($scope);
 $scope.delete = function(){
 $scope.action();
 $scope.show = false;

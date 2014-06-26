@@ -16,8 +16,6 @@ calApp.directive("calHourPicker", function() {
             function dte(){
                 return new Date($scope.date.getFullYear(), $scope.date.getMonth(), $scope.date.getDate() + $scope.offset*1);
             }
-            console.log($scope.date);
-            console.log(dte());
             
             endpoint.then(function(endpoint) {
                 $scope.goto = function(id){

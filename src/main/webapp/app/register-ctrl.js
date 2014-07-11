@@ -1,6 +1,6 @@
 calApp.controller("RegisterCtrl", function($scope, endpoint, $window) {
     $scope.show = false;
-    $scope.loading = function(){
+    $scope.loading = function() {
         return true;
     };
     endpoint.then(function(endpoint) {
@@ -17,5 +17,34 @@ calApp.controller("RegisterCtrl", function($scope, endpoint, $window) {
                         ndp.callMe();
                     });
         }
+    });
+});
+
+calApp.controller("TitleCtrl", function($scope, endpoint, $window) {
+    $scope.page = "???";
+    $scope.location = "???";
+    
+    $scope.$watch(function(){
+        var loc = $window.location.hash.split('/');
+        if(loc.length < 2){
+            return "home";
+        } else {
+            return loc[1];
+        }
+    }, function(n){
+        $scope.page = n.charAt(0).toUpperCase() + n.slice(1);
+    });
+    
+    endpoint.then(function(endpoint) {
+        $scope.$watch(endpoint.loc, function() {
+            if (endpoint.loc() != -1) {endpoint.location.get(endpoint.loc()).success(function(data) {
+                    $scope.location = data.name;
+                }).error(function(data) {
+                    $scope.location = "[ERROR]";
+                });
+            } else {
+                $scope.location = "[No Location]";
+            }
+        });
     });
 });

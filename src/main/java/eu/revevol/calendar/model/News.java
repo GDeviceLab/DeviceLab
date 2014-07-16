@@ -17,4 +17,5 @@ public class News {
     public String author;
     public String authorName;
     public boolean broadcast;
+    @Index public Date expire;
 }

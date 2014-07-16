@@ -1,4 +1,4 @@
-<div class="{{pClass}}" ng-repeat="n in news">
+<div class="{{pClass}}" ng-repeat="n in news | limitTo: 2">
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title">{{n.title}}</h3>

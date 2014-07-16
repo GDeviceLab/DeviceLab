@@ -1,5 +1,5 @@
 calApp.controller("NewNewsCtrl", function($scope, $window, endpoint) {
-    $scope.n = {}
+    $scope.n = {expire: new Date()}
     $scope.submit = function() {
         endpoint.news.put($scope.n).success(function() {
             $window.location.hash = "/";

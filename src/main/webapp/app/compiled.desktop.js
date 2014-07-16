@@ -1,5 +1,5 @@
 // Copyright (c) 2013 The Polymer Authors. All rights reserved.
-//
+// 
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are
 // met:
@@ -1557,6 +1557,11 @@ loading++;
 return $http.get(url("news", "delete", {location: location, id: id}))
 .success(success).error(error);
 };
+service.news.active = function() {
+loading++;
+return $http.get(url("news", "active", {location: location}))
+.success(success).error(error);
+};
 //////////////
 //  STATS   //
 //////////////
@@ -2110,7 +2115,7 @@ $scope.error.deleted = true;
 };
 });
 calApp.controller("NewNewsCtrl", function($scope, $window, endpoint) {
-$scope.n = {}
+$scope.n = {expire: new Date()}
 $scope.submit = function() {
 endpoint.news.put($scope.n).success(function() {
 $window.location.hash = "/";
@@ -2439,7 +2444,7 @@ pClass: "@"
 },
 controller: function($scope, endpoint) {
 endpoint.then(function(endpoint) {
-endpoint.news.fetch($scope.rank, $scope.limit).success(function(data) {
+endpoint.news.active().success(function(data) {
 $scope.news = data.items;
 });
 });

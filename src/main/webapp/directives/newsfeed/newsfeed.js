@@ -9,7 +9,7 @@ calApp.directive('newsFeed', function() {
         },
         controller: function($scope, endpoint) {
             endpoint.then(function(endpoint) {
-                endpoint.news.fetch($scope.rank, $scope.limit).success(function(data) {
+                endpoint.news.active().success(function(data) {
                     $scope.news = data.items;
                 });
             });

@@ -165,4 +165,33 @@ public class NewsEndpoint {
 
         ObjectifyService.ofy().delete().type(News.class).id(id).now();
     }
+    
+    @ApiMethod(
+            name = "active",
+            path = "active",
+            httpMethod = ApiMethod.HttpMethod.GET
+    )
+    public List<News> active(@Named("origin") String user, @Named("location") Long location) throws OAuthRequestException{
+        Require.access(user, location);
+        
+        Date now = new Date();
+
+        List<News> global = ObjectifyService.ofy().load().type(News.class).filter("expire >=", now).list();
+
+        NamespaceManager.set(location.toString());
+
+        List<News> local = ObjectifyService.ofy().load().type(News.class).filter("expire >=", now).list();
+
+        local.addAll(global);
+
+        Collections.sort(local, new Comparator<News>() {
+            @Override
+            public int compare(News o1, News o2) {
+                return o2.date.compareTo(o1.date);
+            }
+        });
+
+        return local;
+    
+    }
 }

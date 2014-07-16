@@ -20,6 +20,12 @@
                 <p ng-show="n.id && n.broadcast">
                     {{'NEWS_GLOBAL' | translate}}
                 </p>
+                <p ng-if="n.expire">
+                    Expires : {{n.expire |date: 'EEEE d MMMM'}}
+                </p>
+                <p cal-show-local>
+                    <cal-endar date="n.expire" class="cal" btn-class="btn btn-default btn-block"></cal-endar>
+                </p>
                 <p>
                     <textarea class="form-control" rows="3" placeholder="{{'NEWS_CONTENT' | translate}}" ng-model="n.content"></textarea>
                 </p>

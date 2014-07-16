@@ -1,28 +1,36 @@
 <div class="topcoat-list">
-    <h3 class="topcoat-list__header">{{'NEWS' | translate}}</h3>
+    <h3 class="topcoat-list__header">{{'NEWS'| translate}}</h3>
     <div class="padded">
-        <input type="text" class="topcoat-text-input" placeholder="{{'NEWS_TITLE' | translate}}" ng-model="n.title">
+        <input type="text" class="topcoat-text-input" placeholder="{{'NEWS_TITLE'| translate}}" ng-model="n.title">
     </div>
     <div class="padded" cal-show-global ng-hide="n.id">
         <label class="topcoat-checkbox">
             <input type="checkbox" ng-model="n.broadcast">
             <div class="topcoat-checkbox__checkmark"></div>
-            {{'NEWS_GLOBAL' | translate}}
+            {{'NEWS_GLOBAL'| translate}}
         </label>
     </div>
     <div class="padded" ng-show="n.id && n.broadcast">
-        <p>{{'NEWS_GLOBAL' | translate}}</p>
+        <p>{{'NEWS_GLOBAL'| translate}}</p>
     </div>
     <div class="padded" ng-show="n.author">
-        <input type="text" class="topcoat-text-input" placeholder="{{'USER' | translate}}" ng-model="n.authorName" disabled>
+        <input type="text" class="topcoat-text-input" placeholder="{{'USER'| translate}}" ng-model="n.authorName" disabled>
     </div>
     <div class="padded" ng-show="n.date">
-        <input type="text" class="topcoat-text-input" placeholder="{{'NEWS_TITLE' | translate}}" value="{{n.date|date: 'EEEE d MMMM'}}" disabled>
+        <input type="text" class="topcoat-text-input" placeholder="{{'NEWS_TITLE'| translate}}" value="{{n.date|date: 'EEEE d MMMM'}}" disabled>
     </div>
-    <div class="padded">
-        <textarea class="topcoat-textarea" rows="5" placeholder="{{'NEWS_CONTENT' | translate}}" ng-model="n.content"></textarea>
+    <div class="topcoat-navigation-bar mid" ng-click="expire = !expire">
+    <div class="topcoat-navigation-bar__item center">
+        <h1 class="topcoat-navigation-bar__title">Expires : {{n.expire|date: 'EEEE d MMMM'}}</h1>
     </div>
-    <div class="padded">
-        <button cal-show-local  class="topcoat-button--cta" ng-click="submit()">{{'BUTTON_SAVE' | translate}}</button>
-    </div>
+</div>
+<div class="topcoat-list__header" ng-show="expire" cal-show-local>
+    <cal-endar date="n.expire" class="cal" btn-class="topcoat-button--cta" />
+</div>
+<div class="padded">
+    <textarea class="topcoat-textarea" rows="5" placeholder="{{'NEWS_CONTENT'| translate}}" ng-model="n.content"></textarea>
+</div>
+<div class="padded">
+    <button cal-show-local  class="topcoat-button--cta" ng-click="submit()">{{'BUTTON_SAVE'| translate}}</button>
+</div>
 </div>

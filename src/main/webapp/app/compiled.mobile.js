@@ -1557,6 +1557,11 @@ loading++;
 return $http.get(url("news", "delete", {location: location, id: id}))
 .success(success).error(error);
 };
+service.news.active = function() {
+loading++;
+return $http.get(url("news", "active", {location: location}))
+.success(success).error(error);
+};
 //////////////
 //  STATS   //
 //////////////
@@ -2110,7 +2115,7 @@ $scope.error.deleted = true;
 };
 });
 calApp.controller("NewNewsCtrl", function($scope, $window, endpoint) {
-$scope.n = {}
+$scope.n = {expire: new Date()}
 $scope.submit = function() {
 endpoint.news.put($scope.n).success(function() {
 $window.location.hash = "/";

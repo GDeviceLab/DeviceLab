@@ -77,6 +77,7 @@
     </dependencies>
 
     <build>
+        <outputDirectory>target/${project.artifactId}-${project.version}/WEB-INF/classes</outputDirectory>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -107,13 +108,18 @@
                     </webResources>
                 </configuration>
             </plugin>
-
+                        
             <plugin>
                 <groupId>com.google.appengine</groupId>
                 <artifactId>appengine-maven-plugin</artifactId>
                 <version>${appengine.target.version}</version>
                 <configuration>
                     <enableJarClasses>false</enableJarClasses>
+                    <fullScanSeconds>1</fullScanSeconds>
+                    <jvmFlags>
+                        <jvmFlag>-Xdebug</jvmFlag>
+                        <jvmFlag>-agentlib:jdwp=transport=dt_socket,address=8000,server=y,suspend=n</jvmFlag>
+                    </jvmFlags>
                 </configuration>
                 <executions>
                     <execution>

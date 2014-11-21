@@ -76,5 +76,6 @@
     "ERROR_ASSET_NAME": "Please enter a name for this device.",
     "GLOBAL_SUCCESS": "Successfully granted this user Global Admin privileges.",
     "GLOBAL_FAILURE": "Error: could not grant this user Global Admin privileges.",
-    "TODAY": "Today"
+    "TODAY": "Today",
+    "SEE_MORE_NEWS":"See more news..."
 }

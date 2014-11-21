@@ -3,7 +3,40 @@
         <title>Device Lab</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src="../app/compiled.desktop.js"></script>
+        <!--<script src="../app/compiled.desktop.js"></script>-->
+        
+        <script src="../js/libs/PointerEvents.js"></script>
+        <script src="../js/libs/snap.js"></script>
+        <script src="../js/libs/colorpicker.js"></script>
+        <script src="../js/libs/angular.1.3.0.js"></script>
+        <script src="../js/libs/angular.sanitize.1.3.0.js"></script>
+        <script src="../js/libs/angular-ui-router.min.js"></script>
+        <script src="../js/libs/angular-snap.js"></script>
+        <script src="../js/libs/angular-translate.min.js"></script>
+        <script src="../js/libs/angular-translate-static-loader.min.js"></script>
+        <script src="../app/route.js"></script>
+        <script src="../app/filters.js"></script>
+        <script src="../app/lang.js"></script>
+        <script src="../app/endpoints.js"></script>
+        <script src="../app/controllers.js"></script>
+        <script src="../app/asset-ctrl.js"></script>
+        <script src="../app/type-ctrl.js"></script>
+        <script src="../app/register-ctrl.js"></script>
+        <script src="../app/locations-ctrl.js"></script>
+        <script src="../app/reservation-ctrl.js"></script>
+        <script src="../app/news-ctrl.js"></script>
+        <script src="../app/stats-ctrl.js"></script>
+        <script src="../directives/hourpicker/hourpicker.js"></script>
+        <script src="../directives/calendar/calendar.js"></script>
+        <script src="../directives/bmenu/bmenu.js"></script>
+        <script src="../directives/favorite/favorite.js"></script>
+        <script src="../directives/colorpicker/colorpicker.js"></script>
+        <script src="../directives/newsfeed/newsfeed.js"></script>
+        <script src="../directives/calsecurity/calsecurity.js"></script>
+        <script src="../directives/delete/delete.js"></script>
+        <script src="../directives/linkify/linkify.js"></script>
+        <script src="../directives/devicepicker/devicepicker.js"></script>
+        
         <!--<link rel="stylesheet" href="../css/bootstrap/bootstrap.min.css">
         <link rel="stylesheet" href="../css/angular-snap.css">
         <link rel="stylesheet" href="../directives/calendar/calendar.css">
@@ -13,7 +46,7 @@
         <link rel="stylesheet" href="../css/register.css">
         <link rel="stylesheet" href="../css/desktop.css">-->
         <link rel="stylesheet" href="../css/compiled.desktop.css">
-
+        
     </head>
     <body ng-app="cal">
         <div ng-controller="RegisterCtrl">
@@ -36,6 +69,6 @@
                 <div ui-view></div>
             </div>
         </div>
-
+        
     </body>
 </html>

@@ -76,5 +76,6 @@
     "ERROR_ASSET_COLOR": "Veuillez choisir une couleur pour cet appareil.",
     "GLOBAL_SUCCESS": "Cet utilisateur est maintenant Administrateur Global.",
     "GLOBAL_FAILURE": "Erreur: Le privilège administrateur global n'a pas put être appliqué à cet utilisateur.",
-    "TODAY": "Aujoud'hui"
+    "TODAY": "Aujoud'hui",
+    "SEE_MORE_NEWS":"Voir plus news..."
 }

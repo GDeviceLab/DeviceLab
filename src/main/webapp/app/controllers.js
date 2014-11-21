@@ -2,7 +2,7 @@ calApp.controller("ReloadCtrl", function($window) {
     $window.location.hash = "#/calendar";
 });
 
-calApp.controller("CalendarCtrl", function($scope, $rootScope, endpoint) {
+calApp.controller("CalendarCtrl", function($scope, $rootScope, endpoint,$window) {
     $scope.search = {};
     $scope.search.person = '';
     if(!$rootScope.appState){
@@ -25,6 +25,12 @@ calApp.controller("CalendarCtrl", function($scope, $rootScope, endpoint) {
     
     $scope.datePlus = function(offset){
         return new Date($scope.date).setDate($scope.date.getDate() + offset);
+    };
+    
+    
+    $scope.goTo = function(value){
+        console.log("goto");
+        $window.location.href = value;
     };
 
     $scope.toggle = function() {

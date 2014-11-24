@@ -47,9 +47,27 @@ calApp.controller("EditLocationCtrl", function($scope, $stateParams, endpoint, $
         endpoint.person.promote(user, $scope.id)
                 .success(refresh);
     };
+    
+    removeFromList = function(list,user){
+        var tempList = [];
+        for (var i = 0; i < list.length; i++) {
+            if(user != list[i].mail){
+                tempList.push(list[i]);
+            }
+        }
+        return tempList;
+    };
+    
+    removeUser = function(user){
+        $scope.admins = removeFromList($scope.admins,user);
+        $scope.pendings = removeFromList($scope.pendings,user);
+        $scope.users = removeFromList($scope.users,user);
+    };
+    
+    
     $scope.delete = function(user) {
         endpoint.person.demote(user, $scope.id)
-                .success(refresh);
+                .success(removeUser(user));
     };
     $scope.toAdmin = function(user) {
         endpoint.person.grantLocal(user, $scope.id)

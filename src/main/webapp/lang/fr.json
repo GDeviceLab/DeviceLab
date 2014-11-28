@@ -77,5 +77,7 @@
     "GLOBAL_SUCCESS": "Cet utilisateur est maintenant Administrateur Global.",
     "GLOBAL_FAILURE": "Erreur: Le privilège administrateur global n'a pas put être appliqué à cet utilisateur.",
     "TODAY": "Aujoud'hui",
-    "SEE_MORE_NEWS":"Voir plus news..."
+    "SEE_MORE_NEWS":"Voir plus news...",
+    "OPEN_CALENDAR":"Ouvert calendrier",
+    "HIDE":"Cacher"
 }

@@ -3,7 +3,12 @@ calApp.controller("ReloadCtrl", function($window) {
 });
 
 calApp.controller("CalendarCtrl", function($scope, $rootScope, endpoint,$window) {
+    var heightDeviceMax = 275;
+    var heightDeviceMin = 80;
     $scope.search = {};
+    $scope.isCalendarVisible = false;
+    $scope.wellDeviceHeight = heightDeviceMax;
+    
     $scope.search.person = '';
     if(!$rootScope.appState){
         $rootScope.appState = {};
@@ -27,6 +32,15 @@ calApp.controller("CalendarCtrl", function($scope, $rootScope, endpoint,$window)
         return new Date($scope.date).setDate($scope.date.getDate() + offset);
     };
     
+    $scope.visibilityCalendar = function(){
+        $scope.isCalendarVisible = !$scope.isCalendarVisible;
+        if($scope.isCalendarVisible){
+            $scope.wellDeviceHeight = heightDeviceMin;
+        }
+        else{
+            $scope.wellDeviceHeight = heightDeviceMax;
+        }
+    };  
     
     $scope.goTo = function(value){
         console.log("goto");

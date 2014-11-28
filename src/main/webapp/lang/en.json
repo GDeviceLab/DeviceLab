@@ -77,5 +77,7 @@
     "GLOBAL_SUCCESS": "Successfully granted this user Global Admin privileges.",
     "GLOBAL_FAILURE": "Error: could not grant this user Global Admin privileges.",
     "TODAY": "Today",
-    "SEE_MORE_NEWS":"See more news..."
+    "SEE_MORE_NEWS":"See more news...",
+    "OPEN_CALENDAR":"Open calendar",
+    "HIDE":"Hide"
 }

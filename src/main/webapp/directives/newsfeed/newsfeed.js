@@ -51,14 +51,14 @@ calApp.directive('newsFeed', function() {
             $scope.reduceText = function(value,limit){
                 if(!isNaN(limit)
                     && limit > 0
-                    && value != null
+                    && value !== null
                     && value.length > limit){
                     var newString = value.substring(0,limit);
                     return newString+ "...";
                 }
-                console.log("limit value is empty");
+                //console.log("limit value is empty");
                 return value;
-            }
+            };
         }
-    }
-})
+    };
+});

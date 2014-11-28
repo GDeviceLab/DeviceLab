@@ -3,7 +3,8 @@ calApp.directive('devicePicker', function() {
         templateUrl: '/directives/devicepicker/devicepicker.html',
         restrict: 'EA',
         scope: {
-            filter: "="
+            filter: "=",
+            heightpx:"="
         },
         controller: function($scope, endpoint) {
             $scope.devices = [];

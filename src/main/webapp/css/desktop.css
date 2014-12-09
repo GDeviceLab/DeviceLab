@@ -37,9 +37,8 @@ ul{
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    text-align: center;
     box-shadow: inset 0 -1px #9daca9, 0 1px #d6dcdb;
-    background-color: #dfe2e2;
+    background-color: #FFA70F;
     margin-bottom: 10px;
 }
 
@@ -93,3 +92,11 @@ h1.panel-title {
     font-weight: bold;
     font-style: italic;
 }
+
+#title{
+    color: white;
+}
+
+#header-title{
+    margin-left: 10px;
+};

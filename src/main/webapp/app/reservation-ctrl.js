@@ -22,6 +22,16 @@ calApp.controller("NewReservationCtrl", function($scope, $stateParams, $window, 
     });
 
     $scope.r = {};
+    
+    // set default name of the startup
+    if(endpoint !== null){
+        var personObj = endpoint.me();
+        if(personObj !== null
+              && personObj.name !== null){
+            $scope.r.title = personObj.name;
+        }
+    }
+    
     $scope.date = new Date($stateParams.date);
     $scope.r.date = new Date($stateParams.date);
 

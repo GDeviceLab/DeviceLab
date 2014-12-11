@@ -42,7 +42,14 @@ public class LocationsEndpoint {
     )
     public List<Location> list() {
         List<Location> res = ObjectifyService.ofy().load().type(Location.class).list();
-        return res;
+        List<Location> temp = new ArrayList<Location>();
+        for (Location locObj : res) {
+            if(locObj.deleted == null
+                || !locObj.deleted){
+                temp.add(locObj);
+            }
+        }
+        return temp;
     }
 
     @ApiMethod(

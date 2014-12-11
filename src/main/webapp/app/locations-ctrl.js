@@ -31,6 +31,20 @@ calApp.controller("ListLocationCtrl", function($scope, endpoint) {
 calApp.controller("EditLocationCtrl", function($scope, $stateParams, endpoint, $window) {
     $scope.id = $stateParams.id;
     $scope.state = 'pending';
+    
+    $scope.showDeleteLocationButton = endpoint.me().globalAdmin;
+        
+    $scope.deleteLocation = function(){
+        var locationObj = {
+            name: $scope.name,
+            id: $scope.id,
+            deleted: true
+        };
+        endpoint.location.put(locationObj).success(function() {
+            $window.location.href = "#/location/list";
+        });
+    };
+    
     $scope.submit = function() {
         endpoint.location.put({
             name: $scope.name,

@@ -3,10 +3,8 @@
     Author     : Clement <clement.hannicq@revevol.eu>
 */
 .range{
-    background:rgba(170,0,0,0.5);
-    border-top: 1px solid rgba(170,0,0,1);
-    border-bottom: 1px solid rgba(170,0,0,1);
-    border-left: 1px solid rgba(170,0,0,1);
+    background:#9BCB64;
+    border-radius:10px;
     position: absolute;
     display: none;
     overflow: hidden;
@@ -36,4 +34,8 @@ ul.hp-hours, .hp-hours li, ul.hp-picker, .hp-picker li{
     margin: 0px;
     padding: 0px;
     display: block;
+
+}
+ul.hp-picker li:nth-child(odd){
+    border-bottom: 2px solid #EFEFEF;
 }

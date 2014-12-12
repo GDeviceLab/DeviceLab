@@ -1,4 +1,4 @@
-<table class="{{class}}" style="width: 100%">
+<table class="{{class}} cal-top" style="width: 100%">
     <colgroup>
         <col style="width:20%">
         <col style="width:60%">
@@ -6,11 +6,12 @@
     </colgroup>
     <tbody>
         <tr>
-            <td class="cal-to-left" ng-click="changeMonth(-1)">
-                <span class="icon-chevron-left"></span>
+            <td class="cal-to-left">
+                <p class="weekcal-day light">{{date | date: "yyyy"}}</p>
+                <h1 class="weekcal">{{date | date: "MMM"}}</h1>
             </td>
-            <td class="cal-to-center">
-                {{date | date: "MMM yyyy"}}
+            <td class="cal-to-center" ng-click="changeMonth(-1)">
+                <span class="icon-chevron-left"></span>
             </td>
             <td class="cal-to-right" ng-click="changeMonth(1)">
                 <span class="icon-chevron-right"></span>
@@ -18,7 +19,7 @@
         </tr>
     </tbody>
 </table>
-<table class="{{class}}" width="98%">
+<table class="{{class}}" width="100%">
     <colgroup>
         <col style="width:14%">
         <col style="width:14%">
@@ -38,7 +39,7 @@
             <td>{{"SATURDAY" | translate}}</td>
             <td>{{"SUNDAY" | translate}}</td>
         </tr>
-        <tr ng-repeat="week in cal">
+        <tr ng-repeat="week in cal" class="week-in-cal">
             <td ng-repeat="cell in week" 
                 ng-class="{
                     today : cell.today, 
@@ -51,4 +52,5 @@
         </tr>
     </tbody>
 </table>
-<button class="{{btnClass}}" ng-click="today()">{{"TODAY"| translate}}</button>
+<!-- <button class="{{btnClass}}" ng-click="today()">{{"TODAY"| translate}}</button> -->
+<a href="" class="" ng-click="today()" style="padding: 10 10 10 10; color: #4CCFE0;">{{"Jump to Today"| translate}}</a>

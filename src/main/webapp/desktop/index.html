@@ -12,6 +12,7 @@
         <link rel="stylesheet" href="../css/icomoon/style.css">
         <link rel="stylesheet" href="../css/register.css">
         <link rel="stylesheet" href="../css/desktop.css">
+        <link rel="stylesheet" href="../css/custom.css">
         <!-- <link rel="stylesheet" href="../css/compiled.desktop.css"> -->
 
     </head>
@@ -29,7 +30,7 @@
                 <h1 id="header-title">
                     <span  snap-toggle="left"><span class="icon-bars"></span></span>
                     <!-- <span class="pull-right" snap-toggle="right"><span class="icon-globe"></span></span> -->
-                    <span id ="title" snap-toggle="left" ng-controller="TitleCtrl">{{page}} - {{location}}</span>
+                    <span id ="title" snap-toggle="left" ng-controller="TitleCtrl">{{page}} <span id="title-loc">{{location}}</span><span>
                 </h1>
             </div>
             <div class="container-fluid">

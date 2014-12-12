@@ -2,7 +2,35 @@
     Created on : 26 mars 2014, 12:00:09
     Author     : Clement <clement.hannicq@revevol.eu>
 */
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,300,500);
 
+html{
+    font-family: 'Roboto', sans-serif;
+}
+
+h1, h2, h3, h4, body, p{
+    font-family: 'Roboto', sans-serif;
+}
+h1{
+    font-size: 40pt;
+    font-weight: 300;
+}
+h2{
+    font-size: 20pt;
+    font-weight: 400px;
+}
+h4{
+    font-size: 16pt;
+    font-weight: 400;
+    margin-bottom: 17px !important;
+}
+h5{
+    font-size: 20pt !important;
+    font-weight: 200;
+}
+.light{
+    font-weight: 300; 
+}
 .news a{
     color: blue !important;
     text-decoration: underline !important;
@@ -13,17 +41,15 @@ a:hover, a:active{
 }
 
 .snap-drawer{
-    padding-left: 10px;
-    font-weight: bold;
+    background-color: white;
 }
 
 .snap-drawer p{
-    padding-left: 5px;
+    padding-left: 35px;
 }
 
 .snap-content{
-    background-color: #fafafa;
-    box-shadow: 0 0 5px 5px #888;
+    background-color: #EFEFEF;
 }
 
 ul{
@@ -32,18 +58,18 @@ ul{
 }
 
 #header{
+    height: 64px;
     font-weight: normal;
     border: 0;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    box-shadow: inset 0 -1px #9daca9, 0 1px #d6dcdb;
     background-color: #FFA70F;
     margin-bottom: 10px;
 }
 
 .no-padding{
-    padding: 0px !important;
+    padding: 0px;
 }
 
 .multiselect{
@@ -81,6 +107,15 @@ h1.panel-title {
     font-weight: bold;
 }
 
+h1.weekcal{
+    font-size: 40pt;
+    font-weight: 300;
+    margin-top: -7px;
+}
+.weekcal-day{
+    font-size: 14pt;
+}
+
 .help{
     text-align: center;
     font-style: italic;
@@ -95,8 +130,153 @@ h1.panel-title {
 
 #title{
     color: white;
+    font-weight: 400;
+    font-size: 20pt;
+}
+#title-loc{
+    font-weight: 300;
 }
 
 #header-title{
-    margin-left: 10px;
-};
+    margin-left: 45px;
+    margin-top: -5px;
+}
+
+#week-dates{
+    text-align: center;
+}
+
+#week-select{
+    height: 68px;
+    border-bottom: 2px solid #E1E0E2;
+}
+.news {
+    background-color: white;
+    margin-top: -10px;
+}
+
+
+
+/* BOOTSTRAP OVERIDES */
+
+.col-md-2 {
+     padding: 0 !important;
+   margin: 0 !important;
+}
+
+.panel-heading {
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
+}
+
+.panel-default>.panel-heading {
+color: #333;
+background-color: #FFFFFF;
+border: 0px;
+}
+
+.panel {
+margin-bottom: 20px;
+background-color: #fff;
+border-right: 0px;
+border-top: 0px;
+border-bottom: 0px;
+border-radius: 0px;
+-webkit-box-shadow: 0 0px 0px rgba(0,0,0,0.05);
+/*border-left: 0px;*/
+}
+.panel-default {
+    border: 0px; 
+}
+
+.icon-bars{
+    font-size: 20pt;
+}
+.panel.cal-day {
+    border-right: 2px solid #EFEFEF;
+}
+.cal-month {
+    background-color: #EFEFEF;
+    border-bottom: 2px solid #E1E0E2;
+    border-top: 0px;
+}
+.light {
+    color: #A5A5A5;
+}
+
+.news .col-md-6:first-child{
+    border-right: 2px solid #EFEFEF;
+}
+
+
+
+.newspage {
+    background-color: #fff; 
+    margin-bottom: 20px;
+    box-shadow: 0 3px 10px rgba(0,0,0,.23),0 3px 10px rgba(0,0,0,.16);
+    border-radius: 2px;
+    border: 0;
+}
+
+.newspage .list-group-item{
+    padding: 30px;
+}
+
+.newspage{ 
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+.page-title{
+    margin-top: 60px;
+margin-bottom: 40px;
+}
+
+.newspage p{
+    color: #757575;
+}
+
+.newspage .panel{
+    margin-bottom: 0px !important;
+}
+
+.statsme-page{
+    background-color: #fff; 
+    margin-bottom: 20px;
+    box-shadow: 0 3px 10px rgba(0,0,0,.23),0 3px 10px rgba(0,0,0,.16);
+    border-radius: 2px;
+    border: 0;
+}
+
+.statsme-page h5{
+    padding: 40px;
+}
+.statsme-page .panel{
+    margin-bottom: 0px !important;
+}
+
+#menu-header{
+    height: 64px;
+    font-weight: normal;
+    border: 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    background-color: #FFA70F;
+    margin-bottom: 10px;
+
+}
+
+#menu-name{
+    color: white;
+    padding-top: 20px;
+}
+
+.menu-item{
+    padding-top: 15px;
+}
+
+.menu-item a span {
+    font-size: 25px;
+    padding-right: 20px;
+    color: #BCBCBC;
+}

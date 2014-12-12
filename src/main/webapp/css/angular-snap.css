@@ -48,7 +48,7 @@ snap-drawer,
   -moz-overflow-scrolling: touch;
   -o-overflow-scrolling: touch;
   overflow-scrolling: touch;
-  width: 265px;
+  width: 266px;
 }
 .snap-content {
   z-index: 2;

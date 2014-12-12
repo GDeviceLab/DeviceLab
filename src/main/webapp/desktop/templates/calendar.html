@@ -1,17 +1,21 @@
 <div class="row">
-    <div class="col-md-12 news">
-        <news-feed p-class="content" rank="0" limit="2" ></news-feed>
+        <news-feed class="col-md-12 news" p-class="col-md-6" rank="0" limit="2" ></news-feed>
+</div>
+<div class="row">
+    <div class="col-md-12" id="week-select">
+        <h2 id="week-dates">Nov 16 - 22 <span class="light">2014</span></h2>
     </div>
 </div>
 <div class="row">
     <div class="col-md-2">
-        <div class="panel panel-default">
+        <div class="panel panel-default cal-month">
             <div class="panel-body no-padding">
                 <cal-endar date="date" class="cal" btn-class="btn btn-primary btn-block" />
             </div>
         </div>
-
-        <div class="well">
+       <!--  Devices Section -->
+       <p>DEVICES</p>
+        <div>
             <div>
                 <device-picker filter="search.assets"></device-picker>
             </div>
@@ -23,9 +27,10 @@
         </div>
     </div>
     <div class="col-md-2">
-        <div class="panel panel-default">
+        <div class="panel panel-default cal-day">
             <div class="panel-heading">
-                <h1 class="panel-title">{{date | date : 'EEEE d MMMM'}}</h1>
+                <p class="weekcal-day light">{{date | date : 'MMMM'}}<p>
+                <h1 class="weekcal">{{date | date : 'EEE d'}}</h1>
             </div>
             <div class="panel-body no-padding">
                 <cal-hour-picker min="8" max="18" id="calhour0" class="day" date="date" offset="0" filter="search" />
@@ -33,36 +38,40 @@
         </div>
     </div>
     <div class="col-md-2">
-        <div class="panel panel-default">
+        <div class="panel panel-default cal-day">
             <div class="panel-heading">
-                <h1 class="panel-title">{{datePlus(1) | date : 'EEEE d MMMM'}}</h1>
+                <p class="weekcal-day light">{{date | date : 'MMMM'}}<p>
+                <h1 class="weekcal">{{datePlus(1) | date : 'EEE d'}}</h1>
             </div>
             <div class="panel-body no-padding">
                 <cal-hour-picker min="8" max="18" id="calhour1" class="day" date="date" offset="1" filter="search" />
             </div>
         </div>
     </div><div class="col-md-2">
-        <div class="panel panel-default">
+        <div class="panel panel-default cal-day">
             <div class="panel-heading">
-                <h1 class="panel-title">{{datePlus(2) | date : 'EEEE d MMMM'}}</h1>
+                <p class="weekcal-day light">{{date | date : 'MMMM'}}<p>
+                <h1 class="weekcal">{{datePlus(2) | date : 'EEE d'}}</h1>
             </div>
             <div class="panel-body no-padding">
                 <cal-hour-picker min="8" max="18" id="calhour2" class="day" date="date" offset="2" filter="search" />
             </div>
         </div>
     </div><div class="col-md-2">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h1 class="panel-title">{{datePlus(3) | date : 'EEEE d MMMM'}}</h1>
+        <div class="panel panel-default cal-day">
+            <div class="panel-heading light">
+                <p class="weekcal-day">{{date | date : 'MMMM'}}<p>
+                <h1 class="weekcal">{{datePlus(3) | date : 'EEE d'}}</h1>
             </div>
             <div class="panel-body no-padding">
                 <cal-hour-picker min="8" max="18" id="calhour3" class="day" date="date" offset="3" filter="search" />
             </div>
         </div>
     </div><div class="col-md-2">
-        <div class="panel panel-default">
+        <div class="panel panel-default cal-day">
             <div class="panel-heading">
-                <h1 class="panel-title">{{datePlus(4) | date : 'EEEE d MMMM'}}</h1>
+                <p class="weekcal-day light">{{date | date : 'MMMM'}}<p>
+                <h1 class="weekcal">{{datePlus(4) | date : 'EEE d'}}</h1>
             </div>
             <div class="panel-body no-padding">
                 <cal-hour-picker min="8" max="18" id="calhour4" class="day" date="date" offset="4" filter="search" />

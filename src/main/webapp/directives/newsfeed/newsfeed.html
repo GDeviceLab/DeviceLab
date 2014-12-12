@@ -1,9 +1,10 @@
 <div class="{{pClass}}" ng-repeat="n in news | limitTo: 2">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">{{n.title}}</h3>
+            
         </div>
         <div class="panel-body">
+            <h3 style="padding-bottom: 10px" class="panel-title">{{n.title}}</h3>
             <p ng-bind-html="n.content | linky:'_blank'"></p>
             <p><small>{{n.authorName}} - {{n.date| date: 'EEEE d MMMM'}}</small></p>
         </div>

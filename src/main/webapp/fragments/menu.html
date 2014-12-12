@@ -1,39 +1,45 @@
 <div snap-drawer>
     <div ng-controller="MenuCtrl">
-        <h2>{{myName()}}</h2>
-        <p>
+        <div id="menu-header">
+        <p id="menu-name">{{myName()}}<p>
+        </div>
+        <p class="menu-item">
             <a href="#/calendar" snap-close><span class="icon-calendar"></span> {{'MENU_CALENDAR' | translate}}</a>
         </p>
-        <p>
+        <p class="menu-item">
             <a href="#/news" snap-close><span class="icon-comment"></span> {{'MENU_NEWS' | translate}}</a>
         </p>
-        <p cal-show-local>
+        <p cal-show-local class="menu-item">
             <a href="#/news/new" snap-close><span class="icon-edit"></span> {{'MENU_NEWS_ADD' | translate}}</a>
         </p>
-        <p cal-show-local>
+        <p cal-show-local class="menu-item">
             <a href="#/stats" snap-close><span class="icon-globe"></span> {{'MENU_STATS_LOCATION' | translate}}</a>
         </p>
-        <p>
+        <p class="menu-item">
             <a href="#/stats/me" snap-close><span class="icon-profile"></span> {{'MENU_STATS' | translate}}</a>
         </p>
-        <p>
+        <p class="menu-item">
             <a href="#/apply" snap-close><span class="icon-bookmark"></span> {{'MENU_APPLY' | translate}}</a>
         </p>
         <h3 cal-show-local>{{'MENU_SETTINGS' | translate}}</h3>
-        <p cal-show-local>
+        <p cal-show-local class="menu-item">
             <a href="#/location/edit/{{location()}}" snap-close><span class="icon-user"></span> {{'MENU_LOCATION' | translate}}</a>
         </p>
-        <p cal-show-global>
+        <p cal-show-global class="menu-item">
             <a href="#/location/list" snap-close><span class="icon-globe"></span> {{'MENU_LOCATIONS' | translate}}</a>
         </p>
-        <p cal-show-local>
+        <p cal-show-local class="menu-item">
             <a href="#/asset/list" snap-close><span class="icon-mobile-phone"></span> {{'MENU_DEVICES' | translate}}</a>
         </p>
-        <p>
+        <p class="menu-item">
             <a href="/logout" snap-close><span class="icon-times"></span> {{'MENU_LOGOUT' | translate}}</a>
         </p>
     </div>
-    <p id="ack">
+  <!--   <p id="ack">
         Developed by Google with the support of Revevol, Intel
-    </p>
+    </p> -->
+
+      <div id="ack">
+       <img src="../img/devicelab-logo.svg" alt="device lab logo" width=260px>
+    </div>
 </div>

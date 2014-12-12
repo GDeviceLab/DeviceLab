@@ -6,13 +6,12 @@ h3.cal{
    text-align: center;
 }
 
+
 table.cal{
     margin-right: auto;
     margin-left: auto;
     table-layout: fixed;
     border-collapse: collapse;
-    margin-top: 7px;
-    margin-bottom: 7px;
     color: black;
 }
 
@@ -23,11 +22,11 @@ table.cal{
 }
 
 .other_month{
-    background-color: #9daca9;
+    color: #E1E0E2;
 }
 
 .selected {
-    background-color: #ec514e;
+    background-color: #FFB200;
 }
 
 .today {
@@ -36,7 +35,6 @@ table.cal{
 
 .day-of-week{
     font-size: 0.8rem;
-    border-bottom: 1px solid #9daca9;
 }
 
 .cal-to-left{
@@ -50,4 +48,20 @@ table.cal{
 
 .cal-to-right{
     text-align: right;
+}
+
+table.cal tbody{
+    background-color: #EFEFEF;
+}
+.week-in-cal{
+    height: 45px;
+    font-size: 10pt;
+}
+table.cal.cal-top tbody {
+    background-color: #E1E0E2;
+}
+
+.cal-month .panel-body {
+    background-color: #EFEFEF;
+    padding-bottom: 20px;
 }

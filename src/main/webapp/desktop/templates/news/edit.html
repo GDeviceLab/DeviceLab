@@ -58,13 +58,29 @@
                             {{'NEWS_GLOBAL' | translate}}
                         </p>
                         <p ng-if="n.expire">
+                            <div class="col-lg-2">
+                            </div>
+                            <div class="col-lg-10">
                             Expires : {{n.expire |date: 'EEEE d MMMM'}}
+                            </div>
                         </p>
                         <p cal-show-local>
-                            <cal-endar date="n.expire" class="cal" btn-class="btn btn-default btn-block"></cal-endar>
+                            <div class="col-lg-2">
+                            </div>
+                            <div class="col-lg-10">
+                                <cal-endar date="n.expire" class="cal" btn-class="btn btn-default btn-block"></cal-endar>
+                            </div>
+                            
                         </p>
                         <p>
-                            <textarea class="form-control" rows="3" placeholder="{{'NEWS_CONTENT' | translate}}" ng-model="n.content"></textarea>
+
+                            <div class="form-group">
+                                        <label for="textArea" class="col-lg-2 control-label">{{'NEWS_CONTENT' | translate}}</label>
+                                        <div class="col-lg-10">
+                                            <div class="form-control-wrapper"><textarea class="form-control empty" rows="3" id="textArea" ng-model="n.content"></textarea><span class="material-input"></span></div>
+                                        </div>
+                                    </div>
+                            <!-- <textarea class="form-control" rows="3" placeholder="{{'NEWS_CONTENT' | translate}}" ng-model="n.content"></textarea> -->
                         </p>
                         <button class="btn btn-primary btn-block" ng-click="submit()">{{'BUTTON_SAVE' | translate}}</button>
                     </div>

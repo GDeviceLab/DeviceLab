@@ -206,9 +206,9 @@ padding-bottom:  0px;
 .icon-bars{
     font-size: 20pt;
 }
-/*.panel.cal-day {
-    border-right: 2px solid #EFEFEF;
-}*/
+.panel.cal-day {
+    height: 2000px;
+}
 .cal-month {
     background-color: #EFEFEF;
     border-bottom: 2px solid #E1E0E2;
@@ -267,6 +267,37 @@ margin-bottom: 40px;
 }
 .statsme-page .panel{
     margin-bottom: 0px !important;
+    box-shadow: 0 0px 0px rgba(0, 0, 0, 0), 0 0px 0px rgba(0, 0, 0, 0); 
+}
+.stats-devices{
+    background-color: #fff; 
+    margin-bottom: 20px;
+    box-shadow: 0 3px 10px rgba(0,0,0,.23),0 3px 10px rgba(0,0,0,.16);
+    border-radius: 2px;
+    border: 0;
+}
+
+.stats-devices h5{
+    padding: 40px;
+}
+.stats-devices .panel{
+    margin-bottom: 0px !important;
+      box-shadow: 0 0px 0px rgba(0, 0, 0, 0), 0 0px 0px rgba(0, 0, 0, 0); 
+}
+
+.stats-devices a {
+    color: #4CCFE0;
+}
+.stats-devices tr{
+    height: 100px;
+}
+.stats-devices tr td{
+    padding-top: 33px !important;
+    font-size: 20pt;
+    font-weight: 200;
+}
+.table-hover>tbody>tr:hover>td, .table-hover>tbody>tr:hover>th {
+background-color: #FFFFFF;
 }
 
 #menu-header{
@@ -296,6 +327,9 @@ margin-bottom: 40px;
     color: #BCBCBC;
 }
 
+.checkbox {
+    padding-left: 0px;
+}
 /*.news h4 {
   font-size: 6px;
   width: 0; 
@@ -311,4 +345,8 @@ margin-bottom: 40px;
 
 .devices{
   padding-left: 20;
+}
+
+.devices-select:last-child {
+
 }

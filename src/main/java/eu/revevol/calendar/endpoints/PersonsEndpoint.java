@@ -58,7 +58,7 @@ public class PersonsEndpoint {
         return res;
     }
     
-    private List<Person> list(@Named("location") Long location, ACLStatus status) {
+    public List<Person> list(@Named("location") Long location,@Named("status") ACLStatus status) {
         List<ACL> acls = ObjectifyService.ofy().load().type(ACL.class)
                 .filter("location", location)
                 .filter("status", status)

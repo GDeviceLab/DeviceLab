@@ -6,9 +6,11 @@ import com.google.appengine.api.NamespaceManager;
 import com.google.appengine.api.oauth.OAuthRequestException;
 import com.googlecode.objectify.ObjectifyService;
 import eu.revevol.calendar.constants.ACLStatus;
+import eu.revevol.calendar.constants.EmailTemplate;
 import eu.revevol.calendar.model.ACL;
 import eu.revevol.calendar.model.Person;
 import eu.revevol.calendar.model.Reservation;
+import eu.revevol.calendar.model.Location;
 import eu.revevol.calendar.security.Require;
 import eu.revevol.calendar.util.ACLManager;
 import java.util.Date;
@@ -22,6 +24,8 @@ import javax.inject.Named;
  */
 @Api(name = "person", version = "v1")
 public class ACLEndpoint {
+    
+    private static Logger logger = Logger.getLogger(ACLEndpoint.class.getName());
 
     static {
         ObjectifyService.factory().register(Reservation.class);
@@ -98,6 +102,19 @@ public class ACLEndpoint {
             acl.status = ACLStatus.PENDING;
 
             ObjectifyService.ofy().save().entity(acl);
+            
+            PersonsEndpoint personsEndPoint = new PersonsEndpoint();
+            List<Person> adminList = personsEndPoint.list(location, ACLStatus.ADMIN);
+            if(adminList.size() > 0){
+                String emailArrayString = "";
+                //prepare the admin emails
+                for (Person admin : adminList) {
+                    emailArrayString = emailArrayString + admin.mail + ";";
+                }
+                LocationsEndpoint locationEndPoint = new LocationsEndpoint();
+                Location locationObj = locationEndPoint.get(location);
+                EmailTemplate.adviseByEmailLocationAdmins(user,locationObj,emailArrayString);
+            }
         }
     }
 

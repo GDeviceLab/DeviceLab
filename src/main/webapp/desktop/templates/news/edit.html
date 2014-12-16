@@ -1,35 +1,74 @@
-<div class="row">
-    <div class="col-md-6 col-md-offset-3">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">{{'NEWS' | translate}}</h3>
-            </div>
-            <div class="panel-body">
-                <p>
-                    <input type="text" class="form-control" placeholder="{{'TITLE' | translate}}" ng-model="n.title">
-                </p>
-                <p ng-show="n.author">
-                    <input type="text" class="form-control" placeholder="{{'USER' | translate}}" ng-model="n.authorName" disabled>
-                </p>
-                <p ng-show="n.date">
-                    <input type="text" class="form-control" placeholder="{{'DATE' | translate}}" value="{{n.date|date: 'EEEE d MMMM'}}" disabled>
-                </p>
-                <p cal-show-global ng-hide="n.id">
-                    <input type="checkbox" ng-model="n.broadcast" />{{'NEWS_GLOBAL' | translate}}
-                </p>
-                <p ng-show="n.id && n.broadcast">
-                    {{'NEWS_GLOBAL' | translate}}
-                </p>
-                <p ng-if="n.expire">
-                    Expires : {{n.expire |date: 'EEEE d MMMM'}}
-                </p>
-                <p cal-show-local>
-                    <cal-endar date="n.expire" class="cal" btn-class="btn btn-default btn-block"></cal-endar>
-                </p>
-                <p>
-                    <textarea class="form-control" rows="3" placeholder="{{'NEWS_CONTENT' | translate}}" ng-model="n.content"></textarea>
-                </p>
-                <button class="btn btn-primary btn-block" ng-click="submit()">{{'BUTTON_SAVE' | translate}}</button>
+<div class="container">
+    <div class="row">
+        <h1 class="page-title">{{'Add News' | translate}}</h1>
+        <div class="col-md-12 newspage">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                </div>
+                <div class="panel-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            
+                            <label class="col-lg-2 control-label">{{'Title' | translate}}</label>
+                            <div class="col-lg-10">
+                                <div class="form-control-wrapper"><input type="text" class="form-control" placeholder="{{'Title' | translate}}" ng-model="n.title"><span class="material-input"></span></div>
+                            </div>
+                        </div>
+                        <!-- <p>
+                            <input type="text" class="form-control" placeholder="{{'TITLE' | translate}}" ng-model="n.title">
+                        </p> -->
+
+                        <div class="form-group" ng-show="n.author">
+                            <label class="col-lg-2 control-label">{{'USER' | translate}}</label>
+                            <div class="col-lg-10">
+                                <div class="form-control-wrapper"> <input type="text" class="form-control" placeholder="{{'USER' | translate}}" ng-model="n.authorName" disabled><span class="material-input"></span></div>
+                            </div>
+                        </div>
+                        <!-- <p ng-show="n.author">
+                            <input type="text" class="form-control" placeholder="{{'USER' | translate}}" ng-model="n.authorName" disabled>
+                        </p> -->
+
+                        <div class="form-group" ng-show="n.date">
+                            <label class="col-lg-2 control-label">{{'DATE' | translate}}</label>
+                            <div class="col-lg-10">
+                                <div class="form-control-wrapper"> <input type="text" class="form-control" placeholder="{{'DATE' | translate}}" value="{{n.date|date: 'EEEE d MMMM'}}" disabled><span class="material-input"></span></div>
+                            </div>
+                        </div>
+                        <!-- <p ng-show="n.date">
+                            <input type="text" class="form-control" placeholder="{{'DATE' | translate}}" value="{{n.date|date: 'EEEE d MMMM'}}" disabled>
+                        </p> -->
+
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label"></label>
+                            <div class="col-lg-10">
+                                <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox"><span class="ripple"></span><span class="check"></span>{{'NEWS_GLOBAL' | translate}}
+                                                </label>
+                                            </div>
+                            </div>
+                        </div>
+
+                        <!-- <p cal-show-global ng-hide="n.id">
+                            <input type="checkbox" ng-model="n.broadcast" />{{'NEWS_GLOBAL' | translate}}
+                        </p> -->
+
+
+                        <p ng-show="n.id && n.broadcast">
+                            {{'NEWS_GLOBAL' | translate}}
+                        </p>
+                        <p ng-if="n.expire">
+                            Expires : {{n.expire |date: 'EEEE d MMMM'}}
+                        </p>
+                        <p cal-show-local>
+                            <cal-endar date="n.expire" class="cal" btn-class="btn btn-default btn-block"></cal-endar>
+                        </p>
+                        <p>
+                            <textarea class="form-control" rows="3" placeholder="{{'NEWS_CONTENT' | translate}}" ng-model="n.content"></textarea>
+                        </p>
+                        <button class="btn btn-primary btn-block" ng-click="submit()">{{'BUTTON_SAVE' | translate}}</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

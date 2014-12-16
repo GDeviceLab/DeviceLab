@@ -7,19 +7,20 @@
     <tbody>
         <tr>
             <td class="cal-to-left">
-                <p class="weekcal-day light">{{date | date: "yyyy"}}</p>
-                <h1 class="weekcal">{{date | date: "MMM"}}</h1>
+                <p class="weekcal-day light cal-title">{{date | date: "yyyy"}}</p>
+                <h1 class="weekcal cal-title">{{date | date: "MMM"}}</h1>
             </td>
             <td class="cal-to-center" ng-click="changeMonth(-1)">
                 <span class="icon-chevron-left"></span>
             </td>
             <td class="cal-to-right" ng-click="changeMonth(1)">
+                <span class="icon-chevron-left">
                 <span class="icon-chevron-right"></span>
             </td>
         </tr>
     </tbody>
 </table>
-<table class="{{class}}" width="100%">
+<table class="{{class}}" width="85%">
     <colgroup>
         <col style="width:14%">
         <col style="width:14%">
@@ -53,4 +54,5 @@
     </tbody>
 </table>
 <!-- <button class="{{btnClass}}" ng-click="today()">{{"TODAY"| translate}}</button> -->
-<a href="" class="" ng-click="today()" style="padding: 10 10 10 10; color: #4CCFE0;">{{"Jump to Today"| translate}}</a>
+<a href="" class="" ng-click="today()" style="padding: 10 10 10 20; color: #4CCFE0;">{{"Jump to Today"| translate}}</a>
+

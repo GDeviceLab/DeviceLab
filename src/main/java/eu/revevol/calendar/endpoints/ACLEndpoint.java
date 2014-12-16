@@ -74,12 +74,13 @@ public class ACLEndpoint {
             path = "register",
             httpMethod = ApiMethod.HttpMethod.GET
     )
-    public void register(@Named("origin") String user, @Named("username") String username) {
+    public void register(@Named("origin") String user, @Named("username") String username, @Named("startupName") String startupName) {
         Person person = ObjectifyService.ofy().load().type(Person.class).id(user).now();
         if (person == null) {
             person = new Person();
             person.globalAdmin = false;
             person.mail = user;
+            person.startupName = startupName;
         }
         person.name = username;
 

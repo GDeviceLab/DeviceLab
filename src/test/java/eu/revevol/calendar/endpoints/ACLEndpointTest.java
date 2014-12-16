@@ -75,9 +75,10 @@ public class ACLEndpointTest {
     @org.junit.Test
     public void testRegister() throws Exception{
         String username = "New Guy";
+        String startupName = "New Startup name";
 
         ACLEndpoint instance = new ACLEndpoint();
-        instance.register("new@guy.com", username);
+        instance.register("new@guy.com", username, startupName);
     }
 
     /**

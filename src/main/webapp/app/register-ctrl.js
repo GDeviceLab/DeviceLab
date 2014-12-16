@@ -10,12 +10,17 @@ calApp.controller("RegisterCtrl", function($scope, endpoint, $window) {
             return endpoint.loading();
         }
         $scope.submit = function() {
-            endpoint.person.register($scope.name)
+            if($scope.name != null
+                 && $scope.name.trim() != ""
+                 && $scope.startupName != null
+                 && $scope.startupName.trim() != ""){
+                endpoint.person.register($scope.name,$scope.startupName)
                     .success(function() {
                         $window.location.hash = "/apply"
                         $scope.show = false;
                         ndp.callMe();
                     });
+            }
         }
     });
 });

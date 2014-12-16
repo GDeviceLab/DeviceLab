@@ -89,13 +89,14 @@ calApp.factory('endpoint', ['$http', '$rootScope', '$window', '$q', function($ht
         /////////////////
         //     ACL     //
         /////////////////
-        service.person.register = function(pseudo) {
+        service.person.register = function(pseudo,startupName) {
             loading++;
             redirect = true; //redirect was false is the user wasn't registered, now it's true
-            return $http.get(url("person", "register", {username: pseudo}))
+            return $http.get(url("person", "register", {username: pseudo, startupName:startupName}))
                     .success(success).error(error).success(function() {
                 user.name = pseudo;
                 user.mail = origin;
+                user.startupName = startupName;
             });
         };
         service.person.promote = function(usr, loc) {

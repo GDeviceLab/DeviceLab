@@ -80,5 +80,9 @@
     "TODAY": "Today",
     "SEE_MORE_NEWS":"See more news...",
     "OPEN_CALENDAR":"Open calendar",
-    "HIDE":"Hide"
+    "HIDE":"Hide",
+    "PROFILE":"Profile",
+    "PROFILE_EDIT":"Edit Profile",
+    "PROFILE_UPDATE":"Update",
+    "PROFILE_EMAIL":"Email"
 }

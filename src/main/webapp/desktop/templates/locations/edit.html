@@ -71,7 +71,7 @@
             <ul class="list-group">
                 <li ng-repeat="admin in admins" class="list-group-item">
                     <span>
-                        {{admin.name}} ({{admin.mail}})
+                        <a href="#/profile/edit/{{admin.mail}}/{{id}}">{{admin.name}} ({{admin.mail}})</a>
                         <span class="actions">
                             <span class="icon-arrow-down-alt1" ng-click="toUser(admin.mail)"></span>
                             <cal-delete action="delete(admin.mail)" b-class="icon-x-altx-alt"></cal-delete>

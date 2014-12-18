@@ -95,6 +95,7 @@ calApp.controller("EditLocationCtrl", function($scope, $stateParams, endpoint, $
     refresh = function() {
         $scope.selected = '';
         endpoint.person.listAdmins($scope.id).success(function(data) {
+            console.log(data.items);
             $scope.admins = data.items;
         });
         endpoint.person.listPending($scope.id).success(function(data) {

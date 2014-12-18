@@ -7,6 +7,7 @@ import com.googlecode.objectify.ObjectifyService;
 import eu.revevol.calendar.model.*;
 import eu.revevol.calendar.security.Require;
 import eu.revevol.calendar.security.Token;
+import java.util.logging.Logger;
 import javax.inject.Named;
 
 /**
@@ -15,6 +16,9 @@ import javax.inject.Named;
  */
 @Api(name = "setup", version = "v1")
 public class SetupEndpoint {
+    
+    private static Logger logger = Logger.getLogger(SetupEndpoint.class.getName());
+    
     static {
         ObjectifyService.factory().register(Person.class);
         ObjectifyService.factory().register(Token.class);
@@ -26,6 +30,8 @@ public class SetupEndpoint {
             httpMethod = ApiMethod.HttpMethod.GET
     )
     public void admin(@Named("token") String token, @Named("origin") String origin) throws OAuthRequestException {
+        logger.info(token +  " " + origin);
+        
         Require.appAdmin(token);
 
         Person admin = new Person();

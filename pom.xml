@@ -3,13 +3,13 @@
 
     <modelVersion>4.0.0</modelVersion>
     <packaging>war</packaging>
-    <version>1</version>
+    <version>2</version>
 
     <groupId>eu.revevol</groupId>
     <artifactId>Calendar</artifactId>
 
     <properties>
-        <appengine.app.version>1</appengine.app.version>
+        <appengine.app.version>2</appengine.app.version>
         <appengine.target.version>1.9.0</appengine.target.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>

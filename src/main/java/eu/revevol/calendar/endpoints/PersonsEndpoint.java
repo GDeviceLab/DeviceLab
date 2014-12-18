@@ -10,6 +10,7 @@ import eu.revevol.calendar.model.Person;
 import eu.revevol.calendar.security.Require;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 import javax.inject.Named;
 
 /**
@@ -18,6 +19,9 @@ import javax.inject.Named;
  */
 @Api(name = "person", version = "v1")
 public class PersonsEndpoint {
+    
+    private static Logger logger = Logger.getLogger(PersonsEndpoint.class.getName());
+    
     static{
         ObjectifyService.factory().register(Person.class);
         ObjectifyService.factory().register(ACL.class);
@@ -103,5 +107,25 @@ public class PersonsEndpoint {
         Require.access(user, location);
         
         return list(location, ACLStatus.ADMIN);
+    }
+    
+    @ApiMethod(
+            name = "updateProfile",
+            path = "update/profile",
+            httpMethod = ApiMethod.HttpMethod.GET
+    )
+    public void updateProfile(@Named("origin") String user, @Named("locationId") Long locationId, @Named("mail") String mail, @Named("username") String username, @Named("startupName") String startupName) throws OAuthRequestException {
+        
+        if(!user.equals(mail)){
+            // control permission only if the user is editing another user
+            Require.localAdmin(user, locationId);
+        }
+        
+        Person person = ObjectifyService.ofy().load().type(Person.class).id(mail).now();
+        if (person != null) {
+            person.name = username;
+            person.startupName = startupName;
+            ObjectifyService.ofy().save().entity(person);
+        }
     }
 }

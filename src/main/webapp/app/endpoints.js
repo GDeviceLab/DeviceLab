@@ -99,6 +99,13 @@ calApp.factory('endpoint', ['$http', '$rootScope', '$window', '$q', function($ht
                 user.startupName = startupName;
             });
         };
+        service.person.updateProfile = function(locationId,mail,pseudo,startupName) {
+            loading++;
+            redirect = true; //redirect was false is the user wasn't registered, now it's true
+            return $http.get(url("person", "update/profile", {locationId:locationId, mail:mail, username: pseudo, startupName:startupName}))
+                    .success(success).error(error).success(function() {
+            });
+        };        
         service.person.promote = function(usr, loc) {
             loading++;
             return $http.get(url("person", "promote", {location: loc, user: usr}))

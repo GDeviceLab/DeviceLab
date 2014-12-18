@@ -33,6 +33,10 @@ calApp.controller("EditLocationCtrl", function($scope, $stateParams, endpoint, $
     $scope.state = 'pending';
     
     $scope.showDeleteLocationButton = endpoint.me().globalAdmin;
+    
+    $scope.goTo = function(value){
+        $window.location.href = value;
+    };
         
     $scope.deleteLocation = function(){
         var locationObj = {
@@ -116,4 +120,14 @@ calApp.controller("NewLocationCtrl", function($scope, endpoint, $window) {
             $window.location.href = "#/location/list";
         });
     };
+});
+
+calApp.controller("LocationHistoryCtrl", function($scope, endpoint, $window, $stateParams) {
+    $scope.resList = [];
+    
+    endpoint.res.totalhistory($stateParams.id).success(function(output) {
+        if(output != null){
+            $scope.resList = output.items;
+        }
+    });
 });

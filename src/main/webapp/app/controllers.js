@@ -43,7 +43,6 @@ calApp.controller("CalendarCtrl", function($scope, $rootScope, endpoint,$window)
     };  
     
     $scope.goTo = function(value){
-        console.log("goto");
         $window.location.href = value;
     };
     

@@ -167,6 +167,11 @@ calApp.factory('endpoint', ['$http', '$rootScope', '$window', '$q', function($ht
             return $http.get(url("reservation", "history", {location: location, user: user}))
                     .success(success).error(error);
         };
+        service.res.totalhistory = function(locationId) {
+            loading++;
+            return $http.get(url("reservation", "totalhistory", {location: locationId}))
+                    .success(success).error(error);
+        };
         //////////////////
         //    ASSETS    //
         //////////////////

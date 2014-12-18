@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-8">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">{{'LOCATION_NAME' | translate}}</h3>
@@ -13,6 +13,18 @@
                         <button cal-show-global class="btn btn-primary btn-block" ng-click="submit()">{{'BUTTON_SAVE' | translate}}</button>
                         <button ng-show="showDeleteLocationButton" class="btn btn-danger btn-block" ng-click="deleteLocation()">{{'BUTTON_DELETE' | translate}}</button>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">{{'LOCATION_HISTORY' | translate}}</h3>
+            </div>
+            <div class="panel-body">
+                <div class="pull-left">
+                    <button type="button" ng-click="goTo('#/location/history/'+id)" class="btn btn-link">{{'GO_TO_LOCATION_HISTORY' | translate}}</button>
                 </div>
             </div>
         </div>

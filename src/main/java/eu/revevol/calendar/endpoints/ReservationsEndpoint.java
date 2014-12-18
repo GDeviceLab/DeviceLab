@@ -107,4 +107,16 @@ public class ReservationsEndpoint {
         return ObjectifyService.ofy().load().type(Reservation.class)
                 .filter("person", target).list();
     }
+    
+    @ApiMethod(
+            name = "totalhistory",
+            path = "totalhistory",
+            httpMethod = HttpMethod.GET
+    )
+    public List<Reservation> totalhistory(@Named("origin") String user, @Named("location") Long location) throws OAuthRequestException {
+        Require.localAdmin(user, location);
+
+        NamespaceManager.set(location.toString());
+        return ObjectifyService.ofy().load().type(Reservation.class).order("-date").list();
+    }
 }

@@ -1,0 +1,16 @@
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">{{'LOCATION_HISTORY' | translate}}</div>
+            <div class="panel-body">
+                <div class="container" ng-repeat="res in resList" style="margin-bottom: 10px;">
+                    <h4 style="margin-bottom: 2px;">{{res.date | date : 'EEEE d MMMM'}}</h4>
+                    <h6>{{ 'FROM' | translate }} {{res.start | hours}} {{ 'TO' | translate }} {{res.end | hours}}</h6>
+                    <h6>{{res.title}}</h6>
+                    <span class="badge" style="background-color: rgb({{asset.r}},{{asset.g}},{{asset.b}}); margin-right: 2px;"
+                          ng-repeat="asset in res.assets">{{asset.name}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

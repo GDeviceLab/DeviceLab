@@ -84,5 +84,7 @@
     "PROFILE":"Profile",
     "PROFILE_EDIT":"Edit Profile",
     "PROFILE_UPDATE":"Update",
-    "PROFILE_EMAIL":"Email"
+    "PROFILE_EMAIL":"Email",
+    "LOCATION_HISTORY":"Location history",
+    "GO_TO_LOCATION_HISTORY":"Access location history"
 }

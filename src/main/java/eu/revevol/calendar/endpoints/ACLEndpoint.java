@@ -4,6 +4,7 @@ import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.appengine.api.NamespaceManager;
 import com.google.appengine.api.oauth.OAuthRequestException;
+import com.google.gson.Gson;
 import com.googlecode.objectify.ObjectifyService;
 import eu.revevol.calendar.constants.ACLStatus;
 import eu.revevol.calendar.constants.EmailTemplate;
@@ -26,13 +27,13 @@ import javax.inject.Named;
 public class ACLEndpoint {
     
     private static Logger logger = Logger.getLogger(ACLEndpoint.class.getName());
-
+    
     static {
         ObjectifyService.factory().register(Reservation.class);
         ObjectifyService.factory().register(Person.class);
         ObjectifyService.factory().register(ACL.class);
     }
-
+    
     @ApiMethod(
             name = "grantLocalAdmin",
             path = "grant/local",
@@ -41,7 +42,7 @@ public class ACLEndpoint {
     public void grantLocalAdmin(@Named("origin") String user, @Named("user") String target, @Named("location") Long location) throws OAuthRequestException {
         Require.localAdmin(user, location);
         Require.exist(target);
-
+        
         ACL acl = ACLManager.getACL(target, location);
         if (acl == null) {
             acl = new ACL();
@@ -49,10 +50,10 @@ public class ACLEndpoint {
             acl.user = target;
         }
         acl.status = ACLStatus.ADMIN;
-
+        
         ObjectifyService.ofy().save().entity(acl);
     }
-
+    
     @ApiMethod(
             name = "grantGlobalAdmin",
             path = "grant/global",
@@ -61,14 +62,14 @@ public class ACLEndpoint {
     public void grantGlobalAdmin(@Named("token") String token, @Named("user") String target) throws OAuthRequestException {
         Require.appAdmin(token);
         Require.exist(target);
-
+        
         Person person = ObjectifyService.ofy().load().type(Person.class).id(target).safe();
-
+        
         person.globalAdmin = true;
-
+        
         ObjectifyService.ofy().save().entity(person);
     }
-
+    
     @ApiMethod(
             name = "register",
             path = "register",
@@ -83,10 +84,10 @@ public class ACLEndpoint {
             person.startupName = startupName;
         }
         person.name = username;
-
+        
         ObjectifyService.ofy().save().entity(person);
     }
-
+    
     @ApiMethod(
             name = "postulate",
             path = "postulate",
@@ -94,14 +95,14 @@ public class ACLEndpoint {
     )
     public void postulate(@Named("origin") String user, @Named("location") Long location) throws OAuthRequestException {
         Require.exist(user);
-
+        
         ACL acl = ACLManager.getACL(user, location);
         if (acl == null) {
             acl = new ACL();
             acl.location = location;
             acl.user = user;
             acl.status = ACLStatus.PENDING;
-
+            
             ObjectifyService.ofy().save().entity(acl);
             
             PersonsEndpoint personsEndPoint = new PersonsEndpoint();
@@ -118,7 +119,7 @@ public class ACLEndpoint {
             }
         }
     }
-
+    
     @ApiMethod(
             name = "promote",
             path = "promote",
@@ -127,7 +128,7 @@ public class ACLEndpoint {
     public void promote(@Named("origin") String user, @Named("location") Long location, @Named("user") String target) throws OAuthRequestException {
         Require.localAdmin(user, location);
         Require.exist(target);
-
+        
         Person trgt = ObjectifyService.ofy().load().type(Person.class).id(target).now();
         if (trgt == null) {
             return;
@@ -136,20 +137,31 @@ public class ACLEndpoint {
             trgt.favorite = location;
             ObjectifyService.ofy().save().entity(trgt);
         }
-
+        
         ACL acl = ACLManager.getACL(target, location);
-
+        
         if (acl == null) {
             acl = new ACL();
             acl.location = location;
             acl.user = target;
-
+            
         }
+        
+        if(ACLStatus.PENDING.name().equals(acl.status.name())
+                && location != null){
+            //send email to advice the user for the changement
+            Person p = ObjectifyService.ofy().load().type(Person.class).id(target).now();
+            LocationsEndpoint locationEndPoint = new LocationsEndpoint();
+            Location locationObj = locationEndPoint.get(location);
+            String targetEmail = target+";";
+            EmailTemplate.adviseByEmailUserAcceptedForLocation(p, locationObj, targetEmail);
+        }
+        
         acl.status = ACLStatus.USER;
-
+        
         ObjectifyService.ofy().save().entity(acl);
     }
-
+    
     @ApiMethod(
             name = "demote",
             path = "demote",
@@ -158,39 +170,39 @@ public class ACLEndpoint {
     public void demote(@Named("origin") String user, @Named("location") Long location, @Named("user") String target) throws OAuthRequestException {
         Require.localAdmin(user, location);
         Require.exist(target);
-
+        
         ACL acl = ACLManager.getACL(target, location);
         
         if (acl != null) {
             ObjectifyService.ofy().delete().entity(acl);
             NamespaceManager.set(location.toString());
-            LOG.info("FOUND : " + 
-                String.valueOf(
-                    ObjectifyService.ofy().load().type(Reservation.class)
-                        .filter("person", target)
-                        .filter("date >", new Date())
-                        .list().size()
-                )
+            LOG.info("FOUND : " +
+                    String.valueOf(
+                            ObjectifyService.ofy().load().type(Reservation.class)
+                                    .filter("person", target)
+                                    .filter("date >", new Date())
+                                    .list().size()
+                    )
             );
             ObjectifyService.ofy().delete().keys(
-                ObjectifyService.ofy().load().type(Reservation.class)
-                    .filter("person", target)
-                    .filter("date >", new Date())
-                    .keys()
+                    ObjectifyService.ofy().load().type(Reservation.class)
+                            .filter("person", target)
+                            .filter("date >", new Date())
+                            .keys()
             );
         }
     }
     private static final Logger LOG = Logger.getLogger(ACLEndpoint.class.getName());
-
+    
     @ApiMethod(
             name = "status",
             path = "status",
             httpMethod = ApiMethod.HttpMethod.GET
     )
     public List<ACL> status(@Named("origin") String user) throws OAuthRequestException {
-
+        
         return ObjectifyService.ofy().load().type(ACL.class).filter("user", user).list();
-
+        
     }
-
+    
 }

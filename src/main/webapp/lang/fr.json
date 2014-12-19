@@ -89,8 +89,10 @@
     "PROFILE_EDIT":"Edit Profil",
     "PROFILE_UPDATE":"Sauvegarder",
     "PROFILE_EMAIL":"Email",
-    "LOCATION_HISTORY":"Location histoire",
     "NOTES_DEVICE":"Remarques sur l'appareil",
     "OS":"Système d'exploitation",
-    "GO_TO_LOCATION_HISTORY":"Accès location histoire"
+    "RESERVATION_HISTORY":"Réservations histoire",
+    "DEVICE_OVERVIEW":"Device vue d'ensemble",
+    "CURRENT_STATUS_RESERVATIONS":"Réservations status actuelles",
+    "CURRENTLY_NOT_RESERVED":"Pas actuellement réservée"
 }

@@ -85,6 +85,14 @@ var calApp = angular.module('cal', ['ui.router', 'snap', 'ngSanitize', 'pascalpr
                         endpoint: "endpoint"
                     }
                 });
+                $stateProvider.state('location_currentStatusReservation', {
+                    url: '/location/currentStatusReservation/:id',
+                    controller: 'LocationCurrentStatusReservationCtrl',
+                    templateUrl: 'templates/locations/currentStatusReservation.html',
+                    resolve: {
+                        endpoint: "endpoint"
+                    }
+                });
                 $stateProvider.state('asset_list', {
                     url: '/asset/list',
                     controller: 'ListAssetCtrl',

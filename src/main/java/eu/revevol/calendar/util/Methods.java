@@ -16,6 +16,8 @@ import javax.mail.internet.MimeMultipart;
 import com.google.gson.JsonObject;
 import eu.revevol.calendar.constants.Params;
 import eu.revevol.calendar.pojo.PojoEmail;
+import java.util.Calendar;
+import java.util.Date;
 
 public class Methods {
     
@@ -82,5 +84,21 @@ public class Methods {
         catch(Exception ex){
             logger.severe(Methods.printStackStrace(ex));
         }
+    }
+    
+    public static Calendar getZeroTimeOfDay(){
+        Calendar c = Calendar.getInstance();
+        c.set(Calendar.HOUR, 0);
+        c.set(Calendar.MINUTE, 0);
+        c.set(Calendar.SECOND, 0);
+        c.set(Calendar.HOUR_OF_DAY, 0);
+        c.set(Calendar.MILLISECOND, 0);
+        return c;
+    }
+    
+    public static Calendar addDays(Calendar currentDate , int numberDays){
+        Calendar c = currentDate;
+        c.add(Calendar.DAY_OF_MONTH, 1);
+        return c;
     }
 }

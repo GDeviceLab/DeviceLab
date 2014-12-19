@@ -1,0 +1,22 @@
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">{{'CURRENT_STATUS_RESERVATIONS' | translate}}</div>
+            <div class="panel-body">
+                <div class="container" ng-repeat="pojo in pojoResult" style="margin-bottom: 10px;">
+                    <h6 style="margin-bottom: 2px;">
+                        <span class="badge" 
+                              style="background-color: rgb({{pojo.asset.r}},{{pojo.asset.g}},{{pojo.asset.b}}); margin-right: 2px;">{{pojo.asset.name}}</span>
+                        <span ng-show="pojo.reservation != null">{{ 'FROM' | translate }} {{pojo.reservation.start | hours}} 
+                            {{ 'TO' | translate }} {{pojo.reservation.end | hours}}
+                            - {{pojo.reservation.title}} ({{pojo.reservation.person}})
+                        </span>
+                        <span ng-show="pojo.reservation == null">
+                            {{'CURRENTLY_NOT_RESERVED' | translate}}
+                        </span>
+                    </h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

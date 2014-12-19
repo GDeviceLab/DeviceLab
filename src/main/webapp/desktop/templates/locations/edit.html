@@ -20,11 +20,12 @@
     <div class="col-md-4">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">{{'LOCATION_HISTORY' | translate}}</h3>
+                <h3 class="panel-title">{{'DEVICE_OVERVIEW' | translate}}</h3>
             </div>
             <div class="panel-body">
                 <div class="pull-left">
-                    <button type="button" ng-click="goTo('#/location/history/'+id)" class="btn btn-link">{{'GO_TO_LOCATION_HISTORY' | translate}}</button>
+                    <button type="button" ng-click="goTo('#/location/history/'+id)" class="btn btn-link">{{'RESERVATION_HISTORY' | translate}}</button><br>
+                    <button type="button" ng-click="goTo('#/location/currentStatusReservation/'+id)" class="btn btn-link">{{'CURRENT_STATUS_RESERVATIONS' | translate}}</button>
                 </div>
             </div>
         </div>

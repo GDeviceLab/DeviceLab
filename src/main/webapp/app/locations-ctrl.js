@@ -131,3 +131,21 @@ calApp.controller("LocationHistoryCtrl", function($scope, endpoint, $window, $st
         }
     });
 });
+
+calApp.controller("LocationCurrentStatusReservationCtrl", function($scope, endpoint, $window, $stateParams) {
+    $scope.pojoResult = [];
+    
+    var dateNow = new Date();
+    var numHour = dateNow.getHours()*2;
+    var numMinutes = 0;
+    if(dateNow.getMinutes() > 29){
+        numMinutes = 1;
+    }
+    var totalHalfHour = numHour + numMinutes;
+    
+    endpoint.res.devicesStatusList($stateParams.id,totalHalfHour).success(function(output) {
+        if(output != null){
+            $scope.pojoResult = output.items;
+        }
+    });
+});

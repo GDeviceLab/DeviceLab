@@ -120,10 +120,7 @@ public class Require {
      * @throws OAuthRequestException
      */
     public static void appAdmin(String token) throws OAuthRequestException {
-        Token t = ObjectifyService.ofy().load().type(Token.class).id(token).safe();
-        
-        logger.info(new Gson().toJson(t).toString());
-        
+        Token t = ObjectifyService.ofy().load().type(Token.class).id(token).safe();        
         if (t.admin == false) {
             throw new OAuthRequestException("User not app admin");
         }

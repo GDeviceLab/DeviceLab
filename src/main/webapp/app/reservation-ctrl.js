@@ -27,8 +27,8 @@ calApp.controller("NewReservationCtrl", function($scope, $stateParams, $window, 
     if(endpoint !== null){
         var personObj = endpoint.me();
         if(personObj !== null
-              && personObj.name !== null){
-            $scope.r.title = personObj.name;
+              && personObj.startupName !== null){
+            $scope.r.title = personObj.startupName;
         }
     }
     

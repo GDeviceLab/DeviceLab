@@ -147,8 +147,11 @@ public class ACLEndpoint {
             
         }
         
-        if(ACLStatus.PENDING.name().equals(acl.status.name())
-                && location != null){
+        if(acl != null
+                && acl.status != null
+                && ACLStatus.PENDING.name().equals(acl.status.name())
+                && location > 0
+                && target != null){
             //send email to advice the user for the changement
             Person p = ObjectifyService.ofy().load().type(Person.class).id(target).now();
             LocationsEndpoint locationEndPoint = new LocationsEndpoint();

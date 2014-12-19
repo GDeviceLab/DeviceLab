@@ -29,11 +29,9 @@ public class SetupEndpoint {
             path = "admin",
             httpMethod = ApiMethod.HttpMethod.GET
     )
-    public void admin(@Named("token") String token, @Named("origin") String origin) throws OAuthRequestException {
-        logger.info(token +  " " + origin);
-        
+    public void admin(@Named("token") String token, @Named("origin") String origin) throws OAuthRequestException {        
         Require.appAdmin(token);
-
+        
         Person admin = new Person();
         admin.mail = origin;
         admin.globalAdmin = true;

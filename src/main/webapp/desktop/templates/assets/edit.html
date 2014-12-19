@@ -7,9 +7,18 @@
             <p>
             <input type="text" ng-model="a.name" placeholder="{{'DEVICE_NAME' | translate}}" class="form-control"/>
             </p>
-            <p>
-            <input type="text" ng-model="a.type" placeholder="{{'DEVICE_TYPE' | translate}}" class="form-control"/>
-            </p>
+            <div class="form-group">
+                 <label for="sl_os">{{ 'OS' | translate }}</label>
+                 <select ng-model="a.os" class="form-control" id="sl_os">                   
+                     <option value="ANDROID">{{'ANDROID' | translate}}</option>
+                     <option value="IOS">{{'IOS' | translate}}</option>
+                     <option value="WINDOWS_PHONE">{{'WINDOWS_PHONE' | translate}}</option>
+                 </select>
+             </div>
+            <div class="form-group">
+                 <label for="txarea_os">{{ 'NOTES_DEVICE' | translate }}</label>
+                <textarea id="txarea_os" ng-model="a.notes" class="form-control" rows="3"></textarea>
+             </div>          
             <p style="
                  padding: 3px;
                  border: 1px solid rgb({{rgb.r}},{{rgb.g}},{{rgb.b}});

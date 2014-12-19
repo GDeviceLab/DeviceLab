@@ -20,6 +20,10 @@ calApp.controller("NewAssetCtrl", function($scope, endpoint) {
             $scope.error = "ERROR_ASSET_NAME";
             return;
         }
+         if(!$scope.a.os){
+            $scope.error = "ERROR_ASSET_OS";
+            return;
+        }
         $scope.a.r = $scope.rgb.r;
         $scope.a.g = $scope.rgb.g;
         $scope.a.b = $scope.rgb.b;

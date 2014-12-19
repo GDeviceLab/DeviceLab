@@ -1,5 +1,8 @@
 {
     "NO_AUTH": "Unauthorized access",
+    "ANDROID":"Android",
+    "IOS":"iOS",
+    "WINDOWS_PHONE":"Windows Phone",
     "NO_AUTH_explain": "Looks like you are missing privileges to perform that action.",
     "NO_AUTH_contact": "Please contact your local administrator if you think this is an error.",
     "BUTTON_ADD": "Add",
@@ -75,6 +78,7 @@
     "SUNDAY": "Sun",
     "ERROR_ASSET_COLOR": "Please choose a color for this device.",
     "ERROR_ASSET_NAME": "Please enter a name for this device.",
+    "ERROR_ASSET_OS":"Please enter an Operative System for this device.",
     "GLOBAL_SUCCESS": "Successfully granted this user Global Admin privileges.",
     "GLOBAL_FAILURE": "Error: could not grant this user Global Admin privileges.",
     "TODAY": "Today",
@@ -86,5 +90,7 @@
     "PROFILE_UPDATE":"Update",
     "PROFILE_EMAIL":"Email",
     "LOCATION_HISTORY":"Location history",
+    "NOTES_DEVICE":"Notes on device",
+    "OS":"Operative System",
     "GO_TO_LOCATION_HISTORY":"Access location history"
 }

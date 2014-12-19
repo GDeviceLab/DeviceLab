@@ -7,7 +7,7 @@
             </div>
             <ul class="list-group">
                 <li class="list-group-item clickable" ng-repeat="a in assets">
-                    <a href="#/asset/edit/{{a.id}}">{{a.name}}</a>
+                    <a href="#/asset/edit/{{a.id}}">{{a.name}} {{a.os | translate}}</a>
                     <cal-delete action="delete(a.id)" b-class="icon-x-altx-alt actions"></cal-delete>
                 </li>
             </ul>

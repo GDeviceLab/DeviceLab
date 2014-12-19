@@ -1,5 +1,8 @@
 {
     "NO_AUTH": "Accès refusé",
+    "ANDROID":"Android",
+    "IOS":"iOS",
+    "WINDOWS_PHONE":"Windows Phone",
     "NO_AUTH_explain": "Vous n'avez pas les privilèges requis pour effectuer cette opération.",
     "NO_AUTH_contact": "Veuillez contacter un administrateur si vous estimez qu'il s'agit d'une erreur.",
     "BUTTON_ADD": "Ajouter",
@@ -75,6 +78,7 @@
     "SUNDAY": "Dim",
     "ERROR_ASSET_NAME": "Veuillez choisir un nom pour cet appareil.",
     "ERROR_ASSET_COLOR": "Veuillez choisir une couleur pour cet appareil.",
+    "ERROR_ASSET_OS": "Veuillez choisir une Système d'Exploitation pour cet appareil.",
     "GLOBAL_SUCCESS": "Cet utilisateur est maintenant Administrateur Global.",
     "GLOBAL_FAILURE": "Erreur: Le privilège administrateur global n'a pas put être appliqué à cet utilisateur.",
     "TODAY": "Aujoud'hui",
@@ -86,5 +90,7 @@
     "PROFILE_UPDATE":"Sauvegarder",
     "PROFILE_EMAIL":"Email",
     "LOCATION_HISTORY":"Location histoire",
+    "NOTES_DEVICE":"Remarques sur l'appareil",
+    "OS":"Système d'exploitation",
     "GO_TO_LOCATION_HISTORY":"Accès location histoire"
 }

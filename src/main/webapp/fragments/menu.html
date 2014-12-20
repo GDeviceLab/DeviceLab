@@ -1,5 +1,5 @@
-<div snap-drawer>
-    <div ng-controller="MenuCtrl">
+<div snap-drawer ng-controller="MenuCtrl">
+    <div>
         <h2>{{myName()}}</h2>
         <p>
             <a href="#/calendar" snap-close><span class="icon-calendar"></span> {{'MENU_CALENDAR' | translate}}</a>
@@ -37,6 +37,7 @@
         </p>
     </div>
     <p id="ack">
+        <img ng-src="{{logo.url}}" style="width: 74px;"><br>
         Developed by Google with the support of Revevol, Intel
     </p>
 </div>

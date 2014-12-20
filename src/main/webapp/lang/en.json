@@ -94,5 +94,7 @@
     "RESERVATION_HISTORY":"Reservation history",
     "DEVICE_OVERVIEW":"Device overview",
     "CURRENT_STATUS_RESERVATIONS":"Current status reservations",
-    "CURRENTLY_NOT_RESERVED":"Currently not reserved"
+    "CURRENTLY_NOT_RESERVED":"Currently not reserved",
+    "LOCATION_LOGO":"Logo",
+    "UPLOAD_LOGO":"Upload logo"
 }

@@ -13,6 +13,10 @@
         <servlet-class>eu.revevol.calendar.security.AuthServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>LogoUpload</servlet-name>
+        <servlet-class>eu.revevol.calendar.servlet.LogoUpload</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>PurgeServlet</servlet-name>
         <servlet-class>eu.revevol.calendar.util.PurgeServlet</servlet-class>
     </servlet>
@@ -27,6 +31,10 @@
     <servlet-mapping>
         <servlet-name>AuthServlet</servlet-name>
         <url-pattern>/auth</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogoUpload</servlet-name>
+        <url-pattern>/desktop/LogoUpload</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>PurgeServlet</servlet-name>

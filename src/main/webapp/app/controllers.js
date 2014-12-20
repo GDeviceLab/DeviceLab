@@ -83,15 +83,37 @@ calApp.controller("CalendarCtrl", function($scope, $rootScope, endpoint,$window)
     });
 });
 
-calApp.controller("MenuCtrl", function($scope, endpoint) {
+calApp.controller("MenuCtrl", function($scope, endpoint, $timeout) {
+    
+    $scope.logo = {
+        url:"../css/img/default_logo.png"
+    };
+    
     endpoint.then(function(endpoint) {
         $scope.myName = function() {
             return endpoint.me().name;
         };
         $scope.location = function() {
-            return endpoint.loc();
+            var location = endpoint.loc();
+            return location;
         };
+        
+        endpoint.location.get($scope.location()).success(function(data) {
+            $scope.getLogoUrl(data.logoUrl);
+        });
+        
+        $timeout(function() {
+            $scope.$apply();
+        }, 500);
     });
+    
+    $scope.getLogoUrl = function(value){
+        $scope.logo.url = "../css/img/default_logo.png";
+        if(value != null
+                && value.trim() != ""){
+            $scope.logo.url = value;
+        }
+    };
 });
 calApp.controller("LocationDrawer", function($scope, endpoint, $window) {
     endpoint.then(function(endpoint) {

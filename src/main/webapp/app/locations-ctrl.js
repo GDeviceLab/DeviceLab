@@ -28,9 +28,11 @@ calApp.controller("ListLocationCtrl", function($scope, endpoint) {
         $scope.locations = data;
     });
 });
-calApp.controller("EditLocationCtrl", function($scope, $stateParams, endpoint, $window) {
+calApp.controller("EditLocationCtrl", function($scope, $stateParams, endpoint, $window, $upload, $http, $timeout) {
     $scope.id = $stateParams.id;
     $scope.state = 'pending';
+    $scope.uploading = false;
+    $scope.logoUrl = "../css/img/default_logo.png";
     
     $scope.showDeleteLocationButton = endpoint.me().globalAdmin;
     
@@ -59,6 +61,7 @@ calApp.controller("EditLocationCtrl", function($scope, $stateParams, endpoint, $
     };
     endpoint.location.get($scope.id).success(function(data) {
         $scope.name = data.name;
+        $scope.getLogoUrl(data.logoUrl);
     });
 
     $scope.toUser = function(user) {
@@ -99,7 +102,6 @@ calApp.controller("EditLocationCtrl", function($scope, $stateParams, endpoint, $
     refresh = function() {
         $scope.selected = '';
         endpoint.person.listAdmins($scope.id).success(function(data) {
-            console.log(data.items);
             $scope.admins = data.items;
         });
         endpoint.person.listPending($scope.id).success(function(data) {
@@ -108,9 +110,51 @@ calApp.controller("EditLocationCtrl", function($scope, $stateParams, endpoint, $
         endpoint.person.listActives($scope.id).success(function(data) {
             $scope.users = data.items;
         });
+        
+        $scope.loadUploadUrl();
     };
 
+    $scope.onFileSelect = function($files) {
+        console.log($files);
+        $scope.loading = true;
+        //$files: an array of files selected, each file has name, size, and type.
+        for (var i = 0; i < $files.length; i++) {
+            var file = $files[i];
+            $scope.upload = $upload.upload({
+                url: $scope.uploadUrl,
+                method: 'POST',
+                headers: {'locationId': $scope.id},
+                file: file
+            }).progress(function(evt) {
+                var percent = parseInt(100.0 * evt.loaded / evt.total);
+                console.log('percent: ' + percent);
+            }).success(function(data, status, headers, config) {
+                console.log("File Uploaded Successfully!");
+                console.log(status);
+                $files = [];
+                $timeout(function() {
+                    location.reload();
+                }, 2000);
+            });
+        }
+    };
+    
+    $scope.loadUploadUrl = function(){
+        $http.get("LogoUpload").success(function(output){
+            $scope.uploadUrl = output;
+        });
+    };
+    
+    $scope.getLogoUrl = function(value){
+        $scope.logoUrl = "../css/img/default_logo.png";
+        if(value != null
+             && value.trim() != ""){
+            $scope.logoUrl = value;
+        }
+    };
+    
     refresh();
+    
 });
 calApp.controller("NewLocationCtrl", function($scope, endpoint, $window) {
     $scope.submit = function() {

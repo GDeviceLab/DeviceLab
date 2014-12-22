@@ -9,10 +9,11 @@
      style="top:{{event.top}}; 
      height:{{event.height}}; 
      display: block; 
-     width:70%;
+     width:{{event.width_perc}};
      border-left-width: 1px;
-     border-left: 1px solid black;
-     right: 0px;
+     border-left: 1px solid white;
+     border-color:white !important;
+     right: {{event.right}};
      background: linear-gradient(to right, {{event.gradient}}); 
      border-color: #333434;
      "
@@ -21,15 +22,17 @@
      >
     <p>{{event.title}}</p>
 </div>
-<ul id="{{id}}_h" style="user-select: none; width: 25px; float: left; margin-top: 4px;" class="hp-hours">
+<ul id="{{id}}_h" style="user-select: none; width: 25px; float: left; padding-top: 4px; border-right: 1px solid darkgray;" class="hp-hours">
     <li ng-repeat="hour in hours" data-value="{{hour}}" style="height: 30px; text-align: center;">
         {{hour}}
     </li>
 </ul>
-<ul id="{{id}}" touch-action="none" style="user-select: none; margin-left: 26px;" class="hp-picker">
-    <li ng-repeat="hour in hours" data-value="{{1*min+1*hour-1}}" id="{{id}}_{{1*min+1*hour-1}}" style="height: 15px;">
+<ul id="{{id}}" touch-action="none" style="user-select: none; margin-left: 25px;" class="hp-picker">
+    <li ng-repeat="hour in hours" data-value="{{1*min+1*hour-1}}" id="{{id}}_{{1*min+1*hour-1}}" 
+        style="height: 15px;border-bottom: 1px solid #f4f4f4 ;">
     </li>
-    <li ng-repeat="hour in hours" data-value="{{1*max+1*hour}}" id="{{id}}_{{1*max+1*hour}}" style="height: 15px;">
+    <li ng-repeat="hour in hours" data-value="{{1*max+1*hour}}" id="{{id}}_{{1*max+1*hour}}" 
+        style="height: 15px;border-bottom: 1px solid #f4f4f4 ;">
     </li>
 </ul>
 </div>

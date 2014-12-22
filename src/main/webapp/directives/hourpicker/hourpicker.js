@@ -11,7 +11,7 @@ calApp.directive("calHourPicker", function() {
             class: '@',
             filter: '='
         },
-        controller: function($scope, $window, endpoint) {
+        controller: function($scope, $window, $filter, endpoint) {
 
             function dte(){
                 return new Date($scope.date.getFullYear(), $scope.date.getMonth(), $scope.date.getDate() + $scope.offset*1);
@@ -26,6 +26,7 @@ calApp.directive("calHourPicker", function() {
                 var start;
                 var end;
                 var active = false;
+                var pecentageWidthTotal = 70;
                 function down(event) {
                     start = event.target.attributes["data-value"].value;
                     end = event.target.attributes["data-value"].value;
@@ -37,6 +38,7 @@ calApp.directive("calHourPicker", function() {
                     if (!active) {
                         return;
                     }
+                    
                     var s = Math.min(start * 1, end * 1);
                     var e = Math.max(start * 1, end * 1);
                     active = false;
@@ -52,8 +54,34 @@ calApp.directive("calHourPicker", function() {
                     if (!active) {
                         return;
                     }
-                    end = event.target.attributes["data-value"].value;
-                    draw($scope.id, start, end);
+                    if(angular.isDefined(event.target.attributes["data-value"])){
+                        end = event.target.attributes["data-value"].value;
+                        draw($scope.id, start, end);
+                    }
+                }
+                
+                function collide( a,  b) {
+                    //Reservations have to be valid
+                    if(a.end <= a.start){
+                        return true;
+                    }
+                    if(b.end <= b.start){
+                        return true;
+                    }
+                    //A reservation cannot collide with herself
+                    if (a.id === b.id) {
+                        return false;
+                    }
+                    //Just in case : a reservation can oly collide on a reservation on the same day
+                    if (a.date !== b.date) {
+                        return false;
+                    }
+                    //Checking if hours does overlap
+                    if(a.end <= b.start || b.end <= a.start){
+                        //Doesn't overlap
+                        return false;
+                    }
+                    return true;
                 }
 
 
@@ -63,7 +91,6 @@ calApp.directive("calHourPicker", function() {
                 trg.addEventListener("pointerleave", leave, false);
                 trg.addEventListener("pointermove", join, false);
                 function draw(id, s, f) {
-
                     var begin = Math.min(s, f);
                     var end = Math.max(s, f);
                     var h = document.getElementById(id + "_" + begin).offsetHeight;
@@ -89,7 +116,7 @@ calApp.directive("calHourPicker", function() {
                                 event.width = w;
                                 var colors = [];
                                 for (var j = 0; j < event.assets.length; j++) {
-                                    colors.push('rgba(' + event.assets[j].r + ',' + event.assets[j].g + ',' + event.assets[j].b + ',0.5)');
+                                    colors.push('rgba(' + event.assets[j].r + ',' + event.assets[j].g + ',' + event.assets[j].b + ',0.6)');
                                 }
                                 event.gradient = colors.join(',');
                                 if (colors.length == 1) {
@@ -98,7 +125,36 @@ calApp.directive("calHourPicker", function() {
                             }
                         }
                         $scope.events = data.items;
+                        
+                        $scope.events = $filter('orderBy')($scope.events, 'start');
+                        var max_collision = 0;
+                        angular.forEach($scope.events, function(event) {
+                            event.num_collision = 0;
+                            angular.forEach($scope.events, function(eventCompare) {
+                                if(collide(event,eventCompare)){
+                                    event.num_collision += 1;
+                                }
+                            });                          
+                            if(event.num_collision > max_collision) 
+                                max_collision = event.num_collision;                       
+                        });
+                        
+                        var col_inc = 1;
+                        angular.forEach($scope.events, function(event) {
+                          //calculate width 
+                          if(event.num_collision === 0){
+                              event.width = pecentageWidthTotal; 
+                              event.width_perc = event.width + "%"; 
+                              event.right = 0;
+                          }else{
+                            event.width = pecentageWidthTotal / (max_collision + 1); 
+                            event.width_perc = event.width + "%";                             
+                            event.right = pecentageWidthTotal - (event.width * col_inc ) + "%";
+                            col_inc++;
+                          }
+                        });                                              
                     });
+                   
                 }
                 refreshRes();
                 $scope.$watch(function(){

@@ -55,5 +55,13 @@
                 </div>
             </div>
         </div>
-
-         <a ng-click="submit()" class="btn btn-primary btn-block">submit</a>
+    </div>
+</div>
+<div class="container">
+    <p class="alert alert-danger" ng-show="error">
+        {{error| translate}}
+    </p>
+    <div class="row">
+        <a ng-click="submit()" class="btn btn-primary btn-block">{{'SUBMIT'| translate}}</a>
+    </div> 
+</div>

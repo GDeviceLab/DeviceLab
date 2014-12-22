@@ -5,10 +5,16 @@ calApp.controller("ReportGlobalCtrl", function ($scope, $stateParams, endpoint, 
 
     endpoint.location.list().success(function (data) {
         $scope.locations = data;
+        $scope.locations.selected = [];
     });
 
-
     $scope.submit = function () {
+        
+         if($scope.locations.selected.length <= 0){
+            $scope.error = "ERROR_LOCATIONS_SELECTED";
+            return;
+        }
+        
         endpoint.rep.globalLocationReport($scope.locations.selected, $scope.dateFilter.from, $scope.dateFilter.to)
                 .success(function (data) {
                     //data;

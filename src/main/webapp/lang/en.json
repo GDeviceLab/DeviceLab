@@ -1,6 +1,8 @@
 {
     "NO_AUTH": "Unauthorized access",
+    "ERROR_LOCATIONS_SELECTED":"Select at least one location",
     "FILTER_DATE":"Filter date",
+    "SUBMIT":"Submit",
     "THIS_YEAR":"This year",
     "THIS_QUARTER":"This quarter",
     "LAST_QUARTER":"Last quarter",

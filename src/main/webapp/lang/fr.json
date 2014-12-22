@@ -1,6 +1,8 @@
 {
     "NO_AUTH": "Accès refusé",
     "FILTER_DATE":"Dates de filtre",
+    "ERROR_LOCATIONS_SELECTED":"Sélectionner au moins un emplacement",
+    "SUBMIT":"Soumettre",
     "THIS_YEAR":"Cette année",
     "THIS_QUARTER":"Ce trimestre",
     "LAST_QUARTER":"Dernier quarter",

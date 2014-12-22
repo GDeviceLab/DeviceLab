@@ -152,8 +152,9 @@ calApp.factory('endpoint', ['$http', '$rootScope', '$window', '$q', function($ht
             return $http.get(url("reservation", "list", {location: location, date: new Date(date).toJSON()}))
                     .success(success).error(error);
         };
-        service.res.put = function(reservation) {
+        service.res.put = function(reservation,purpose) {
             loading++;
+            reservation.purpose = purpose;
             return $http.post(url("reservation", "put", {location: location}), reservation)
                     .success(success).error(error);
         };
@@ -177,6 +178,18 @@ calApp.factory('endpoint', ['$http', '$rootScope', '$window', '$q', function($ht
             return $http.get(url("reservation", "devicesStatusList", {location: locationId, totalHalfHour:totalHalfHour}))
                     .success(success).error(error);
         };
+        
+        //////////////////
+        //   PURPOSES   //
+        //////////////////
+        service.pur = {};
+        service.pur.list = function() {
+            loading++;
+            return $http.get(url("purpose", "list", {location: location}))
+                    .success(success).error(error);
+        };
+        
+        
         //////////////////
         //    ASSETS    //
         //////////////////

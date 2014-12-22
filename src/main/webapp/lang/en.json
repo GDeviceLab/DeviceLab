@@ -96,5 +96,15 @@
     "CURRENT_STATUS_RESERVATIONS":"Current status reservations",
     "CURRENTLY_NOT_RESERVED":"Currently not reserved",
     "LOCATION_LOGO":"Logo",
-    "UPLOAD_LOGO":"Upload logo"
+    "UPLOAD_LOGO":"Upload logo",
+    "PURPOSE":"Purpose",
+    "MOBILE_APP":"Mobile app",
+    "WEB_SITE":"Website",
+    "OTHER":"Other",
+    "PURPOSE_TITLE":"Name",
+    "MOBILE_APP_TITLE_PH":"Enter your app id",
+    "WEB_SITE_TITLE_PH":"Enter the website address",
+    "OTHER_TITLE_PH":"Enter the purpose",
+    "NEW_CREATE":"New purpose",
+    "PURPOSE_YOUR_LIST":"Your saved purposes"
 }

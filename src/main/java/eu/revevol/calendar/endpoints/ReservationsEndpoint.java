@@ -6,8 +6,10 @@ import com.google.api.server.spi.config.ApiMethod.HttpMethod;
 import com.google.appengine.api.NamespaceManager;
 import com.google.appengine.api.oauth.OAuthRequestException;
 import com.google.gson.Gson;
+import com.googlecode.objectify.Key;
 import com.googlecode.objectify.ObjectifyService;
 import eu.revevol.calendar.model.Asset;
+import eu.revevol.calendar.model.Purpose;
 import eu.revevol.calendar.model.Reservation;
 import eu.revevol.calendar.pojo.PojoAssetReservation;
 import eu.revevol.calendar.security.Require;
@@ -32,6 +34,7 @@ public class ReservationsEndpoint {
     static {
         ObjectifyService.factory().register(Reservation.class);
         ObjectifyService.factory().register(Asset.class);
+        ObjectifyService.factory().register(Purpose.class);
     }
     
     @ApiMethod(
@@ -44,6 +47,12 @@ public class ReservationsEndpoint {
         
         NamespaceManager.set(location.toString());
         Reservation res = ObjectifyService.ofy().load().type(Reservation.class).id(id).safe();
+        res.purpose = new Purpose();
+        if(res.idPurpose != null
+            && res.idPurpose > -1){
+            Purpose purpose = ObjectifyService.ofy().load().type(Purpose.class).id(res.idPurpose).safe();
+            res.purpose = purpose;
+        }
         return res;
     }
     
@@ -79,11 +88,41 @@ public class ReservationsEndpoint {
         NamespaceManager.set(location.toString());
         
         if (Collision.allowed(r)) {
-            ObjectifyService.ofy().save().entity(r);
+            Key<Reservation> resKey = ObjectifyService.ofy().save().entity(r).now();
+            
+            savePurpose(r, user, resKey);
+            
         } else {
             throw new Exception("RESERVATION COLLISION");
         }
         
+    }
+    
+    private void savePurpose(Reservation r, String user, Key<Reservation> resKey){
+        Purpose p  = r.purpose;
+        if(p != null){
+            if(r.idPurpose != null
+                    && r.idPurpose > -1){
+                // update the purpose
+                Purpose pDS = ObjectifyService.ofy().load().type(Purpose.class).id(r.idPurpose).now();
+                pDS.title = p.title;
+                pDS.type = p.type;
+                pDS.dateUpdate = new Date();
+                ObjectifyService.ofy().save().entity(pDS).now();
+            }
+            else{
+                Purpose pNewDS = new Purpose();
+                pNewDS.title = p.title;
+                pNewDS.type = p.type;
+                pNewDS.dateUpdate = new Date();
+                pNewDS.person = user;
+                Key<Purpose> purpNewKey = ObjectifyService.ofy().save().entity(pNewDS).now();
+                //save the id of the purpose into the reservation also
+                r.id = resKey.getId();
+                r.idPurpose = purpNewKey.getId();
+                ObjectifyService.ofy().save().entity(r).now();
+            }
+        }
     }
     
     @ApiMethod(
@@ -157,7 +196,7 @@ public class ReservationsEndpoint {
         for (Reservation resObj : resList) {
             //take in consideration only reservation in time with now
             if(resObj.start <= totalHalfHour.intValue()
-                   && resObj.end > totalHalfHour.intValue()){
+                    && resObj.end > totalHalfHour.intValue()){
                 for (Asset assObj : resObj.getAssets()) {
                     logger.info(assObj.name);
                     for (PojoAssetReservation pojoRep : listPojoAssetReservation) {

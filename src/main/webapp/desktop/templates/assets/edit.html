@@ -1,4 +1,4 @@
-<div class="col-md-4">
+<div class="col-md-4 col-md-offset-2">
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title">{{'DEVICE' | translate}}</h3>
@@ -18,14 +18,16 @@
             <div class="form-group">
                  <label for="txarea_os">{{ 'NOTES_DEVICE' | translate }}</label>
                 <textarea id="txarea_os" ng-model="a.notes" class="form-control" rows="3"></textarea>
-             </div>          
-            <p style="
+             </div>
+            <div class="form-group">
+                 <label for="color_dev">{{'DEVICE_COLOR' | translate}}</label>
+                 <p style="
+                 min-height: 20px;   
                  padding: 3px;
                  border: 1px solid rgb({{rgb.r}},{{rgb.g}},{{rgb.b}});
-                 background-color: rgba({{rgb.r}},{{rgb.g}},{{rgb.b}},0.5);
-                 ">
-                {{'DEVICE_COLOR' | translate}}
+                 background-color: rgb({{rgb.r}},{{rgb.g}},{{rgb.b}});">
             </p>
+             </div>  
             <p class="alert alert-danger" ng-show="error">
                 {{error | translate}}
             </p>
@@ -33,13 +35,14 @@
         </div>
     </div>
 </div>
-<div class="col-md-8">
+<div class="col-md-4">
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title">{{'DEVICE_COLOR' | translate}}</h3>
         </div>
         <div class="panel-body">
-            <color-pick model="rgb" />
+           <!-- <color-pick model="rgb" />-->
+               <div ng-init="initpalettecolors()" class="colors-palette center-block"></div>
         </div>
     </div>
 </div>

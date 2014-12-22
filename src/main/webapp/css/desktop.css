@@ -113,3 +113,19 @@ h1.panel-title {
     cursor: inherit;
     display: block;
 }
+
+/*
+    Color picker
+*/
+
+.colors-palette{
+  max-width: 300px;
+}
+
+.color-single-box {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin: 3px 2px;
+  border: 1px solid black;
+}

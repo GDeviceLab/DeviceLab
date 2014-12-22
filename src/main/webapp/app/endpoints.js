@@ -298,6 +298,21 @@ calApp.factory('endpoint', ['$http', '$rootScope', '$window', '$q', function($ht
             return $http.get(url("stats", "person", {location: location, id: id}))
                     .success(success).error(error);
         };
+        
+        //////////////
+        //  REPORT   //
+        //////////////
+        service.rep = {};
+        service.rep.globalLocationReport = function(listLocation,dateFrom,dateTo) {
+            loading++;
+            var pojoReport = {
+              listLocation : listLocation,
+              dateFrom : dateFrom,
+              dateTo : dateTo
+            };
+            return $http.get(url("report", "globalLocationReport", {}), pojoReport)
+                    .success(success).error(error);
+        };
 
         //////////////
         // COMMONS  //

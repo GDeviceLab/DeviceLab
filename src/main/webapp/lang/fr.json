@@ -1,5 +1,13 @@
 {
     "NO_AUTH": "Accès refusé",
+    "FILTER_DATE":"Dates de filtre",
+    "THIS_YEAR":"Cette année",
+    "THIS_QUARTER":"Ce trimestre",
+    "LAST_QUARTER":"Dernier quarter",
+    "FROM_BEGINNING":"Dès le début",
+    "CHECK_ALL":"Cochez toutes",
+    "UNCHECK_ALL":"Décochez all",
+    "REPORT":"Report",
     "ANDROID":"Android",
     "IOS":"iOS",
     "WINDOWS_PHONE":"Windows Phone",

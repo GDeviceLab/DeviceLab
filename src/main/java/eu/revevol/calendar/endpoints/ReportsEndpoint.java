@@ -26,7 +26,7 @@ public class ReportsEndpoint {
     @ApiMethod(
             name = "globalLocationReport",
             path = "globalLocationReport",
-            httpMethod = HttpMethod.GET
+            httpMethod = HttpMethod.POST
     )
     public PojoReport globalLocationReport(@Named("origin") String user, PojoReport pojoReport) throws OAuthRequestException {
         Require.globalAdmin(user);

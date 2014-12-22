@@ -310,7 +310,7 @@ calApp.factory('endpoint', ['$http', '$rootScope', '$window', '$q', function($ht
               dateFrom : dateFrom,
               dateTo : dateTo
             };
-            return $http.get(url("report", "globalLocationReport", {}), pojoReport)
+            return $http.post(url("report", "globalLocationReport", {}), pojoReport)
                     .success(success).error(error);
         };
 

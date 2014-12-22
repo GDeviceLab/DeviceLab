@@ -1,5 +1,13 @@
 {
     "NO_AUTH": "Unauthorized access",
+    "FILTER_DATE":"Filter date",
+    "THIS_YEAR":"This year",
+    "THIS_QUARTER":"This quarter",
+    "LAST_QUARTER":"Last quarter",
+    "FROM_BEGINNING":"From the beginning",
+    "CHECK_ALL":"Check all",
+    "UNCHECK_ALL":"Uncheck all",
+    "REPORT":"Report",
     "ANDROID":"Android",
     "IOS":"iOS",
     "WINDOWS_PHONE":"Windows Phone",

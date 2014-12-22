@@ -181,6 +181,16 @@ var calApp = angular.module('cal', ['ui.router', 'snap', 'ngSanitize', 'pascalpr
                         endpoint: "endpoint"
                     }
                 });
+                
+                 $stateProvider.state('report_global', {
+                    url: '/report/glob',
+                    controller: 'ReportGlobalCtrl',
+                    templateUrl: 'templates/report/report.html',
+                    resolve: {
+                        endpoint: "endpoint"
+                    }
+                });
+                
                 $stateProvider.state('profile_edit', {
                     url: '/profile/edit/:id/:location',
                     controller: 'ProfileCtrl',

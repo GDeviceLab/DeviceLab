@@ -84,7 +84,6 @@ calApp.directive("calHourPicker", function() {
                     return true;
                 }
 
-
                 var trg = document.getElementById($scope.id);
                 trg.addEventListener("pointerdown", down, false);
                 trg.addEventListener("pointerup", up, false);
@@ -102,6 +101,23 @@ calApp.directive("calHourPicker", function() {
                     e.style.width = w;
                     e.style.display = "block";
                 }
+                
+                function calculate_space(events){
+                     var col_inc = 1;
+                        angular.forEach(events, function(event) {
+                          //calculate width 
+                          if(event.num_collision === 0){
+                              event.width = pecentageWidthTotal; 
+                              event.width_perc = event.width + "%"; 
+                              event.right = 0;
+                          }else{
+                            event.width = pecentageWidthTotal / events.length; 
+                            event.width_perc = event.width + "%";                             
+                            event.right = pecentageWidthTotal - (event.width * col_inc ) + "%";
+                            col_inc++;
+                          }
+                        });  
+                }
 
                 //Reservations
                 function refreshRes() {
@@ -109,6 +125,7 @@ calApp.directive("calHourPicker", function() {
                         if (data.items) {
                             for (var i = 0; i < data.items.length; i++) {
                                 var event = data.items[i];
+                                event.collision_index = -1;
                                 var h = document.getElementById($scope.id + "_" + event.start).offsetHeight;
                                 var w = document.getElementById($scope.id + "_" + event.start).offsetWidth;
                                 event.top = h * (event.start - 2*$scope.min + 1)
@@ -124,37 +141,42 @@ calApp.directive("calHourPicker", function() {
                                 }
                             }
                         }
-                        $scope.events = data.items;
                         
+                        $scope.events = data.items;                      
                         $scope.events = $filter('orderBy')($scope.events, 'start');
+                        
                         var max_collision = 0;
-                        angular.forEach($scope.events, function(event) {
-                            event.num_collision = 0;
+                        var collision_index = 0;
+                        //Calculate the collisions betweens the reservations
+                        angular.forEach($scope.events, function(event) {                           
+                            event.num_collision = 0;                          
+                            if(event.collision_index < 0){
+                               event.collision_index =  collision_index;
+                               collision_index ++;
+                            }                          
                             angular.forEach($scope.events, function(eventCompare) {
                                 if(collide(event,eventCompare)){
                                     event.num_collision += 1;
+                                    eventCompare.collision_index = event.collision_index; 
                                 }
-                            });                          
-                            if(event.num_collision > max_collision) 
-                                max_collision = event.num_collision;                       
+                            });                            
+                            if(event.num_collision > max_collision){
+                               max_collision = event.num_collision;  
+                            }                             
                         });
-                        
-                        var col_inc = 1;
+                       
+                        //Put the connections components
+                        var connectionsComponents = [];
                         angular.forEach($scope.events, function(event) {
-                          //calculate width 
-                          if(event.num_collision === 0){
-                              event.width = pecentageWidthTotal; 
-                              event.width_perc = event.width + "%"; 
-                              event.right = 0;
-                          }else{
-                            event.width = pecentageWidthTotal / (max_collision + 1); 
-                            event.width_perc = event.width + "%";                             
-                            event.right = pecentageWidthTotal - (event.width * col_inc ) + "%";
-                            col_inc++;
-                          }
-                        });                                              
+                            if(!angular.isDefined(connectionsComponents[event.collision_index])){
+                                connectionsComponents[event.collision_index] = [];
+                            }
+                            connectionsComponents[event.collision_index].push(event);
+                        });                       
+                        angular.forEach(connectionsComponents, function(comp) {
+                            calculate_space(comp);
+                        });       
                     });
-                   
                 }
                 refreshRes();
                 $scope.$watch(function(){

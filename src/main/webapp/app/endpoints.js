@@ -303,14 +303,24 @@ calApp.factory('endpoint', ['$http', '$rootScope', '$window', '$q', function($ht
         //  REPORT   //
         //////////////
         service.rep = {};
-        service.rep.globalLocationReport = function(listLocation,dateFrom,dateTo) {
+        service.rep.globalLocationDevicesReport = function(listLocation,dateFrom,dateTo) {
             loading++;
             var pojoReport = {
               listLocation : listLocation,
               dateFrom : dateFrom,
               dateTo : dateTo
             };
-            return $http.post(url("report", "globalLocationReport", {}), pojoReport)
+            return $http.post(url("report", "globalLocationDevicesReport", {}), pojoReport)
+                    .success(success).error(error);
+        };
+        service.rep.testedPurposes = function(listLocation,dateFrom,dateTo) {
+            loading++;
+            var pojoReport = {
+              listLocation : listLocation,
+              dateFrom : dateFrom,
+              dateTo : dateTo
+            };
+            return $http.post(url("report", "testedPurposes", {}), pojoReport)
                     .success(success).error(error);
         };
 

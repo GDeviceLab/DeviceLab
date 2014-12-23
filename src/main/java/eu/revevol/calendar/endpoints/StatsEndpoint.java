@@ -6,6 +6,7 @@ import com.google.appengine.api.NamespaceManager;
 import com.google.appengine.api.oauth.OAuthRequestException;
 import com.googlecode.objectify.ObjectifyService;
 import eu.revevol.calendar.model.*;
+import eu.revevol.calendar.pojo.DevicesStat;
 import eu.revevol.calendar.security.Require;
 import java.util.ArrayList;
 import java.util.Date;
@@ -37,8 +38,7 @@ public class StatsEndpoint {
 
         NamespaceManager.set(location.toString());
 
-        List<Reservation> reservations = ObjectifyService.ofy().load()
-                .type(Reservation.class).list();
+        List<Reservation> reservations = ObjectifyService.ofy().load().type(Reservation.class).list();
 
         HashMap<Long, Integer> hoursPast = new HashMap<Long, Integer>();
         HashMap<Long, Integer> hoursFuture = new HashMap<Long, Integer>();
@@ -189,22 +189,6 @@ public class StatsEndpoint {
         }
         NamespaceManager.set("");
         return new PersonStat(ObjectifyService.ofy().load().type(Person.class).id(target).now(), data);
-    }
-
-    private static class DevicesStat {
-
-        public Asset asset;
-        public int hoursPast;
-        public int hoursFuture;
-        public int count;
-
-        public DevicesStat(Asset asset, int count, int hoursPast, int hoursFuture) {
-            this.asset = asset;
-            this.hoursPast = hoursPast;
-            this.hoursFuture = hoursFuture;
-            this.count = count;
-        }
-
     }
 
     private static class DeviceStat {

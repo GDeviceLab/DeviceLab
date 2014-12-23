@@ -84,6 +84,7 @@ public class ACLEndpoint {
             person.startupName = startupName;
         }
         person.name = username;
+        person.startupName = startupName;
         
         ObjectifyService.ofy().save().entity(person);
     }

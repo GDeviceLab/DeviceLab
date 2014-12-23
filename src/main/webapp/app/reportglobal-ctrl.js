@@ -1,7 +1,8 @@
-calApp.controller("ReportGlobalCtrl", function ($scope, $stateParams, endpoint, $window) {
+calApp.controller("ReportGlobalCtrl", function ($scope, $rootScope, $stateParams, endpoint, $window) {
     $scope.locations = {};
     $scope.locations.selected = [];
     $scope.dateFilter = {};
+    $scope.reportType = null;
 
     endpoint.location.list().success(function (data) {
         $scope.locations = data;
@@ -10,15 +11,31 @@ calApp.controller("ReportGlobalCtrl", function ($scope, $stateParams, endpoint, 
 
     $scope.submit = function () {
         
-         if($scope.locations.selected.length <= 0){
+        if($scope.locations.selected.length <= 0){
             $scope.error = "ERROR_LOCATIONS_SELECTED";
             return;
         }
         
-        endpoint.rep.globalLocationReport($scope.locations.selected, $scope.dateFilter.from, $scope.dateFilter.to)
-                .success(function (data) {
-                    //data;
-                });
+        if($scope.reportType == null){
+            $scope.error = "ERROR_REPORT_SELECTED";
+            return;
+        }
+        
+        if('REPORT_GLOBAL_LOCATION_DEVICE_REPORT' == $scope.reportType){
+            endpoint.rep.globalLocationDevicesReport($scope.locations.selected, $scope.dateFilter.from, $scope.dateFilter.to)
+                    .success(function (data) {
+                        $rootScope.reportResult = data;
+                $window.location.href = "#/report/globalLocationDevicesReport";
+            });
+        }
+        else if('REPORT_TESTED_PURPOSES' == $scope.reportType){
+            endpoint.rep.testedPurposes($scope.locations.selected, $scope.dateFilter.from, $scope.dateFilter.to)
+                    .success(function (data) {
+                        $rootScope.reportResult = data;
+                $window.location.href = "#/report/testedPurposesReport";
+            });
+        }
+        
     };
 
     $scope.checkAll = function () {
@@ -60,4 +77,8 @@ calApp.controller("ReportGlobalCtrl", function ($scope, $stateParams, endpoint, 
         $scope.dateFilter.from = null;
         $scope.dateFilter.to = null;
     };
+});
+
+calApp.controller("ResultReportCtrl", function ($scope, $rootScope, $stateParams, endpoint, $window) {
+    console.log($rootScope.reportResult);
 });

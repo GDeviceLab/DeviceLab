@@ -1,5 +1,6 @@
 package eu.revevol.calendar.util;
 
+import com.google.gson.Gson;
 import java.util.Properties;
 import java.util.logging.Logger;
 
@@ -14,10 +15,14 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
 import com.google.gson.JsonObject;
+import com.googlecode.objectify.ObjectifyService;
 import eu.revevol.calendar.constants.Params;
+import eu.revevol.calendar.model.Reservation;
 import eu.revevol.calendar.pojo.PojoEmail;
+import eu.revevol.calendar.pojo.PojoReport;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 public class Methods {
     
@@ -100,5 +105,22 @@ public class Methods {
         Calendar c = currentDate;
         c.add(Calendar.DAY_OF_MONTH, 1);
         return c;
+    }
+    
+    public static List<Reservation> getListReservationFilterByDate(PojoReport pojoReport){
+        if(pojoReport != null
+            && pojoReport.dateFrom != null
+            && pojoReport.dateTo != null){
+            logger.info("FROM: " + new Gson().toJson(pojoReport.dateFrom.toString()));
+            logger.info("TO: " + new Gson().toJson(pojoReport.dateTo.toString()));
+            
+            
+            return ObjectifyService.ofy().load().type(Reservation.class)
+                    .filter("date >= ", pojoReport.dateFrom)
+                    .filter("date < ", pojoReport.dateTo).list();
+        }
+        else{
+            return ObjectifyService.ofy().load().type(Reservation.class).list();
+        }
     }
 }

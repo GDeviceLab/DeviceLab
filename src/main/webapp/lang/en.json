@@ -118,5 +118,10 @@
     "WEB_SITE_TITLE_PH":"Enter the website address",
     "OTHER_TITLE_PH":"Enter the purpose",
     "NEW_CREATE":"New purpose",
-    "PURPOSE_YOUR_LIST":"Your saved purposes"
+    "PURPOSE_YOUR_LIST":"Your saved purposes",
+    "REPORT_TYPE":"Report Type",
+    "REPORT_GLOBAL_LOCATION_DEVICE_REPORT":"Global usage for locations",
+    "REPORT_TESTED_PURPOSES":"Tested purposes",
+    "ERROR_REPORT_SELECTED":"Select a report type",
+    "REPORT_USAGE_COUNTER":"Usage purpose counter"
 }

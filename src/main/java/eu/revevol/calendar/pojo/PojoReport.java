@@ -10,4 +10,6 @@ public class PojoReport {
     public Date dateFrom;
     public Date dateTo;
     public List<Asset> listAsset;
+    public List<List<DevicesStat>> globalLocationResList;
+    public List<List<PurposeStat>> testedPurposeResList;
 }

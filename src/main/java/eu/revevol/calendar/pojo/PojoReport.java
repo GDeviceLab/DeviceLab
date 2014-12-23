@@ -12,4 +12,7 @@ public class PojoReport {
     public List<Asset> listAsset;
     public List<List<DevicesStat>> globalLocationResList;
     public List<List<PurposeStat>> testedPurposeResList;
+    public Long location;
+    public Date dateFilter;
+    public String idPerson;
 }

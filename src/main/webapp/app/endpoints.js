@@ -288,6 +288,16 @@ calApp.factory('endpoint', ['$http', '$rootScope', '$window', '$q', function($ht
             return $http.get(url("stats", "devices", {location: location}))
                     .success(success).error(error);
         };
+        service.stats.devicesDateFilter = function(dateFrom,dateTo) {
+            loading++;
+            var pojoReport  = {
+                location:location,
+                dateFrom : dateFrom,
+                dateTo : dateTo
+            };
+            return $http.post(url("stats", "devicesDateFilter", {}),pojoReport)
+                    .success(success).error(error);
+        };
         service.stats.device = function(id) {
             loading++;
             return $http.get(url("stats", "device", {location: location, id: id}))
@@ -296,6 +306,18 @@ calApp.factory('endpoint', ['$http', '$rootScope', '$window', '$q', function($ht
         service.stats.person = function(id) {
             loading++;
             return $http.get(url("stats", "person", {location: location, id: id}))
+                    .success(success).error(error);
+        };
+        service.stats.personDateFilter = function(id,dateFrom,dateTo) {
+            loading++;
+            var pojoReport  = {
+                location:location,
+                dateFrom : dateFrom,
+                dateTo : dateTo,
+                idPerson:id
+            };
+            console.log(pojoReport);
+            return $http.post(url("stats", "personDateFilter", {}),pojoReport)
                     .success(success).error(error);
         };
         

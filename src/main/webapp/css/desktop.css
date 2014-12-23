@@ -128,4 +128,11 @@ h1.panel-title {
   height: 20px;
   margin: 3px 2px;
   border: 1px solid black;
+  transition: 0.1s ease-in-out;
+}
+
+.color-single-box:hover{
+  opacity: 1;
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
 }

@@ -1,10 +1,12 @@
 {
     "NO_AUTH": "Accès refusé",
+    "RESET":"Remettre",
     "FILTER_DATE":"Dates de filtre",
     "ERROR_LOCATIONS_SELECTED":"Sélectionner au moins un emplacement",
     "SUBMIT":"Soumettre",
     "THIS_YEAR":"Cette année",
     "THIS_QUARTER":"Ce trimestre",
+    "CURRENT_QUARTER":"Ce trimestre",
     "LAST_QUARTER":"Dernier quarter",
     "FROM_BEGINNING":"Dès le début",
     "CHECK_ALL":"Cochez toutes",

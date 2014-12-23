@@ -36,28 +36,28 @@ calApp.controller("ReportGlobalCtrl", function ($scope, $stateParams, endpoint, 
         $scope.dateFilter.from = firstDate;
         var lastDate = new Date();
         lastDate.setMonth(11);
-        lastDate.setDate(1);
+        lastDate.setDate(31);
         $scope.dateFilter.to = lastDate;
     };
 
     $scope.filterDateThisQuarter = function () {
         var currentDate = new Date();
-        currentDate.setMonth(currentDate.getMonth() + 2);
-        $scope.dateFilter.to = currentDate;
-        $scope.dateFilter.from = new Date();
+        var quarter = Math.floor((currentDate.getMonth() / 3));	
+        $scope.dateFilter.from =  new Date(currentDate.getFullYear(), quarter * 3, 1);
+        $scope.dateFilter.to = new Date( $scope.dateFilter.from.getFullYear(),  
+            $scope.dateFilter.from.getMonth() + 3, 0);
+    };
+    
+    $scope.filterDateLastQuarter = function () {
+        var d = new Date();
+        var quarter = Math.floor((d.getMonth() / 3));	   
+        $scope.dateFilter.from = new Date(d.getFullYear(), quarter * 3 - 3, 1);
+        $scope.dateFilter.to =  new Date($scope.dateFilter.from.getFullYear(), 
+            $scope.dateFilter.from.getMonth() + 3, 0);
     };
 
-    $scope.frombeginning = function () {
+    $scope.reset = function () {
         $scope.dateFilter.from = null;
         $scope.dateFilter.to = null;
     };
-
-    $scope.filterDateLastQuarter = function () {
-        var currentDate = new Date();
-        currentDate.setMonth(currentDate.getMonth() - 2);
-        $scope.dateFilter.from = currentDate;
-        $scope.dateFilter.to = new Date();
-    };
-
-
 });

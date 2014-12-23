@@ -88,6 +88,7 @@ public class ReservationsEndpoint {
         NamespaceManager.set(location.toString());
         
         if (Collision.allowed(r)) {
+            //set the date to GMT
             Key<Reservation> resKey = ObjectifyService.ofy().save().entity(r).now();
             
             savePurpose(r, user, resKey);
@@ -190,9 +191,11 @@ public class ReservationsEndpoint {
         /**
          * 2. Then control all the current reservation to connect them to the device list
          */
-        Date todayInit = Methods.getZeroTimeOfDay().getTime();
-        List<Reservation> resList = ObjectifyService.ofy().load().type(Reservation.class).filter("date", todayInit).list();
-        logger.info("totalHalfHour " + totalHalfHour.intValue());
+        Date todayInit = Methods.getGMTTime(Methods.getZeroTimeOfDay().getTime());
+        String todayString = (1900+todayInit.getYear())+"#"+todayInit.getMonth()+"#"+todayInit.getDate();
+        logger.info("today init " + todayString);
+        List<Reservation> resList = ObjectifyService.ofy().load().type(Reservation.class).filter("dayString", todayString).list();
+        logger.info("Resultant list by filter "+resList.size());
         for (Reservation resObj : resList) {
             //take in consideration only reservation in time with now
             if(resObj.start <= totalHalfHour.intValue()

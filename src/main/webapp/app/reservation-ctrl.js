@@ -99,6 +99,10 @@ calApp.controller("NewReservationCtrl", function($scope, $stateParams, $window, 
     $scope.submit = function() {
         $scope.r.assets = [];
         $scope.r.date = $scope.date;
+        $scope.r.dayString = $scope.date.getFullYear()+"#"+$scope.date.getMonth()+"#"+$scope.date.getDate();
+        console.log("DayString: " + $scope.r.dayString);
+        
+        console.log($scope.r.date);
         for (var i = 0; i < $scope.sassets.length; i++) {
             $scope.r.assets.push(hashmap[$scope.sassets[i].value]);
         }

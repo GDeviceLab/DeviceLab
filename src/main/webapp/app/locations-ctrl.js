@@ -181,11 +181,14 @@ calApp.controller("LocationCurrentStatusReservationCtrl", function($scope, endpo
     
     var dateNow = new Date();
     var numHour = dateNow.getHours()*2;
+    console.log("NumHour: " + numHour);    
     var numMinutes = 0;
     if(dateNow.getMinutes() > 29){
         numMinutes = 1;
+        console.log("NumMin if magg di 30: " + numMinutes);
     }
     var totalHalfHour = numHour + numMinutes;
+    console.log("TotalHour: " + totalHalfHour);
     
     endpoint.res.devicesStatusList($stateParams.id,totalHalfHour).success(function(output) {
         if(output != null){

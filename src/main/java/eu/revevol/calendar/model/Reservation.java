@@ -23,6 +23,8 @@ public class Reservation {
     public int end;
     @Index public Date date;
     @Index public Long idPurpose;
+    @Index public String dayString;
+    
     @Ignore public Purpose purpose;
 
     public List<Asset> getAssets() {

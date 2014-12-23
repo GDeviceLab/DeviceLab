@@ -20,9 +20,11 @@ import eu.revevol.calendar.constants.Params;
 import eu.revevol.calendar.model.Reservation;
 import eu.revevol.calendar.pojo.PojoEmail;
 import eu.revevol.calendar.pojo.PojoReport;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 public class Methods {
     
@@ -107,10 +109,27 @@ public class Methods {
         return c;
     }
     
+    /**
+     * Get GMT time in java
+     */
+    public static Date getGMTTime(Date dateStart){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+        sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
+        String GMTTime = sdf.format(dateStart);
+        Date GMTDate;
+        try {
+            GMTDate = (Date)sdf.parse(GMTTime);
+            return GMTDate;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
     public static List<Reservation> getListReservationFilterByDate(PojoReport pojoReport){
         if(pojoReport != null
-            && pojoReport.dateFrom != null
-            && pojoReport.dateTo != null){
+                && pojoReport.dateFrom != null
+                && pojoReport.dateTo != null){
             logger.info("FROM: " + new Gson().toJson(pojoReport.dateFrom.toString()));
             logger.info("TO: " + new Gson().toJson(pojoReport.dateTo.toString()));
             

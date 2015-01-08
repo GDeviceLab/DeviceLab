@@ -127,6 +127,8 @@
     "REPORT_TESTED_PURPOSES":"Testé raisons",
     "ERROR_REPORT_SELECTED":"Choisissez un type de rapport",
     "REPORT_USAGE_COUNTER":"Usage raison compteur",
-    "ERR_MANDATORY_FIELDS":"Tous les champs sont obligatoires"
+    "ERR_MANDATORY_FIELDS":"Tous les champs sont obligatoires",
+    "ERR_MANDATORY_PURPOSE":"Raison champs sont obligatoires",
+    "PURPOSE_TITLE_PANEL":"Vous voulez tester ..."
    
 }

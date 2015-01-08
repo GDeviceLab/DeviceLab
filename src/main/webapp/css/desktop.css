@@ -88,10 +88,16 @@ h1.panel-title {
 }
 
 #ack{
-    position:absolute;
+    position:fixed;
     bottom: 0;
-    font-weight: bold;
+    font-weight: 100;
     font-style: italic;
+    font-size: 50%;
+}
+
+#ack-image{
+    position:fixed;
+    bottom: 0;
 }
 
 .btn-file {

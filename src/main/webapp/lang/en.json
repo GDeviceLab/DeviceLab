@@ -127,5 +127,7 @@
     "REPORT_TESTED_PURPOSES":"Tested purposes",
     "ERROR_REPORT_SELECTED":"Select a report type",
     "REPORT_USAGE_COUNTER":"Usage purpose counter",
-    "ERR_MANDATORY_FIELDS":"All fields are mandatory"
+    "ERR_MANDATORY_FIELDS":"All fields are mandatory",
+    "ERR_MANDATORY_PURPOSE":"Purpose fields are mandatory",
+    "PURPOSE_TITLE_PANEL":"You want to test..."
 }

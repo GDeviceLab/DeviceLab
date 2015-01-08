@@ -97,7 +97,13 @@ calApp.controller("NewReservationCtrl", function($scope, $stateParams, $window, 
     });
 
     $scope.submit = function() {
-        $scope.r.assets = [];
+        $scope.error.mandatoryMessage = false;
+        if($scope.purpose != null
+               && $scope.purpose.title != null
+               && $scope.purpose.title != ""
+               && $scope.purpose.type != null
+               && $scope.purpose.type != ""){
+            $scope.r.assets = [];
         $scope.r.date = $scope.date;
         $scope.r.dayString = $scope.date.getFullYear()+"#"+$scope.date.getMonth()+"#"+$scope.date.getDate();
         console.log("DayString: " + $scope.r.dayString);
@@ -114,6 +120,10 @@ calApp.controller("NewReservationCtrl", function($scope, $stateParams, $window, 
             }
             ;
         });
+        }
+        else{
+            $scope.error.mandatoryMessage = true;
+        }
 
     };
 });

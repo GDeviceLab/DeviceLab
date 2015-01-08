@@ -13,6 +13,7 @@ import static com.google.appengine.api.taskqueue.TaskOptions.Builder.withUrl;
 import com.google.gson.Gson;
 import eu.revevol.calendar.model.Location;
 import eu.revevol.calendar.model.Person;
+import eu.revevol.calendar.util.Methods;
 
 /**
  *
@@ -23,13 +24,16 @@ public class EmailTemplate {
     /**
      * Send an email to location admins where a new user ask to access to their location
      */
-    public static void adviseByEmailLocationAdmins(String user, Location locationObj, String emailArrayString) {
+    public static void adviseByEmailLocationAdmins(Person p, Location locationObj, String emailArrayString) {
         PojoEmail pojo = new PojoEmail();
         pojo.setEmails(emailArrayString);
         pojo.setSubject("New user asks to access to location");
         String message = "Dear location Admin,<br>"+
-                "the user "+ user +" asks to apply to " + locationObj.name + ".<br>" +
-                "Please, access to " + Params.SENDER_EMAIL_APPLICATION_NAME + " application." +
+                "the user "+ Methods.notNullText(p.name) + 
+                " <" + Methods.notNullText(p.mail) +"> from " +  
+                Methods.notNullText(p.startupName) +" asks to apply to " + 
+                Methods.notNullText(locationObj.name) + ".<br>" +
+                "Please, access to <a href='"+Params.APPLICATION_ADDRESS+"' target='_blank'>"+Params.SENDER_EMAIL_APPLICATION_NAME+"</a> to approve or reject the user." +
                 "<br><br>"+
                 "***Automatic message, do not answer***";
         pojo.setMessageBody(message);

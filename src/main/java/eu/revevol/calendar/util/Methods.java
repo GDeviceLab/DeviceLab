@@ -142,4 +142,11 @@ public class Methods {
             return ObjectifyService.ofy().load().type(Reservation.class).list();
         }
     }
+    
+    public static String notNullText(String text){
+        if(text == null){
+            return "";
+        }
+        return text;
+    }
 }

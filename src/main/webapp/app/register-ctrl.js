@@ -3,6 +3,11 @@ calApp.controller("RegisterCtrl", function($scope, endpoint, $window) {
     $scope.loading = function() {
         return true;
     };
+    
+    $scope.error = {
+        mandatoryMessage:false
+    };
+    
     endpoint.then(function(endpoint) {
         $scope.show = endpoint.show()
 
@@ -10,6 +15,7 @@ calApp.controller("RegisterCtrl", function($scope, endpoint, $window) {
             return endpoint.loading();
         }
         $scope.submit = function() {
+            $scope.error.mandatoryMessage = false;
             if($scope.name != null
                  && $scope.name.trim() != ""
                  && $scope.startupName != null
@@ -20,6 +26,9 @@ calApp.controller("RegisterCtrl", function($scope, endpoint, $window) {
                         $scope.show = false;
                         ndp.callMe();
                     });
+            }
+            else{
+                $scope.error.mandatoryMessage = true;
             }
         }
     });

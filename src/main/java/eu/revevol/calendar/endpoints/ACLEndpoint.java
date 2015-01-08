@@ -116,7 +116,8 @@ public class ACLEndpoint {
                 }
                 LocationsEndpoint locationEndPoint = new LocationsEndpoint();
                 Location locationObj = locationEndPoint.get(location);
-                EmailTemplate.adviseByEmailLocationAdmins(user,locationObj,emailArrayString);
+                Person personObj = ObjectifyService.ofy().load().type(Person.class).id(user).now();
+                EmailTemplate.adviseByEmailLocationAdmins(personObj,locationObj,emailArrayString);
             }
         }
     }

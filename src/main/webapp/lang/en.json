@@ -124,5 +124,6 @@
     "REPORT_GLOBAL_LOCATION_DEVICE_REPORT":"Global usage for locations",
     "REPORT_TESTED_PURPOSES":"Tested purposes",
     "ERROR_REPORT_SELECTED":"Select a report type",
-    "REPORT_USAGE_COUNTER":"Usage purpose counter"
+    "REPORT_USAGE_COUNTER":"Usage purpose counter",
+    "ERR_MANDATORY_FIELDS":"All fields are mandatory"
 }

@@ -3,9 +3,8 @@
         <title>Device Lab</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<<<<<<< HEAD
+
         <script src="../app/compiled.desktop.js"></script>
-=======
         <!--<script src="../app/compiled.desktop.js"></script>-->
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script src="../js/libs/angular-file-upload-html5-shim.min.js"></script>
@@ -43,7 +42,6 @@
         <script src="../directives/linkify/linkify.js"></script>
         <script src="../directives/devicepicker/devicepicker.js"></script>
         <script src="../directives/checkboxes/checkboxes.js"></script>
->>>>>>> revevol-phase2
         <link rel="stylesheet" href="../css/bootstrap/bootstrap.min.css">
         <link rel="stylesheet" href="../css/angular-snap.css">
         <link rel="stylesheet" href="../directives/calendar/calendar.css">
@@ -51,19 +49,15 @@
         <link rel="stylesheet" href="../directives/colorpicker/colorpicker.css">
         <link rel="stylesheet" href="../css/icomoon/style.css">
         <link rel="stylesheet" href="../css/register.css">
-<<<<<<< HEAD
         <link rel="stylesheet" href="../css/material.css">
         <link rel="stylesheet" href="../css/ripples.min.css">
         <link rel="stylesheet" href="../css/desktop.css">
         <script src="../js/bootstrap.js"></script>
         
         <!-- <link rel="stylesheet" href="../css/compiled.desktop.css"> -->
-
-=======
         <link rel="stylesheet" href="../css/desktop.css">
         <!--<link rel="stylesheet" href="../css/compiled.desktop.css">-->
         
->>>>>>> revevol-phase2
     </head>
     <body ng-app="cal">
         <div ng-controller="RegisterCtrl">
@@ -79,7 +73,7 @@
                 <h1 id="header-title">
                     <span  snap-toggle="left"><span class="icon-bars"></span></span>
                     <!-- <span class="pull-right" snap-toggle="right"><span class="icon-globe"></span></span> -->
-                    <span id ="title" snap-toggle="left" ng-controller="TitleCtrl">{{page}} <!-- <span id="title-loc">{{location}}</span> --></span>
+                    <span id ="title" snap-toggle="left" ng-controller="TitleCtrl">{{page}}<span id="title-loc">   {{location}}</span></span>
                 </h1>
                 <div class="dropdown">
                     <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">

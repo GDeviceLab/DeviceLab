@@ -3,11 +3,19 @@
         <div class="modal-pane">
             <h1>{{'REGISTER_WELCOME' | translate}}</h1>
             <p>{{'REGISTER_HELP' | translate}}</p>
-            <input type="text" placeholder="{{'REGISTER_USERNAME' | translate}}" class="topcoat-text-input form-control" ng-model="name" />
-            <input type="text" placeholder="{{'REGISTER_STARTUP_NAME' | translate}}" class="topcoat-text-input form-control" ng-model="startupName" />
+            <div class="form-group">
+                <div class="form-control-wrapper">
+                    <input type="text" placeholder="{{'REGISTER_USERNAME' | translate}}" class="topcoat-text-input form-control" ng-model="name" />
+                    <span class="material-input"></span>
+                </div>
+                <div class="form-control-wrapper">
+                    <input type="text" placeholder="{{'REGISTER_STARTUP_NAME' | translate}}" class="topcoat-text-input form-control" ng-model="startupName" />
+                    <span class="material-input"></span>
+                </div>
             <br/>
             <button class="topcoat-button--cta btn btn-default btn-block" ng-click="submit()">{{'BUTTON_REGISTER' | translate}}</button>
             <br/>
+        </div>
             <div class="alert alert-danger" ng-show="error.mandatoryMessage">
                 <p>{{'ERR_MANDATORY_FIELDS' | translate}}</p>
             </div>

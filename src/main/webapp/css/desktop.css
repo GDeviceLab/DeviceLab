@@ -37,7 +37,7 @@ h5{
 .newspage h4 {
   color: rgba(0, 0, 0, 0.77);
   font-size: 20px;
-  padding-bottom: 20px;
+  padding-bottom: 0px;
 }
 .news a{
     color: blue !important;
@@ -286,7 +286,7 @@ margin-bottom: 40px;
 }
 
 .stats-devices a {
-    color: #4CCFE0;
+    color: white;
 }
 .stats-devices tr{
     height: 100px;

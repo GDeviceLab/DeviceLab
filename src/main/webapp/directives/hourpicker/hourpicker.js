@@ -97,8 +97,8 @@ calApp.directive("calHourPicker", function() {
                     var e = document.getElementById(id + "_" + "range");
                     e.style.top = (begin - 2*$scope.min + 1) * h;
                     e.style.height = (end - begin + 1) * h;
-                    e.style.left = 26;
-                    e.style.width = w;
+                    e.style.left = 51;
+                    e.style.width = w - 34;
                     e.style.display = "block";
                 }
                 

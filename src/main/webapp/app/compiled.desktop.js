@@ -2446,6 +2446,7 @@ controller: function($scope, endpoint) {
 endpoint.then(function(endpoint) {
 endpoint.news.active().success(function(data) {
 $scope.news = data.items;
+console.log($scope.news);
 });
 });
 }

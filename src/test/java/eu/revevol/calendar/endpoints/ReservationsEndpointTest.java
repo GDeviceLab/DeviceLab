@@ -12,7 +12,9 @@ import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
 import com.googlecode.objectify.ObjectifyService;
 import eu.revevol.calendar.model.ACL;
 import eu.revevol.calendar.model.Person;
+import eu.revevol.calendar.model.Purpose;
 import eu.revevol.calendar.model.Reservation;
+import eu.revevol.calendar.util.Methods;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -37,6 +39,7 @@ public class ReservationsEndpointTest {
         ObjectifyService.factory().register(Person.class);
         ObjectifyService.factory().register(ACL.class);
         ObjectifyService.factory().register(Reservation.class);
+        ObjectifyService.factory().register(Purpose.class);
     }
     
     public ReservationsEndpointTest() {
@@ -104,6 +107,13 @@ public class ReservationsEndpointTest {
         r.end = 12;
         r.date = date;
         r.id = 23L;
+        Purpose p = new Purpose();
+        p.person = "someone";
+        p.title = "title";
+        p.type = "type";
+        p.id = 22L;
+        p.dateUpdate = Methods.getZeroTimeOfDay().getTime();
+        r.purpose = p;
         ReservationsEndpoint instance = new ReservationsEndpoint();
         instance.put(user, location, r);
         

@@ -1,7 +1,48 @@
 calApp.controller("NewReservationCtrl", function($scope, $stateParams, $window, endpoint) {
     var hashmap = {};
-    $scope.error = {}
+    $scope.error = {};
     $scope.sassets = [{value: "", number: 0}];
+    $scope.purpose = {};
+    $scope.listPurpose = [];
+    $scope.r = {};
+    
+    endpoint.pur.list().success(function(data) {
+        if(data != null
+            && data.items != null
+            && data.items.length > 0){
+            $scope.listPurpose = data.items;
+            // set the last purpose created or edited as the default purpose
+            $scope.purpose = $scope.listPurpose[0];
+            $scope.r.idPurpose = $scope.purpose.id;
+        }
+    });
+    
+    $scope.selectPurpose = function(){
+        if($scope.selectedPurDS != "-1"){
+            var objCopy = JSON.parse($scope.selectedPurDS);
+            $scope.r.idPurpose = objCopy.id;
+            $scope.purpose.person = objCopy.person;
+            $scope.purpose.type = objCopy.type;
+            $scope.purpose.title = objCopy.title;
+        }
+        else{
+            $scope.r.idPurpose = null;
+            $scope.purpose = {};
+        }
+    };
+    
+    $scope.changePurposeType = function(){
+        var type = $scope.purpose.type;
+        if("MOBILE_APP" == type){
+            $scope.purpose.titlePlaceHolder = "MOBILE_APP_TITLE_PH";
+        }
+        else if("WEB_SITE" == type){
+            $scope.purpose.titlePlaceHolder = "WEB_SITE_TITLE_PH";
+        }
+        else if("OTHER" == type){
+            $scope.purpose.titlePlaceHolder = "OTHER_TITLE_PH";
+        }
+    };
 
     $scope.addAsset = function() {
         $scope.sassets.push({value: "", number: $scope.sassets.length});
@@ -20,8 +61,16 @@ calApp.controller("NewReservationCtrl", function($scope, $stateParams, $window, 
             hashmap[data.items[i].id] = data.items[i];
         }
     });
-
-    $scope.r = {};
+    
+    // set default name of the startup
+    if(endpoint !== null){
+        var personObj = endpoint.me();
+        if(personObj !== null
+              && personObj.startupName !== null){
+            $scope.r.title = personObj.startupName;
+        }
+    }
+    
     $scope.date = new Date($stateParams.date);
     $scope.r.date = new Date($stateParams.date);
 
@@ -50,10 +99,14 @@ calApp.controller("NewReservationCtrl", function($scope, $stateParams, $window, 
     $scope.submit = function() {
         $scope.r.assets = [];
         $scope.r.date = $scope.date;
+        $scope.r.dayString = $scope.date.getFullYear()+"#"+$scope.date.getMonth()+"#"+$scope.date.getDate();
+        console.log("DayString: " + $scope.r.dayString);
+        
+        console.log($scope.r.date);
         for (var i = 0; i < $scope.sassets.length; i++) {
             $scope.r.assets.push(hashmap[$scope.sassets[i].value]);
         }
-        endpoint.res.put($scope.r).success(function() {
+        endpoint.res.put($scope.r,$scope.purpose).success(function() {
             $window.location.href = "#/";
         }).error(function(data) {
             if (data.error && data.error.message === "java.lang.Exception: RESERVATION COLLISION") {
@@ -69,6 +122,45 @@ calApp.controller("EditReservationCtrl", function($scope, $stateParams, endpoint
     var deleted = false;
     $scope.error = {};
     $scope.sassets = [];
+    $scope.purpose = {};
+    $scope.listPurpose = [];
+    
+    endpoint.pur.list().success(function(data) {
+        if(data != null
+            && data.items != null
+            && data.items.length > 0){
+            $scope.listPurpose = data.items;
+        }
+    });
+    
+    $scope.selectPurpose = function(){
+        if($scope.selectedPurDS != "-1"){
+            var objCopy = JSON.parse($scope.selectedPurDS);
+            $scope.r.idPurpose = objCopy.id;
+            $scope.purpose.person = objCopy.person;
+            $scope.purpose.type = objCopy.type;
+            $scope.purpose.title = objCopy.title;
+        }
+        else{
+            $scope.r.idPurpose = null;
+            $scope.purpose = {};
+        }
+    };
+    
+    $scope.changePurposeType = function(){
+        $scope.purpose.title = null;
+        var type = $scope.purpose.type;
+        if("MOBILE_APP" == type){
+            $scope.purpose.titlePlaceHolder = "MOBILE_APP_TITLE_PH";
+        }
+        else if("WEB_SITE" == type){
+            $scope.purpose.titlePlaceHolder = "WEB_SITE_TITLE_PH";
+        }
+        else if("OTHER" == type){
+            $scope.purpose.titlePlaceHolder = "OTHER_TITLE_PH";
+        }
+    };
+    
     $scope.addAsset = function() {
         $scope.sassets.push({value: "", number: $scope.sassets.length});
     };
@@ -94,6 +186,7 @@ calApp.controller("EditReservationCtrl", function($scope, $stateParams, endpoint
         }
         endpoint.res.get($stateParams.id).success(function(data) {
             $scope.r = data;
+            $scope.purpose = $scope.r.purpose;
             $scope.$watch(function() {
                 return $scope.r.start;
             }, function() {
@@ -128,7 +221,7 @@ calApp.controller("EditReservationCtrl", function($scope, $stateParams, endpoint
         for (var i = 0; i < $scope.sassets.length; i++) {
             $scope.r.assets.push(hashmap[$scope.sassets[i].value]);
         }
-        endpoint.res.put($scope.r).success(function() {
+        endpoint.res.put($scope.r,$scope.purpose).success(function() {
             window.location.href = "#/";
         }).error(function(data) {
             if (data.error && data.error.message === "java.lang.Exception: RESERVATION COLLISION") {

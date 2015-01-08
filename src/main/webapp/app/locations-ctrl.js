@@ -28,9 +28,29 @@ calApp.controller("ListLocationCtrl", function($scope, endpoint) {
         $scope.locations = data;
     });
 });
-calApp.controller("EditLocationCtrl", function($scope, $stateParams, endpoint, $window) {
+calApp.controller("EditLocationCtrl", function($scope, $stateParams, endpoint, $window, $upload, $http, $timeout) {
     $scope.id = $stateParams.id;
     $scope.state = 'pending';
+    $scope.uploading = false;
+    $scope.logoUrl = "../css/img/default_logo.png";
+    
+    $scope.showDeleteLocationButton = endpoint.me().globalAdmin;
+    
+    $scope.goTo = function(value){
+        $window.location.href = value;
+    };
+        
+    $scope.deleteLocation = function(){
+        var locationObj = {
+            name: $scope.name,
+            id: $scope.id,
+            deleted: true
+        };
+        endpoint.location.put(locationObj).success(function() {
+            $window.location.href = "#/location/list";
+        });
+    };
+    
     $scope.submit = function() {
         endpoint.location.put({
             name: $scope.name,
@@ -41,15 +61,34 @@ calApp.controller("EditLocationCtrl", function($scope, $stateParams, endpoint, $
     };
     endpoint.location.get($scope.id).success(function(data) {
         $scope.name = data.name;
+        $scope.getLogoUrl(data.logoUrl);
     });
 
     $scope.toUser = function(user) {
         endpoint.person.promote(user, $scope.id)
                 .success(refresh);
     };
+    
+    removeFromList = function(list,user){
+        var tempList = [];
+        for (var i = 0; i < list.length; i++) {
+            if(user != list[i].mail){
+                tempList.push(list[i]);
+            }
+        }
+        return tempList;
+    };
+    
+    removeUser = function(user){
+        $scope.admins = removeFromList($scope.admins,user);
+        $scope.pendings = removeFromList($scope.pendings,user);
+        $scope.users = removeFromList($scope.users,user);
+    };
+    
+    
     $scope.delete = function(user) {
         endpoint.person.demote(user, $scope.id)
-                .success(refresh);
+                .success(removeUser(user));
     };
     $scope.toAdmin = function(user) {
         endpoint.person.grantLocal(user, $scope.id)
@@ -71,9 +110,51 @@ calApp.controller("EditLocationCtrl", function($scope, $stateParams, endpoint, $
         endpoint.person.listActives($scope.id).success(function(data) {
             $scope.users = data.items;
         });
+        
+        $scope.loadUploadUrl();
     };
 
+    $scope.onFileSelect = function($files) {
+        console.log($files);
+        $scope.loading = true;
+        //$files: an array of files selected, each file has name, size, and type.
+        for (var i = 0; i < $files.length; i++) {
+            var file = $files[i];
+            $scope.upload = $upload.upload({
+                url: $scope.uploadUrl,
+                method: 'POST',
+                headers: {'locationId': $scope.id},
+                file: file
+            }).progress(function(evt) {
+                var percent = parseInt(100.0 * evt.loaded / evt.total);
+                console.log('percent: ' + percent);
+            }).success(function(data, status, headers, config) {
+                console.log("File Uploaded Successfully!");
+                console.log(status);
+                $files = [];
+                $timeout(function() {
+                    location.reload();
+                }, 2000);
+            });
+        }
+    };
+    
+    $scope.loadUploadUrl = function(){
+        $http.get("LogoUpload").success(function(output){
+            $scope.uploadUrl = output;
+        });
+    };
+    
+    $scope.getLogoUrl = function(value){
+        $scope.logoUrl = "../css/img/default_logo.png";
+        if(value != null
+             && value.trim() != ""){
+            $scope.logoUrl = value;
+        }
+    };
+    
     refresh();
+    
 });
 calApp.controller("NewLocationCtrl", function($scope, endpoint, $window) {
     $scope.submit = function() {
@@ -83,4 +164,35 @@ calApp.controller("NewLocationCtrl", function($scope, endpoint, $window) {
             $window.location.href = "#/location/list";
         });
     };
+});
+
+calApp.controller("LocationHistoryCtrl", function($scope, endpoint, $window, $stateParams) {
+    $scope.resList = [];
+    
+    endpoint.res.totalhistory($stateParams.id).success(function(output) {
+        if(output != null){
+            $scope.resList = output.items;
+        }
+    });
+});
+
+calApp.controller("LocationCurrentStatusReservationCtrl", function($scope, endpoint, $window, $stateParams) {
+    $scope.pojoResult = [];
+    
+    var dateNow = new Date();
+    var numHour = dateNow.getHours()*2;
+    console.log("NumHour: " + numHour);    
+    var numMinutes = 0;
+    if(dateNow.getMinutes() > 29){
+        numMinutes = 1;
+        console.log("NumMin if magg di 30: " + numMinutes);
+    }
+    var totalHalfHour = numHour + numMinutes;
+    console.log("TotalHour: " + totalHalfHour);
+    
+    endpoint.res.devicesStatusList($stateParams.id,totalHalfHour).success(function(output) {
+        if(output != null){
+            $scope.pojoResult = output.items;
+        }
+    });
 });

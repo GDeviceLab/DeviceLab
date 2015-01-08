@@ -49,7 +49,6 @@ table.cal{
 .cal-to-right{
     text-align: right;
 }
-
 table.cal tbody{
     background-color: #EFEFEF;
 }
@@ -64,4 +63,8 @@ table.cal.cal-top tbody {
 .cal-month .panel-body {
     background-color: #EFEFEF;
     padding-bottom: 20px;
-}
+/*=======
+.panel-title{
+    font-size: 15px;
+>>>>>>> revevol-phase2
+}*/

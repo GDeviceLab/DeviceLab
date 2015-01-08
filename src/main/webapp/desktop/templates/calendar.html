@@ -5,12 +5,28 @@
     <div class="col-md-12" id="week-select">
         <h2 id="week-dates">Nov 16 - 22 <span class="light">2014</span></h2>
     </div>
+    <div class="pull-right">
+        <button type="button" ng-click="goTo('#/news')" class="btn btn-link">{{'SEE_MORE_NEWS' | translate}}</button>
+    </div>
 </div>
 <div class="row">
     <div class="col-md-2">
+<!-- <<<<<<< HEAD
         <div class="panel panel-default cal-month">
+======= -->
+        <div class="well text-center" ng-show="!isCalendarVisible" style="padding: 2px; margin-bottom: 10px;">
+           <button type="button" class="btn btn-link">
+            <span class="icon-calendar" ng-click="visibilityCalendar()"></span> 
+            <span ng-click="visibilityCalendar()">{{'OPEN_CALENDAR' | translate}}</span>
+        </button>
+        </div>
+        <div class="panel panel-default" ng-show="isCalendarVisible">
+            <div class="pull-right" style="padding-top: 8px;">
+                <img src="../css/img/drop-down-triangle.png" ng-click="visibilityCalendar()" title="{{'HIDE' | translate}}"/>
+            </div>
+<!-- >>>>>>> revevol-phase2 -->
             <div class="panel-body no-padding">
-                <cal-endar date="date" class="cal" btn-class="btn btn-primary btn-block" />
+                <cal-endar date="date" class="cal" btn-class="btn btn-primary btn-block"/>
             </div>
         </div>
        <!--  Devices Section -->
@@ -18,6 +34,7 @@
        <p>DEVICES</p>
         <div>
             <div>
+<!-- <<<<<<< HEAD -->
                 <device-picker filter="search.assets"></device-picker>
                 </div>
             <div class="form-group">
@@ -30,6 +47,13 @@
 
                <!--  <input type="checkbox" ng-click="toggle()">
                 {{ 'CAL_FILTER_MINE' | translate}} -->
+<!-- =======
+                <device-picker filter="search.assets" heightpx="wellDeviceHeight"></device-picker>
+            </div>
+            <div>
+                <input type="checkbox" ng-click="toggle()">
+                {{ 'CAL_FILTER_MINE' | translate}}
+>>>>>>> revevol-phase2 -->
             </div>
 
 

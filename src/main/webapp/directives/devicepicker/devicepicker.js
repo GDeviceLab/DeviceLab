@@ -3,7 +3,8 @@ calApp.directive('devicePicker', function() {
         templateUrl: '/directives/devicepicker/devicepicker.html',
         restrict: 'EA',
         scope: {
-            filter: "="
+            filter: "=",
+            heightpx:"="
         },
         controller: function($scope, endpoint) {
             $scope.devices = [];
@@ -30,6 +31,18 @@ calApp.directive('devicePicker', function() {
                     }
                     $scope.filter = temp;
                 }
+            };
+            
+            $scope.reduceText = function(value,limit){
+                if(!isNaN(limit)
+                    && limit > 0
+                    && value !== null
+                    && value.length > limit){
+                    var newString = value.substring(0,limit);
+                    return newString+ "...";
+                }
+                //console.log("limit value is empty");
+                return value;
             };
             
             endpoint.then(function(endpoint) {

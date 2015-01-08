@@ -2,21 +2,40 @@
 <div class="row">
     <h1 class="page-title">{{ 'DEVICES' | translate }}</h1>
     <div class="col-md-12 stats-devices">
+
         <div class="panel panel-default">
-            <!-- <div class="panel-heading">
-                <h3 class="panel-title">{{ 'DEVICES' | translate }}</h3>
-            </div> -->
-            <table class="table table-hover">
-                <tr ng-repeat="line in stats">
-                    <td>
-                        <a href="#/stats/device/{{line.asset.id}}">
-                            {{line.asset.name}}
-                        </a>
-                    </td>
-                    <td>{{line.hoursPast | hours}} (+{{line.hoursFuture | hours}})</td>
-                    <td>{{line.count}} {{ 'reservations' | translate }}</td>
-                </tr>
-            </table>
+            <div class="panel-heading">{{'FILTER_DATE'| translate}}</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="exampleFromDate">From</label>
+                            <input ng-model="dateFilter.from" type="date" class="form-control" id="exampleFromDate" >
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="exampleToDate">To</label>
+                            <input ng-model="dateFilter.to" type="date" class="form-control" id="exampleToDate" >
+                        </div>
+                    </div>
+                </div>                           
+            </div>
+            <div style='padding:15px; padding-top:0px' class='row'>
+                <div style="margin-bottom: 10px;" class="col-md-6">
+                    <a ng-click="filterDateThisYear()" class="btn btn-primary btn-block">{{'THIS_YEAR'| translate}}</a>
+                </div>
+                <div style="margin-bottom: 10px;" class="col-md-6">
+                    <a ng-click="filterDateThisQuarter()" class="btn btn-primary btn-block">{{'CURRENT_QUARTER'| translate}}</a>
+                </div>
+                <div style="margin-bottom: 10px;" class="col-md-6">
+                    <a ng-click="filterDateLastQuarter()" class="btn btn-primary btn-block">{{'LAST_QUARTER'| translate}}</a>
+                </div>
+                <div style="margin-bottom: 10px;" class="col-md-6">
+                    <a ng-click="reset()" class="btn btn-primary btn-block">{{'RESET'| translate}}</a>
+                </div>
+            </div>
+            <a ng-click="submit()" class="btn btn-primary btn-block">{{'SUBMIT'| translate}}</a>
         </div>
     </div>
 </div>

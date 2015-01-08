@@ -13,6 +13,10 @@
         <servlet-class>eu.revevol.calendar.security.AuthServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>LogoUpload</servlet-name>
+        <servlet-class>eu.revevol.calendar.servlet.LogoUpload</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>PurgeServlet</servlet-name>
         <servlet-class>eu.revevol.calendar.util.PurgeServlet</servlet-class>
     </servlet>
@@ -29,6 +33,10 @@
         <url-pattern>/auth</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>LogoUpload</servlet-name>
+        <url-pattern>/desktop/LogoUpload</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>PurgeServlet</servlet-name>
         <url-pattern>/purge</url-pattern>
     </servlet-mapping>
@@ -36,6 +44,16 @@
         <servlet-name>LogoutServlet</servlet-name>
         <url-pattern>/logout</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>TaskSendEmail</servlet-name>
+        <servlet-class>eu.revevol.calendar.task.TaskSendEmail</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TaskSendEmail</servlet-name>
+        <url-pattern>/task/TaskSendEmail</url-pattern>
+    </servlet-mapping>
+    
     <welcome-file-list>
         <welcome-file>index.html</welcome-file>
     </welcome-file-list>

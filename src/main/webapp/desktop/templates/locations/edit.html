@@ -1,5 +1,25 @@
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-3" ng-show="id">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">{{'LOCATION_LOGO' | translate}}</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <img src="{{logoUrl}}" style="width: 74px;">
+                    </div>
+                    <div class="col-md-4" style="margin-top: 40px;">
+                        <span class="btn btn-default btn-file">
+                            {{'UPLOAD_LOGO' | translate}}
+                            <input type="file" ng-file-select="onFileSelect($files)" class="uploadBtn" accept="image/*"/>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-5">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">{{'LOCATION_NAME' | translate}}</h3>
@@ -11,7 +31,21 @@
                     </div>
                     <div class="col-md-4">
                         <button cal-show-global class="btn btn-primary btn-block" ng-click="submit()">{{'BUTTON_SAVE' | translate}}</button>
+                        <button ng-show="showDeleteLocationButton" class="btn btn-danger btn-block" ng-click="deleteLocation()">{{'BUTTON_DELETE' | translate}}</button>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">{{'DEVICE_OVERVIEW' | translate}}</h3>
+            </div>
+            <div class="panel-body">
+                <div class="pull-left">
+                    <button type="button" ng-click="goTo('#/location/history/'+id)" class="btn btn-link">{{'RESERVATION_HISTORY' | translate}}</button><br>
+                    <button type="button" ng-click="goTo('#/location/currentStatusReservation/'+id)" class="btn btn-link">{{'CURRENT_STATUS_RESERVATIONS' | translate}}</button>
                 </div>
             </div>
         </div>
@@ -70,7 +104,7 @@
             <ul class="list-group">
                 <li ng-repeat="admin in admins" class="list-group-item">
                     <span>
-                        {{admin.name}} ({{admin.mail}})
+                        <a href="#/profile/edit/{{admin.mail}}/{{id}}">{{admin.name}} ({{admin.mail}})</a>
                         <span class="actions">
                             <span class="icon-arrow-down-alt1" ng-click="toUser(admin.mail)"></span>
                             <cal-delete action="delete(admin.mail)" b-class="icon-x-altx-alt"></cal-delete>

@@ -89,15 +89,23 @@ calApp.factory('endpoint', ['$http', '$rootScope', '$window', '$q', function($ht
         /////////////////
         //     ACL     //
         /////////////////
-        service.person.register = function(pseudo) {
+        service.person.register = function(pseudo,startupName) {
             loading++;
             redirect = true; //redirect was false is the user wasn't registered, now it's true
-            return $http.get(url("person", "register", {username: pseudo}))
+            return $http.get(url("person", "register", {username: pseudo, startupName:startupName}))
                     .success(success).error(error).success(function() {
                 user.name = pseudo;
                 user.mail = origin;
+                user.startupName = startupName;
             });
         };
+        service.person.updateProfile = function(locationId,mail,pseudo,startupName) {
+            loading++;
+            redirect = true; //redirect was false is the user wasn't registered, now it's true
+            return $http.get(url("person", "update/profile", {locationId:locationId, mail:mail, username: pseudo, startupName:startupName}))
+                    .success(success).error(error).success(function() {
+            });
+        };        
         service.person.promote = function(usr, loc) {
             loading++;
             return $http.get(url("person", "promote", {location: loc, user: usr}))
@@ -144,8 +152,9 @@ calApp.factory('endpoint', ['$http', '$rootScope', '$window', '$q', function($ht
             return $http.get(url("reservation", "list", {location: location, date: new Date(date).toJSON()}))
                     .success(success).error(error);
         };
-        service.res.put = function(reservation) {
+        service.res.put = function(reservation,purpose) {
             loading++;
+            reservation.purpose = purpose;
             return $http.post(url("reservation", "put", {location: location}), reservation)
                     .success(success).error(error);
         };
@@ -159,6 +168,28 @@ calApp.factory('endpoint', ['$http', '$rootScope', '$window', '$q', function($ht
             return $http.get(url("reservation", "history", {location: location, user: user}))
                     .success(success).error(error);
         };
+        service.res.totalhistory = function(locationId) {
+            loading++;
+            return $http.get(url("reservation", "totalhistory", {location: locationId}))
+                    .success(success).error(error);
+        };
+        service.res.devicesStatusList = function(locationId,totalHalfHour) {
+            loading++;
+            return $http.get(url("reservation", "devicesStatusList", {location: locationId, totalHalfHour:totalHalfHour}))
+                    .success(success).error(error);
+        };
+        
+        //////////////////
+        //   PURPOSES   //
+        //////////////////
+        service.pur = {};
+        service.pur.list = function() {
+            loading++;
+            return $http.get(url("purpose", "list", {location: location}))
+                    .success(success).error(error);
+        };
+        
+        
         //////////////////
         //    ASSETS    //
         //////////////////
@@ -257,6 +288,16 @@ calApp.factory('endpoint', ['$http', '$rootScope', '$window', '$q', function($ht
             return $http.get(url("stats", "devices", {location: location}))
                     .success(success).error(error);
         };
+        service.stats.devicesDateFilter = function(dateFrom,dateTo) {
+            loading++;
+            var pojoReport  = {
+                location:location,
+                dateFrom : dateFrom,
+                dateTo : dateTo
+            };
+            return $http.post(url("stats", "devicesDateFilter", {}),pojoReport)
+                    .success(success).error(error);
+        };
         service.stats.device = function(id) {
             loading++;
             return $http.get(url("stats", "device", {location: location, id: id}))
@@ -265,6 +306,43 @@ calApp.factory('endpoint', ['$http', '$rootScope', '$window', '$q', function($ht
         service.stats.person = function(id) {
             loading++;
             return $http.get(url("stats", "person", {location: location, id: id}))
+                    .success(success).error(error);
+        };
+        service.stats.personDateFilter = function(id,dateFrom,dateTo) {
+            loading++;
+            var pojoReport  = {
+                location:location,
+                dateFrom : dateFrom,
+                dateTo : dateTo,
+                idPerson:id
+            };
+            console.log(pojoReport);
+            return $http.post(url("stats", "personDateFilter", {}),pojoReport)
+                    .success(success).error(error);
+        };
+        
+        //////////////
+        //  REPORT   //
+        //////////////
+        service.rep = {};
+        service.rep.globalLocationDevicesReport = function(listLocation,dateFrom,dateTo) {
+            loading++;
+            var pojoReport = {
+              listLocation : listLocation,
+              dateFrom : dateFrom,
+              dateTo : dateTo
+            };
+            return $http.post(url("report", "globalLocationDevicesReport", {}), pojoReport)
+                    .success(success).error(error);
+        };
+        service.rep.testedPurposes = function(listLocation,dateFrom,dateTo) {
+            loading++;
+            var pojoReport = {
+              listLocation : listLocation,
+              dateFrom : dateFrom,
+              dateTo : dateTo
+            };
+            return $http.post(url("report", "testedPurposes", {}), pojoReport)
                     .success(success).error(error);
         };
 

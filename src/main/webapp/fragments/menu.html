@@ -31,15 +31,34 @@
         <p cal-show-local class="menu-item">
             <a href="#/asset/list" snap-close><span class="icon-mobile-phone"></span> {{'MENU_DEVICES' | translate}}</a>
         </p>
+        <p class='menu-item'>
+            <a href="#/profile/edit/me/-1" snap-close><span class="icon-profile"></span> {{'PROFILE' | translate}}</a>
+        </p>
+        <p cal-show-global class='menu-item'>
+            <a href="#/report/glob" snap-close><span class="icon-bars"></span> {{'REPORT' | translate}}</a>
+        </p>
         <p class="menu-item">
             <a href="/logout" snap-close><span class="icon-times"></span> {{'MENU_LOGOUT' | translate}}</a>
         </p>
     </div>
   <!--   <p id="ack">
+        <p>
+            <a href="#/profile/edit/me/-1" snap-close><span class="icon-profile"></span> {{'PROFILE' | translate}}</a>
+        </p>
+        <p cal-show-global>
+            <a href="#/report/glob" snap-close><span class="icon-bars"></span> {{'REPORT' | translate}}</a>
+        </p>
+        <p>
+            <a href="/logout" snap-close><span class="icon-times"></span> {{'MENU_LOGOUT' | translate}}</a>
+        </p>
+    </div>
+    <p id="ack">
+        <img ng-src="{{logo.url}}" style="width: 74px;"><br>
         Developed by Google with the support of Revevol, Intel
     </p> -->
 
       <div id="ack">
-       <img src="../img/devicelab-logo.svg" alt="device lab logo" width=260px>
+       <img ng-src="{{logo.url}}" style="width: 74px;"><br>
+        Developed by Google with the support of Revevol, Intel
     </div>
 </div>

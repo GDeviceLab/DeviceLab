@@ -42,6 +42,7 @@
     "FROM": "From",
     "TO": "To",
     "RESERVATION_TITLE": "Title",
+    "RESERVATION_STARTUP_NAME": "Startup name",
     "NEWS": "News",
     "NEWS_TITLE": "Title",
     "NEWS_GLOBAL": "Global",

@@ -33,6 +33,18 @@ calApp.directive('devicePicker', function() {
                 }
             };
             
+            $scope.reduceText = function(value,limit){
+                if(!isNaN(limit)
+                    && limit > 0
+                    && value !== null
+                    && value.length > limit){
+                    var newString = value.substring(0,limit);
+                    return newString+ "...";
+                }
+                //console.log("limit value is empty");
+                return value;
+            };
+            
             endpoint.then(function(endpoint) {
                 endpoint.asset.list().success(function(data){
                     $scope.devices = data.items;

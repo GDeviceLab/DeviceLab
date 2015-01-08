@@ -42,6 +42,7 @@
     "FROM": "De",
     "TO": "à",
     "RESERVATION_TITLE": "Titre",
+    "RESERVATION_STARTUP_NAME": "Startup nom",
     "NEWS": "Notifications",
     "NEWS_TITLE": "Titre",
     "NEWS_GLOBAL": "Globale",

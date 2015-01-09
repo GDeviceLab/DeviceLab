@@ -11,6 +11,7 @@
                     </div>
                     <div class="col-md-4" style="margin-top: 40px;">
                         <span class="btn btn-default btn-file">
+                            <img src="/css/button-loader.gif" style="height: 20px;" ng-show="uploading"/>
                             {{'UPLOAD_LOGO' | translate}}
                             <input type="file" ng-file-select="onFileSelect($files)" class="uploadBtn" accept="image/*"/>
                         </span>

@@ -116,7 +116,7 @@ calApp.controller("EditLocationCtrl", function($scope, $stateParams, endpoint, $
 
     $scope.onFileSelect = function($files) {
         console.log($files);
-        $scope.loading = true;
+        $scope.uploading = true;
         //$files: an array of files selected, each file has name, size, and type.
         for (var i = 0; i < $files.length; i++) {
             var file = $files[i];
@@ -133,6 +133,7 @@ calApp.controller("EditLocationCtrl", function($scope, $stateParams, endpoint, $
                 console.log(status);
                 $files = [];
                 $timeout(function() {
+                    $scope.uploading = false;
                     location.reload();
                 }, 2000);
             });

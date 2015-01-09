@@ -7,5 +7,6 @@ public class PurposeStat {
     public Purpose purpose;
     public int count;
     public Location location;
-    
+    public int hoursPast;
+    public int hoursFuture;
 }

@@ -129,6 +129,7 @@
     "REPORT_USAGE_COUNTER":"Usage raison compteur",
     "ERR_MANDATORY_FIELDS":"Tous les champs sont obligatoires",
     "ERR_MANDATORY_PURPOSE":"Raison champs sont obligatoires",
-    "PURPOSE_TITLE_PANEL":"Vous voulez tester ..."
+    "PURPOSE_TITLE_PANEL":"Vous voulez tester ...",
+    "REPORT_BOOKING_NUM_PURPOSE":"Nombre de réservation pour les raison indiquées"
    
 }

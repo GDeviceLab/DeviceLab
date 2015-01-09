@@ -33,7 +33,8 @@ calApp.directive("calEndar", function() {
         scope: {
             date: '=',
             class: '@',
-            btnClass: '@'
+            btnClass: '@',
+            viscalmethod: '&'
         },
         controller: function($scope) {
             $scope.changeMonth = function(offset){
@@ -42,6 +43,10 @@ calApp.directive("calEndar", function() {
             
             $scope.today = function(){
                 $scope.date = new Date();
+            }
+            
+            $scope.visibilityCalendar = function(){
+                $scope.viscalmethod();
             }
             
             function refreshCal() {

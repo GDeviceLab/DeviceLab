@@ -9,20 +9,20 @@
 <div class="row">
     <div class="col-md-2">
         <div class="well text-center" ng-show="!isCalendarVisible" style="padding: 2px; margin-bottom: 10px;">
-           <button type="button" class="btn btn-link">
-            <span class="icon-calendar" ng-click="visibilityCalendar()"></span> 
-            <span ng-click="visibilityCalendar()">{{'OPEN_CALENDAR' | translate}}</span>
-        </button>
+            <button type="button" class="btn btn-link">
+                <span class="icon-calendar" ng-click="visibilityCalendar()"></span> 
+                <span ng-click="visibilityCalendar()">{{'OPEN_CALENDAR' | translate}}</span>
+            </button>
         </div>
         <div class="panel panel-default" ng-show="isCalendarVisible">
-            <div class="pull-right" style="padding-top: 8px;">
-                <img src="../css/img/drop-down-triangle.png" ng-click="visibilityCalendar()" title="{{'HIDE' | translate}}"/>
-            </div>
+            <!--<div class="pull-right" style="padding-top: 8px;">
+                <img src="../css/img/drop-down-triangle.png" title="{{'HIDE' | translate}}"/>
+            </div>-->
             <div class="panel-body no-padding">
-                <cal-endar date="date" class="cal" btn-class="btn btn-primary btn-block"/>
+                <cal-endar date="date" class="cal" btn-class="btn btn-primary btn-block" viscalmethod="visibilityCalendar()"/>
             </div>
         </div>
-
+            
         <div class="well">
             <div>
                 <device-picker filter="search.assets" heightpx="wellDeviceHeight"></device-picker>
@@ -31,7 +31,7 @@
                 <input type="checkbox" ng-click="toggle()">
                 {{ 'CAL_FILTER_MINE' | translate}}
             </div>
-
+                
         </div>
     </div>
     <div class="col-md-2">

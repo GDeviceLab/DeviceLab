@@ -5,11 +5,15 @@
                 <h3 class="panel-title">{{ 'REPORT_USAGE_COUNTER' | translate }} - {{testPurpose[0].location.name}}</h3>
             </div>
             <table class="table table-hover">
+                <tr>
+                    <th>{{'PURPOSE_TITLE' | translate}}</th>
+                    <th>{{ 'REPORT_BOOKING_NUM_PURPOSE' | translate }}</th>
+                </tr>
                 <tr ng-repeat="purpose in testPurpose">
-                    <td style="width: 400px;">
+                    <td style="width: 200px;">
                         {{purpose.purpose.title}}
                     </td>
-                    <td>{{purpose.count}}</td>
+                    <td>{{purpose.hoursPast | hours}} (+{{purpose.hoursFuture | hours}}) {{purpose.count}}</td>
                 </tr>
             </table>
         </div>

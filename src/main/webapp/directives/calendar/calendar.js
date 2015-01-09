@@ -60,6 +60,7 @@ calApp.directive("calEndar", function() {
             }, refreshCal);
 
             $scope.select = function(day) {
+                console.log(day);
                 $scope.date.setDate(day);
             };
         }

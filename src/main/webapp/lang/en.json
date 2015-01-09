@@ -130,5 +130,7 @@
     "ERR_MANDATORY_FIELDS":"All fields are mandatory",
     "ERR_MANDATORY_PURPOSE":"Purpose fields are mandatory",
     "PURPOSE_TITLE_PANEL":"You want to test...",
-    "REPORT_BOOKING_NUM_PURPOSE":"Number of booking for the given purposes"
+    "REPORT_BOOKING_NUM_PURPOSE":"Number of booking for the given purposes",
+    "PREVIOUS_WEEK":"Previous week",
+    "NEXT_WEEK":"Next week"
 }

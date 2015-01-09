@@ -34,6 +34,16 @@
                 
         </div>
     </div>
+    <div class="col-md-10">
+        <button type="button" class="btn btn-link pull-left" ng-click="addWeek(-5)">
+            <span class="icon-chevron-left" style="margin-right: 2px;"></span>
+            {{ 'PREVIOUS_WEEK' | translate}}
+        </button>
+        <button type="button" class="btn btn-link pull-right" ng-click="addWeek(5)">
+            {{ 'NEXT_WEEK' | translate}}
+            <span class="icon-chevron-right" style="margin-left: 2px;"></span>
+        </button>
+    </div>
     <div class="col-md-2">
         <div class="panel panel-default">
             <div class="panel-heading">

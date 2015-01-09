@@ -81,6 +81,10 @@ calApp.controller("CalendarCtrl", function($scope, $rootScope, endpoint,$window)
     endpoint.asset.list().success(function(data) {
         $scope.devices = data.items;
     });
+    
+    $scope.addWeek = function(value){
+        $scope.date.setDate($scope.date.getDate() + value);
+    };
 });
 
 calApp.controller("MenuCtrl", function($scope, endpoint, $timeout) {

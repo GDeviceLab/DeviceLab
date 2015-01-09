@@ -94,7 +94,7 @@ var calApp = angular.module('cal', ['ui.router', 'snap', 'ngSanitize', 'pascalpr
             }
         });
         $stateProvider.state('asset_list', {
-            url: '/asset/list',
+            url: '/devices/list',
             controller: 'ListAssetCtrl',
             templateUrl: 'templates/assets/list.html',
             resolve: {

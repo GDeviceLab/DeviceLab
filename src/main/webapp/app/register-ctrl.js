@@ -46,7 +46,15 @@ calApp.controller("TitleCtrl", function($scope, endpoint, $window) {
             return loc[1];
         }
     }, function(n){
-        $scope.page = n.charAt(0).toUpperCase() + n.slice(1);
+        var value = n.charAt(0).toUpperCase() + n.slice(1);
+        console.log(value);
+        if(value == 'News'){
+            value = 'Add News';
+        }
+        else if(value == 'Stats'){
+            value = 'My Stats';
+        }
+        $scope.page = value;
     });
     
     endpoint.then(function(endpoint) {

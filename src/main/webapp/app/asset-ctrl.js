@@ -51,7 +51,7 @@ calApp.controller("NewAssetCtrl", function($scope, endpoint) {
         $scope.a.g = $scope.rgb.g;
         $scope.a.b = $scope.rgb.b;
         endpoint.asset.put($scope.a).success(function() {
-            window.location.href = "#/asset/list";
+            window.location.href = "#/devices/list";
         });
     };
 });
@@ -85,7 +85,7 @@ calApp.controller("EditAssetCtrl", function($scope, $stateParams, endpoint) {
         $scope.a.g = $scope.rgb.g;
         $scope.a.b = $scope.rgb.b;
         endpoint.asset.put($scope.a).success(function() {
-            window.location.href = "#/asset/list";
+            window.location.href = "#/devices/list";
         });
     };
 

@@ -42,7 +42,9 @@
         <script src="../directives/linkify/linkify.js"></script>
         <script src="../directives/devicepicker/devicepicker.js"></script>
         <script src="../directives/checkboxes/checkboxes.js"></script>
+        <script src="../js/bootstrap.js"></script>
         <link rel="stylesheet" href="../css/bootstrap/bootstrap.min.css">
+        <link rel="stylesheet" href="../css/bootstrap/bootstrap2.min.css">
         <link rel="stylesheet" href="../css/angular-snap.css">
         <link rel="stylesheet" href="../directives/calendar/calendar.css">
         <link rel="stylesheet" href="../directives/hourpicker/hourpicker.css">
@@ -59,6 +61,30 @@
         <!--<link rel="stylesheet" href="../css/compiled.desktop.css">-->
         
     </head>
+    <script type="text/javascript">
+    var drop_open = false;
+    function showDrop() {
+        if(drop_open){
+            $(".dropdown-menu").css("display","none");
+            drop_open = false;
+        }
+        if(!drop_open){
+            $(".dropdown-menu").css("display","block");
+            drop_open = true;
+        } 
+    }
+    $(".dropdown-menu").on('click', function (e) {
+        console.log('this is the click');
+        e.preventDefault();
+    });
+    $(document).mouseup(function(e){
+            var menu = $(".dropdown-menu");
+            if (!menu.is(e.target) && menu.has(e.target).length === 0 && drop_open)
+            {
+                menu.css("display","none");
+            }
+    });
+    </script>
     <body ng-app="cal">
         <div ng-controller="RegisterCtrl">
             <div ng-include="'/fragments/register.html'"></div>
@@ -70,23 +96,30 @@
         </div>
         <div snap-content>
             <div id="header" snap-dragger>
+                <!-- <h1 id="header-title">
+                    <span  snap-toggle="left"><span class="icon-bars"></span></span>
+                    <span class="pull-right" snap-toggle="right"><span class="icon-globe"></span></span>
+                    <span id ="title" snap-toggle="left" ng-controller="TitleCtrl">{{page}}<span id="title-loc">   {{location}}</span></span>
+                </h1> -->
                 <h1 id="header-title">
                     <span  snap-toggle="left"><span class="icon-bars"></span></span>
-                    <!-- <span class="pull-right" snap-toggle="right"><span class="icon-globe"></span></span> -->
-                    <span id ="title" snap-toggle="left" ng-controller="TitleCtrl">{{page}}<span id="title-loc">   {{location}}</span></span>
+                    <span class="pull-right" snap-toggle="right"></span>
+                    <span id ="title" snap-toggle="left" ng-controller="TitleCtrl">{{page}}</span>
                 </h1>
-                <div class="dropdown">
-                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-                        {{location}}
+                <div id="title-location">
+                    <div class="dropdown">
+                      <a id="drop" class="dropdown-toggle" data-toggle="dropdown" onClick="showDrop()">
+                        <span id ="title" ng-controller="TitleCtrl"><span id="title-loc">  {{location}}</span></span>
                         <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
-                    </ul>
+                      </a>
+                      <ul class="dropdown-menu" role="menu">
+                        <div ng-controller="LocationDrawer">
+                            <li ng-repeat="location in locations" ng-click="set(location.id)" role="menuitem" tabindex="-1"><span id="drop-loc-text">{{location.name}}</span><span class="icon-star" style="color: #E1E0E2; float: right; padding-top: 5px; padding-right: 7px;">
+                            </span></li>
+                        </div>
+                      </ul>
                 </div>
+                </div> 
             </div>
             <div class="container-fluid">
                 <div ui-view></div>

@@ -12,6 +12,11 @@ calApp.controller("RegisterCtrl", function($scope, endpoint, $window) {
         $scope.show = endpoint.show()
 
         $scope.loading = function() {
+            if(!endpoint.loading()){
+                var cal_height = $(window).height() - $("#header").height() - $("#news-sec").height() - $("#week-select").height() - 2;
+                //console.log("here" + cal_height);
+                $('.cal-day').height(cal_height);
+            }
             return endpoint.loading();
         }
         $scope.submit = function() {

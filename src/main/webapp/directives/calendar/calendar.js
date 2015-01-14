@@ -39,7 +39,9 @@ calApp.directive("calEndar", function() {
             $scope.changeMonth = function(offset){
                 $scope.date = new Date($scope.date.getFullYear(), $scope.date.getMonth() + offset, 1 );
             }
-            
+            $scope.changeWeek = function(offset){
+                $scope.date = new Date($scope.date.getFullYear(), $scope.date.getMonth(), $scope.date.getDay() + offset);
+            }
             $scope.today = function(){
                 $scope.date = new Date();
             }

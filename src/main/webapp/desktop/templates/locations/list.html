@@ -1,15 +1,17 @@
+<div class="container">
 <div class="row">
-    <div class="col-md-6 col-md-offset-3">
+    <h1 class="page-title">{{'LOCATIONS' | translate}}</h1>
+    <div class="col-md-12 locations-page">
         <div class="panel panel-default">
-            <div class="panel-heading">{{'LOCATIONS' | translate}}</div>
-            <div class="panel-body">
-                <a href="#/location/new" class="btn btn-primary btn-block">{{'BUTTON_NEW' | translate}}</a>
-            </div>
             <ul class="list-group">
                 <li class="list-group-item clickable" ng-repeat="l in locations.items" cal-link="#/location/edit/{{l.id}}">
                     {{l.name}}
-                </li>
+             </li>
             </ul>
+            <div class="panel-body">
+                <a href="#/location/new" class="btn btn-primary btn-block">{{'BUTTON_NEW' | translate}}</a>
+            </div>
         </div>
     </div>
+</div>
 </div>

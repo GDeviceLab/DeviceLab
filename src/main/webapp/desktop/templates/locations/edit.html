@@ -1,3 +1,4 @@
+<div class="edit-location-page">
 <div class="row">
     <div class="col-md-3" ng-show="id">
         <div class="panel panel-default">
@@ -6,11 +7,11 @@
             </div>
             <div class="panel-body">
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <img src="{{logoUrl}}" style="width: 74px;">
                     </div>
-                    <div class="col-md-4" style="margin-top: 40px;">
-                        <span class="btn btn-default btn-file">
+                    <div class="col-md-6" style="margin-top: 40px;">
+                        <span class="btn btn-primary btn-file">
                             {{'UPLOAD_LOGO' | translate}}
                             <input type="file" ng-file-select="onFileSelect($files)" class="uploadBtn" accept="image/*"/>
                         </span>
@@ -25,9 +26,12 @@
                 <h3 class="panel-title">{{'LOCATION_NAME' | translate}}</h3>
             </div>
             <div class="panel-body">
-                <div class="row">
+                <div class="row form-group">
                     <div class="col-md-8">
+                        <div class="form-control-wrapper">
                         <input cal-enable-global type="text" ng-model="name" placeholder="{{'LOCATION_NAME' | translate}}" class="form-control"/>
+                        <span class="material-input"></span>
+                        </div>
                     </div>
                     <div class="col-md-4">
                         <button cal-show-global class="btn btn-primary btn-block" ng-click="submit()">{{'BUTTON_SAVE' | translate}}</button>
@@ -73,21 +77,26 @@
             <div class="panel-heading">
                 <h3 class="panel-title">{{'LOCATION_USERS' | translate}}</h3>
             </div>
-            <div class="panel-body">
+            <div class="panel-body form-group">
                 <p>
+                    <div class="form-control-wrapper">
                     <input type="text" ng-model="user" placeholder="{{'LOCATION_USER_NEW' | translate}}" class="form-control"/>
+                    <span class="material-input">
+                    </div>
                 </p>
-                <button class="btn btn-block" ng-click="toUser(user)">{{'BUTTON_ADD' | translate}}</button>
             </div>
             <ul class="list-group">
                 <li ng-repeat="user in users" class="list-group-item">
                     {{user.name}} ({{user.mail}})
                     <span class="actions">
-                        <span class="icon-arrow-up-alt1" ng-click="toAdmin(user.mail)"></span>
-                        <cal-delete action="delete(user.mail)" b-class="icon-x-altx-alt"></cal-delete>
+                        <span class="icon-arrow-up-alt1" style="color:black;" ng-click="toAdmin(user.mail)"></span>
+                        <cal-delete action="delete(user.mail)" style="color:black;" b-class="icon-x-altx-alt"></cal-delete>
                     </span>
                 </li>
             </ul>
+            <div class="panel-body">
+                <button class="btn btn-primary btn-block" ng-click="toUser(user)">{{'BUTTON_ADD' | translate}}</button>
+            </div>
         </div>
     </div>
     <div class="col-md-4">
@@ -95,11 +104,13 @@
             <div class="panel-heading">
                 <h3 class="panel-title">{{'LOCATION_ADMINS' | translate}}</h3>
             </div>
-            <div class="panel-body">
+            <div class="panel-body form-group">
                 <p>
+                    <div class="form-control-wrapper">
                     <input type="text" ng-model="admin" placeholder="{{'LOCATION_ADMIN_NEW' | translate}}" class="form-control"/>
+                    <span class="material-input">
+                    </div>
                 </p>
-                <button class="btn btn-block" ng-click="toAdmin(admin)">{{'BUTTON_ADD' | translate}}</button>
             </div>
             <ul class="list-group">
                 <li ng-repeat="admin in admins" class="list-group-item">
@@ -112,6 +123,10 @@
                     </span>
                 </li>  
             </ul>
+            <div class="panel-body">
+                <button class="btn btn-primary btn-block" ng-click="toAdmin(admin)">{{'BUTTON_ADD' | translate}}</button>
+            </div>
         </div>
     </div>
+</div>
 </div>

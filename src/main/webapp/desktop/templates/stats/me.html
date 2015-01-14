@@ -1,57 +1,92 @@
 <div class="container">
-<div class="row">
-     <h1 class="page-title">{{'Stats' | translate}}</h1>
-    <div class="col-md-12 statsme-page">
-        <div class="panel panel-default">
-            <div class="panel-heading">{{'FILTER_DATE'| translate}}</div>
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="exampleFromDate">From</label>
-                            <input ng-model="dateFilter.from" type="date" class="form-control" id="exampleFromDate" >
+    <div class="row">
+        <h1 class="page-title">{{'Stats' | translate}}</h1>
+        <div class="col-md-12 statsme-page">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h5 class="panel-title">{{ 'USER' | translate}} : {{stats.person.name}}</h5>
+                </div>
+
+            </div>
+            <div class="panel panel-default">
+                <!-- <div class="panel-heading">{{'FILTER_DATE'| translate}}</div> -->
+                <div class="panel-body">
+                    <div class="form-group" style="padding-bottom: 80px;">
+                        <label class="col-sm-2 control-label">{{'FILTER_DATE'| translate}}</label>
+                        <div class="col-lg-10">
+                            <div class="col-md-5">
+                                <label for="exampleFromDate">From</label>
+                                <input ng-model="dateFilter.from" type="date" class="form-control" id="exampleFromDate" >
+                            </div>
+                            <div class="col-md-5">
+                                <label for="exampleToDate">To</label>
+                                <input ng-model="dateFilter.to" type="date" class="form-control" id="exampleToDate" >
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="exampleToDate">To</label>
-                            <input ng-model="dateFilter.to" type="date" class="form-control" id="exampleToDate" >
+
+                    <div class="form-group">
+                        <div style='padding:15px; padding-top:0px' class='row'>
+                            <div style="margin-bottom: 10px;" class="col-md-5 col-md-offset-1">
+                                <a ng-click="filterDateThisYear()" class="btn btn-primary btn-block">{{'THIS_YEAR'| translate}}</a>
+                            </div>
+                            <div style="margin-bottom: 10px;" class="col-md-5">
+                                <a ng-click="filterDateThisQuarter()" class="btn btn-primary btn-block">{{'CURRENT_QUARTER'| translate}}</a>
+                            </div>
+                            <div style="margin-bottom: 10px;" class="col-md-5 col-md-offset-1">
+                                <a ng-click="filterDateLastQuarter()" class="btn btn-primary btn-block">{{'LAST_QUARTER'| translate}}</a>
+                            </div>
+                            <div style="margin-bottom: 10px;" class="col-md-5">
+                                <a ng-click="reset()" class="btn btn-block btn-danger">{{'RESET'| translate}}</a>
+                            </div>
                         </div>
-                    </div>
-                </div>                           
+                        <div class="col-md-6 col-md-offset-3">
+                            <a ng-click="submit()" class="btn btn-success btn-block">{{'SUBMIT'| translate}}</a>
+                        </div>
+                    </div>   
+                </div>
+
+                <div ng-repeat="line in stats.data">
+                    <div class="row results">
+                        <div class="col-lg-4">
+                            {{line.asset.name}}
+                        </div>
+                        <div class="col-lg-4">
+                            {{line.hoursPast | hours}} (+{{line.hoursFuture | hours}})
+                        </div>
+                        <div class="col-lg-4">
+                            {{line.count}} {{ 'reservations' | translate }}
+                        </div>
+                    </div> 
+                </div>   
             </div>
-            <div style='padding:15px; padding-top:0px' class='row'>
-                <div style="margin-bottom: 10px;" class="col-md-6">
-                    <a ng-click="filterDateThisYear()" class="btn btn-primary btn-block">{{'THIS_YEAR'| translate}}</a>
-                </div>
-                <div style="margin-bottom: 10px;" class="col-md-6">
-                    <a ng-click="filterDateThisQuarter()" class="btn btn-primary btn-block">{{'CURRENT_QUARTER'| translate}}</a>
-                </div>
-                <div style="margin-bottom: 10px;" class="col-md-6">
-                    <a ng-click="filterDateLastQuarter()" class="btn btn-primary btn-block">{{'LAST_QUARTER'| translate}}</a>
-                </div>
-                <div style="margin-bottom: 10px;" class="col-md-6">
-                    <a ng-click="reset()" class="btn btn-primary btn-block">{{'RESET'| translate}}</a>
-                </div>
-            </div>
-            <a ng-click="submit()" class="btn btn-primary btn-block">{{'SUBMIT'| translate}}</a>
-        </div>
-        
-        
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h5 class="panel-title">{{ 'USER' | translate}} : {{stats.person.name}}</h5>
-            </div>
-            <table class="table">
-                <tr ng-repeat="line in stats.data">
-                    <td>
-                        {{line.asset.name}}
-                    </td>
-                    <td>{{line.hoursPast | hours}} (+{{line.hoursFuture | hours}})</td>
-                    <td>{{line.count}} {{ 'reservations' | translate }}</td>
-                </tr>
-            </table>
         </div>
     </div>
 </div>
+
+<!-- <table class="table">
+<tr ng-repeat="line in stats.data">
+<td>
+{{line.asset.name}}
+</td>
+<td>{{line.hoursPast | hours}} (+{{line.hoursFuture | hours}})</td>
+<td>{{line.count}} {{ 'reservations' | translate }}</td>
+</tr>
+</table> -->
+
+
+<!-- <div style='padding:15px; padding-top:0px' class='row'>
+<div style="margin-bottom: 10px;" class="col-md-6">
+<a ng-click="filterDateThisYear()" class="btn btn-primary btn-block">{{'THIS_YEAR'| translate}}</a>
 </div>
+<div style="margin-bottom: 10px;" class="col-md-6">
+<a ng-click="filterDateThisQuarter()" class="btn btn-primary btn-block">{{'CURRENT_QUARTER'| translate}}</a>
+</div>
+<div style="margin-bottom: 10px;" class="col-md-6">
+<a ng-click="filterDateLastQuarter()" class="btn btn-primary btn-block">{{'LAST_QUARTER'| translate}}</a>
+</div>
+<div style="margin-bottom: 10px;" class="col-md-6">
+<a ng-click="reset()" class="btn btn-primary btn-block">{{'RESET'| translate}}</a>
+</div>
+</div>
+<a ng-click="submit()" class="btn btn-primary btn-block">{{'SUBMIT'| translate}}</a> -->

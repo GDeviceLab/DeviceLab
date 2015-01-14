@@ -3,44 +3,130 @@
         <div id="menu-header">
         <p id="menu-name">{{myName()}}<p>
         </div>
-        <p class="menu-item">
-            <a href="#/calendar" snap-close><span class="icon-calendar"></span> {{'MENU_CALENDAR' | translate}}</a>
-        </p>
-        <p class="menu-item">
-            <a href="#/news" snap-close><span class="icon-comment"></span> {{'MENU_NEWS' | translate}}</a>
-        </p>
-        <p cal-show-local class="menu-item">
-            <a href="#/news/new" snap-close><span class="icon-edit"></span> {{'MENU_NEWS_ADD' | translate}}</a>
-        </p>
-        <p cal-show-local class="menu-item">
-            <a href="#/stats" snap-close><span class="icon-globe"></span> {{'MENU_STATS_LOCATION' | translate}}</a>
-        </p>
-        <p class="menu-item">
-            <a href="#/stats/me" snap-close><span class="icon-profile"></span> {{'MENU_STATS' | translate}}</a>
-        </p>
-        <p class="menu-item">
-            <a href="#/apply" snap-close><span class="icon-bookmark"></span> {{'MENU_APPLY' | translate}}</a>
-        </p>
-        <h3 cal-show-local>{{'MENU_SETTINGS' | translate}}</h3>
-        <p cal-show-local class="menu-item">
-            <a href="#/location/edit/{{location()}}" snap-close><span class="icon-user"></span> {{'MENU_LOCATION' | translate}}</a>
-        </p>
-        <p cal-show-global class="menu-item">
-            <a href="#/location/list" snap-close><span class="icon-globe"></span> {{'MENU_LOCATIONS' | translate}}</a>
-        </p>
-        <p cal-show-local class="menu-item">
-            <a href="#/asset/list" snap-close><span class="icon-mobile-phone"></span> {{'MENU_DEVICES' | translate}}</a>
-        </p>
-        <p class='menu-item'>
-            <a href="#/profile/edit/me/-1" snap-close><span class="icon-profile"></span> {{'PROFILE' | translate}}</a>
-        </p>
+
+        <nav class="main-menu">
+            <ul>
+                <li>
+                    <a href="#/calendar" snap-close>
+                        <i class="fa icon-calendar"></i>
+                        <span class="nav-text">
+                            {{'MENU_CALENDAR' | translate}}
+                        </span>
+                    </a>
+                  
+                </li>
+                <li>
+                 <a href="#/news" snap-close>
+                        <i class="fa icon-comment"></i>
+                        <span class="nav-text">
+                           {{'MENU_NEWS' | translate}}
+                        </span>
+                    </a>
+                    
+                </li>
+                <li>
+                 <a href="#/news/new" snap-close>
+                        <i class="fa icon-edit"></i>
+                        <span class="nav-text">
+                            {{'MENU_NEWS_ADD' | translate}}
+                        </span>
+                    </a>
+                    
+                </li>
+                <li cal-show-local>
+                 <a href="#/stats" snap-close>
+                        <i class="fa icon-globe"></i>
+                        <span class="nav-text">
+                           {{'MENU_STATS_LOCATION' | translate}}
+                        </span>
+                    </a>
+                    
+                </li>
+                <li cal-show-local>
+                 <a href="#/stats/me" snap-close>
+                        <i class="fa icon-profile"></i>
+                        <span class="nav-text">
+                           {{'MENU_STATS' | translate}}
+                        </span>
+                    </a>
+                    
+                </li>
+                <li>
+                 <a href="#/apply" snap-close>
+                        <i class="fa icon-bookmark"></i>
+                        <span class="nav-text">
+                           {{'MENU_APPLY' | translate}}
+                        </span>
+                    </a>
+                    
+                </li>
+            </ul>
+            <h3 cal-show-local>{{'MENU_SETTINGS' | translate}}</h3>
+            <ul>
+                <li cal-show-local>
+                    <a href="#/location/edit/{{location()}}" snap-close>
+                        <i class="fa icon-user"></i>
+                        <span class="nav-text">
+                           {{'MENU_LOCATION' | translate}}
+                        </span>
+                    </a>
+                  
+                </li>
+                <li cal-show-global>
+                 <a href="#/location/list" snap-close>
+                        <i class="fa icon-globe"></i>
+                        <span class="nav-text">
+                           {{'MENU_LOCATIONS' | translate}}
+                        </span>
+                    </a>
+                    
+                </li>
+                <li cal-show-local>
+                 <a href="#/asset/list" snap-close>
+                        <i class="fa icon-mobile-phone"></i>
+                        <span class="nav-text">
+                            {{'MENU_DEVICES' | translate}}</a>
+                        </span>
+                    </a>
+                    
+                </li>
+                <li>
+                 <a href="#/profile/edit/me/-1" snap-close>
+                        <i class="fa icon-profile"></i>
+                        <span class="nav-text">
+                           {{'PROFILE' | translate}}
+                        </span>
+                    </a>
+                    
+                </li>
+                <li cal-show-global>
+                 <a href="#/report/glob" snap-close>
+                        <i class="fa icon-bars"></i>
+                        <span class="nav-text">
+                           {{'REPORT' | translate}}
+                        </span>
+                    </a>
+                    
+                </li>
+                <li>
+                 <a href="/logout" snap-close>
+                        <i class="fa icon-bookmark"></i>
+                        <span class="nav-text">
+                           {{'MENU_LOGOUT' | translate}}
+                        </span>
+                    </a>
+                    
+                </li>
+            </ul>
+    </nav>
+<!-- 
         <p cal-show-global class='menu-item'>
             <a href="#/report/glob" snap-close><span class="icon-bars"></span> {{'REPORT' | translate}}</a>
         </p>
         <p class="menu-item">
             <a href="/logout" snap-close><span class="icon-times"></span> {{'MENU_LOGOUT' | translate}}</a>
-        </p>
-    </div>
+        </p> 
+    </div>-->
   <!--   <p id="ack">
         <p>
             <a href="#/profile/edit/me/-1" snap-close><span class="icon-profile"></span> {{'PROFILE' | translate}}</a>
@@ -51,14 +137,14 @@
         <p>
             <a href="/logout" snap-close><span class="icon-times"></span> {{'MENU_LOGOUT' | translate}}</a>
         </p>
-    </div>
+    </div>-->
     <p id="ack">
-        <img ng-src="{{logo.url}}" style="width: 74px;"><br>
+         <img src="../img/devicelab-logo.svg" alt="device lab logo" width=200px><br>
         Developed by Google with the support of Revevol, Intel
-    </p> -->
+    </p> 
 
-      <div id="ack">
+      <!-- <div id="ack">
        <img ng-src="{{logo.url}}" style="width: 74px;"><br>
         Developed by Google with the support of Revevol, Intel
-    </div>
+    </div> -->
 </div>

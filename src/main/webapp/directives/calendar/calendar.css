@@ -27,6 +27,14 @@ table.cal{
 
 .selected {
     background-color: #FFB200;
+    height: 30px;
+    width: 30px;
+    display: block;
+    border-radius: 100%;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    text-align: center;
+    margin: auto;
 }
 
 .today {

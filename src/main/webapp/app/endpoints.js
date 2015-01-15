@@ -235,6 +235,11 @@ calApp.factory('endpoint', ['$http', '$rootScope', '$window', '$q', function($ht
             return $http.post(url("location", "put", {}), locat)
                     .success(success).error(error);
         };
+        service.location.delete = function(locationId) {
+            loading++;
+            return $http.post(url("location", "delete", {}), {id:locationId})
+                    .success(success).error(error);
+        };
         service.location.get = function(id) {
             loading++;
             return $http.get(url("location", "get", {id: id}))

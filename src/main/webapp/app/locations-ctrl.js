@@ -24,9 +24,20 @@ calApp.controller("ApplyLocationCtrl", function($scope, endpoint) {
     });
 });
 calApp.controller("ListLocationCtrl", function($scope, endpoint) {
-    endpoint.location.list().success(function(data) {
-        $scope.locations = data;
-    });
+    
+    $scope.getList = function(){
+        endpoint.location.list().success(function(data) {
+            $scope.locations = data;
+        });
+    };
+    
+    $scope.delete = function(locationId){
+        endpoint.location.delete(locationId).success(function(data) {
+            $scope.getList();
+        });
+    };
+    
+    $scope.getList();
 });
 calApp.controller("EditLocationCtrl", function($scope, $stateParams, endpoint, $window, $upload, $http, $timeout) {
     $scope.id = $stateParams.id;
@@ -38,17 +49,6 @@ calApp.controller("EditLocationCtrl", function($scope, $stateParams, endpoint, $
     
     $scope.goTo = function(value){
         $window.location.href = value;
-    };
-        
-    $scope.deleteLocation = function(){
-        var locationObj = {
-            name: $scope.name,
-            id: $scope.id,
-            deleted: true
-        };
-        endpoint.location.put(locationObj).success(function() {
-            $window.location.href = "#/location/list";
-        });
     };
     
     $scope.submit = function() {
@@ -70,13 +70,17 @@ calApp.controller("EditLocationCtrl", function($scope, $stateParams, endpoint, $
     };
     
     removeFromList = function(list,user){
-        var tempList = [];
-        for (var i = 0; i < list.length; i++) {
-            if(user != list[i].mail){
-                tempList.push(list[i]);
+        if(list != null
+                && list.length > 0
+                && user != null){
+            var tempList = [];
+            for (var i = 0; i < list.length; i++) {
+                if(user != list[i].mail){
+                    tempList.push(list[i]);
+                }
             }
+            return tempList; 
         }
-        return tempList;
     };
     
     removeUser = function(user){
@@ -149,7 +153,7 @@ calApp.controller("EditLocationCtrl", function($scope, $stateParams, endpoint, $
     $scope.getLogoUrl = function(value){
         $scope.logoUrl = "../css/img/default_logo.png";
         if(value != null
-             && value.trim() != ""){
+                && value.trim() != ""){
             $scope.logoUrl = value;
         }
     };

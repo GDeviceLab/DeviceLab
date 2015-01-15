@@ -14,7 +14,7 @@ public class Person {
     public String name;
     public String startupName;
     public boolean globalAdmin;
-    public Long favorite;
+    @Index public Long favorite;
     @Ignore List<Location> locations;
     @Ignore List<ACL> acls;
 }

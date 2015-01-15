@@ -47,7 +47,6 @@ calApp.controller("TitleCtrl", function($scope, endpoint, $window) {
         }
     }, function(n){
         var value = n.charAt(0).toUpperCase() + n.slice(1);
-        console.log(value);
         if(value == 'News'){
             value = 'Add News';
         }

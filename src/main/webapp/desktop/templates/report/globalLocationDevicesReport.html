@@ -5,6 +5,11 @@
                 <h3 class="panel-title">{{ 'DEVICES' | translate }} - {{globLocation[0].location.name}}</h3>
             </div>
             <table class="table table-hover">
+                <tr>
+                    <th><h5><strong>{{'NAME' | translate}}</strong></h5></th>
+                    <th><h5><strong>{{ 'REPORT_BOOKING_HOUR' | translate }}</strong></h5></th>
+                    <th><h5><strong>{{ 'REPORT_BOOKING_NUM' | translate }}</strong></h5></th>
+                </tr>
                 <tr ng-repeat="line in globLocation">
                     <td>
                         <a href="#/stats/device/{{line.asset.id}}">

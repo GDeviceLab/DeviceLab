@@ -142,3 +142,20 @@ h1.panel-title {
   -webkit-transform: scale(1.2);
           transform: scale(1.2);
 }
+
+.hour-picker-v-scroll-bar::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
+}
+
+.hour-picker-v-scroll-bar::-webkit-scrollbar
+{
+	width: 6px;
+	background-color: #F5F5F5;
+}
+
+.hour-picker-v-scroll-bar::-webkit-scrollbar-thumb
+{
+	background-color: #b3b6b6;
+}

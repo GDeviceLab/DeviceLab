@@ -35,12 +35,12 @@
         </div>
     </div>
     <div class="col-md-10">
-        <button type="button" class="btn btn-link pull-left" ng-click="addWeek(-5)">
+        <button type="button" class="btn btn-link pull-left" ng-click="addDays(-5)">
             <span class="icon-chevron-left" style="margin-right: 2px;"></span>
-            {{ 'PREVIOUS_WEEK' | translate}}
+            {{ 'PREVIOUS_5_DAYS' | translate}}
         </button>
-        <button type="button" class="btn btn-link pull-right" ng-click="addWeek(5)">
-            {{ 'NEXT_WEEK' | translate}}
+        <button type="button" class="btn btn-link pull-right" ng-click="addDays(5)">
+            {{ 'NEXT_5_DAYS' | translate}}
             <span class="icon-chevron-right" style="margin-left: 2px;"></span>
         </button>
     </div>
@@ -50,7 +50,7 @@
                 <h1 class="panel-title">{{date | date : 'EEEE d MMMM'}}</h1>
             </div>
             <div class="panel-body no-padding">
-                <cal-hour-picker min="8" max="18" id="calhour0" class="day" date="date" offset="0" filter="search" />
+                <cal-hour-picker min="0" max="24" id="calhour0" class="day" date="date" offset="0" filter="search" />
             </div>
         </div>
     </div>
@@ -60,7 +60,7 @@
                 <h1 class="panel-title">{{datePlus(1) | date : 'EEEE d MMMM'}}</h1>
             </div>
             <div class="panel-body no-padding">
-                <cal-hour-picker min="8" max="18" id="calhour1" class="day" date="date" offset="1" filter="search" />
+                <cal-hour-picker min="0" max="24" id="calhour1" class="day" date="date" offset="1" filter="search" />
             </div>
         </div>
     </div><div class="col-md-2">
@@ -69,7 +69,7 @@
                 <h1 class="panel-title">{{datePlus(2) | date : 'EEEE d MMMM'}}</h1>
             </div>
             <div class="panel-body no-padding">
-                <cal-hour-picker min="8" max="18" id="calhour2" class="day" date="date" offset="2" filter="search" />
+                <cal-hour-picker min="0" max="24" id="calhour2" class="day" date="date" offset="2" filter="search" />
             </div>
         </div>
     </div><div class="col-md-2">
@@ -78,7 +78,7 @@
                 <h1 class="panel-title">{{datePlus(3) | date : 'EEEE d MMMM'}}</h1>
             </div>
             <div class="panel-body no-padding">
-                <cal-hour-picker min="8" max="18" id="calhour3" class="day" date="date" offset="3" filter="search" />
+                <cal-hour-picker min="0" max="24" id="calhour3" class="day" date="date" offset="3" filter="search" />
             </div>
         </div>
     </div><div class="col-md-2">
@@ -87,7 +87,7 @@
                 <h1 class="panel-title">{{datePlus(4) | date : 'EEEE d MMMM'}}</h1>
             </div>
             <div class="panel-body no-padding">
-                <cal-hour-picker min="8" max="18" id="calhour4" class="day" date="date" offset="4" filter="search" />
+                <cal-hour-picker min="0" max="24" id="calhour4" class="day" date="date" offset="4" filter="search" />
             </div>
         </div>
     </div>

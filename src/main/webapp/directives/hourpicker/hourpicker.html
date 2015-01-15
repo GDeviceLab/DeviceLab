@@ -2,8 +2,12 @@
      padding: 0px;
      margin: 0px;
      border-width: 0px;
-     position: relative
-     ">
+     position: relative;
+     height: 330px;
+     max-height: 330px;
+     overflow: auto;
+     overflow-x: hidden;
+     " class="hour-picker-v-scroll-bar">
 <div id="{{id}}_range" class="range noclick"></div>
 <div id="{{event.id}}_range" class="range inside" ng-repeat="event in events | reservations: filter" 
      style="top:{{event.top}}; 
@@ -28,10 +32,10 @@
     </li>
 </ul>
 <ul id="{{id}}" touch-action="none" style="user-select: none; margin-left: 25px;" class="hp-picker">
-    <li ng-repeat="hour in hours" data-value="{{1*min+1*hour-1}}" id="{{id}}_{{1*min+1*hour-1}}" 
+    <li ng-repeat="hour in hours" data-value="{{1*min+1*hour-1}}" id="{{id}}_{{1*min+1*hour-1}}" ng-show="(1*min+1*hour-1 > -1)"
         style="height: 15px;border-bottom: 1px solid #f4f4f4 ;">
     </li>
-    <li ng-repeat="hour in hours" data-value="{{1*max+1*hour}}" id="{{id}}_{{1*max+1*hour}}" 
+    <li ng-repeat="hour in hours" data-value="{{1*max+1*hour}}" id="{{id}}_{{1*max+1*hour}}"
         style="height: 15px;border-bottom: 1px solid #f4f4f4 ;">
     </li>
 </ul>

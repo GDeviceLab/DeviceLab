@@ -2,7 +2,7 @@ calApp.controller("ReloadCtrl", function($window) {
     $window.location.hash = "#/calendar";
 });
 
-calApp.controller("CalendarCtrl", function($scope, $rootScope, endpoint,$window) {
+calApp.controller("CalendarCtrl", function($scope, $rootScope, endpoint, $window, $timeout) {
     var heightDeviceMax = 275;
     var heightDeviceMin = 80;
     $scope.search = {};
@@ -82,9 +82,16 @@ calApp.controller("CalendarCtrl", function($scope, $rootScope, endpoint,$window)
         $scope.devices = data.items;
     });
     
-    $scope.addWeek = function(value){
+    $scope.addDays = function(value){
         $scope.date.setDate($scope.date.getDate() + value);
     };
+    
+    
+    $timeout(function() {
+        $(".hour-picker-v-scroll-bar").scrollTop(240);
+        $scope.$apply();
+    }, 500);
+    
 });
 
 calApp.controller("MenuCtrl", function($scope, endpoint, $timeout) {

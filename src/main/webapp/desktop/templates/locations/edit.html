@@ -65,8 +65,8 @@
                 <li class="list-group-item" ng-repeat="user in pendings">
                     {{user.name}} ({{user.mail}})
                     <span class="actions">
-                        <span class="icon-check-alt" ng-click="toUser(user.mail)"></span>
-                        <span class="icon-x-altx-alt" ng-click="delete(user.mail)"></span>
+                        <span class="icon-check-alt" style="color:gray;" ng-click="toUser(user.mail)"></span>
+                        <span class="icon-x-altx-alt" style="color:gray;" ng-click="delete(user.mail)"></span>
                     </span>
                 </li>
             </ul>
@@ -89,8 +89,8 @@
                 <li ng-repeat="user in users" class="list-group-item">
                     {{user.name}} ({{user.mail}})
                     <span class="actions">
-                        <span class="icon-arrow-up-alt1" style="color:black;" ng-click="toAdmin(user.mail)"></span>
-                        <cal-delete action="delete(user.mail)" style="color:black;" b-class="icon-x-altx-alt"></cal-delete>
+                        <span class="icon-arrow-up-alt1" style="color: gray;" ng-click="toAdmin(user.mail)"></span>
+                        <cal-delete action="delete(user.mail)" style="color: gray;" class="icon-x-altx-alt"></cal-delete>
                     </span>
                 </li>
             </ul>
@@ -117,8 +117,8 @@
                     <span>
                         <a href="#/profile/edit/{{admin.mail}}/{{id}}">{{admin.name}} ({{admin.mail}})</a>
                         <span class="actions">
-                            <span class="icon-arrow-down-alt1" ng-click="toUser(admin.mail)"></span>
-                            <cal-delete action="delete(admin.mail)" b-class="icon-x-altx-alt"></cal-delete>
+                            <span class="icon-arrow-down-alt1" style="color: gray" ng-click="toUser(admin.mail)"></span>
+                            <cal-delete action="delete(admin.mail)" class="icon-x-altx-alt"  style="color: gray"></cal-delete>
                         </span>
                     </span>
                 </li>  

@@ -108,7 +108,7 @@ background-color: #b3b6b6;
 }
 
 .today {
-    color: grey;
+    color: gray;
 }
 
 .today.selected{
@@ -547,7 +547,7 @@ background-clip: padding-box;
 }
 
 .actions{
-    color: black; 
+    color: gray; 
     margin-top: 7px;
 }
 

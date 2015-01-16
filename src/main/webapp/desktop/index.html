@@ -85,14 +85,14 @@
             }
     });
     </script>
-    <body ng-app="cal">
+    <body ng-app="cal" data-snap-ignore="true">
         <div ng-controller="RegisterCtrl">
             <div ng-include="'/fragments/register.html'"></div>
             <div ng-include="'/fragments/loading.html'"></div>
         </div>
         <div snap-drawers>
             <div ng-include="'/fragments/menu.html'"></div>
-            <div ng-include="'/fragments/locations.html'"></div>
+            <!-- <div ng-include="'/fragments/locations.html'"></div> -->
         </div>
         <div snap-content>
             <div id="header" snap-dragger>

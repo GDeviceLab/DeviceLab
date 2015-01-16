@@ -114,8 +114,10 @@
                       </a>
                       <ul class="dropdown-menu" role="menu">
                         <div ng-controller="LocationDrawer">
-                            <li ng-repeat="location in locations" ng-click="set(location.id)" role="menuitem" tabindex="-1"><span id="drop-loc-text">{{location.name}}</span><span class="icon-star" style="color: #E1E0E2; float: right; padding-top: 5px; padding-right: 7px;">
-                            </span></li>
+                            <li ng-repeat="location in locations" ng-click="set(location.id)" role="menuitem" tabindex="-1"><span id="drop-loc-text">{{location.name}}</span><!-- <span class="icon-star" style="color: #E1E0E2; float: right; padding-top: 5px; padding-right: 7px;">
+                            </span> -->
+                            <cal-star style="color: #E1E0E2; float: right; padding-top: 5px; padding-right: 7px;" location="location.id"></cal-star>
+                            </li>
                         </div>
                       </ul>
                 </div>

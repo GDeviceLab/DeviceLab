@@ -4,9 +4,10 @@
     <div class="col-md-12 locations-page">
         <div class="panel panel-default">
             <ul class="list-group">
-                <li class="list-group-item clickable" ng-repeat="l in locations.items" cal-link="#/location/edit/{{l.id}}">
-                    {{l.name}}
-             </li>
+                <li class="list-group-item clickable" ng-repeat="l in locations.items">
+                    <a href="#/location/edit/{{l.id}}">{{l.name}}</a>
+                    <cal-delete action="delete(l.id)" b-class="icon-x-altx-alt actions"></cal-delete>
+                </li>
             </ul>
             <div class="panel-body">
                 <a href="#/location/new" class="btn btn-primary btn-block">{{'BUTTON_NEW' | translate}}</a>

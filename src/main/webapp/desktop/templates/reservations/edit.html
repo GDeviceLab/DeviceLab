@@ -28,6 +28,21 @@
                         <label for="from" class="col-lg-2 control-label">{{ 'FROM' | translate }}</label>
                         <div class="col-lg-10">
                         <select ng-model="r.start" class="form-control" id="from">
+                            <option value="0">0h</option>
+                            <option value="1">0h30</option>
+                            <option value="2">1h</option>
+                            <option value="3">1h30</option>
+                            <option value="4">2h</option>
+                            <option value="5">2h30</option>
+                            <option value="6">3h</option>
+                            <option value="7">3h30</option>
+                            <option value="8">4h</option>
+                            <option value="9">4h30</option>
+                            <option value="10">5h</option>
+                            <option value="11">5h30</option>
+                            <option value="12">6h</option>
+                            <option value="13">6h30</option>
+                            <option value="14">7h</option>
                             <option value="15">7h30</option>
                             <option value="16">8h</option>
                             <option value="17">8h30</option>
@@ -50,6 +65,17 @@
                             <option value="34">17h</option>
                             <option value="35">17h30</option>
                             <option value="36">18h</option>
+                            <option value="37">18h30</option>
+                            <option value="38">19h</option>
+                            <option value="39">19h30</option>
+                            <option value="40">20h</option>
+                            <option value="41">20h30</option>
+                            <option value="42">21h</option>
+                            <option value="43">21h30</option>
+                            <option value="44">22h</option>
+                            <option value="45">22h30</option>
+                            <option value="46">23h</option>
+                            <option value="47">23h30</option>
                         </select>
                         </div>
                     </div>
@@ -57,6 +83,21 @@
                         <label for="to" class="col-lg-2 control-label">{{ 'TO' | translate }}</label>
                         <div class="col-lg-10">
                         <select ng-model="r.end" class="form-control" id="to">
+                            <option value="1">0h30</option>
+                            <option value="2">1h</option>
+                            <option value="3">1h30</option>
+                            <option value="4">2h</option>
+                            <option value="5">2h30</option>
+                            <option value="6">3h</option>
+                            <option value="7">3h30</option>
+                            <option value="8">4h</option>
+                            <option value="9">4h30</option>
+                            <option value="10">5h</option>
+                            <option value="11">5h30</option>
+                            <option value="12">6h</option>
+                            <option value="13">6h30</option>
+                            <option value="14">7h</option>
+                            <option value="15">7h30</option>
                             <option value="16">8h</option>
                             <option value="17">8h30</option>
                             <option value="18">9h</option>
@@ -79,6 +120,17 @@
                             <option value="35">17h30</option>
                             <option value="36">18h</option>
                             <option value="37">18h30</option>
+                            <option value="38">19h</option>
+                            <option value="39">19h30</option>
+                            <option value="40">20h</option>
+                            <option value="41">20h30</option>
+                            <option value="42">21h</option>
+                            <option value="43">21h30</option>
+                            <option value="44">22h</option>
+                            <option value="45">22h30</option>
+                            <option value="46">23h</option>
+                            <option value="47">23h30</option>
+                            <option value="48">24h</option>
                         </select>
                         </div>
                     </div>
@@ -110,7 +162,7 @@
     <div class="col-md-4">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h1 class="panel-title">{{'PURPOSE' | translate}}</h1>
+                <h1 class="panel-title">{{'PURPOSE_TITLE_PANEL' | translate}}</h1>
             </div>
             <div class="panel-body">
                 <form role="form">
@@ -128,14 +180,16 @@
                             <div class="col-md-6">
                                 <label>{{ 'PURPOSE_TITLE' | translate }}</label>
                                  <div class="form-control-wrapper"> 
-                                <input class="form-control" placeholder="{{purpose.titlePlaceHolder | translate}}" ng-model="purpose.title">
+                                <input class="form-control" placeholder="{{purpose.titlePlaceHolder | translate}}" ng-change="changePurposeTitle()" ng-model="purpose.title">
                                 <span class="material-input">
                                 </div>
+                               <!--  <input class="form-control" placeholder="{{purpose.titlePlaceHolder | translate}}" ng-change="changePurposeTitle()"
+                                       ng-model="purpose.title"> -->
                             </div>
                             <div class="col-md-6">
                                 <label>{{ 'PURPOSE_YOUR_LIST' | translate }}</label>
                                 <select ng-model="selectedPurDS" class="form-control" ng-change="selectPurpose()">
-                                    <option value="-1"> - {{"NEW_CREATE" | translate}} - </option>
+                                    <option value='' disabled selected style='display:none;'>{{'PURPOSE_CHOOSE' | translate}}</option>
                                     <option value="{{purDS}}" ng-repeat="purDS in listPurpose">{{purDS.type | translate}} - {{purDS.title}}</option>
                                 </select>
                             </div>
@@ -176,9 +230,20 @@
 <div class="form-horizontal">
 <div class="form-group">
     <div class="col-lg-10 col-lg-offset-9">
+        <div class="alert alert-danger" ng-show="error.mandatoryMessage">
+        <p>{{'ERR_MANDATORY_PURPOSE' | translate}}</p>
+        </div>
         <button cal-show-owner="{{r.person}}" class="btn btn-primary" ng-click="submit()">{{'BUTTON_SAVE' | translate}}</button>
         <a class="btn btn-danger" href="#/calendar">{{'BUTTON_CANCEL' | translate}}</a>
         <button cal-show-owner="{{r.person}}" ng-show="r.id" class="btn btn-danger" ng-click="delete()">{{'BUTTON_DELETE' | translate}}</button>
     </div>
 </div>
 </div>
+<!-- =======
+<div class="alert alert-danger" ng-show="error.mandatoryMessage">
+    <p>{{'ERR_MANDATORY_PURPOSE' | translate}}</p>
+</div>
+<button cal-show-owner="{{r.person}}" class="btn btn-primary btn-block" ng-click="submit()">{{'BUTTON_SAVE' | translate}}</button>
+<a class="btn btn-danger btn-block" href="#/calendar">{{'BUTTON_CANCEL' | translate}}</a>
+<button cal-show-owner="{{r.person}}" ng-show="r.id" class="btn btn-danger btn-block" ng-click="delete()">{{'BUTTON_DELETE' | translate}}</button>
+>>>>>>> 1a36f7e928b82a57084c847a94818d6315cc132d -->

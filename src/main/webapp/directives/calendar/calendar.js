@@ -33,9 +33,13 @@ calApp.directive("calEndar", function() {
         scope: {
             date: '=',
             class: '@',
-            btnClass: '@'
+            btnClass: '@',
+            viscalmethod: '&'
         },
         controller: function($scope) {
+            
+            $scope.expireDate;
+            
             $scope.changeMonth = function(offset){
                 $scope.date = new Date($scope.date.getFullYear(), $scope.date.getMonth() + offset, 1 );
             }
@@ -46,8 +50,23 @@ calApp.directive("calEndar", function() {
                 $scope.date = new Date();
             }
             
+            $scope.visibilityCalendar = function(){
+                $scope.viscalmethod();
+            }
+
+            $scope.select = function(day) {
+                try{
+                    $scope.date.setDate(day);
+                }
+                catch(e){
+                    $scope.date = $scope.expireDate;
+                }
+            };
+            
             function refreshCal() {
                 var d = new Date($scope.date);
+                $scope.expireDate = d;
+                $scope.select($scope.expireDate.getDate());
                 $scope.cal = getCalendar(d.getFullYear(), d.getMonth(), d.getDate());
             }
             
@@ -55,10 +74,6 @@ calApp.directive("calEndar", function() {
             $scope.$watch(function(){
                 return new Date($scope.date).toJSON();
             }, refreshCal);
-
-            $scope.select = function(day) {
-                $scope.date.setDate(day);
-            };
         }
     };
 });

@@ -7,9 +7,11 @@ import com.googlecode.objectify.ObjectifyService;
 import eu.revevol.calendar.constants.ACLStatus;
 import eu.revevol.calendar.model.ACL;
 import eu.revevol.calendar.model.Location;
+import eu.revevol.calendar.model.Person;
 import eu.revevol.calendar.security.Require;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 import javax.inject.Named;
 
 /**
@@ -18,6 +20,8 @@ import javax.inject.Named;
  */
 @Api(name = "location",  version = "v1")
 public class LocationsEndpoint {
+    
+    private static Logger logger = Logger.getLogger(LocationsEndpoint.class.getName());
 
     static {
         ObjectifyService.factory().register(Location.class);
@@ -33,6 +37,31 @@ public class LocationsEndpoint {
         Require.globalAdmin(user);
 
         ObjectifyService.ofy().save().entity(l);
+    }
+    
+    @ApiMethod(
+            name = "delete",
+            path = "delete",
+            httpMethod = ApiMethod.HttpMethod.POST
+    )
+    public void delete(@Named("origin") String user, Location loc) throws OAuthRequestException {
+        Require.globalAdmin(user);
+        Location location = ObjectifyService.ofy().load().type(Location.class).id(loc.id).now();
+        location.deleted = true;
+        ObjectifyService.ofy().save().entity(location).now();
+        
+        //update the favourite Location for all the user having that location
+        //List<Person> personList = ObjectifyService.ofy().load().type(Person.class).list(); OLD VERSION ...USED FOR THE INDEX TRANSITION
+        List<Person> personList = ObjectifyService.ofy().load().type(Person.class).filter("favorite", loc.id).list();
+        for (Person p : personList) {
+            logger.info("USER EMAIL: " + p.mail );
+            if(p.favorite != null
+                && p.favorite.equals(loc.id)){
+                logger.info("NULL FAVOURITE: " + p.mail );
+                p.favorite = null;
+            }
+            ObjectifyService.ofy().save().entity(p).now();
+        }
     }
 
     @ApiMethod(
@@ -66,7 +95,11 @@ public class LocationsEndpoint {
 
         for (ACL acl : acls) {
             if (acl.status != ACLStatus.PENDING) {
-                res.add(ObjectifyService.ofy().load().type(Location.class).id(acl.location).now());
+                Location location = ObjectifyService.ofy().load().type(Location.class).id(acl.location).now();
+                if(location.deleted == null
+                    || !location.deleted){
+                    res.add(location);
+                }
             }
         }
 

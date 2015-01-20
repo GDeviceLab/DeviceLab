@@ -73,7 +73,7 @@
     "MENU_NEWS_ADD": "Ajouter une notification",
     "MENU_APPLY": "Postuler",
     "MENU_SETTINGS": "Réglages",
-    "MENU_LOCATION": "Utilisateurs",
+    "MENU_LOCATION": "Gérer emplacement",
     "MENU_LOCATIONS": "Zones",
     "MENU_DEVICES": "Appareils",
     "MENU_LOGOUT": "Se déconnecter",
@@ -120,13 +120,19 @@
     "MOBILE_APP_TITLE_PH":"Entrez votre ID d'application",
     "WEB_SITE_TITLE_PH":"Entrez l'adresse du site",
     "OTHER_TITLE_PH":"Entrez dans le raison",
-    "NEW_CREATE":"Nouveau raison",
+    "PURPOSE_CHOOSE":"Choisissez",
     "PURPOSE_YOUR_LIST":"votre sauvé raison",
     "REPORT_TYPE":"Type de rapport",
     "REPORT_GLOBAL_LOCATION_DEVICE_REPORT":"Usage global pour les emplacements",
     "REPORT_TESTED_PURPOSES":"Testé raisons",
     "ERROR_REPORT_SELECTED":"Choisissez un type de rapport",
     "REPORT_USAGE_COUNTER":"Usage raison compteur",
-    "ERR_MANDATORY_FIELDS":"Tous les champs sont obligatoires"
+    "ERR_MANDATORY_FIELDS":"Tous les champs sont obligatoires",
+    "ERR_MANDATORY_PURPOSE":"Raison champs sont obligatoires",
+    "PURPOSE_TITLE_PANEL":"Vous voulez tester ...",
+    "REPORT_BOOKING_NUM":"Numéro de réservation",
+    "REPORT_BOOKING_HOUR":"Heures de réservation ( passées et futures )",
+    "PREVIOUS_5_DAYS":"Précédent 5 journées",
+    "NEXT_5_DAYS":"Prochaine 5 journées"
    
 }

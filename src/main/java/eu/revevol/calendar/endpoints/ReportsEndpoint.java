@@ -151,15 +151,42 @@ public class ReportsEndpoint {
     private List<PurposeStat> calculateTestesPurposes(String user, Location location, List<Reservation> reservations) throws OAuthRequestException{
         List<PurposeStat> listPurStat = new ArrayList<PurposeStat>();
         Map<Long,Integer> mapPurposeStat = new HashMap<Long, Integer>();
+        HashMap<Long, Integer> hoursPast = new HashMap<Long, Integer>();
+        HashMap<Long, Integer> hoursFuture = new HashMap<Long, Integer>();
         for (Reservation res : reservations) {
             Long purId = res.idPurpose;
             if(purId != null){
                 if(mapPurposeStat.containsKey(purId)){
                     Integer count = mapPurposeStat.get(purId);
                     mapPurposeStat.put(purId, count+1);
+                    
+                    if (new Date().after(res.date)) {
+                        hoursPast.put(purId,
+                                hoursPast.get(purId)
+                                        + res.end
+                                        - res.start);
+                    } else {
+                        hoursFuture.put(purId,
+                                hoursFuture.get(purId)
+                                        + res.end
+                                        - res.start);
+                    }
                 }
                 else{
+                    // first time
                     mapPurposeStat.put(purId, 1);
+                    
+                    if (new Date().after(res.date)) {
+                        hoursPast.put(purId,
+                                        + res.end
+                                        - res.start);
+                        hoursFuture.put(purId,0);
+                    } else {
+                        hoursFuture.put(purId,
+                                        + res.end
+                                        - res.start);
+                        hoursPast.put(purId,0);
+                    }
                 }
             }
         }
@@ -170,6 +197,8 @@ public class ReportsEndpoint {
                 stat.purpose = purpose;
                 stat.count = mapPurposeStat.get(purId);
                 stat.location = location;
+                stat.hoursPast = hoursPast.get(purId);
+                stat.hoursFuture = hoursFuture.get(purId);
                 listPurStat.add(stat);
             }
         }

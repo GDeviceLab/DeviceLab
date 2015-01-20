@@ -135,10 +135,16 @@ h1.weekcal{
 }
 
 #ack{
-    position:absolute;
+    position:fixed;
     bottom: 0;
-    font-weight: bold;
+    font-weight: 100;
     font-style: italic;
+    font-size: 50%;
+}
+
+#ack-image{
+    position:fixed;
+    bottom: 0;
 }
 
 #title{
@@ -192,6 +198,7 @@ h1.weekcal{
 color: #333;
 background-color: #FFFFFF;
 border: 0px;
+height: 20%;
 }
 
 .news .panel {
@@ -221,6 +228,7 @@ padding-bottom:  0px;
     height: 2000px;
     padding-bottom: 0px !important;
     margin-bottom: 0px !important;
+    max-height: 850px;
 }
 .cal-month {
     background-color: #EFEFEF;
@@ -482,6 +490,7 @@ background-color: #FFFFFF;
           transform: scale(1.2);
 }
 
+<<<<<<< HEAD
 /* Reservation Page */
 
 .reservationpage h1{
@@ -751,4 +760,20 @@ nav h3 {
 }
 .icon-star-o {
   color: #E1E0E2;
+}
+.hour-picker-v-scroll-bar::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
+}
+
+.hour-picker-v-scroll-bar::-webkit-scrollbar
+{
+	width: 6px;
+	background-color: #F5F5F5;
+}
+
+.hour-picker-v-scroll-bar::-webkit-scrollbar-thumb
+{
+	background-color: #b3b6b6;
 }

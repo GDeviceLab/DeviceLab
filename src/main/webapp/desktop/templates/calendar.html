@@ -1,69 +1,78 @@
 <div class="row">
-        <news-feed class="col-md-12 news" p-class="col-md-6" rank="0" limit="2" id="news-sec"></news-feed>
+    <news-feed class="col-md-12 news" p-class="col-md-6" rank="0" limit="2" id="news-sec"></news-feed>
 </div>
 <div class="row">
     <div class="col-md-12 ng-isolate-scope" id="week-select">
-        <h2 id="week-dates"><!-- <span class="arrow-left" ng-click="changeMonth(1)"></span> -->{{date | date : 'MMM d'}} - {{datePlus(5) | date : 'MMM d'}} <span class="light">{{date | date : 'yyyy'}}</span><!-- <span class="arrow-right" ng-click="changeMonth(-1)"></span> --></h2>
+        <h2 id="week-dates"><span class="arrow-left" ng-click="addDays(-5)"></span>{{date | date : 'MMM d'}} - {{datePlus(5) | date : 'MMM d'}} <span class="light">{{date | date : 'yyyy'}}</span><span class="arrow-right" ng-click="addDays(5)"></span></h2>
     </div>
-    <!-- <div class="pull-right">
-        <button type="button" ng-click="goTo('#/news')" class="btn btn-link">{{'SEE_MORE_NEWS' | translate}}</button>
-    </div> -->
+<!-- <div class="pull-right">
+<button type="button" ng-click="goTo('#/news')" class="btn btn-link">{{'SEE_MORE_NEWS' | translate}}</button>
+</div> -->
 </div>
 <div class="row">
     <div class="col-md-2">
-<!-- <<<<<<< HEAD -->
+        <!-- <<<<<<< HEAD -->
         <div class="panel panel-default cal-month">
-<!-- ======= -->
-<!--         <div class="well text-center" ng-show="!isCalendarVisible" style="padding: 2px; margin-bottom: 10px;">
-           <button type="button" class="btn btn-link">
-            <span class="icon-calendar" ng-click="visibilityCalendar()"></span> 
-            <span ng-click="visibilityCalendar()">{{'OPEN_CALENDAR' | translate}}</span>
-        </button>
-        </div>
-        <div class="panel panel-default" ng-show="isCalendarVisible">
-            <div class="pull-right" style="padding-top: 8px;">
-                <img src="../css/img/drop-down-triangle.png" ng-click="visibilityCalendar()" title="{{'HIDE' | translate}}"/>
-            </div> -->
-<!-- >>>>>>> revevol-phase2 -->
-            <div class="panel-body no-padding">
-                <cal-endar date="date" class="cal" btn-class="btn btn-primary btn-block"/>
-            </div>
-        </div>
-       <!--  Devices Section -->
-       <div class="devices">
-       <p>DEVICES</p>
+            <!-- ======= -->
+<!-- <div class="well text-center" ng-show="!isCalendarVisible" style="padding: 2px; margin-bottom: 10px;">
+<button type="button" class="btn btn-link">
+<span class="icon-calendar" ng-click="visibilityCalendar()"></span> 
+<span ng-click="visibilityCalendar()">{{'OPEN_CALENDAR' | translate}}</span>
+</button>
+</div>
+<div class="panel panel-default" ng-show="isCalendarVisible"> -->
+<!--<div class="pull-right" style="padding-top: 8px;">
+<img src="../css/img/drop-down-triangle.png" title="{{'HIDE' | translate}}"/>
+</div>-->
+<!-- >>>>>>> 1a36f7e928b82a57084c847a94818d6315cc132d -->
+
+<!-- <div class="col-md-10">
+    <button type="button" class="btn btn-link pull-left" ng-click="addDays(-5)">
+        <span class="icon-chevron-left" style="margin-right: 2px;"></span>
+        {{ 'PREVIOUS_5_DAYS' | translate}}
+    </button>
+    <button type="button" class="btn btn-link pull-right" ng-click="addDays(5)">
+        {{ 'NEXT_5_DAYS' | translate}}
+        <span class="icon-chevron-right" style="margin-left: 2px;"></span>
+    </button>
+</div> -->
+
+<div class="panel-body no-padding">
+    <cal-endar date="date" class="cal" btn-class="btn btn-primary btn-block" viscalmethod="visibilityCalendar()"/>
+</div>
+</div>
+<!--  Devices Section -->
+<div class="devices">
+    <p>DEVICES</p>
+    <div>
         <div>
-            <div>
-<!-- <<<<<<< HEAD -->
-                <device-picker filter="search.assets"></device-picker>
-                </div>
-            <div class="form-group">
-                <hr style="margin-left: 0px; width: 90%; border-top: 1px solid #E1E0E2;"/>
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" ng-click="toggle()"><span class="check"></span> {{ 'CAL_FILTER_MINE' | translate}}
-                    </label>
-                </div>
-
-               <!--  <input type="checkbox" ng-click="toggle()">
-                {{ 'CAL_FILTER_MINE' | translate}} -->
-<!-- =======
-                <device-picker filter="search.assets" heightpx="wellDeviceHeight"></device-picker>
-            </div>
-            <div>
-                <input type="checkbox" ng-click="toggle()">
-                {{ 'CAL_FILTER_MINE' | translate}}
->>>>>>> revevol-phase2 -->
-            </div>
-
-
+            <device-picker filter="search.assets"></device-picker>
         </div>
-    </div>
+        <div class="form-group">
+            <hr style="margin-left: 0px; width: 90%; border-top: 1px solid #E1E0E2;"/>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" ng-click="toggle()"><span class="check"></span> {{ 'CAL_FILTER_MINE' | translate}}
+                </label>
+            </div>
+
+<!--  <input type="checkbox" ng-click="toggle()">
+    {{ 'CAL_FILTER_MINE' | translate}} -->
+<!-- =======
+<device-picker filter="search.assets" heightpx="wellDeviceHeight"></device-picker>
+</div>
+<div>
+<input type="checkbox" ng-click="toggle()">
+{{ 'CAL_FILTER_MINE' | translate}}
+>>>>>>> revevol-phase2 -->
+</div>
+</div>
+</div>
 </div> 
-    <div class="col-md-2">
-        <div class="panel panel-default cal-day">
-            <div class="panel-heading">
-                <p class="weekcal-day light">{{date | date : 'MMMM'}}<p>
+<div class="col-md-2">
+    <div class="panel panel-default cal-day">
+        <div class="panel-heading">
+            <p class="weekcal-day light">{{date | date : 'MMMM'}}<p>
                 <h1 class="weekcal">{{date | date : 'EEE d'}}</h1>
             </div>
             <div class="panel-body no-padding left-padding">
@@ -75,41 +84,41 @@
         <div class="panel panel-default cal-day">
             <div class="panel-heading">
                 <p class="weekcal-day light">{{date | date : 'MMMM'}}<p>
-                <h1 class="weekcal">{{datePlus(1) | date : 'EEE d'}}</h1>
+                    <h1 class="weekcal">{{datePlus(1) | date : 'EEE d'}}</h1>
+                </div>
+                <div class="panel-body no-padding left-padding">
+                    <cal-hour-picker min="8" max="18" id="calhour1" class="day" date="date" offset="1" filter="search" />
+                </div>
             </div>
-            <div class="panel-body no-padding left-padding">
-                <cal-hour-picker min="8" max="18" id="calhour1" class="day" date="date" offset="1" filter="search" />
-            </div>
-        </div>
-    </div><div class="col-md-2">
+        </div><div class="col-md-2">
         <div class="panel panel-default cal-day">
             <div class="panel-heading">
                 <p class="weekcal-day light">{{date | date : 'MMMM'}}<p>
-                <h1 class="weekcal">{{datePlus(2) | date : 'EEE d'}}</h1>
+                    <h1 class="weekcal">{{datePlus(2) | date : 'EEE d'}}</h1>
+                </div>
+                <div class="panel-body no-padding left-padding">
+                    <cal-hour-picker min="8" max="18" id="calhour2" class="day" date="date" offset="2" filter="search" />
+                </div>
             </div>
-            <div class="panel-body no-padding left-padding">
-                <cal-hour-picker min="8" max="18" id="calhour2" class="day" date="date" offset="2" filter="search" />
-            </div>
-        </div>
-    </div><div class="col-md-2">
+        </div><div class="col-md-2">
         <div class="panel panel-default cal-day">
             <div class="panel-heading light">
                 <p class="weekcal-day light">{{date | date : 'MMMM'}}<p>
-                <h1 class="weekcal">{{datePlus(3) | date : 'EEE d'}}</h1>
+                    <h1 class="weekcal">{{datePlus(3) | date : 'EEE d'}}</h1>
+                </div>
+                <div class="panel-body no-padding left-padding">
+                    <cal-hour-picker min="8" max="18" id="calhour3" class="day" date="date" offset="3" filter="search" />
+                </div>
             </div>
-            <div class="panel-body no-padding left-padding">
-                <cal-hour-picker min="8" max="18" id="calhour3" class="day" date="date" offset="3" filter="search" />
-            </div>
-        </div>
-    </div><div class="col-md-2">
+        </div><div class="col-md-2">
         <div class="panel panel-default cal-day">
             <div class="panel-heading">
                 <p class="weekcal-day light">{{date | date : 'MMMM'}}<p>
-                <h1 class="weekcal">{{datePlus(4) | date : 'EEE d'}}</h1>
-            </div>
-            <div class="panel-body no-padding left-padding">
-                <cal-hour-picker min="8" max="18" id="calhour4" class="day" date="date" offset="4" filter="search" />
+                    <h1 class="weekcal">{{datePlus(4) | date : 'EEE d'}}</h1>
+                </div>
+                <div class="panel-body no-padding left-padding">
+                    <cal-hour-picker min="8" max="18" id="calhour4" class="day" date="date" offset="4" filter="search" />
+                </div>
             </div>
         </div>
     </div>
-</div>

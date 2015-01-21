@@ -5,6 +5,7 @@ calApp.directive("calHourPicker", function() {
         scope: {
             min: '@',
             max: '@',
+            marginmobile: '@',
             id: '@',
             date: '=',
             offset: '@',
@@ -17,6 +18,20 @@ calApp.directive("calHourPicker", function() {
                 return new Date($scope.date.getFullYear(), $scope.date.getMonth(), $scope.date.getDate() + $scope.offset*1);
             }
             
+            $scope.borderStriped = function(hour){
+                if(hour%2 === 1){
+                    return "solid";
+                }
+                return "dashed";
+            };
+            
+            $scope.zeroPadding = function(hour){
+                if(10 > hour){
+                    return "0"+hour;
+                }
+                return hour;
+            }
+            
             endpoint.then(function(endpoint) {
                 $scope.goto = function(id){
                     $window.location.href = "#/reservation/edit/" + id;
@@ -27,6 +42,7 @@ calApp.directive("calHourPicker", function() {
                 var end;
                 var active = false;
                 var pecentageWidthTotal = 70;
+                
                 function down(event) {
                     start = event.target.attributes["data-value"].value;
                     end = event.target.attributes["data-value"].value;
@@ -95,9 +111,9 @@ calApp.directive("calHourPicker", function() {
                     var h = document.getElementById(id + "_" + begin).offsetHeight;
                     var w = document.getElementById(id + "_" + begin).offsetWidth;
                     var e = document.getElementById(id + "_" + "range");
-                    e.style.top = (begin - 2*$scope.min + 1) * h;
+                    e.style.top = (begin - 2*$scope.min) * h;
                     e.style.height = (end - begin + 1) * h;
-                    e.style.left = 26;
+                    e.style.left = 31;
                     e.style.width = w;
                     e.style.display = "block";
                 }
@@ -128,7 +144,7 @@ calApp.directive("calHourPicker", function() {
                                 event.collision_index = -1;
                                 var h = document.getElementById($scope.id + "_" + event.start).offsetHeight;
                                 var w = document.getElementById($scope.id + "_" + event.start).offsetWidth;
-                                event.top = h * (event.start - 2*$scope.min + 1)
+                                event.top = h * (event.start - 2*$scope.min)
                                 event.height = (event.end - event.start) * h;
                                 event.width = w;
                                 var colors = [];

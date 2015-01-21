@@ -5,11 +5,58 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
-        <script src="../app/compiled.mobile.js"></script>
-        <link rel="stylesheet" href="../css/compiled.mobile.css">
+        
+        
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script src="../js/libs/PointerEvents.js"></script>
+        <script src="../js/libs/snap.js"></script>
+        <script src="../js/libs/colorpicker.js"></script>
+        <script src="../js/libs/angular.1.3.0.js"></script>
+        <script src="../js/libs/angular.sanitize.1.3.0.js"></script>
+        <script src="../js/libs/angular-ui-router.min.js"></script>
+        <script src="../js/libs/angular-snap.js"></script>
+        <script src="../js/libs/angular-translate.min.js"></script>
+        <script src="../js/libs/angular-translate-static-loader.min.js"></script>
+        <script src="../js/libs/angular-file-upload.min.js"></script>
+        <script src="../app/route.js"></script>
+        <script src="../app/filters.js"></script>
+        <script src="../app/lang.js"></script>
+        <script src="../app/endpoints.js"></script>
+        <script src="../app/controllers.js"></script>
+        <script src="../app/asset-ctrl.js"></script>
+        <script src="../app/type-ctrl.js"></script>
+        <script src="../app/register-ctrl.js"></script>
+        <script src="../app/locations-ctrl.js"></script>
+        <script src="../app/reservation-ctrl.js"></script>
+        <script src="../app/news-ctrl.js"></script>
+        <script src="../app/stats-ctrl.js"></script>
+        <script src="../app/reportglobal-ctrl.js"></script>
+        <script src="../directives/hourpicker/hourpicker.js"></script>
+        <script src="../directives/calendar/calendar.js"></script>
+        <script src="../directives/bmenu/bmenu.js"></script>
+        <script src="../directives/favorite/favorite.js"></script>
+        <script src="../directives/colorpicker/colorpicker.js"></script>
+        <script src="../directives/newswidget/newswidget.js"></script>
+        <script src="../directives/calsecurity/calsecurity.js"></script>
+        <script src="../directives/delete/delete.js"></script>
+        
+        <link rel="stylesheet" href="../css/topcoat/topcoat-mobile-dark.min.css">
+        <link rel="stylesheet" href="../css/angular-snap.css">
+        <link rel="stylesheet" href="../css/icomoon/style.css">
+        <link rel="stylesheet" href="../css/mobile.css">
+        <link rel="stylesheet" href="../css/register.css">
+        <link rel="stylesheet" href="../directives/hourpicker/hourpicker.css">
+        <link rel="stylesheet" href="../directives/calendar/calendar.css">
+        <link rel="stylesheet" href="../directives/bmenu/bmenu.css">
+        <link rel="stylesheet" href="../directives/colorpicker/colorpicker.css">
+        <link rel="stylesheet" href="../directives/newswidget/newswidget.css">
+        
+        
+        <!--<script src="../app/compiled.mobile.js"></script>
+        <link rel="stylesheet" href="../css/compiled.mobile.css">-->
     </head>
     <body ng-app="cal">
-
+        
         <div ng-include="'/fragments/register.html'"></div>
         <div ng-include="'/fragments/loading.html'"></div>
         <div snap-drawers>
@@ -29,6 +76,6 @@
             </div>
             <div ui-view></div>
         </div>
-
+        
     </body>
 </html>

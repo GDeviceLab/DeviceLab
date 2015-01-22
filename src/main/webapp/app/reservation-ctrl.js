@@ -12,7 +12,10 @@ calApp.controller("NewReservationCtrl", function($scope, $stateParams, $window, 
                 && data.items.length > 0){
             $scope.listPurpose = data.items;
             // set the last purpose created or edited as the default purpose
-            $scope.purpose = $scope.listPurpose[0];
+            $scope.purpose.id = $scope.listPurpose[0].id;
+            $scope.purpose.person = $scope.listPurpose[0].person;
+            $scope.purpose.type = $scope.listPurpose[0].type;
+            $scope.purpose.title = $scope.listPurpose[0].title;
             $scope.r.idPurpose = $scope.purpose.id;
         }
     });
@@ -102,11 +105,18 @@ calApp.controller("NewReservationCtrl", function($scope, $stateParams, $window, 
     
     $scope.submit = function() {
         $scope.error.mandatoryMessage = false;
-        if($scope.purpose != null
-                && $scope.purpose.title != null
-                && $scope.purpose.title != ""
-                && $scope.purpose.type != null
-                && $scope.purpose.type != ""){
+        if($scope.purpose.title == null
+                || $scope.purpose.title == ""){
+            $scope.error.mandatoryMessage = true;
+            $scope.error.text = "ERR_MANDATORY_PURPOSE_NAME";
+        }
+        else if($scope.purpose.type == null
+                || $scope.purpose.type == ""){
+            $scope.error.mandatoryMessage = true;
+            $scope.error.text = "ERR_MANDATORY_PURPOSE_TYPE";
+        }
+        
+        if(!$scope.error.mandatoryMessage){
             $scope.r.assets = [];
             $scope.r.date = $scope.date;
             $scope.r.dayString = $scope.date.getFullYear()+"#"+$scope.date.getMonth()+"#"+$scope.date.getDate();
@@ -123,15 +133,16 @@ calApp.controller("NewReservationCtrl", function($scope, $stateParams, $window, 
                 $window.location.href = "#/";
             }).error(function(data) {
                 if (data.error && data.error.message === "java.lang.Exception: RESERVATION COLLISION") {
-                    $scope.error.collision = true;
+                    //$scope.error.collision = true;
+                    $scope.error.mandatoryMessage = true;
+                    $scope.error.text = "ERR_COLLISION";
                 }
-                ;
+                else{
+                    $scope.error.mandatoryMessage = true;
+                    $scope.error.text = "ERR_MANDATORY_DEVICE";
+                }
             });
         }
-        else{
-            $scope.error.mandatoryMessage = true;
-        }
-        
     };
 });
 calApp.controller("EditReservationCtrl", function($scope, $stateParams, endpoint, $window) {

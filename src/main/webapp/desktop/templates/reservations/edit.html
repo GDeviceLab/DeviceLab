@@ -130,7 +130,7 @@
                     <input type="text" class="form-control" placeholder="{{ 'USER' | translate }}" ng-model="r.person" disabled>
                 </p>
                 <div class="alert alert-danger" ng-show="error.collision || error.deleted">
-                    <p ng-show="error.collision">{{'ERR_COLLISION' | translate}}</p>
+                    <!--<p ng-show="error.collision">{{'ERR_COLLISION' | translate}}</p>-->
                     <p ng-show="error.deleted">{{'ERR_DELETED' | translate}}</p>
                 </div>
             </div>
@@ -201,7 +201,7 @@
     </div>
 </div>
 <div class="alert alert-danger" ng-show="error.mandatoryMessage">
-    <p>{{'ERR_MANDATORY_PURPOSE' | translate}}</p>
+    <p>{{error.text | translate}}</p>
 </div>
 <button cal-show-owner="{{r.person}}" class="btn btn-primary btn-block" ng-click="submit()">{{'BUTTON_SAVE' | translate}}</button>
 <a class="btn btn-danger btn-block" href="#/calendar">{{'BUTTON_CANCEL' | translate}}</a>

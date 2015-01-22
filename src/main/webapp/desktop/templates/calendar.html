@@ -7,11 +7,23 @@
     </div>
 </div>
 <div class="row">
+    <div class="col-md-10 col-md-offset-2">
+        <button type="button" class="btn btn-link pull-left" ng-click="addDays(-5)">
+            <span class="icon-chevron-left" style="margin-right: 2px;"></span>
+            {{ 'PREVIOUS_5_DAYS' | translate}}
+        </button>
+        <button type="button" class="btn btn-link pull-right" ng-click="addDays(5)">
+            {{ 'NEXT_5_DAYS' | translate}}
+            <span class="icon-chevron-right" style="margin-left: 2px;"></span>
+        </button>
+    </div>
+</div>
+<div class="row">
     <div class="col-md-2">
         <div class="well text-center" ng-show="!isCalendarVisible" style="padding: 2px; margin-bottom: 10px;">
-            <button type="button" class="btn btn-link">
-                <span class="icon-calendar" ng-click="visibilityCalendar()"></span> 
-                <span ng-click="visibilityCalendar()">{{'OPEN_CALENDAR' | translate}}</span>
+            <button type="button" class="btn btn-link" ng-click="visibilityCalendar()">
+                <span class="icon-calendar"></span> 
+                <span>{{'OPEN_CALENDAR' | translate}}</span>
             </button>
         </div>
         <div class="panel panel-default" ng-show="isCalendarVisible">
@@ -33,16 +45,6 @@
             </div>
                 
         </div>
-    </div>
-    <div class="col-md-10">
-        <button type="button" class="btn btn-link pull-left" ng-click="addDays(-5)">
-            <span class="icon-chevron-left" style="margin-right: 2px;"></span>
-            {{ 'PREVIOUS_5_DAYS' | translate}}
-        </button>
-        <button type="button" class="btn btn-link pull-right" ng-click="addDays(5)">
-            {{ 'NEXT_5_DAYS' | translate}}
-            <span class="icon-chevron-right" style="margin-left: 2px;"></span>
-        </button>
     </div>
     <div class="col-md-2">
         <div class="panel panel-default">

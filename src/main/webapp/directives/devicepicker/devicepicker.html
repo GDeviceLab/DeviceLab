@@ -1,9 +1,7 @@
 <!--<div ng-style="height:{{heightpx}}px; overflow-y: scroll">-->
 <div ng-style="{'height': heightpx}" style="overflow-y: scroll;">
     <div ng-repeat="d in devices" 
-         style="
-         height: 20px; 
-         cursor: pointer;
+         style=" cursor: pointer;
          background-color: {{background()}};"
          ng-click="click()"
          >
@@ -18,7 +16,7 @@
              margin:3px;
              margin-left:23px;"
              title="{{d.name}}">
-            {{reduceText(d.name,10)}}
+            {{d.name}}
         </div>
     </div>
 </div>

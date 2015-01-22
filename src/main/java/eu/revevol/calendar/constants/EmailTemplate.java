@@ -33,7 +33,7 @@ public class EmailTemplate {
                 " <" + Methods.notNullText(p.mail) +"> from " +  
                 Methods.notNullText(p.startupName) +" asks to apply to " + 
                 Methods.notNullText(locationObj.name) + ".<br>" +
-                "Please, access to <a href='"+Params.APPLICATION_ADDRESS+"' target='_blank'>"+Params.SENDER_EMAIL_APPLICATION_NAME+"</a> to approve or reject the user." +
+                "Please, access to <a href='"+Params.APPLICATION_ADDRESS+"/desktop/#/location/edit/"+locationObj.id+"' target='_blank'>"+Params.SENDER_EMAIL_APPLICATION_NAME+"</a> to approve or reject the user." +
                 "<br><br>"+
                 "***Automatic message, do not answer***";
         pojo.setMessageBody(message);

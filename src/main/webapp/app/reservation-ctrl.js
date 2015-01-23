@@ -245,26 +245,42 @@ calApp.controller("EditReservationCtrl", function($scope, $stateParams, endpoint
         return new Date(y, m - 1, d);
     };
     $scope.submit = function() {
-        $scope.r.assets = [];
-        $scope.r.date = $scope.date;
-        for (var i = 0; i < $scope.sassets.length; i++) {
-            $scope.r.assets.push(hashmap[$scope.sassets[i].value]);
+        $scope.error.mandatoryMessage = false;
+        if($scope.purpose.title == null
+                || $scope.purpose.title == ""){
+            $scope.error.mandatoryMessage = true;
+            $scope.error.text = "ERR_MANDATORY_PURPOSE_NAME";
         }
-        console.log("SAVING");
-        console.log($scope.r);
-        console.log($scope.purpose);
-        endpoint.res.put($scope.r,$scope.purpose).success(function() {
-            window.location.href = "#/";
-        }).error(function(data) {
-            if (data.error && data.error.message === "java.lang.Exception: RESERVATION COLLISION") {
-                $scope.error.collision = true;
+        else if($scope.purpose.type == null
+                || $scope.purpose.type == ""){
+            $scope.error.mandatoryMessage = true;
+            $scope.error.text = "ERR_MANDATORY_PURPOSE_TYPE";
+        }
+        
+        if(!$scope.error.mandatoryMessage){
+            $scope.r.assets = [];
+            $scope.r.date = $scope.date;
+            for (var i = 0; i < $scope.sassets.length; i++) {
+                $scope.r.assets.push(hashmap[$scope.sassets[i].value]);
             }
+            console.log("SAVING");
+            console.log($scope.r);
+            console.log($scope.purpose);
+            endpoint.res.put($scope.r,$scope.purpose).success(function() {
+                window.location.href = "#/";
+            }).error(function(data) {
+                if (data.error && data.error.message === "java.lang.Exception: RESERVATION COLLISION") {
+                    //$scope.error.collision = true;
+                    $scope.error.mandatoryMessage = true;
+                    $scope.error.text = "ERR_COLLISION";
+                }
+                else{
+                    $scope.error.mandatoryMessage = true;
+                    $scope.error.text = "ERR_MANDATORY_DEVICE";
+                }
+            });
             ;
-            if (deleted) {
-                $scope.error.deleted = true;
-            }
-            ;
-        });
-        ;
+        }
+        
     };
 });

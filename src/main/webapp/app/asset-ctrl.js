@@ -61,7 +61,7 @@ calApp.controller("NewAssetCtrl", function($scope, endpoint, $window) {
     };
     
     $scope.goTo = function(){
-        $window.location.hash = "/";
+        $window.history.back();
     };
 });
 calApp.controller("EditAssetCtrl", function($scope, $stateParams, endpoint, $window) {
@@ -104,6 +104,6 @@ calApp.controller("EditAssetCtrl", function($scope, $stateParams, endpoint, $win
     });
     
     $scope.goTo = function(){
-        $window.location.hash = "/";
+        $window.history.back();
     };
 });

@@ -21,7 +21,7 @@ calApp.controller("EditNewsCtrl", function($scope, $window, $stateParams, endpoi
     };
     
     $scope.goTo = function(){
-        $window.location.hash = "/";
+        $window.history.back();
     };
 });
 calApp.controller("ListNewsCtrl", function($scope, endpoint) {

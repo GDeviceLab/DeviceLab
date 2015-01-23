@@ -1,5 +1,5 @@
 <span>
-    <span class="{{bClass}}" ng-click="show = true"></span>
+    <span class="{{bClass}}" ng-click="changeShow(true)"></span>
     <div class="modal" ng-click="show = false" ng-show="show">
         <div class="modal-pane">
             <h1>{{'DELETE_TITLE' | translate}}</h1>
@@ -8,7 +8,7 @@
                 <button class="topcoat-button--cta btn btn-danger btn-block" ng-click="delete()">{{'BUTTON_YES' | translate}}</button>
             </div>
             <div class="padded">
-                <button class="topcoat-button btn btn-default btn-block" ng-click="show = false">{{'BUTTON_CANCEL' | translate}}</button>
+                <button class="topcoat-button btn btn-default btn-block" ng-click="changeShow(false)">{{'BUTTON_CANCEL' | translate}}</button>
             </div>
         </div>
     </div>

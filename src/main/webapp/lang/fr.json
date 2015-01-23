@@ -137,6 +137,7 @@
     "PREVIOUS_5_DAYS":"Précédent 5 journées",
     "NEXT_5_DAYS":"Prochaine 5 journées",
     "NAME":"Nom",
-    "CANCEL":"Annuler"
+    "CANCEL":"Annuler",
+    "PREFERRED_LOGO_SIZE":"*taille préférée: largeur 230px, hauteur 120px"
    
 }

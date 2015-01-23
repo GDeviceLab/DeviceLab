@@ -1,12 +1,17 @@
-calApp.controller("ListAssetCtrl", function($scope, endpoint) {
+calApp.controller("ListAssetCtrl", function($scope, endpoint, $window) {
     function refresh() {
         endpoint.asset.list().success(function(data) {
             $scope.assets = data.items;
         });
     }
     refresh();
+    
     $scope.delete = function(id) {
         endpoint.asset.delete(id).success(refresh);
+    };
+    
+    $scope.goTo = function(value){
+        $window.location.hash = value;
     };
 });
 calApp.controller("NewAssetCtrl", function($scope, endpoint, $window) {

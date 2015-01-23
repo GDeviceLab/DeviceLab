@@ -136,6 +136,7 @@
     "REPORT_BOOKING_HOUR":"Heures de réservation ( passées et futures )",
     "PREVIOUS_5_DAYS":"Précédent 5 journées",
     "NEXT_5_DAYS":"Prochaine 5 journées",
-    "NAME":"Nom"
+    "NAME":"Nom",
+    "CANCEL":"Annuler"
    
 }

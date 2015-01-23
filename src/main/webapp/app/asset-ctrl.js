@@ -9,7 +9,7 @@ calApp.controller("ListAssetCtrl", function($scope, endpoint) {
         endpoint.asset.delete(id).success(refresh);
     };
 });
-calApp.controller("NewAssetCtrl", function($scope, endpoint) {
+calApp.controller("NewAssetCtrl", function($scope, endpoint, $window) {
     
       $scope.initpalettecolors = function() {
         var container = $('.colors-palette');
@@ -54,8 +54,12 @@ calApp.controller("NewAssetCtrl", function($scope, endpoint) {
             window.location.href = "#/devices/list";
         });
     };
+    
+    $scope.goTo = function(){
+        $window.location.hash = "/";
+    };
 });
-calApp.controller("EditAssetCtrl", function($scope, $stateParams, endpoint) {
+calApp.controller("EditAssetCtrl", function($scope, $stateParams, endpoint, $window) {
     
     $scope.initpalettecolors = function() {
         var container = $('.colors-palette');
@@ -93,4 +97,8 @@ calApp.controller("EditAssetCtrl", function($scope, $stateParams, endpoint) {
         $scope.a = data;
         $scope.rgb = {r: data.r, g: data.g, b: data.b}
     });
+    
+    $scope.goTo = function(){
+        $window.location.hash = "/";
+    };
 });

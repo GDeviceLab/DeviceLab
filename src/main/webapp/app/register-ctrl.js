@@ -49,7 +49,7 @@ calApp.controller("TitleCtrl", function($scope, endpoint, $window) {
                     $scope.page = "Add News";
                 }
                 else{
-                    $scope.page = "News";
+                    $scope.page = "News"; 
                 }
             }
             return loc[1];

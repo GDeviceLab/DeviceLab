@@ -59,6 +59,10 @@ calApp.controller("TitleCtrl", function($scope, endpoint, $window) {
         if(value == 'Stats'){
             value = 'My Stats';
         }
+        else if(value == 'Asset'){
+            value = 'Device';
+        }
+        
         $scope.page = value;
     });
     

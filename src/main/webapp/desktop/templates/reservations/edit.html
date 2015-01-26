@@ -19,6 +19,21 @@
                     <div class="form-group">
                         <label for="from">{{ 'FROM' | translate }}</label>
                         <select ng-model="r.start" class="form-control" id="from">
+                            <option value="0">0h</option>
+                            <option value="1">0h30</option>
+                            <option value="2">1h</option>
+                            <option value="3">1h30</option>
+                            <option value="4">2h</option>
+                            <option value="5">2h30</option>
+                            <option value="6">3h</option>
+                            <option value="7">3h30</option>
+                            <option value="8">4h</option>
+                            <option value="9">4h30</option>
+                            <option value="10">5h</option>
+                            <option value="11">5h30</option>
+                            <option value="12">6h</option>
+                            <option value="13">6h30</option>
+                            <option value="14">7h</option>
                             <option value="15">7h30</option>
                             <option value="16">8h</option>
                             <option value="17">8h30</option>
@@ -41,11 +56,37 @@
                             <option value="34">17h</option>
                             <option value="35">17h30</option>
                             <option value="36">18h</option>
+                            <option value="37">18h30</option>
+                            <option value="38">19h</option>
+                            <option value="39">19h30</option>
+                            <option value="40">20h</option>
+                            <option value="41">20h30</option>
+                            <option value="42">21h</option>
+                            <option value="43">21h30</option>
+                            <option value="44">22h</option>
+                            <option value="45">22h30</option>
+                            <option value="46">23h</option>
+                            <option value="47">23h30</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="to">{{ 'TO' | translate }}</label>
                         <select ng-model="r.end" class="form-control" id="to">
+                            <option value="1">0h30</option>
+                            <option value="2">1h</option>
+                            <option value="3">1h30</option>
+                            <option value="4">2h</option>
+                            <option value="5">2h30</option>
+                            <option value="6">3h</option>
+                            <option value="7">3h30</option>
+                            <option value="8">4h</option>
+                            <option value="9">4h30</option>
+                            <option value="10">5h</option>
+                            <option value="11">5h30</option>
+                            <option value="12">6h</option>
+                            <option value="13">6h30</option>
+                            <option value="14">7h</option>
+                            <option value="15">7h30</option>
                             <option value="16">8h</option>
                             <option value="17">8h30</option>
                             <option value="18">9h</option>
@@ -68,52 +109,100 @@
                             <option value="35">17h30</option>
                             <option value="36">18h</option>
                             <option value="37">18h30</option>
+                            <option value="38">19h</option>
+                            <option value="39">19h30</option>
+                            <option value="40">20h</option>
+                            <option value="41">20h30</option>
+                            <option value="42">21h</option>
+                            <option value="43">21h30</option>
+                            <option value="44">22h</option>
+                            <option value="45">22h30</option>
+                            <option value="46">23h</option>
+                            <option value="47">23h30</option>
+                            <option value="48">24h</option>
                         </select>
                     </div>
                 </form>
-            <p>
-                <input cal-enable-owner="{{r.person}}" type="text" class="form-control" placeholder="{{ 'RESERVATION_TITLE' | translate }}" ng-model="r.title">
-            </p>
-            <p ng-show="r.person">
-                <input type="text" class="form-control" placeholder="{{ 'USER' | translate }}" ng-model="r.person" disabled>
-            </p>
-            <div class="alert alert-danger" ng-show="error.collision || error.deleted">
-                <p ng-show="error.collision">{{'ERR_COLLISION' | translate}}</p>
-                <p ng-show="error.deleted">{{'ERR_DELETED' | translate}}</p>
+                <p>
+                    <input cal-enable-owner="{{r.person}}" type="text" class="form-control" placeholder="{{ 'RESERVATION_STARTUP_NAME' | translate }}" ng-model="r.title">
+                </p>
+                <p ng-show="r.person">
+                    <input type="text" class="form-control" placeholder="{{ 'USER' | translate }}" ng-model="r.person" disabled>
+                </p>
+                <div class="alert alert-danger" ng-show="error.collision || error.deleted">
+                    <!--<p ng-show="error.collision">{{'ERR_COLLISION' | translate}}</p>-->
+                    <p ng-show="error.deleted">{{'ERR_DELETED' | translate}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h1 class="panel-title">{{'PURPOSE_TITLE_PANEL' | translate}}</h1>
+            </div>
+            <div class="panel-body">
+                <form role="form">
+                    <div class="form-group">
+                        <label>{{ 'PURPOSE' | translate }}</label>
+                        <select ng-model="purpose.type" class="form-control" ng-change="changePurposeType()">
+                            <option value="MOBILE_APP">{{'MOBILE_APP' | translate}}</option>
+                            <option value="WEB_SITE">{{'WEB_SITE' | translate}}</option>
+                            <option value="OTHER">{{'OTHER' | translate}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group" ng-show="purpose.titlePlaceHolder != ''">
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>{{ 'PURPOSE_TITLE' | translate }}</label>
+                                <input class="form-control" placeholder="{{purpose.titlePlaceHolder | translate}}" ng-change="changePurposeTitle()"
+                                       ng-model="purpose.title">
+                            </div>
+                            <div class="col-md-6">
+                                <label>{{ 'PURPOSE_YOUR_LIST' | translate }}</label>
+                                <select ng-model="selectedPurDS" class="form-control" ng-change="selectPurpose()">
+                                    <option value='' disabled selected style='display:none;'>{{'PURPOSE_CHOOSE' | translate}}</option>
+                                    <option value="{{purDS}}" ng-repeat="purDS in listPurpose">{{purDS.type | translate}} - {{purDS.title}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h1 class="panel-title">{{'DEVICES' | translate}}</h1>
+            </div>
+            <div class="panel-body">
+                <table class="multiselect">
+                    <tr ng-repeat="asset in sassets">
+                        <td ng-click="removeAsset(asset.number)" cal-show-owner="{{r.person}}">
+                            <span class="icon-x-altx-alt"></span>
+                        </td>
+                        <td>
+                            <select ng-show="!asset.raw || asset.raw.active" cal-enable-owner="{{r.person}}" class="form-control" ng-model="asset.value" ng-options="t.id as t.name for t in assets"></select>
+                            <input class="form-control" ng-hide="!asset.raw || asset.raw.active" type="text" value="{{asset.raw.name}} ({{'DEVICE_DELETED'|translate}})" disabled />
+                        </td>
+                    </tr>
+                    <tr cal-show-owner="{{r.person}}">
+                        <td ng-click="addAsset()">
+                            <span class="icon-plus-square"></span>
+                        </td>
+                        <td>
+                            <select class="form-control" ng-options="t.id as t.name for t in assets" disabled></select>
+                        </td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>
 </div>
-<div class="col-md-4">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h1 class="panel-title">{{'DEVICES' | translate}}</h1>
-        </div>
-        <div class="panel-body">
-            <table class="multiselect">
-                <tr ng-repeat="asset in sassets">
-                    <td ng-click="removeAsset(asset.number)" cal-show-owner="{{r.person}}">
-                        <span class="icon-x-altx-alt"></span>
-                    </td>
-                    <td>
-                        <select ng-show="!asset.raw || asset.raw.active" cal-enable-owner="{{r.person}}" class="form-control" ng-model="asset.value" ng-options="t.id as t.name for t in assets"></select>
-                        <input class="form-control" ng-hide="!asset.raw || asset.raw.active" type="text" value="{{asset.raw.name}} ({{'DEVICE_DELETED'|translate}})" disabled />
-                    </td>
-                </tr>
-                <tr cal-show-owner="{{r.person}}">
-                    <td ng-click="addAsset()">
-                        <span class="icon-plus-square"></span>
-                    </td>
-                    <td>
-                        <select class="form-control" ng-options="t.id as t.name for t in assets" disabled></select>
-                    </td>
-                </tr>
-            </table>
-        </div>
-    </div>
+<div class="alert alert-danger" ng-show="error.mandatoryMessage">
+    <p>{{error.text | translate}}</p>
 </div>
-</div>
-
 <button cal-show-owner="{{r.person}}" class="btn btn-primary btn-block" ng-click="submit()">{{'BUTTON_SAVE' | translate}}</button>
 <a class="btn btn-danger btn-block" href="#/calendar">{{'BUTTON_CANCEL' | translate}}</a>
 <button cal-show-owner="{{r.person}}" ng-show="r.id" class="btn btn-danger btn-block" ng-click="delete()">{{'BUTTON_DELETE' | translate}}</button>

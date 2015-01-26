@@ -1,0 +1,28 @@
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">{{'PROFILE_EDIT' | translate}}</div>
+            <div class="panel-body">
+                <form role="form">
+                    <div class="form-group">
+                        <label>{{'PROFILE_EMAIL' | translate}}</label>
+                        <input type="text" class="form-control" ng-model="me.mail"
+                               ng-disabled="true"
+                               placeholder="{{'REGISTER_USERNAME' | translate}}">
+                    </div>
+                    <div class="form-group">
+                        <label>{{'REGISTER_USERNAME' | translate}}</label>
+                        <input type="text" class="form-control" ng-model="me.name"
+                               placeholder="{{'REGISTER_USERNAME' | translate}}">
+                    </div>
+                    <div class="form-group">
+                        <label>{{'REGISTER_STARTUP_NAME' | translate}}</label>
+                        <input type="text" class="form-control"  ng-model="me.startupName"
+                               placeholder="{{'REGISTER_STARTUP_NAME' | translate}}">
+                    </div>
+                    <button type="submit" class="btn btn-default" ng-click="submit()">{{'PROFILE_UPDATE' | translate}}</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

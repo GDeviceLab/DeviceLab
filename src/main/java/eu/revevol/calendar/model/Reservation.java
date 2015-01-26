@@ -21,7 +21,11 @@ public class Reservation {
     @Index public String person;
     public int start;
     public int end;
-    @Index public Date date; 
+    @Index public Date date;
+    @Index public Long idPurpose;
+    @Index public String dayString;
+    
+    @Ignore public Purpose purpose;
 
     public List<Asset> getAssets() {
         List<Asset> r = new ArrayList<Asset>();

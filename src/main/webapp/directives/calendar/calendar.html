@@ -10,7 +10,10 @@
                 <span class="icon-chevron-left"></span>
             </td>
             <td class="cal-to-center">
-                {{date | date: "MMM yyyy"}}
+                <!--<span ng-click="visibilityCalendar()">{{date | date: "MMM yyyy"}}</span>-->
+                <button type="button" class="btn btn-link" ng-click="visibilityCalendar()" style="padding: 0px;">
+                    <h4 style="margin: 0px; padding: 0px;">{{date | date: "MMM yyyy"}}</h4>
+                </button>
             </td>
             <td class="cal-to-right" ng-click="changeMonth(1)">
                 <span class="icon-chevron-right"></span>

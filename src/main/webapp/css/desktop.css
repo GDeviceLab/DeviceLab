@@ -88,8 +88,74 @@ h1.panel-title {
 }
 
 #ack{
-    position:absolute;
+    position:fixed;
     bottom: 0;
-    font-weight: bold;
+    font-weight: 100;
     font-style: italic;
+    font-size: 50%;
+}
+
+#ack-image{
+    position:fixed;
+    bottom: 0;
+}
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+/*
+    Color picker
+*/
+
+.colors-palette{
+  max-width: 300px;
+}
+
+.color-single-box {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin: 3px 2px;
+  border: 1px solid black;
+  transition: 0.1s ease-in-out;
+}
+
+.color-single-box:hover{
+  opacity: 1;
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+}
+
+.hour-picker-v-scroll-bar::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
+}
+
+.hour-picker-v-scroll-bar::-webkit-scrollbar
+{
+	width: 6px;
+	background-color: #F5F5F5;
+}
+
+.hour-picker-v-scroll-bar::-webkit-scrollbar-thumb
+{
+	background-color: #b3b6b6;
 }

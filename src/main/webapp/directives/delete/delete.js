@@ -2,7 +2,8 @@ calApp.directive("calDelete", function(){
     return {
         scope: {
             action: '&',
-            bClass: '@'
+            bClass: '@',
+            propagation: '='
         },
         restrict: 'E',
         templateUrl: "/directives/delete/delete.html",
@@ -11,6 +12,14 @@ calApp.directive("calDelete", function(){
             $scope.delete = function(){
                 $scope.action();
                 $scope.show = false;
+                event.stopPropagation();
+            };
+            
+            $scope.changeShow = function(value){
+                $scope.show = value;
+                if($scope.propagation){
+                    event.stopPropagation();
+                }
             };
         }
     };

@@ -1,5 +1,5 @@
-<div snap-drawer>
-    <div ng-controller="MenuCtrl">
+<div snap-drawer ng-controller="MenuCtrl" style="overflow-x: hidden">
+    <div>
         <h2>{{myName()}}</h2>
         <p>
             <a href="#/calendar" snap-close><span class="icon-calendar"></span> {{'MENU_CALENDAR' | translate}}</a>
@@ -27,13 +27,25 @@
             <a href="#/location/list" snap-close><span class="icon-globe"></span> {{'MENU_LOCATIONS' | translate}}</a>
         </p>
         <p cal-show-local>
-            <a href="#/asset/list" snap-close><span class="icon-mobile-phone"></span> {{'MENU_DEVICES' | translate}}</a>
+            <a href="#/devices/list" snap-close><span class="icon-mobile-phone"></span> {{'MENU_DEVICES' | translate}}</a>
+        </p>
+        <p>
+            <a href="#/profile/edit/me/-1" snap-close><span class="icon-profile"></span> {{'PROFILE' | translate}}</a>
+        </p>
+        <p cal-show-global>
+            <a href="#/report/glob" snap-close><span class="icon-bars"></span> {{'REPORT' | translate}}</a>
         </p>
         <p>
             <a href="/logout" snap-close><span class="icon-times"></span> {{'MENU_LOGOUT' | translate}}</a>
         </p>
+        <div style="height: 160px;"></div>
     </div>
-    <p id="ack">
-        Developed by Google with the support of Revevol, Intel
-    </p>
+    <div id="ack-image" style="background-color: #fafafa">
+        <img ng-src="{{logo.url}}" style="max-height: 120px; max-width: 230px;"><br
+        <p id="ack">
+            <font size="1">Developed by Google</font>
+            <br>
+            <font size="1">with the support of Revevol, Intel</font>
+        </p>
+    </div>
 </div>

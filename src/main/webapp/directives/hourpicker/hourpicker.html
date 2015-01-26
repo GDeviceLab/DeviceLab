@@ -26,13 +26,13 @@
      >
     <p>{{event.title}}</p>
 </div>
-<ul id="{{id}}_h" style="user-select: none; width: 30px; float: left; padding-top: 0px; border-right: 1px solid darkgray;" class="hp-hours">
+<ul id="{{id}}_h" style="user-select: none; width: 48px; float: left; padding-top: 0px; border-right: 1px solid darkgray;" class="hp-hours">
     <li ng-repeat="hour in hours" data-value="{{hour}}" ng-if="hour < 24"
         style="height: 30px; text-align: right; border-bottom: 1px solid #d4d4d4;padding: 1px;font-size: 9;">
-        {{zeroPadding(hour)}}:00
+        {{hour + ":00" | localize}}
     </li>
 </ul>
-<ul id="{{id}}" touch-action="none" style="user-select: none; margin-left: 30px;" class="hp-picker">
+<ul id="{{id}}" touch-action="none" style="user-select: none; margin-left: 48px;" class="hp-picker">
     <li ng-repeat="hour in hours" data-value="{{1*min+1*hour}}" id="{{id}}_{{1*min+1*hour}}"
         style="height: 15px;border-bottom: 1px {{borderStriped(hour)}} #d4d4d4;font-size: 12;">
     </li>

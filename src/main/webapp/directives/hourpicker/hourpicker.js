@@ -113,7 +113,7 @@ calApp.directive("calHourPicker", function() {
                     var e = document.getElementById(id + "_" + "range");
                     e.style.top = (begin - 2*$scope.min) * h;
                     e.style.height = (end - begin + 1) * h;
-                    e.style.left = 31;
+                    e.style.left = 49;
                     e.style.width = w;
                     e.style.display = "block";
                 }

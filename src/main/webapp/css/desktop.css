@@ -234,7 +234,6 @@ h1.weekcal{
 */
 
 #ack{
-    position:fixed;
     bottom: 0;
     font-weight: 100;
     font-style: italic;
@@ -848,4 +847,14 @@ nav h3 {
 }
 .icon-star-o {
     color: #E1E0E2;
+}
+
+/*
+    MOBILE
+*/
+
+@media (max-width: 991px){
+    .news {
+        background-color: transparent;
+    }
 }

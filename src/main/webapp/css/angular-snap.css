@@ -32,7 +32,7 @@ snap-drawer,
 .x-snap-drawer,
 .snap-drawer {
   position: absolute;
-  height: auto;
+  height: 100vh;
   top: 0;
   bottom: 0;
   overflow: auto;

@@ -17,6 +17,10 @@
         <servlet-class>eu.revevol.calendar.servlet.LogoUpload</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>AlignmentServlet</servlet-name>
+        <servlet-class>eu.revevol.calendar.servlet.AlignmentServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>PurgeServlet</servlet-name>
         <servlet-class>eu.revevol.calendar.util.PurgeServlet</servlet-class>
     </servlet>
@@ -35,6 +39,10 @@
     <servlet-mapping>
         <servlet-name>LogoUpload</servlet-name>
         <url-pattern>/desktop/LogoUpload</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AlignmentServlet</servlet-name>
+        <url-pattern>/AlignmentServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>PurgeServlet</servlet-name>
@@ -131,4 +139,5 @@
         <filter-name>TokenFilter</filter-name>
         <url-pattern>/_ah/api/setup/v1/*</url-pattern>
     </filter-mapping>
-</web-app>
+AlignementServlet
+    </web-app>

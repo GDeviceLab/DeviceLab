@@ -47,6 +47,7 @@ calApp.controller("ListLocationCtrl", function($scope, endpoint, $window) {
     };
     
     $scope.getList();
+    console.log("test!");
 });
 calApp.controller("EditLocationCtrl", function($scope, $stateParams, endpoint, $window, $upload, $http, $timeout) {
     $scope.id = $stateParams.id;

@@ -103,6 +103,24 @@ calApp.controller("NewReservationCtrl", function($scope, $stateParams, $window, 
         }
     });
     
+    function getRealDateString(date,offset) {
+        if(date != null){
+            var lDay = date.getDate()+ offset*1;
+            var lMonth = date.getMonth() + 1;
+            var lYear = date.getFullYear();
+            
+            if (lDay < 10) {
+                lDay = '0' + lDay;
+            }
+            
+            if (lMonth < 10) {
+                lMonth = '0' + lMonth;
+            }
+            return lYear + lMonth + lDay;
+        }
+        return null;
+    }
+    
     $scope.submit = function() {
         $scope.error.mandatoryMessage = false;
         if($scope.purpose.title == null
@@ -119,8 +137,9 @@ calApp.controller("NewReservationCtrl", function($scope, $stateParams, $window, 
         if(!$scope.error.mandatoryMessage){
             $scope.r.assets = [];
             $scope.r.date = $scope.date;
-            $scope.r.dayString = $scope.date.getFullYear()+"#"+$scope.date.getMonth()+"#"+$scope.date.getDate();
-            console.log("DayString: " + $scope.r.dayString);
+            $scope.r.realDate = getRealDateString($scope.date,0);
+            
+            console.log("Real Date: " + $scope.r.realDate);
             
             console.log($scope.r.date);
             for (var i = 0; i < $scope.sassets.length; i++) {

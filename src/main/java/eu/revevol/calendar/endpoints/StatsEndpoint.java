@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.inject.Named;
 
@@ -274,15 +275,15 @@ public class StatsEndpoint {
         if(pojoReport != null
             && pojoReport.dateFrom != null
             && pojoReport.dateTo != null){
-            logger.info("FROM: " + new Gson().toJson(pojoReport.dateFrom.toString()));
-            logger.info("TO: " + new Gson().toJson(pojoReport.dateTo.toString()));
-            
+            logger.log(Level.INFO, "{0} - {1}", 
+                    new Object[]{pojoReport.dateFrom, 
+                                    pojoReport.dateTo});
             
             reservations = ObjectifyService.ofy().load()
                 .type(Reservation.class)
                 .filter("person", pojoReport.idPerson)
-                .filter("date >= ", pojoReport.dateFrom)
-                .filter("date < ", pojoReport.dateTo)
+                .filter("realDate >= ", pojoReport.dateFrom)
+                .filter("realDate < ", pojoReport.dateTo)
                 .list();
         }
         else{

@@ -3191,7 +3191,7 @@ body .jumbotron-material-lightgrey,
 }
 .checkbox input[type=checkbox]:checked ~ .check:after,
 .checkbox-default input[type=checkbox]:checked ~ .check:after {
-  background-color: #0f9d58;
+  /*background-color: #0f9d58;*/
 }
 .checkbox-primary input[type=checkbox]:checked ~ .check:after {
   background-color: #009587;
@@ -3264,7 +3264,7 @@ body .jumbotron-material-lightgrey,
 }
 .checkbox input[type=checkbox]:checked ~ .check:before,
 .checkbox-default input[type=checkbox]:checked ~ .check:before {
-  color: #4caf50;
+  /*color: #4caf50;*/
 }
 .checkbox-primary input[type=checkbox]:checked ~ .check:before {
   color: #009587;

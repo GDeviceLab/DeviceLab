@@ -5,6 +5,10 @@ calApp.controller("NewNewsCtrl", function($scope, $window, endpoint) {
             $window.location.hash = "/";
         });
     };
+    
+    $scope.goTo = function(){
+        $window.location.hash = "/";
+    };
 });
 calApp.controller("EditNewsCtrl", function($scope, $window, $stateParams, endpoint) {
     endpoint.news.get($stateParams.id).success(function(data) {
@@ -14,6 +18,10 @@ calApp.controller("EditNewsCtrl", function($scope, $window, $stateParams, endpoi
         endpoint.news.put($scope.n).success(function() {
             $window.location.hash = "/";
         });
+    };
+    
+    $scope.goTo = function(){
+        $window.history.back();
     };
 });
 calApp.controller("ListNewsCtrl", function($scope, endpoint) {

@@ -1,6 +1,6 @@
 <div class="edit-location-page">
 <div class="row">
-    <div class="col-md-3" ng-show="id">
+    <div class="col-md-4" ng-show="id">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">{{'LOCATION_LOGO' | translate}}</h3>
@@ -10,23 +10,24 @@
                     <div class="col-md-6">
                         <img src="{{logoUrl}}" style="width: 74px;">
                     </div>
-                    <div class="col-md-4" style="margin-top: 40px;">
+                    <div class="col-md-8" style="margin-top: 20px;">
                         <span class="btn btn-default btn-file">
                             <img src="/css/button-loader.gif" style="height: 20px;" ng-show="uploading"/>
                             {{'UPLOAD_LOGO' | translate}}
                             <input type="file" ng-file-select="onFileSelect($files)" class="uploadBtn" accept="image/*"/>
                         </span>
+                        <h6>{{'PREFERRED_LOGO_SIZE' | translate}}</h6>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-md-5">
+    <div class="col-md-4">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">{{'LOCATION_NAME' | translate}}</h3>
             </div>
-            <div class="panel-body" style="height: 105px;">
+            <div class="panel-body">
                 <div class="row form-group">
                     <div class="col-md-8">
                         <div class="form-control-wrapper">
@@ -46,7 +47,7 @@
             <div class="panel-heading">
                 <h3 class="panel-title">{{'DEVICE_OVERVIEW' | translate}}</h3>
             </div>
-            <div class="panel-body" style="height: 105px;">
+            <div class="panel-body">
                 <div class="pull-left">
                     <button type="button" ng-click="goTo('#/location/history/'+id)" class="btn btn-link">{{'RESERVATION_HISTORY' | translate}}</button><br>
                     <button type="button" ng-click="goTo('#/location/currentStatusReservation/'+id)" class="btn btn-link">{{'CURRENT_STATUS_RESERVATIONS' | translate}}</button>

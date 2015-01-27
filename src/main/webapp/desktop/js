@@ -29,3 +29,5 @@
 ../directives/delete/delete.js
 ../directives/linkify/linkify.js
 ../directives/devicepicker/devicepicker.js
+../js/bootstrap.js
+../directives/checkboxes/checkboxes.js

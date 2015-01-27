@@ -23,7 +23,7 @@ calApp.controller("ApplyLocationCtrl", function($scope, endpoint) {
         }
     });
 });
-calApp.controller("ListLocationCtrl", function($scope, endpoint) {
+calApp.controller("ListLocationCtrl", function($scope, endpoint, $window) {
     
     $scope.getList = function(){
         endpoint.location.list().success(function(data) {
@@ -35,6 +35,15 @@ calApp.controller("ListLocationCtrl", function($scope, endpoint) {
         endpoint.location.delete(locationId).success(function(data) {
             $scope.getList();
         });
+    };
+    
+    $scope.goTo = function(value){
+        $window.location.hash = value;
+    };
+    
+    $scope.test = function(event){
+        console.log(event);
+        
     };
     
     $scope.getList();

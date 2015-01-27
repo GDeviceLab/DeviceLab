@@ -128,10 +128,15 @@
     "ERROR_REPORT_SELECTED":"Select a report type",
     "REPORT_USAGE_COUNTER":"Usage purpose counter",
     "ERR_MANDATORY_FIELDS":"All fields are mandatory",
-    "ERR_MANDATORY_PURPOSE":"Purpose fields are mandatory",
+    "ERR_MANDATORY_PURPOSE_TYPE":"Purpose type field is mandatory",
+    "ERR_MANDATORY_PURPOSE_NAME":"Purpose name field is mandatory",
+    "ERR_MANDATORY_DEVICE":"At least a device is mandatory",
     "PURPOSE_TITLE_PANEL":"You want to test...",
     "REPORT_BOOKING_NUM":"Reservation number",
     "REPORT_BOOKING_HOUR":"Reservation Hours (past and future)",
     "PREVIOUS_5_DAYS":"Previous 5 days",
-    "NEXT_5_DAYS":"Next 5 days"
+    "NEXT_5_DAYS":"Next 5 days",
+    "NAME":"Name",
+    "CANCEL":"Cancel",
+    "PREFERRED_LOGO_SIZE":"*preferred size: width 230px, height 120px"
 }

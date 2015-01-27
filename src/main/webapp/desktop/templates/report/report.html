@@ -66,11 +66,12 @@
         </div>
     </div>
 </div>
-<div class="container">
-    <p class="alert alert-danger" ng-show="error">
-        {{error| translate}}
-    </p>
-    <div class="row">
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <p class="alert alert-danger" ng-show="error">
+            {{error| translate}}
+        </p>
         <a ng-click="submit()" class="btn btn-primary btn-block">{{'SUBMIT'| translate}}</a>
     </div> 
 </div>
+

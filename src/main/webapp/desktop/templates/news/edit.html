@@ -84,7 +84,10 @@
                                     </div>
                             <!-- <textarea class="form-control" rows="3" placeholder="{{'NEWS_CONTENT' | translate}}" ng-model="n.content"></textarea> -->
                         </p>
-                        <button class="btn btn-primary btn-block" ng-click="submit()">{{'BUTTON_SAVE' | translate}}</button>
+                        <div style="float: right">
+                            <button class="btn btn-primary" ng-click="submit()">{{'BUTTON_SAVE' | translate}}</button>
+                            <button class="btn btn-danger" ng-click="goTo()">{{'CANCEL' | translate}}</button>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -828,6 +828,10 @@ nav h3 {
     padding-right: 0px !important;
 }
 
+.no-padding-page h5{
+    padding:20px;
+}
+
 .edit-location-page .panel-title{
     display: block;
     width: 100%;

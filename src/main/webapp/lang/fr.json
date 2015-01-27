@@ -128,11 +128,16 @@
     "ERROR_REPORT_SELECTED":"Choisissez un type de rapport",
     "REPORT_USAGE_COUNTER":"Usage raison compteur",
     "ERR_MANDATORY_FIELDS":"Tous les champs sont obligatoires",
-    "ERR_MANDATORY_PURPOSE":"Raison champs sont obligatoires",
+    "ERR_MANDATORY_PURPOSE_TYPE":"Champ Type de But est obligatoire",
+    "ERR_MANDATORY_PURPOSE_NAME":"But champ Nom est obligatoire",
+    "ERR_MANDATORY_DEVICE":"Au moins un dispositif est obligatoire",
     "PURPOSE_TITLE_PANEL":"Vous voulez tester ...",
     "REPORT_BOOKING_NUM":"Numéro de réservation",
     "REPORT_BOOKING_HOUR":"Heures de réservation ( passées et futures )",
     "PREVIOUS_5_DAYS":"Précédent 5 journées",
-    "NEXT_5_DAYS":"Prochaine 5 journées"
+    "NEXT_5_DAYS":"Prochaine 5 journées",
+    "NAME":"Nom",
+    "CANCEL":"Annuler",
+    "PREFERRED_LOGO_SIZE":"*taille préférée: largeur 230px, hauteur 120px"
    
 }

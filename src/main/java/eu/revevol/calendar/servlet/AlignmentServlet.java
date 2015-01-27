@@ -43,8 +43,10 @@ public class AlignmentServlet extends HttpServlet{
         if(service.isUserAdmin()){
             try {
                 alignMethod();
+                resp.getWriter().print("Finish! ...refresh the app");
             } catch (ParseException ex) {
                 Logger.getLogger(AlignmentServlet.class.getName()).log(Level.SEVERE, null, ex);
+                resp.getWriter().print(Methods.printStackStrace(ex));
             }
         }
         else{

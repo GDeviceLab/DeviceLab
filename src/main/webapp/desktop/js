@@ -7,6 +7,7 @@
 ../js/libs/angular-snap.js
 ../js/libs/angular-translate.min.js
 ../js/libs/angular-translate-static-loader.min.js
+../js/libs/angular-file-upload.min.js
 ../app/route.js
 ../app/filters.js
 ../app/lang.js
@@ -19,6 +20,7 @@
 ../app/reservation-ctrl.js
 ../app/news-ctrl.js
 ../app/stats-ctrl.js
+../app/reportglobal-ctrl.js
 ../directives/hourpicker/hourpicker.js
 ../directives/calendar/calendar.js
 ../directives/bmenu/bmenu.js
@@ -29,5 +31,5 @@
 ../directives/delete/delete.js
 ../directives/linkify/linkify.js
 ../directives/devicepicker/devicepicker.js
-../js/bootstrap.js
 ../directives/checkboxes/checkboxes.js
+../js/bootstrap.js

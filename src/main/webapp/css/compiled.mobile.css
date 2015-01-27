@@ -49,7 +49,7 @@ transition: bottom 0.2s linear;
 -moz-overflow-scrolling: touch;
 -o-overflow-scrolling: touch;
 overflow-scrolling: touch;
-width: 265px;
+width: 266px;
 }
 .snap-content {
 z-index: 2;
@@ -97,6 +97,7 @@ font-weight: normal;
 font-variant: normal;
 text-transform: none;
 line-height: 1;
+color: white;
 
 /* Better Font Rendering =========== */
 -webkit-font-smoothing: antialiased;
@@ -369,6 +370,23 @@ bottom: 0;
 font-weight: bold;
 font-style: italic;
 }
+
+.hour-picker-v-scroll-bar::-webkit-scrollbar-track
+{
+-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+background-color: #F5F5F5;
+}
+
+.hour-picker-v-scroll-bar::-webkit-scrollbar
+{
+width: 6px;
+background-color: #F5F5F5;
+}
+
+.hour-picker-v-scroll-bar::-webkit-scrollbar-thumb
+{
+background-color: #b3b6b6;
+}
 /*
 Created on : 1 avr. 2014, 16:01:30
 Author     : Clement <clement.hannicq@revevol.eu>
@@ -396,20 +414,16 @@ vertical-align: middle;
 .modal-pane{
 text-align: justify;
 padding: 15px;
-max-width: 300px;
+max-width: 450px;
 margin-right: auto;
 margin-left: auto;
-margin-top: 30px;
+margin-top: 100px;
 margin-bottom: auto;
-border: 1px solid rgb(10,10,10);
 border-radius: 7px;
-background:#4a4d4e;
-color: white;
+background:white;
+color: black;
 }
 
-.modal div h1{
-text-align: center;
-}
 
 .modal div input{
 width: 100%
@@ -429,10 +443,8 @@ Created on : 25 mars 2014, 15:52:40
 Author     : Clement <clement.hannicq@revevol.eu>
 */
 .range{
-background:rgba(170,0,0,0.5);
-border-top: 1px solid rgba(170,0,0,1);
-border-bottom: 1px solid rgba(170,0,0,1);
-border-left: 1px solid rgba(170,0,0,1);
+background:#9BCB64;
+border-radius:10px;
 position: absolute;
 display: none;
 overflow: hidden;
@@ -462,6 +474,10 @@ ul.hp-hours, .hp-hours li, ul.hp-picker, .hp-picker li{
 margin: 0px;
 padding: 0px;
 display: block;
+
+}
+ul.hp-picker li:nth-child(odd){
+border-bottom: 2px solid #EFEFEF;
 }
 /*
 Created on : 26 mars 2014, 12:00:02
@@ -471,13 +487,12 @@ h3.cal{
 text-align: center;
 }
 
+
 table.cal{
 margin-right: auto;
 margin-left: auto;
 table-layout: fixed;
 border-collapse: collapse;
-margin-top: 7px;
-margin-bottom: 7px;
 color: black;
 }
 
@@ -488,11 +503,19 @@ text-align: center;
 }
 
 .other_month{
-background-color: #9daca9;
+color: #E1E0E2;
 }
 
 .selected {
-background-color: #ec514e;
+background-color: #FFB200;
+height: 30px;
+width: 30px;
+display: block;
+border-radius: 100%;
+padding-top: 7px;
+padding-bottom: 7px;
+text-align: center;
+margin: auto;
 }
 
 .today {
@@ -501,7 +524,6 @@ color: white;
 
 .day-of-week{
 font-size: 0.8rem;
-border-bottom: 1px solid #9daca9;
 }
 
 .cal-to-left{
@@ -516,6 +538,25 @@ font-weight: bold;
 .cal-to-right{
 text-align: right;
 }
+table.cal tbody{
+background-color: #EFEFEF;
+}
+.week-in-cal{
+height: 45px;
+font-size: 10pt;
+}
+table.cal.cal-top tbody {
+background-color: #E1E0E2;
+}
+
+.cal-month .panel-body {
+background-color: #EFEFEF;
+padding-bottom: 20px;
+/*=======
+.panel-title{
+font-size: 15px;
+>>>>>>> revevol-phase2
+}*/
 .menu-button{
 height: 3em;
 width: 3em;

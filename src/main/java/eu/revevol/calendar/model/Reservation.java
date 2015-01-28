@@ -22,6 +22,7 @@ public class Reservation {
     public int start;
     public int end;
     @Index public Date date;
+    @Index public String realDate; //this is the real date used for the search and matching in datastore filter
     @Index public Long idPurpose;
     @Index public String dayString;
     

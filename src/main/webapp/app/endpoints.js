@@ -147,9 +147,9 @@ calApp.factory('endpoint', ['$http', '$rootScope', '$window', '$q', function($ht
             return $http.get(url("reservation", "get", {location: location, id: id}))
                     .success(success).error(error);
         };
-        service.res.list = function(date) {
+        service.res.list = function(realDateNow) {
             loading++;
-            return $http.get(url("reservation", "list", {location: location, date: new Date(date).toJSON()}))
+            return $http.get(url("reservation", "list", {location: location, date: realDateNow}))
                     .success(success).error(error);
         };
         service.res.put = function(reservation,purpose) {

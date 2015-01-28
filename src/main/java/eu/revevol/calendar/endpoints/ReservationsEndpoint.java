@@ -194,9 +194,9 @@ public class ReservationsEndpoint {
          * 2. Then control all the current reservation to connect them to the device list
          */
         Date todayInit = Methods.getGMTTime(Methods.getZeroTimeOfDay().getTime());
-        String todayString = (1900+todayInit.getYear())+"#"+todayInit.getMonth()+"#"+todayInit.getDate();
+        String todayString = Methods.getRealDate(todayInit);
         logger.info("today init " + todayString);
-        List<Reservation> resList = ObjectifyService.ofy().load().type(Reservation.class).filter("dayString", todayString).list();
+        List<Reservation> resList = ObjectifyService.ofy().load().type(Reservation.class).filter("realDate", todayString).list();
         logger.info("Resultant list by filter "+resList.size());
         for (Reservation resObj : resList) {
             //take in consideration only reservation in time with now

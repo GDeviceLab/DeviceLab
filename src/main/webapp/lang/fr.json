@@ -138,6 +138,7 @@
     "NEXT_5_DAYS":"Prochaine 5 journées",
     "NAME":"Nom",
     "CANCEL":"Annuler",
-    "PREFERRED_LOGO_SIZE":"*taille préférée: largeur 230px, hauteur 120px"
+    "PREFERRED_LOGO_SIZE":"*taille préférée: largeur 230px, hauteur 120px",
+    "GMT_OFFSET":"GMT Offset"
    
 }

@@ -133,10 +133,11 @@
     "ERR_MANDATORY_DEVICE":"At least a device is mandatory",
     "PURPOSE_TITLE_PANEL":"You want to test...",
     "REPORT_BOOKING_NUM":"Reservation number",
-    "REPORT_BOOKING_HOUR":"Reservation Hours (past and future)",
+    "REPORT_BOOKING_HOUR":"Reservation Hours",
     "PREVIOUS_5_DAYS":"Previous 5 days",
     "NEXT_5_DAYS":"Next 5 days",
     "NAME":"Name",
     "CANCEL":"Cancel",
-    "PREFERRED_LOGO_SIZE":"*preferred size: width 230px, height 120px"
+    "PREFERRED_LOGO_SIZE":"*preferred size: width 230px, height 120px",
+    "GMT_OFFSET":"- Select GMT Offset -"
 }

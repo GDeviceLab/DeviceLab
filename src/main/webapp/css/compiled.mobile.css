@@ -33,7 +33,7 @@ snap-drawer,
 .x-snap-drawer,
 .snap-drawer {
 position: absolute;
-height: auto;
+height: 100vh;
 top: 0;
 bottom: 0;
 overflow: auto;
@@ -476,8 +476,15 @@ padding: 0px;
 display: block;
 
 }
-ul.hp-picker li:nth-child(odd){
+ul.hp-picker li:first-child{
+border-top: 2px solid #EFEFEF;
+}
+ul.hp-picker li:nth-child(even){
 border-bottom: 2px solid #EFEFEF;
+}
+
+ul.hp-picker li:last-child{
+border-bottom: 0px;
 }
 /*
 Created on : 26 mars 2014, 12:00:02

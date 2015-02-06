@@ -6,6 +6,7 @@
      max-height: 80%;
      overflow: auto;
      overflow-x: hidden;
+     padding-top: 10px;
      " class="hour-picker-v-scroll-bar">
 <div id="{{id}}_range" class="range noclick"></div>
 <div id="{{event.id}}_range" class="range inside" ng-repeat="event in events | reservations: filter" 
@@ -24,28 +25,15 @@
      >
     <p style="text-align: center; color: white;">{{event.title}}</p>
 </div>
-<ul id="{{id}}_h" style="user-select: none; width: 25px; float: left; margin-top: 18px;" class="hp-hours">
-    <li ng-repeat="hour in hours" data-value="{{hour}}" style="text-align: center;" class="light hp-hours-time">
-        {{hour}}:00
+<ul id="{{id}}_h" style="user-select: none; width: 46px; float: left; font-size: 10pt; margin-top: -10px;" class="hp-hours">
+    <li ng-repeat="hour in hours" data-value="{{hour}}" data-value="{{hour}}" ng-if="hour < 24" style="text-align: center;" class="light hp-hours-time">
+        {{hour | localize}}
     </li>
 </ul>
 <ul id="{{id}}" touch-action="none" style="user-select: none; margin-left: 46px; margin-right: 5px;" class="hp-picker">
     <li ng-repeat="hour in hours" data-value="{{1*min+1*hour-1}}" id="{{id}}_{{1*min+1*hour-1}}" class="hp-picker-lines">
     </li>
     <li ng-repeat="hour in hours" data-value="{{1*max+1*hour}}" id="{{id}}_{{1*max+1*hour}}" class="hp-picker-lines">
-<!-- <ul id="{{id}}_h" style="user-select: none; width: 30px; float: left; padding-top: 0px; border-right: 1px solid darkgray;" class="hp-hours">
-    <li ng-repeat="hour in hours" data-value="{{hour}}" ng-if="hour < 24"
-        style="height: 30px; text-align: right; border-bottom: 1px solid #d4d4d4;padding: 1px;font-size: 9;">
-        {{zeroPadding(hour)}}:00
-    </li>
-</ul>
-<ul id="{{id}}" touch-action="none" style="user-select: none; margin-left: 30px;" class="hp-picker">
-    <li ng-repeat="hour in hours" data-value="{{1*min+1*hour}}" id="{{id}}_{{1*min+1*hour}}"
-        style="height: 15px;border-bottom: 1px {{borderStriped(hour)}} #d4d4d4;font-size: 12;">
-    </li>
-    <li ng-repeat="hour in hours" data-value="{{1*max+1*hour+1}}" id="{{id}}_{{1*max+1*hour+1}}" ng-if="hour < 23"
-        style="height: 15px;border-bottom: 1px {{borderStriped(hour+1)}} #d4d4d4;font-size: 12;"> -->
-<!-- >>>>>>> upstream/master -->
     </li>
 </ul>
 </div>

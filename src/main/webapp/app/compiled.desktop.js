@@ -1346,6 +1346,25 @@ return Math.floor(input/2) + "h30";
 }
 };
 });
+
+// calApp.filter('localize', function() {
+//     return function(input){
+//         var hours = input.split(":")[0];
+//         var minutes = input.split(":")[1];
+//         var d = new Date(2015, 0, 21, hours, minutes);
+//         var options = { hour:'numeric', minute: 'numeric'};
+//         return d.toLocaleTimeString(window.navigator.language,options);
+//     };
+// });
+
+calApp.filter('localize', function() {
+return function(input){
+var hours = input;
+var d = new Date(2015, 0, 21, hours);
+var options = { hour:'numeric'};
+return d.toLocaleTimeString(window.navigator.language,options);
+};
+});
 calApp.config(function($translateProvider) {
 $translateProvider.useStaticFilesLoader({
 prefix: '/lang/',
@@ -3033,7 +3052,7 @@ var end = Math.max(s, f);
 var h = document.getElementById(id + "_" + begin).offsetHeight;
 var w = document.getElementById(id + "_" + begin).offsetWidth;
 var e = document.getElementById(id + "_" + "range");
-e.style.top = (begin - 2*$scope.min) * h;
+e.style.top = (begin - 2*$scope.min) * h + 10;
 e.style.height = (end - begin + 1) * h;
 e.style.left = 51;
 e.style.width = w - 34;

@@ -36,6 +36,13 @@ ul.hp-hours, .hp-hours li, ul.hp-picker, .hp-picker li{
     display: block;
 
 }
-ul.hp-picker li:nth-child(odd){
+ul.hp-picker li:first-child{
+    border-top: 2px solid #EFEFEF;
+}
+ul.hp-picker li:nth-child(even){
     border-bottom: 2px solid #EFEFEF;
+}
+
+ul.hp-picker li:last-child{
+    border-bottom: 0px;
 }

@@ -1,4 +1,4 @@
-<div style="height:80px; overflow-y: scroll">
+<div ng-style="{'height': heightpx}" style="overflow-y: scroll;">
     <div ng-repeat="d in devices">
         <div class="form-group devices-select">
             <div class="checkbox">
@@ -6,27 +6,7 @@
                     <input ng-click="click()" type="checkbox"><span class="check" style="color:rgb({{d.r}},{{d.g}},{{d.b}});"></span> {{d.name}}
                 </label>
             </div>
-<!-- ======= -->
-<!--<div ng-style="height:{{heightpx}}px; overflow-y: scroll">-->
-<!-- <div ng-style="{'height': heightpx}" style="overflow-y: scroll;">
-    <div ng-repeat="d in devices" 
-         style=" cursor: pointer;
-         background-color: {{background()}};"
-         ng-click="click()"
-         >
-        <div style="
-             height:14px;
-             width: 14px;
-             margin:3px;
-             float:left;
-             background-color:rgb({{d.r}},{{d.g}},{{d.b}});"
-             ></div>
-        <div style="
-             margin:3px;
-             margin-left:23px;"
-             title="{{d.name}}">
-            {{d.name}} -->
-<!-- >>>>>>> upstream/master -->
+            </div>
         </div>
     </div>
-</div>
+

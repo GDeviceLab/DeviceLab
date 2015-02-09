@@ -43,31 +43,11 @@
                     </div>
 
 </div>
-<div ng-repeat="line in stats">
-    <div class="row results">
-        <div class="col-lg-4">
-            <a href="#/stats/device/{{line.asset.id}}">
-                {{line.asset.name}}
-            </a>
-        </div>
-        <div class="col-lg-4">
-            {{line.hoursPast | hours}} (+{{line.hoursFuture | hours}})
-        </div>
-<!-- <<<<<<< HEAD -->
-        <div class="col-lg-4">
-            {{line.count}} {{ 'reservations' | translate }}
-<!-- ======= -->
-        
-<!--         
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">{{ 'DEVICES' | translate }}</h3>
-            </div>
-            <table class="table table-hover">
+<table class="table table-hover">
                 <tr>
-                    <th><h5><strong>{{'NAME' | translate}}</strong></h5></th>
-                    <th><h5><strong>{{ 'REPORT_BOOKING_HOUR' | translate }}</strong></h5></th>
-                    <th><h5><strong>{{ 'REPORT_BOOKING_NUM' | translate }}</strong></h5></th>
+                    <th><h5>{{'NAME' | translate}}</h5></th>
+                    <th><h5>{{ 'REPORT_BOOKING_HOUR' | translate }}</h5></th>
+                    <th><h5>{{ 'REPORT_BOOKING_NUM' | translate }}</h5></th>
                 </tr>
                 <tr ng-repeat="line in stats">
                     <td>
@@ -75,14 +55,10 @@
                             {{line.asset.name}}
                         </a>
                     </td>
-                    <td>{{line.hoursPast | hours}} (+{{line.hoursFuture | hours}})</td>
+                    <td>{{line.hoursPast | hours}} <!--(+{{line.hoursFuture | hours}})--></td>
                     <td>{{line.count}} {{ 'reservations' | translate }}</td>
                 </tr>
-            </table> -->
-<!-- >>>>>>> upstream/master -->
-        </div>
-    </div> 
-</div>   
+            </table>   
 </div>
 </div>
 </div>

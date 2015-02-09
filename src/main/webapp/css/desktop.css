@@ -419,6 +419,17 @@ height: 20%;
     box-shadow: 0 3px 10px rgba(0,0,0,.23),0 3px 10px rgba(0,0,0,.16);
     border-radius: 2px;
     border: 0;
+    padding: 0;
+}
+
+.statsme-page .panel>.panel-body+.table, .panel>.panel-body+.table-responsive {
+    border-top: 0px;
+}
+
+.statsme-page td{
+    padding-left: 50px !important;
+    padding-top: 20px !important;
+    padding-bottom: 20px !important;
 }
 
 .statsme-page h5{
@@ -451,6 +462,7 @@ height: 20%;
     box-shadow: 0 3px 10px rgba(0,0,0,.23),0 3px 10px rgba(0,0,0,.16);
     border-radius: 2px;
     border: 0;
+    padding: 0;
 }
 
 .reports-page h5{
@@ -461,21 +473,17 @@ height: 20%;
     box-shadow: 0 0px 0px rgba(0, 0, 0, 0), 0 0px 0px rgba(0, 0, 0, 0); 
 }
 
-.reports-page .results{
-    font-size: 20px;
-    color: black;
-    border-bottom: 1px solid #EFEFEF;
-    padding: 20px;
-} 
-
-.reports-page .results a{
-    font-size: 20px;
-    color: black;
+.reports-page .panel>.panel-body+.table, .panel>.panel-body+.table-responsive {
+    border-top: 0px;
 }
 
-.reports-page .col-md-12 {
-    padding-left: 0px; 
-    padding-right: 0px; 
+.reports-page td{
+    padding-left: 50px !important;
+    padding-top: 20px !important;
+    padding-bottom: 20px !important;
+}
+.reports-page h5{
+    padding: 40px;
 }
 
 /* 
@@ -488,40 +496,47 @@ height: 20%;
     box-shadow: 0 3px 10px rgba(0,0,0,.23),0 3px 10px rgba(0,0,0,.16);
     border-radius: 2px;
     border: 0;
+    padding: 0;
 }
 
+.stats-devices .panel>.panel-body+.table, .panel>.panel-body+.table-responsive {
+    border-top: 0px;
+}
+
+.stats-devices td{
+    padding-left: 50px !important;
+    padding-top: 20px !important;
+    padding-bottom: 20px !important;
+}
 .stats-devices h5{
     padding: 40px;
 }
+
 .stats-devices .panel{
     margin-bottom: 0px !important;
       box-shadow: 0 0px 0px rgba(0, 0, 0, 0), 0 0px 0px rgba(0, 0, 0, 0); 
 }
 
-.stats-devices a {
-    color: white;
-}
-.stats-devices tr{
-    height: 100px;
-}
-.stats-devices tr td{
-    padding-top: 33px !important;
-    font-size: 20pt;
-    font-weight: 200;
+
+.device-results .panel>.panel-body+.table, .panel>.panel-body+.table-responsive {
+    border-top: 0px;
 }
 
+.device-results td{
+    padding-left: 50px !important;
+    padding-top: 20px !important;
+    padding-bottom: 20px !important;
+}
+.device-results h5{
+    padding: 40px;
+}
+.device h3{
+    font-size: 21px;
+}
 
-.stats-devices .results{
-    font-size: 20px;
-    color: black;
-    border-bottom: 1px solid #EFEFEF;
-    padding: 20px;
-} 
-
-.stats-devices .results a{
-    font-size: 20px;
-    color: black;
-} 
+.report-form .panel-heading{
+    font-size: 21px !important;
+}
 
 /*
     APPLY PAGE
@@ -595,7 +610,7 @@ background-color: #FFFFFF;
     RESERVATION PAGE
 */
 .reservationpage h1{
-    font-weight: 400;
+    font-weight: 300;
     font-size: 21px;
 }
 /*  
@@ -844,7 +859,7 @@ nav h3 {
 }
 
 .icon-star {
-    color: #E1E0E2;
+    color: #FFA70F;
 }
 .icon-star-o {
     color: #E1E0E2;
@@ -859,3 +874,103 @@ nav h3 {
         background-color: transparent;
     }
 }
+
+/* Spinner */
+body {
+  background-color: #eee;
+}
+
+.loader {
+  position: relative;
+  margin: 0px auto;
+  width: 100px;
+  height: 100px;
+  zoom: 1.7;
+}
+
+.circular {
+  -webkit-animation: rotate 2s linear infinite;
+          animation: rotate 2s linear infinite;
+  height: 100px;
+  position: relative;
+  width: 100px;
+}
+
+.path {
+  stroke-dasharray: 1,200;
+  stroke-dashoffset: 0;
+  -webkit-animation: dash 1.5s ease-in-out infinite, color 6s ease-in-out infinite;
+          animation: dash 1.5s ease-in-out infinite, color 6s ease-in-out infinite;
+  stroke-linecap: round;
+}
+
+@-webkit-keyframes rotate {
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes rotate {
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes dash {
+  0% {
+    stroke-dasharray: 1,200;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 89,200;
+    stroke-dashoffset: -35;
+  }
+  100% {
+    stroke-dasharray: 89,200;
+    stroke-dashoffset: -124;
+  }
+}
+@keyframes dash {
+  0% {
+    stroke-dasharray: 1,200;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 89,200;
+    stroke-dashoffset: -35;
+  }
+  100% {
+    stroke-dasharray: 89,200;
+    stroke-dashoffset: -124;
+  }
+}
+@-webkit-keyframes color {
+  100%, 0% {
+    stroke: #d62d20;
+  }
+  40% {
+    stroke: #0057e7;
+  }
+  66% {
+    stroke: #008744;
+  }
+  80%, 90% {
+    stroke: #ffa700;
+  }
+}
+@keyframes color {
+  100%, 0% {
+    stroke: #d62d20;
+  }
+  40% {
+    stroke: #0057e7;
+  }
+  66% {
+    stroke: #008744;
+  }
+  80%, 90% {
+    stroke: #ffa700;
+  }
+}
+

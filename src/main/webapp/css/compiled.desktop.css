@@ -6875,7 +6875,7 @@ CALENDAR PAGE
 
 
 .news .panel {
-margin-bottom: 20px;
+margin-bottom: 0px;
 background-color: #fff;
 border-right: 0px;
 border-top: 0px;
@@ -6884,6 +6884,7 @@ border-radius: 0px;
 -webkit-box-shadow: 0 0px 0px rgba(0,0,0,0.05);
 padding: 20px 0px;
 padding-bottom:  0px;
+padding-top: 0px;
 }
 .panel-default {
 border: 0px;
@@ -6989,6 +6990,17 @@ margin-bottom: 20px;
 box-shadow: 0 3px 10px rgba(0,0,0,.23),0 3px 10px rgba(0,0,0,.16);
 border-radius: 2px;
 border: 0;
+padding: 0;
+}
+
+.statsme-page .panel>.panel-body+.table, .panel>.panel-body+.table-responsive {
+border-top: 0px;
+}
+
+.statsme-page td{
+padding-left: 50px !important;
+padding-top: 20px !important;
+padding-bottom: 20px !important;
 }
 
 .statsme-page h5{
@@ -7021,6 +7033,7 @@ margin-bottom: 20px;
 box-shadow: 0 3px 10px rgba(0,0,0,.23),0 3px 10px rgba(0,0,0,.16);
 border-radius: 2px;
 border: 0;
+padding: 0;
 }
 
 .reports-page h5{
@@ -7031,21 +7044,17 @@ margin-bottom: 0px !important;
 box-shadow: 0 0px 0px rgba(0, 0, 0, 0), 0 0px 0px rgba(0, 0, 0, 0);
 }
 
-.reports-page .results{
-font-size: 20px;
-color: black;
-border-bottom: 1px solid #EFEFEF;
-padding: 20px;
+.reports-page .panel>.panel-body+.table, .panel>.panel-body+.table-responsive {
+border-top: 0px;
 }
 
-.reports-page .results a{
-font-size: 20px;
-color: black;
+.reports-page td{
+padding-left: 50px !important;
+padding-top: 20px !important;
+padding-bottom: 20px !important;
 }
-
-.reports-page .col-md-12 {
-padding-left: 0px;
-padding-right: 0px;
+.reports-page h5{
+padding: 40px;
 }
 
 /*
@@ -7058,39 +7067,46 @@ margin-bottom: 20px;
 box-shadow: 0 3px 10px rgba(0,0,0,.23),0 3px 10px rgba(0,0,0,.16);
 border-radius: 2px;
 border: 0;
+padding: 0;
 }
 
+.stats-devices .panel>.panel-body+.table, .panel>.panel-body+.table-responsive {
+border-top: 0px;
+}
+
+.stats-devices td{
+padding-left: 50px !important;
+padding-top: 20px !important;
+padding-bottom: 20px !important;
+}
 .stats-devices h5{
 padding: 40px;
 }
+
 .stats-devices .panel{
 margin-bottom: 0px !important;
 box-shadow: 0 0px 0px rgba(0, 0, 0, 0), 0 0px 0px rgba(0, 0, 0, 0);
 }
 
-.stats-devices a {
-color: white;
-}
-.stats-devices tr{
-height: 100px;
-}
-.stats-devices tr td{
-padding-top: 33px !important;
-font-size: 20pt;
-font-weight: 200;
+
+.device-results .panel>.panel-body+.table, .panel>.panel-body+.table-responsive {
+border-top: 0px;
 }
 
-
-.stats-devices .results{
-font-size: 20px;
-color: black;
-border-bottom: 1px solid #EFEFEF;
-padding: 20px;
+.device-results td{
+padding-left: 50px !important;
+padding-top: 20px !important;
+padding-bottom: 20px !important;
+}
+.device-results h5{
+padding: 40px;
+}
+.device h3{
+font-size: 21px;
 }
 
-.stats-devices .results a{
-font-size: 20px;
-color: black;
+.report-form .panel-heading{
+font-size: 21px !important;
 }
 
 /*
@@ -7165,7 +7181,7 @@ background-color: #FFFFFF;
 RESERVATION PAGE
 */
 .reservationpage h1{
-font-weight: 400;
+font-weight: 300;
 font-size: 21px;
 }
 /*
@@ -7414,7 +7430,7 @@ border: 0;
 }
 
 .icon-star {
-color: #E1E0E2;
+color: #FFA70F;
 }
 .icon-star-o {
 color: #E1E0E2;

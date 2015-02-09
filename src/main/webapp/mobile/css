@@ -3,7 +3,7 @@
 ../css/icomoon/style.css
 ../css/mobile.css
 ../css/register.css
-../directives/hourpicker/hourpicker.css
+../directives/hourpicker/hourpicker-mobile.css
 ../directives/calendar/calendar.css
 ../directives/bmenu/bmenu.css
 ../directives/colorpicker/colorpicker.css

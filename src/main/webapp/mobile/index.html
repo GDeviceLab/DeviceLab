@@ -50,6 +50,7 @@
         <link rel="stylesheet" href="../directives/bmenu/bmenu.css">
         <link rel="stylesheet" href="../directives/colorpicker/colorpicker.css">
         <link rel="stylesheet" href="../directives/newswidget/newswidget.css">
+        <link rel="stylesheet" href="../css/material.css">
         
         
         <!--<script src="../app/compiled.mobile.js"></script>
@@ -68,8 +69,7 @@
                 <div id="header">
                     <h1>
                         <span class="pull-left" snap-toggle="left"><span class="icon-bars"></span></span>
-                        <span class="pull-right" snap-toggle="right"><span class="icon-globe"></span></span>
-                        <span snap-toggle="left" ng-controller="TitleCtrl">{{page}} - {{location}}</span>
+                        <span snap-toggle="left" ng-controller="TitleCtrl" id="title">{{page}} - {{location}}</span>
                         <news-widget />
                     </h1>
                 </div>

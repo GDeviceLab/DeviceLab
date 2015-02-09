@@ -1345,15 +1345,15 @@ return Math.floor(input/2) + "h30";
 };
 });
 
-// calApp.filter('localize', function() {
-//     return function(input){
-//         var hours = input.split(":")[0];
-//         var minutes = input.split(":")[1];
-//         var d = new Date(2015, 0, 21, hours, minutes);
-//         var options = { hour:'numeric', minute: 'numeric'};
-//         return d.toLocaleTimeString(window.navigator.language,options);
-//     };
-// });
+calApp.filter('localizeres', function() {
+return function(input){
+var hours = input.split(":")[0];
+var minutes = input.split(":")[1];
+var d = new Date(2015, 0, 21, hours, minutes);
+var options = { hour:'numeric', minute: 'numeric'};
+return d.toLocaleTimeString(window.navigator.language,options);
+};
+});
 
 calApp.filter('localize', function() {
 return function(input){
@@ -3001,7 +3001,7 @@ var event = data.items[i];
 event.collision_index = -1;
 var h = document.getElementById($scope.id + "_" + event.start).offsetHeight;
 var w = document.getElementById($scope.id + "_" + event.start).offsetWidth;
-event.top = h * (event.start - 2*$scope.min)
+event.top = h * (event.start - 2*$scope.min) + 10;
 event.height = (event.end - event.start) * h;
 event.width = w;
 var colors = [];
@@ -3066,8 +3066,6 @@ $scope.hours.push(i);
 }
 });
 });
-
-
 //Year is yyyy
 //Month is in the form 0-11
 //Day is 1-31

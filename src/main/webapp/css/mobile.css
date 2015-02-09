@@ -2,26 +2,28 @@
     Created on : 26 mars 2014, 12:00:09
     Author     : Clement <clement.hannicq@revevol.eu>
 */
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,300,500);
+
+
+html{
+    font-family: 'Roboto', sans-serif;
+}
+
+h1, h2, h3, h4, body, p{
+    font-family: 'Roboto', sans-serif;
+}
+
 a{
     color: inherit;
     text-decoration: inherit;
+}
+body{
+    color: white !important;
 }
 
 .news a{
     color: blue !important;
     text-decoration: underline !important;
-}
-
-body{
-    background-image: -ms-linear-gradient(bottom, #543131 0%, #960606 100%);
-    background-image: -moz-linear-gradient(bottom, #543131 0%, #960606 100%);
-    background-image: -o-linear-gradient(bottom, #543131 0%, #960606 100%);
-    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #543131), color-stop(1, #960606));
-    background-image: -webkit-linear-gradient(bottom, #543131 0%, #960606 100%);
-    background-image: linear-gradient(to top, #543131 0%, #960606 100%);
-    background-repeat: repeat-x;
-    background-color: #543131;
-    color: #ffffff;
 }
 
 input, select, textarea{
@@ -81,17 +83,16 @@ input.small{
 }
 
 .snap-drawer{
-    padding-left: 10px;
-    color: white;
-    font-weight: bold;
+    color: black;
+    background-color: white;
 }
 .snap-drawer p{
     padding-left: 5px;
 }
 
 .snap-content{
-    box-shadow: 0 0 5px 5px #111;
-    background-color: #4b4d4e;
+   /* box-shadow: 0 0 5px 5px #111;*/
+    background-color: #EFEFEF;
 }
 
 .hover{
@@ -104,14 +105,25 @@ input.small{
 }
 
 #header{
+    height: 64px;
     font-weight: normal;
-    color: #fff;
     border: 0;
     text-overflow: ellipsis;
     white-space: nowrap;
-    overflow: hidden;
-    text-align: center;
-    box-shadow: inset 0 -1px #333434,0 1px #454646;
+    /*overflow: hidden;*/
+    background-color: #FFA70F;
+    margin-bottom: 10px;
+}
+
+#header h1{
+    margin-top: 0px !important;
+    padding-top: 10px;
+    font-weight: 300 !important;
+    color: white
+}
+#header .pull-left{
+    padding-top: 3px;
+    padding-left: 10px;
 }
 
 .tabs{
@@ -121,6 +133,111 @@ input.small{
     padding-right: 5px;
     padding-bottom: 12px;
     margin-top: 15px;
+}
+
+#menu-header{
+    height: 64px;
+    font-weight: normal;
+    border: 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    background-color: #FFA70F;
+    margin-bottom: 10px;
+
+}
+
+#menu-name{
+    color: white;
+    padding-top: 8px;
+    padding-left: 35px;
+}
+
+.menu-item{
+    padding-top: 15px;
+}
+
+.menu-item a span {
+    font-size: 25px;
+    padding-right: 20px;
+    color: #BCBCBC;
+}
+
+.fa-2x {
+    font-size: 2em;
+}
+.fa {
+    position: relative;
+    display: table-cell;
+    width: 60px;
+    height: 36px;
+    text-align: center;
+    vertical-align: middle;
+    font-size:20px;
+    color: black;
+}
+
+.main-menu {
+    color: black;
+    position:absolute;
+    top:80px
+    bottom:0;
+    left:0;
+    width:250px;
+    overflow:visible;
+    z-index:1000;
+}
+
+.main-menu>ul {
+    margin:7px 0;
+}
+
+.main-menu li {
+    position:relative;
+    display:block;
+    width:250px;
+}
+
+.main-menu li>a {
+    position:relative;
+    display:table;
+    border-collapse:collapse;
+    border-spacing:0;
+    color:#999;
+     font-family: arial;
+    font-size: 14px;
+    text-decoration:none;
+    -webkit-transform:translateZ(0) scale(1,1);
+    -webkit-transition:all .1s linear;
+    transition:all .1s linear;
+}
+
+.main-menu .nav-icon {
+    position:relative;
+    display:table-cell;
+    width:60px;
+    height:36px;
+    text-align:center;
+    vertical-align:middle;
+    font-size:18px;
+}
+
+.main-menu .nav-text {
+    position:relative;
+    display:table-cell;
+    /*vertical-align:middle;*/
+    width:190px;
+    padding-top: 10px;
+}
+
+.main-menu>ul.logout {
+    position:absolute;
+    left:0;
+    bottom:0;
+}
+
+nav h3 {
+padding-left: 10px;
 }
 
 .tabs div{

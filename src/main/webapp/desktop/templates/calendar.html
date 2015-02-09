@@ -8,21 +8,9 @@
 </div>
 <div class="row">
     <div class="col-md-2">
-        <div class="panel panel-default cal-month">
-<div class="panel-body no-padding">
-    <cal-endar date="date" class="cal" btn-class="btn btn-primary btn-block" viscalmethod="visibilityCalendar()"/>
-</div>
-</div>
-<!--  Devices Section -->
-<div class="devices">
-    <p>DEVICES</p>
-    <div>
-        <div>
-            <device-picker filter="search.assets"></device-picker>
-<!-- =======
         <div class="well text-center" ng-show="!isCalendarVisible" style="padding: 2px; margin-bottom: 10px;">
             <button type="button" class="btn btn-link" ng-click="visibilityCalendar()">
-                <span class="icon-calendar"></span> 
+                <span style="color: black" class="icon-calendar"></span> 
                 <span>{{'OPEN_CALENDAR' | translate}}</span>
             </button>
         </div>
@@ -30,10 +18,16 @@
             <!--<div class="pull-right" style="padding-top: 8px;">
                 <img src="../css/img/drop-down-triangle.png" title="{{'HIDE' | translate}}"/>
             </div>-->
-           <!--  <div class="panel-body no-padding">
+            <div class="panel-body no-padding">
                 <cal-endar date="date" class="cal" btn-class="btn btn-primary btn-block" viscalmethod="visibilityCalendar()"/>
-            </div>  -->
-<!-- >>>>>>> upstream/master -->
+            </div>
+        </div>
+<!--  Devices Section -->
+<div class="devices">
+    <p>DEVICES</p>
+    <div>
+        <div>
+            <device-picker filter="search.assets" heightpx="wellDeviceHeight"></device-picker>
         </div>
         <div class="form-group">
             <hr style="margin-left: 0px; width: 90%; border-top: 1px solid #E1E0E2;"/>

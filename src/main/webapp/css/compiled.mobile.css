@@ -443,8 +443,10 @@ Created on : 25 mars 2014, 15:52:40
 Author     : Clement <clement.hannicq@revevol.eu>
 */
 .range{
-background:#9BCB64;
-border-radius:10px;
+background:rgba(170,0,0,0.5);
+border-top: 1px solid rgba(170,0,0,1);
+border-bottom: 1px solid rgba(170,0,0,1);
+border-left: 1px solid rgba(170,0,0,1);
 position: absolute;
 display: none;
 overflow: hidden;
@@ -474,17 +476,6 @@ ul.hp-hours, .hp-hours li, ul.hp-picker, .hp-picker li{
 margin: 0px;
 padding: 0px;
 display: block;
-
-}
-ul.hp-picker li:first-child{
-border-top: 2px solid #EFEFEF;
-}
-ul.hp-picker li:nth-child(even){
-border-bottom: 2px solid #EFEFEF;
-}
-
-ul.hp-picker li:last-child{
-border-bottom: 0px;
 }
 /*
 Created on : 26 mars 2014, 12:00:02

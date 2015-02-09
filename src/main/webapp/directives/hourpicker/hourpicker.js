@@ -146,7 +146,7 @@ calApp.directive("calHourPicker", function() {
                                 event.collision_index = -1;
                                 var h = document.getElementById($scope.id + "_" + event.start).offsetHeight;
                                 var w = document.getElementById($scope.id + "_" + event.start).offsetWidth;
-                                event.top = h * (event.start - 2*$scope.min)
+                                event.top = h * (event.start - 2*$scope.min) + 10;
                                 event.height = (event.end - event.start) * h;
                                 event.width = w;
                                 var colors = [];
@@ -211,5 +211,3 @@ calApp.directive("calHourPicker", function() {
         }
     });
 });
-
-

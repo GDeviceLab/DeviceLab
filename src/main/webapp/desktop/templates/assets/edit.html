@@ -1,12 +1,15 @@
 <div class="col-md-4 col-md-offset-2">
-    <div class="panel panel-default">
+    <div class="panel panel-default device">
         <div class="panel-heading">
             <h3 class="panel-title">{{'DEVICE' | translate}}</h3>
         </div>
         <div class="panel-body">
-            <p>
+            <div class="form-group">
+            <div class="form-control-wrapper">
             <input type="text" ng-model="a.name" placeholder="{{'DEVICE_NAME' | translate}}" class="form-control"/>
-            </p>
+             <span class="material-input"></span>
+            </div>
+            </div>
             <div class="form-group">
                  <label for="sl_os">{{ 'OS' | translate }}</label>
                  <select ng-model="a.os" class="form-control" id="sl_os">                   
@@ -19,7 +22,11 @@
              </div>
             <div class="form-group">
                  <label for="txarea_os">{{ 'NOTES_DEVICE' | translate }}</label>
+                 <div class="form-control-wrapper">
                 <textarea id="txarea_os" ng-model="a.notes" class="form-control" rows="3"></textarea>
+                <span class="material-input"></span>
+                </div>
+
              </div>
             <div class="form-group">
                  <label for="color_dev">{{'DEVICE_COLOR' | translate}}</label>

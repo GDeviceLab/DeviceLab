@@ -3068,11 +3068,11 @@ angular.forEach(events, function(event) {
 if(event.num_collision === 0){
 event.width = pecentageWidthTotal;
 event.width_perc = event.width + "%";
-event.right = 0;
+event.right = 5%;
 }else{
 event.width = pecentageWidthTotal / events.length;
 event.width_perc = event.width + "%";
-event.right = pecentageWidthTotal - (event.width * col_inc ) + "%";
+event.right = pecentageWidthTotal - (event.width * col_inc ) + 5 + "%";
 col_inc++;
 }
 });

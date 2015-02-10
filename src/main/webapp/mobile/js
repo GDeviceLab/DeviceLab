@@ -27,3 +27,4 @@
 ../directives/newswidget/newswidget.js
 ../directives/calsecurity/calsecurity.js
 ../directives/delete/delete.js
+../js/bootstrap.js

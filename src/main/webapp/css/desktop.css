@@ -613,6 +613,11 @@ background-color: #FFFFFF;
     font-weight: 300;
     font-size: 21px;
 }
+.reservationpage h1.weekcal {
+font-size: 40pt;
+font-weight: 300;
+margin-top: -7px;
+}
 /*  
     SIDE MENU
 */

@@ -6,10 +6,10 @@
             <p>{{'LOCATION_ADMIN' | translate}}</p>
             <div class="topcoat-button-bar">
                 <div class="topcoat-button-bar__item">
-                    <button class="topcoat-button-bar__button" ng-click="toUser(selected.mail)">{{'BUTTON_TO_USER' | translate}}</button>
+                    <button class="btn btn-primary" ng-click="toUser(selected.mail)">{{'BUTTON_TO_USER' | translate}}</button>
                 </div>
                 <div class="topcoat-button-bar__item">
-                    <button class="topcoat-button-bar__button" ng-click="delete(selected.mail)">{{'BUTTON_DELETE' | translate}}</button>
+                    <button class="btn btn-danger" ng-click="delete(selected.mail)">{{'BUTTON_DELETE' | translate}}</button>
                 </div>
             </div>
         </div>
@@ -17,10 +17,10 @@
             <p>{{'LOCATION_USER' | translate}}</p>
             <div class="topcoat-button-bar">
                 <div class="topcoat-button-bar__item">
-                    <button class="topcoat-button-bar__button" ng-click="delete(selected.mail)">{{'BUTTON_DELETE' | translate}}</button>
+                    <button class="btn btn-danger" ng-click="delete(selected.mail)">{{'BUTTON_DELETE' | translate}}</button>
                 </div>
                 <div class="topcoat-button-bar__item">
-                    <button class="topcoat-button-bar__button" ng-click="toAdmin(selected.mail)">{{'BUTTON_TO_ADMIN' | translate}}</button>
+                    <button class="btn btn-primary" ng-click="toAdmin(selected.mail)">{{'BUTTON_TO_ADMIN' | translate}}</button>
                 </div>
             </div>
         </div>
@@ -28,10 +28,10 @@
             <p>{{'STATUS_PENDING' | translate}}</p>
             <div class="topcoat-button-bar">
                 <div class="topcoat-button-bar__item">
-                    <button class="topcoat-button-bar__button" ng-click="toUser(selected.mail)">{{'BUTTON_ACCEPT' | translate}}</button>
+                    <button class="btn btn-success" ng-click="toUser(selected.mail)">{{'BUTTON_ACCEPT' | translate}}</button>
                 </div>
                 <div class="topcoat-button-bar__item">
-                    <button class="topcoat-button-bar__button" ng-click="delete(selected.mail)">{{'BUTTON_REJECT' | translate}}</button>
+                    <button class="btn btn-danger" ng-click="delete(selected.mail)">{{'BUTTON_REJECT' | translate}}</button>
                 </div>
             </div>
         </div>
@@ -40,10 +40,10 @@
 
 <h3 class="topcoat-list__header">{{'LOCATION_NAME' | translate}}</h3>
 <div class="padded">
-    <input type="text" ng-model="name" placeholder="{{'LOCATION_NAME' | translate}}" class="topcoat-text-input"/>
+    <input type="text" ng-model="name" placeholder="{{'LOCATION_NAME' | translate}}" class="form-control"/>
 </div>
 <div class="padded" cal-show-global>
-    <button class="topcoat-button--cta" ng-click="submit()">Save</button>
+    <button class="btn btn-primary" ng-click="submit()">Save</button>
 </div>
 <div ng-show="id">
     <div class="tabs">
@@ -61,17 +61,17 @@
         <div class="topcoat-list">
             <ul class="topcoat-list__container">
                 <li class="topcoat-list__item" ng-repeat="admin in admins" ng-click="select(admin)">
-                    <span>
+                    <span class="title">
                         {{admin.name}}
                     </span>
                 </li>  
             </ul>
             <h3 class="topcoat-list__header">{{'LOCATION_ADMIN_NEW' | translate}}</h3>
             <div class="padded">
-                <input type="text" ng-model="admin" placeholder="{{'LOCATION_ADMIN_NEW' | translate}}" class="topcoat-text-input"/>
+                <input type="text" class="form-control" ng-model="admin" placeholder="{{'LOCATION_ADMIN_NEW' | translate}}" class="topcoat-text-input"/>
             </div>
             <div class="padded">
-                <button class="topcoat-button--cta" ng-click="toAdmin(admin)">{{'BUTTON_ADD' | translate}}</button>
+                <button class="btn btn-primary" ng-click="toAdmin(admin)">{{'BUTTON_ADD' | translate}}</button>
             </div>
         </div>
     </div>
@@ -79,7 +79,7 @@
         <div class="topcoat-list">
             <ul class="topcoat-list__container">
                 <li class="topcoat-list__item" ng-repeat="user in pendings" ng-click="select(user)">
-                    {{user.name}}
+                     <span class="title">{{user.name}}</span>
                 </li>
             </ul>
         </div>
@@ -88,15 +88,15 @@
         <div class="topcoat-list">
             <ul class="topcoat-list__container">
                 <li class="topcoat-list__item" ng-repeat="user in users" ng-click="select(user)">
-                    {{user.name}}
+                    <span class="title">{{user.name}}</span>
                 </li>
             </ul>
             <h3 class="topcoat-list__header">{{'LOCATION_USER_NEW' | translate}}</h3>
             <div class="padded">
-                <input type="text" ng-model="user" placeholder="{{'LOCATION_USER_NEW' | translate}}" class="topcoat-text-input"/>
+                <input type="text" class="form-control" ng-model="user" placeholder="{{'LOCATION_USER_NEW' | translate}}" class="topcoat-text-input"/>
             </div>
             <div class="padded">
-                <button class="topcoat-button--cta" ng-click="toUser(user)">{{'BUTTON_ADD' | translate}}</button>
+                <button class="btn btn-primary" ng-click="toUser(user)">{{'BUTTON_ADD' | translate}}</button>
             </div>
         </div>
     </div>

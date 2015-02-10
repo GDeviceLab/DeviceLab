@@ -22,16 +22,16 @@
 }
 
 .search-modal{
-    background-color: #4b4d4e;
-    border: 1px solid #131414;
+    background-color: white;
     border-right-width: 0px;
     border-bottom-width: 0px;
     position: fixed;
     width: 80%;
     right: 0px;
-    border-top-left-radius: 25px;
+    border-top-left-radius: 3px;
     bottom: 0px;
     padding-left: 20px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
 }
 .button-right{
     position: fixed;
@@ -45,4 +45,8 @@
     text-align: center;
     padding: 13px;
     font-size: 22px;
+    -webkit-box-sizing: content-box;
+}
+select {
+    color: black;
 }

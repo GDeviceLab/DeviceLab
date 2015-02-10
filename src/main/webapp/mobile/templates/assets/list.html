@@ -1,12 +1,12 @@
+<h3 class="page-title">{{'DEVICES' | translate}}</h3>
 <div class="topcoat-list">
-    <h3 class="topcoat-list__header">{{'DEVICES' | translate}}</h3>
     <ul class="topcoat-list__container">
         <li class="topcoat-list__item" ng-repeat="a in assets">
-            <a href="#/asset/edit/{{a.id}}">{{a.name}}</a>
+            <a class="title" href="#/asset/edit/{{a.id}}">{{a.name}}</a>
             <cal-delete b-class="icon-x-altx-alt actions" action="delete(a.id)"></cal-delete>
         </li>
     </ul>
 </div>
 <div class="padded">
-    <a href="#/asset/new" class="topcoat-button--cta">{{'BUTTON_NEW' | translate}}</a>
+    <a href="#/asset/new" class="btn btn-primary">{{'BUTTON_NEW' | translate}}</a>
 </div>

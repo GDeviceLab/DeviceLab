@@ -3092,7 +3092,7 @@ event.height = (event.end - event.start) * h;
 event.width = w;
 var colors = [];
 for (var j = 0; j < event.assets.length; j++) {
-colors.push('rgba(' + event.assets[j].r + ',' + event.assets[j].g + ',' + event.assets[j].b + ',0.6)');
+colors.push('rgba(' + event.assets[j].r + ',' + event.assets[j].g + ',' + event.assets[j].b + ',1.0)');
 }
 event.gradient = colors.join(',');
 if (colors.length == 1) {

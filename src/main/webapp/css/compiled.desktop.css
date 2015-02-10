@@ -7441,6 +7441,10 @@ color: #FFA70F;
 color: #E1E0E2;
 }
 
+.newspage [class^="icon-"], .newspage [class*=" icon-"] {
+color: gray;
+}
+
 /*
 MOBILE
 */

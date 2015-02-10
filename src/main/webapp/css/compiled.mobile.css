@@ -747,6 +747,13 @@ background-color: #ec514e;
 a, a:hover, a:focus {
 color: white;
 }
+
+@media (max-width: 500px){
+#header .dropdown-menu {
+min-width: 150px;
+}
+}
+
 /*
 Created on : 1 avr. 2014, 16:01:30
 Author     : Clement <clement.hannicq@revevol.eu>
@@ -993,29 +1000,31 @@ border: 1px solid black;
 .news-feed{
 overflow-y: auto;
 max-height: 90%;
+max-width: 90%;
 }
 
 .news-item{
 margin-bottom: 15px;
-background-color: #626465;
 white-space: normal;
 }
 
 .news-item h1{
 color: black;
-font-size: 0.6em;
+font-size: 16pt;
 margin: 0px;
+color: black !important;
+padding-left: 17px;
 }
 
 .news-item p{
 margin-top: 0.3em;
-font-size: 0.5em;
+font-size: 14pt;
 margin-bottom: 0px;
 
 }
 
 .news-item small{
-font-size: 0.5em;
+font-size: 12pt;
 }
 
 .label {
@@ -1024,4 +1033,9 @@ font-size: 1.8em;
 margin-top: 8px;
 margin-left: 10px;
 border-radius: 3px;
+}
+
+.padded {
+color: #757575;
+padding-top: 0px;
 }

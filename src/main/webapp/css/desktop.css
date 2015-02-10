@@ -870,6 +870,10 @@ nav h3 {
     color: #E1E0E2;
 }
 
+.newspage [class^="icon-"], .newspage [class*=" icon-"] {
+    color: gray;
+}
+
 /*
     MOBILE
 */

@@ -551,3 +551,10 @@ textarea{
 a, a:hover, a:focus {
     color: white;
 }
+
+@media (max-width: 500px){
+   #header .dropdown-menu {
+        min-width: 150px;
+    }
+}
+

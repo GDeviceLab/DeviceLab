@@ -127,7 +127,7 @@ calApp.directive("calHourPicker", function() {
                           if(event.num_collision === 0){
                               event.width = pecentageWidthTotal; 
                               event.width_perc = event.width + "%"; 
-                              event.right = 5%;
+                              event.right = 5 + "%";
                           }else{
                             event.width = pecentageWidthTotal / events.length; 
                             event.width_perc = event.width + "%";                             

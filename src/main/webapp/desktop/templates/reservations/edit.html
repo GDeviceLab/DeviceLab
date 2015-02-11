@@ -229,13 +229,13 @@
 </div>
 <div class="form-horizontal">
 <div class="form-group">
-    <div class="col-lg-3 col-lg-offset-9">
-        <div class="alert alert-danger" ng-show="error.mandatoryMessage">
+        <div class="alert alert-danger col-sm-3" ng-show="error.mandatoryMessage" style="float:right; margin-right: 15px;">
             <p>{{error.text | translate}}</p>
         </div>
-        <button cal-show-owner="{{r.person}}" class="btn btn-primary" ng-click="submit()">{{'BUTTON_SAVE' | translate}}</button>
-        <a class="btn btn-danger" href="#/calendar">{{'BUTTON_CANCEL' | translate}}</a>
-        <button cal-show-owner="{{r.person}}" ng-show="r.id" class="btn btn-danger" ng-click="delete()">{{'BUTTON_DELETE' | translate}}</button>
+    <div class="col-sm-12">
+        <button cal-show-owner="{{r.person}}" class="btn btn-primary" ng-click="submit()" style="float:right">{{'BUTTON_SAVE' | translate}}</button>
+        <a class="btn btn-danger" href="#/calendar" style="float:right">{{'BUTTON_CANCEL' | translate}}</a>
+        <button cal-show-owner="{{r.person}}" ng-show="r.id" class="btn btn-danger" ng-click="delete()" style="float:right">{{'BUTTON_DELETE' | translate}}</button>
     </div>
 </div>
 </div>

@@ -576,6 +576,10 @@ a, a:hover, a:focus {
     color: white;
     text-decoration: none;
 }
+#ack-image{
+    position:fixed;
+    bottom: 0;
+}
 
 @media (max-width: 500px){
    #header .dropdown-menu {

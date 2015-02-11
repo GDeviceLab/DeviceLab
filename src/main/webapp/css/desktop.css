@@ -219,6 +219,15 @@ h1.weekcal{
     font-size: 40pt;
     font-weight: 300;
     margin-top: -7px;
+    text-align: left;
+    margin-left: 20px;
+}
+
+h1.weekcal{
+    font-size: 40pt;
+    font-weight: 300;
+    margin-top: -7px;
+    text-align: left;
 }
 .weekcal-day{
     font-size: 14pt;
@@ -325,12 +334,12 @@ height: 20%;
 
 .icon-bars{
     font-size: 20pt;
+    cursor: pointer; cursor: hand;
 }
 .panel.cal-day {
     height: 2000px;
     padding-bottom: 0px !important;
     margin-bottom: 0px !important;
-    max-height: 850px;
 }
 .cal-month {
     background-color: #EFEFEF;
@@ -613,12 +622,6 @@ background-color: #FFFFFF;
     font-weight: 300;
     font-size: 21px;
 }
-.reservationpage h1.weekcal {
-font-size: 40pt;
-font-weight: 300;
-margin-top: -7px;
-}
-
 .reservationpage [class^="icon-"], .reservationpage [class*=" icon-"] {
     color: gray;
 }
@@ -699,6 +702,7 @@ margin-top: -7px;
     -webkit-transform:translateZ(0) scale(1,1);
     -webkit-transition:all .1s linear;
     transition:all .1s linear;
+    cursor: pointer; cursor: hand;
 }
 
 .main-menu .nav-icon {
@@ -733,7 +737,8 @@ margin-top: -7px;
 }
 
 .cal-title {
-  padding-left: 20px;
+  padding-left: 24px;
+  text-align: left;
 }
 
 .devices{
@@ -819,6 +824,7 @@ margin-top: -7px;
     border-left: 8px solid #A5A5A5;
     margin-left: 10px;
     margin-top: -4px; 
+    cursor: pointer; cursor: hand;
 }
 
 .arrow-left {
@@ -831,6 +837,7 @@ margin-top: -7px;
     border-right: 8px solid #A5A5A5; 
     margin-right: 10px;
     margin-top: -4px; 
+    cursor: pointer; cursor: hand;
 }
 
 a:hover,a:focus {
@@ -882,8 +889,11 @@ nav h3 {
 
 .newspage [class^="icon-"], .newspage [class*=" icon-"] {
     color: gray;
+    cursor: pointer; cursor: hand;
 }
-
+.dropdown {
+    cursor: pointer; cursor: hand;
+}
 /*
     MOBILE
 */

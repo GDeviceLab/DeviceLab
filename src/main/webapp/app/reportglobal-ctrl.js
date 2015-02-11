@@ -8,6 +8,24 @@ calApp.controller("ReportGlobalCtrl", function ($scope, $rootScope, $stateParams
         $scope.locations = data;
         $scope.locations.selected = [];
     });
+    
+    function getRealDateString(date,offset) {
+        if(date != null){
+            var lDay = date.getDate()+ offset*1;
+            var lMonth = date.getMonth() + 1;
+            var lYear = date.getFullYear();
+
+            if (lDay < 10) {
+                lDay = '0' + lDay;
+            }
+
+            if (lMonth < 10) {
+                lMonth = '0' + lMonth;
+            }
+            return lYear + lMonth + lDay;
+        }
+        return null;
+    }
 
     $scope.submit = function () {
         
@@ -22,14 +40,18 @@ calApp.controller("ReportGlobalCtrl", function ($scope, $rootScope, $stateParams
         }
         
         if('REPORT_GLOBAL_LOCATION_DEVICE_REPORT' == $scope.reportType){
-            endpoint.rep.globalLocationDevicesReport($scope.locations.selected, $scope.dateFilter.from, $scope.dateFilter.to)
+            endpoint.rep.globalLocationDevicesReport($scope.locations.selected, 
+            getRealDateString($scope.dateFilter.from,0), 
+            getRealDateString($scope.dateFilter.to,1))
                     .success(function (data) {
                         $rootScope.reportResult = data;
                 $window.location.href = "#/report/globalLocationDevicesReport";
             });
         }
         else if('REPORT_TESTED_PURPOSES' == $scope.reportType){
-            endpoint.rep.testedPurposes($scope.locations.selected, $scope.dateFilter.from, $scope.dateFilter.to)
+            endpoint.rep.testedPurposes($scope.locations.selected, 
+            getRealDateString($scope.dateFilter.from,0), 
+            getRealDateString($scope.dateFilter.to,1))
                     .success(function (data) {
                         $rootScope.reportResult = data;
                 $window.location.href = "#/report/testedPurposesReport";
@@ -62,7 +84,7 @@ calApp.controller("ReportGlobalCtrl", function ($scope, $rootScope, $stateParams
         var quarter = Math.floor((currentDate.getMonth() / 3));	
         $scope.dateFilter.from =  new Date(currentDate.getFullYear(), quarter * 3, 1);
         $scope.dateFilter.to = new Date( $scope.dateFilter.from.getFullYear(),  
-            $scope.dateFilter.from.getMonth() + 3, 0);
+        $scope.dateFilter.from.getMonth() + 3, 0);
     };
     
     $scope.filterDateLastQuarter = function () {
@@ -70,7 +92,7 @@ calApp.controller("ReportGlobalCtrl", function ($scope, $rootScope, $stateParams
         var quarter = Math.floor((d.getMonth() / 3));	   
         $scope.dateFilter.from = new Date(d.getFullYear(), quarter * 3 - 3, 1);
         $scope.dateFilter.to =  new Date($scope.dateFilter.from.getFullYear(), 
-            $scope.dateFilter.from.getMonth() + 3, 0);
+        $scope.dateFilter.from.getMonth() + 3, 0);
     };
 
     $scope.reset = function () {

@@ -13,9 +13,28 @@ calApp.directive("calHourPicker", function() {
             filter: '='
         },
         controller: function($scope, $window, $filter, endpoint) {
+            
+            function getRealDateString(date,offset) {
+                if(date != null){
+                    var lDay = date.getDate()+ offset*1;
+                    var lMonth = date.getMonth() + 1;
+                    var lYear = date.getFullYear();
+
+                    if (lDay < 10) {
+                        lDay = '0' + lDay;
+                    }
+
+                    if (lMonth < 10) {
+                        lMonth = '0' + lMonth;
+                    }
+                    return lYear + lMonth + lDay;
+                }
+                return null;
+            }
 
             function dte(){
-                return new Date($scope.date.getFullYear(), $scope.date.getMonth(), $scope.date.getDate() + $scope.offset*1);
+                var d = new Date($scope.date.getFullYear(), $scope.date.getMonth(), $scope.date.getDate() + $scope.offset*1);
+                return d;
             }
             
             $scope.borderStriped = function(hour){
@@ -113,33 +132,32 @@ calApp.directive("calHourPicker", function() {
                     var e = document.getElementById(id + "_" + "range");
                     e.style.top = (begin - 2*$scope.min) * h + 10;
                     e.style.height = (end - begin + 1) * h;
-                    e.style.left = 51;
-                    e.style.width = w - 34;
-                    // e.style.left = 31;
-                    // e.style.width = w;
+                    e.style.left = 49;
+                    e.style.width = w;
                     e.style.display = "block";
                 }
                 
                 function calculate_space(events){
-                     var col_inc = 1;
-                        angular.forEach(events, function(event) {
-                          //calculate width 
-                          if(event.num_collision === 0){
-                              event.width = pecentageWidthTotal; 
-                              event.width_perc = event.width + "%"; 
-                              event.right = 5 + "%";
-                          }else{
+                    var col_inc = 1;
+                    angular.forEach(events, function(event) {
+                        //calculate width 
+                        if(event.num_collision === 0){
+                            event.width = pecentageWidthTotal; 
+                            event.width_perc = event.width + "%"; 
+                            event.right = 5 + "%";
+                        }else{
                             event.width = pecentageWidthTotal / events.length; 
                             event.width_perc = event.width + "%";                             
                             event.right = pecentageWidthTotal - (event.width * col_inc ) + 5 + "%";
                             col_inc++;
-                          }
-                        });  
+                        }
+                    });  
                 }
 
                 //Reservations
                 function refreshRes() {
-                    endpoint.res.list(dte()).success(function(data) {
+                    var realDateNow = getRealDateString($scope.date,$scope.offset);
+                    endpoint.res.list(realDateNow).success(function(data) {
                         if (data.items) {
                             for (var i = 0; i < data.items.length; i++) {
                                 var event = data.items[i];
@@ -169,8 +187,8 @@ calApp.directive("calHourPicker", function() {
                         angular.forEach($scope.events, function(event) {                           
                             event.num_collision = 0;                          
                             if(event.collision_index < 0){
-                               event.collision_index =  collision_index;
-                               collision_index ++;
+                                event.collision_index =  collision_index;
+                                collision_index ++;
                             }                          
                             angular.forEach($scope.events, function(eventCompare) {
                                 if(collide(event,eventCompare)){
@@ -179,7 +197,7 @@ calApp.directive("calHourPicker", function() {
                                 }
                             });                            
                             if(event.num_collision > max_collision){
-                               max_collision = event.num_collision;  
+                                max_collision = event.num_collision;  
                             }                             
                         });
                        

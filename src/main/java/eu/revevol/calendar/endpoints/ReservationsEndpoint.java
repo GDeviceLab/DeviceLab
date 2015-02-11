@@ -61,11 +61,12 @@ public class ReservationsEndpoint {
             path = "list",
             httpMethod = HttpMethod.GET
     )
-    public List<Reservation> list(@Named("origin") String user, @Named("location") Long location, @Named("date") Date date) throws OAuthRequestException {
+    public List<Reservation> list(@Named("origin") String user, @Named("location") Long location, @Named("date") String realDateNow) throws OAuthRequestException {
         Require.access(user, location);
         
         NamespaceManager.set(location.toString());
-        List<Reservation> list = ObjectifyService.ofy().load().type(Reservation.class).filter("date", date).list();
+        logger.info("GET LIST - " + realDateNow);
+        List<Reservation> list = ObjectifyService.ofy().load().type(Reservation.class).filter("realDate", realDateNow).list();
         return list;
     }
     
@@ -89,6 +90,7 @@ public class ReservationsEndpoint {
         
         if (Collision.allowed(r)) {
             //set the date to GMT
+            r.date = Methods.convertToZeroGMTTime(r.date);
             Key<Reservation> resKey = ObjectifyService.ofy().save().entity(r).now();
             
             savePurpose(r, user, resKey);
@@ -192,9 +194,9 @@ public class ReservationsEndpoint {
          * 2. Then control all the current reservation to connect them to the device list
          */
         Date todayInit = Methods.getGMTTime(Methods.getZeroTimeOfDay().getTime());
-        String todayString = (1900+todayInit.getYear())+"#"+todayInit.getMonth()+"#"+todayInit.getDate();
+        String todayString = Methods.getRealDate(todayInit);
         logger.info("today init " + todayString);
-        List<Reservation> resList = ObjectifyService.ofy().load().type(Reservation.class).filter("dayString", todayString).list();
+        List<Reservation> resList = ObjectifyService.ofy().load().type(Reservation.class).filter("realDate", todayString).list();
         logger.info("Resultant list by filter "+resList.size());
         for (Reservation resObj : resList) {
             //take in consideration only reservation in time with now

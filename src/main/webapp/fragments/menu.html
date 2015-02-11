@@ -23,7 +23,7 @@
                         </a>
 
                     </li>
-                    <li>
+                    <li cal-show-local>
                         <a href="#/news/new" snap-close>
                             <i class="fa icon-edit"></i>
                             <span class="nav-text">
@@ -111,19 +111,20 @@
                         <a href="/logout" snap-close>
                             <i class="fa icon-bookmark"></i>
                             <span class="nav-text">
-                                {{'MENU_LOGOUT' | translate}}
+                                {{'MENU_LOGOUT' | translate}} 
                             </span>
                         </a>
                     </li>
                 </ul>
             </nav>
-        </div>
-        <div id="ack-image" style="background-color: #fafafa">
-              <img ng-src="{{logo.url}}" style="max-height: 120px; max-width: 230px;"><br />
-            <p id="ack" style="width: 265px;">
+
+    <div id="ack-image" style="background-color: #fafafa; width: 266px;">
+            <img ng-src="{{logo.url}}" style="max-height: 120px; max-width: 230px; padding-left: 15px;"><br
+            <p id="ack">
                 <font size="1">Developed by Google</font>
                 <br>
                 <font size="1">with the support of Revevol, Intel</font>
             </p>
-        </div>
     </div>
+</div>
+</div>

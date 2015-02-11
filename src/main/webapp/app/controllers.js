@@ -88,7 +88,7 @@ calApp.controller("CalendarCtrl", function($scope, $rootScope, endpoint, $window
     
     
     $timeout(function() {
-        $(".hour-picker-v-scroll-bar").scrollTop(240);
+        $(".hour-picker-v-scroll-bar").scrollTop(460);
         $scope.$apply();
     }, 500);
     

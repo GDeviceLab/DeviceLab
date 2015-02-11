@@ -3,7 +3,7 @@
         <h1 class="topcoat-navigation-bar__title">{{date| date : 'EEEE d MMM'}}</h1>
     </div>
 </div>
-<div class="topcoat-list__header" ng-show="pick" cal-show-owner>
+<div class="topcoat-list__header" style="padding: 0px 0px;" ng-show="pick" cal-show-owner>
     <cal-endar date="date" class="cal" btn-class="topcoat-button--cta" />
 </div>
 <div class="topcoat-navigation-bar mid" ng-click="show_hours = !show_hours">
@@ -11,8 +11,8 @@
         <h1 class="topcoat-navigation-bar__title">{{ 'FROM' | translate }} {{r.start | hours}} {{ 'TO' | translate }} {{r.end | hours}}</h1>
     </div>
 </div>
-<div ng-show="show_hours" class="topcoat-list__header" cal-show-owner>
-    <div class="padded">
+<div ng-show="show_hours" class="topcoat-list__header padding-top" cal-show-owner>
+    <div class="padded padded-top">
         <label for="from">{{ 'FROM' | translate }}</label>
         <select ng-model="r.start" class="form-control" id="from">
             <option value="15">7h30</option>
@@ -39,7 +39,7 @@
             <option value="36">18h</option>
         </select>
     </div>
-    <div class="padded">
+    <div class="padded padded-top">
         <label for="to">{{ 'TO' | translate }}</label>
         <select ng-model="r.end" class="form-control" id="to">
             <option value="16">8h</option>
@@ -67,46 +67,70 @@
         </select>
     </div>
 </div>
-<div class="padded">
+<div class="padded padding-top">
 
     <input cal-enable-owner="{{r.person}}" type="text" class="form-control" placeholder="{{ 'TITLE' | translate }}" ng-model="r.title">
     <input ng-show="r.person" type="text" class="topcoat-text-input" placeholder="{{ 'USER' | translate }}" ng-model="r.person" disabled>
 
 </div>
-<h3 class="topcoat-list__header">{{ 'DEVICES' | translate }}</h3>
-<div class="padded">
-    <table class="multiselect">
-        <tr ng-repeat="asset in sassets">
-            <td class="actions" ng-click="removeAsset(asset.number)" cal-show-owner="{{r.person}}">
-                <span class="icon-x-altx-alt"></span>
-            </td>
-            <td>
-                <select ng-show="!asset.raw || asset.raw.active" cal-enable-owner="{{r.person}}" class="form-control" ng-model="asset.value" ng-options="t.id as t.name for t in assets"></select>
-                <input ng-hide="!asset.raw || asset.raw.active" class="topcoat-text-input"  type="text" value="{{asset.raw.name}} (device deleted)" disabled />
-            </td>
-        </tr>
-        <tr cal-show-owner="{{r.person}}">
-            <td class="actions" ng-click="addAsset()">
-                <span class="icon-plus-square"></span>
-            </td>
-            <td>
-                <select class="form-control" ng-options="t.id as t.name for t in assets" disabled></select>
-            </td>
-        </tr>
-    </table>
 
-</div>
-<div class="alert" ng-show="error.collision || error.deleted">
-    <p ng-show="error.collision">{{'ERR_COLLISION'| translate}}</p>
-    <p ng-show="error.deleted">{{'ERR_DELETED'| translate}}</p>
-</div>
-<div class="padded" cal-show-owner="{{r.person}}">
-    <button class="btn btn-primary" ng-click="submit()">{{'BUTTON_SAVE'| translate}}</button>
-</div>
+<h3 class="topcoat-list__header">{{'PURPOSE_TITLE_PANEL' | translate}}</h3>
 <div class="padded">
-    <a class="btn btn-danger" href="#/calendar">{{'BUTTON_CANCEL'| translate}}</a>
+<label>{{ 'PURPOSE' | translate }}</label>
+
+<select ng-model="purpose.type" class="form-control" ng-change="changePurposeType()">
+    <option value="MOBILE_APP">{{'MOBILE_APP' | translate}}</option>
+    <option value="WEB_SITE">{{'WEB_SITE' | translate}}</option>
+    <option value="OTHER">{{'OTHER' | translate}}</option>
+</select>
+<div class="form-group" ng-show="purpose.titlePlaceHolder != ''">
+    <label>{{ 'PURPOSE_TITLE' | translate }}</label>
+    <div class="form-control-wrapper"> 
+        <input class="form-control" placeholder="{{purpose.titlePlaceHolder | translate}}" ng-change="changePurposeTitle()" ng-model="purpose.title">
+        <span class="material-input">
+
+            <label>{{ 'PURPOSE_YOUR_LIST' | translate }}</label>
+            <select ng-model="selectedPurDS" class="form-control" ng-change="selectPurpose()">
+                <option value='' disabled selected style='display:none;'>{{'PURPOSE_CHOOSE' | translate}}</option>
+                <option value="{{purDS}}" ng-repeat="purDS in listPurpose">{{purDS.type | translate}} - {{purDS.title}}</option>
+            </select>
+        </div>
+    </div>
 </div>
-<div class="padded" ng-show="r.id" cal-show-owner="{{r.person}}">
-    <button class="btn btn-danger" ng-click="delete()">{{'BUTTON_DELETE'| translate}}</button>
-</div>
+    <h3 class="topcoat-list__header">{{ 'DEVICES' | translate }}</h3>
+    <div class="padded">
+        <table class="multiselect">
+            <tr ng-repeat="asset in sassets">
+                <td class="actions" ng-click="removeAsset(asset.number)" cal-show-owner="{{r.person}}">
+                    <span class="icon-x-altx-alt"></span>
+                </td>
+                <td>
+                    <select ng-show="!asset.raw || asset.raw.active" cal-enable-owner="{{r.person}}" class="form-control" ng-model="asset.value" ng-options="t.id as t.name for t in assets"></select>
+                    <input ng-hide="!asset.raw || asset.raw.active" class="topcoat-text-input"  type="text" value="{{asset.raw.name}} (device deleted)" disabled />
+                </td>
+            </tr>
+            <tr cal-show-owner="{{r.person}}">
+                <td class="actions" ng-click="addAsset()">
+                    <span class="icon-plus-square"></span>
+                </td>
+                <td>
+                    <select class="form-control" ng-options="t.id as t.name for t in assets" disabled></select>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+    <div class="alert" ng-show="error.collision || error.deleted">
+        <p ng-show="error.collision">{{'ERR_COLLISION'| translate}}</p>
+        <p ng-show="error.deleted">{{'ERR_DELETED'| translate}}</p>
+    </div>
+    <div class="padded" cal-show-owner="{{r.person}}">
+        <button class="btn btn-primary" ng-click="submit()">{{'BUTTON_SAVE'| translate}}</button>
+    </div>
+    <div class="padded">
+        <a class="btn btn-danger btn-block" href="#/calendar">{{'BUTTON_CANCEL'| translate}}</a>
+    </div>
+    <div class="padded" ng-show="r.id" cal-show-owner="{{r.person}}">
+        <button class="btn btn-danger" ng-click="delete()">{{'BUTTON_DELETE'| translate}}</button>
+    </div>
 

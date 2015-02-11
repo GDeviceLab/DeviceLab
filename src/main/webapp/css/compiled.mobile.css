@@ -36,7 +36,8 @@ position: absolute;
 height: 100vh;
 top: 0;
 bottom: 0;
-overflow: auto;
+overflow-y: auto;
+overflow-x: hidden;
 -webkit-transition: top 0.2s linear;
 -moz-transition: top 0.2s linear;
 -o-transition: top 0.2s linear;
@@ -198,7 +199,7 @@ content: "\e600";
 Created on : 26 mars 2014, 12:00:09
 Author     : Clement <clement.hannicq@revevol.eu>
 */
-@import url(http://fonts.googleapis.com/css?family=Roboto:400,300,500);
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500);
 
 
 html{
@@ -224,7 +225,7 @@ text-decoration: underline !important;
 
 input, select, textarea{
 width: 100%;
-font-size: 1em !important;
+font-size: 1.25em !important;
 }
 
 textarea{
@@ -436,6 +437,10 @@ display: inline-block;
 #title{
 padding-left: 10px;
 }
+
+#drop-title{
+padding-left: 2px;
+}
 .icon-star {
 color: #FFA70F;
 }
@@ -622,10 +627,13 @@ background-color: #b3b6b6;
 }
 
 .page-title{
-font-size: 40pt;
+font-size: 30pt;
 font-weight: 300;
 color: black;
 padding-left: 20px;
+/* padding-bottom: 5px; */
+margin-bottom: 10px;
+margin-top: 10px;
 }
 
 .topcoat-list {
@@ -672,9 +680,11 @@ padding-bottom: 10px;
 box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
 }
 .topcoat-navigation-bar{
+border-top: 2px solid #CACACA;
 box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
 background: #EFEFEF;
 color: black;
+height: 6.375rem;
 }
 .topcoat-list__header {
 background-color: transparent;
@@ -683,6 +693,7 @@ background-color: transparent;
 font-size: 15pt;
 font-weight: 200;
 color: black;
+margin-top: 10px;
 }
 
 .topcoat-list__header {
@@ -709,7 +720,7 @@ cursor: pointer;
 }
 
 .calendar-head {
-font-size: 20pt;
+font-size: 17pt;
 }
 .arrow-right {
 display: inline-block;
@@ -746,6 +757,21 @@ background-color: #ec514e;
 }
 a, a:hover, a:focus {
 color: white;
+}
+
+.padding-top{
+padding-top: 15px !important;
+}
+
+.btn-block{
+display: block;
+width: 100%;
+text-align: center;
+}
+
+.btn, .btn:hover, .btn:focus {
+color: white;
+text-decoration: none;
 }
 
 @media (max-width: 500px){

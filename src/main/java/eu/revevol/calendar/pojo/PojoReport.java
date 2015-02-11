@@ -7,8 +7,8 @@ import java.util.List;
 
 public class PojoReport {
     public List<Location> listLocation;
-    public Date dateFrom;
-    public Date dateTo;
+    public String dateFrom;
+    public String dateTo;
     public List<Asset> listAsset;
     public List<List<DevicesStat>> globalLocationResList;
     public List<List<PurposeStat>> testedPurposeResList;

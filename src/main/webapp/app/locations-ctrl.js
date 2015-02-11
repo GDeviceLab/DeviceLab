@@ -47,12 +47,15 @@ calApp.controller("ListLocationCtrl", function($scope, endpoint, $window) {
     };
     
     $scope.getList();
+    console.log("test!");
 });
 calApp.controller("EditLocationCtrl", function($scope, $stateParams, endpoint, $window, $upload, $http, $timeout) {
     $scope.id = $stateParams.id;
     $scope.state = 'pending';
     $scope.uploading = false;
     $scope.logoUrl = "../css/img/default_logo.png";
+    
+    $scope.offset = 'no-value';
     
     $scope.showDeleteLocationButton = endpoint.me().globalAdmin;
     
@@ -63,6 +66,7 @@ calApp.controller("EditLocationCtrl", function($scope, $stateParams, endpoint, $
     $scope.submit = function() {
         endpoint.location.put({
             name: $scope.name,
+            gmtOffset: $scope.offset,
             id: $scope.id
         }).success(function() {
             $window.location.href = "#/location/list";
@@ -70,6 +74,9 @@ calApp.controller("EditLocationCtrl", function($scope, $stateParams, endpoint, $
     };
     endpoint.location.get($scope.id).success(function(data) {
         $scope.name = data.name;
+        if(!isNaN(data.gmtOffset)){
+            $scope.offset = data.gmtOffset;
+        }
         $scope.getLogoUrl(data.logoUrl);
     });
 
@@ -171,9 +178,12 @@ calApp.controller("EditLocationCtrl", function($scope, $stateParams, endpoint, $
     
 });
 calApp.controller("NewLocationCtrl", function($scope, endpoint, $window) {
+    $scope.offset = 'no-value';
+    
     $scope.submit = function() {
         endpoint.location.put({
-            name: $scope.name
+            name: $scope.name,
+            gmtOffset: $scope.offset
         }).success(function() {
             $window.location.href = "#/location/list";
         });

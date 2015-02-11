@@ -39,7 +39,7 @@
         <script src="../directives/newswidget/newswidget.js"></script>
         <script src="../directives/calsecurity/calsecurity.js"></script>
         <script src="../directives/delete/delete.js"></script>
-         <script src="../app/bootstrap.js"></script>
+         <script src="../js/bootstrap.js"></script>
         
         <link rel="stylesheet" href="../css/topcoat/topcoat-mobile-dark.min.css">
         <link rel="stylesheet" href="../css/bootstrap/bootstrap2.min.css">
@@ -101,7 +101,7 @@
                     <div id="title-location">
                     <div class="dropdown">
                       <a id="drop" class="dropdown-toggle" data-toggle="dropdown" onClick="showDrop()">
-                        <span id ="title" ng-controller="TitleCtrl"><span id="title-loc">  {{location}}</span></span>
+                        <span id ="drop-title" ng-controller="TitleCtrl"><span id="title-loc">{{location}}</span></span>
                         <span class="caret"></span>
                       </a>
                       <ul class="dropdown-menu" role="menu">

@@ -1,10 +1,27 @@
 calApp.controller("DevicesStatsCtrl", function($scope, endpoint) {
     $scope.dateFilter = {};
-        
     
+    function getRealDateString(date,offset) {
+        if(date != null){
+            var lDay = date.getDate()+ offset*1;
+            var lMonth = date.getMonth() + 1;
+            var lYear = date.getFullYear();
+            
+            if (lDay < 10) {
+                lDay = '0' + lDay;
+            }
+            
+            if (lMonth < 10) {
+                lMonth = '0' + lMonth;
+            }
+            return lYear + lMonth + lDay;
+        }
+        return null;
+    }
     
     $scope.submit = function(){
-        endpoint.stats.devicesDateFilter($scope.dateFilter.from, $scope.dateFilter.to).success(function(data) {
+        endpoint.stats.devicesDateFilter(getRealDateString($scope.dateFilter.from,0), 
+        getRealDateString($scope.dateFilter.to,1)).success(function(data) {
             $scope.stats = data.items;
         });
     };
@@ -62,8 +79,28 @@ calApp.controller("MyStatsCtrl", function($scope, endpoint){
     
     $scope.dateFilter = {};
     
+    function getRealDateString(date,offset) {
+        if(date != null){
+            var lDay = date.getDate()+ offset*1;
+            var lMonth = date.getMonth() + 1;
+            var lYear = date.getFullYear();
+            
+            if (lDay < 10) {
+                lDay = '0' + lDay;
+            }
+            
+            if (lMonth < 10) {
+                lMonth = '0' + lMonth;
+            }
+            return lYear + lMonth + lDay;
+        }
+        return null;
+    }
+    
     $scope.submit = function(){
-        endpoint.stats.personDateFilter(endpoint.me().mail, $scope.dateFilter.from, $scope.dateFilter.to).success(function(data) {
+        endpoint.stats.personDateFilter(endpoint.me().mail, 
+        getRealDateString($scope.dateFilter.from,0), 
+        getRealDateString($scope.dateFilter.to,1)).success(function(data) {
             $scope.stats = data;
         });
     };

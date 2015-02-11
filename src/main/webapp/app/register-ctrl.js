@@ -57,14 +57,20 @@ calApp.controller("TitleCtrl", function($scope, endpoint, $window) {
                     $scope.page = "News"; 
                 }
             }
+            else if(loc[1] === 'stats'){
+                if(loc[2] != null
+                    && loc[2] == "me"){
+                    $scope.page = "My Stats";
+                }
+                else{
+                    $scope.page = "Location stats"; 
+                }
+            }
             return loc[1];
         }
     }, function(n){
         var value = n.charAt(0).toUpperCase() + n.slice(1);
-        if(value == 'Stats'){
-            value = 'My Stats';
-        }
-        else if(value == 'Asset'){
+        if(value == 'Asset'){
             value = 'Device';
         }
         

@@ -1533,9 +1533,9 @@ loading++;
 return $http.get(url("reservation", "get", {location: location, id: id}))
 .success(success).error(error);
 };
-service.res.list = function(date) {
+service.res.list = function(realDateNow) {
 loading++;
-return $http.get(url("reservation", "list", {location: location, date: new Date(date).toJSON()}))
+return $http.get(url("reservation", "list", {location: location, date: realDateNow}))
 .success(success).error(error);
 };
 service.res.put = function(reservation,purpose) {
@@ -1905,7 +1905,7 @@ $scope.date.setDate($scope.date.getDate() + value);
 
 
 $timeout(function() {
-$(".hour-picker-v-scroll-bar").scrollTop(240);
+$(".hour-picker-v-scroll-bar").scrollTop(460);
 $scope.$apply();
 }, 500);
 
@@ -2187,14 +2187,20 @@ else{
 $scope.page = "News";
 }
 }
+else if(loc[1] === 'stats'){
+if(loc[2] != null
+&& loc[2] == "me"){
+$scope.page = "My Stats";
+}
+else{
+$scope.page = "Location stats";
+}
+}
 return loc[1];
 }
 }, function(n){
 var value = n.charAt(0).toUpperCase() + n.slice(1);
-if(value == 'Stats'){
-value = 'My Stats';
-}
-else if(value == 'Asset'){
+if(value == 'Asset'){
 value = 'Device';
 }
 
@@ -2263,12 +2269,15 @@ console.log(event);
 };
 
 $scope.getList();
+console.log("test!");
 });
 calApp.controller("EditLocationCtrl", function($scope, $stateParams, endpoint, $window, $upload, $http, $timeout) {
 $scope.id = $stateParams.id;
 $scope.state = 'pending';
 $scope.uploading = false;
 $scope.logoUrl = "../css/img/default_logo.png";
+
+$scope.offset = 'no-value';
 
 $scope.showDeleteLocationButton = endpoint.me().globalAdmin;
 
@@ -2279,6 +2288,7 @@ $window.location.href = value;
 $scope.submit = function() {
 endpoint.location.put({
 name: $scope.name,
+gmtOffset: $scope.offset,
 id: $scope.id
 }).success(function() {
 $window.location.href = "#/location/list";
@@ -2286,6 +2296,9 @@ $window.location.href = "#/location/list";
 };
 endpoint.location.get($scope.id).success(function(data) {
 $scope.name = data.name;
+if(!isNaN(data.gmtOffset)){
+$scope.offset = data.gmtOffset;
+}
 $scope.getLogoUrl(data.logoUrl);
 });
 
@@ -2387,9 +2400,12 @@ refresh();
 
 });
 calApp.controller("NewLocationCtrl", function($scope, endpoint, $window) {
+$scope.offset = 'no-value';
+
 $scope.submit = function() {
 endpoint.location.put({
-name: $scope.name
+name: $scope.name,
+gmtOffset: $scope.offset
 }).success(function() {
 $window.location.href = "#/location/list";
 });
@@ -2531,6 +2547,24 @@ $scope.r.start = $scope.r.end * 1 - 1;
 }
 });
 
+function getRealDateString(date,offset) {
+if(date != null){
+var lDay = date.getDate()+ offset*1;
+var lMonth = date.getMonth() + 1;
+var lYear = date.getFullYear();
+
+if (lDay < 10) {
+lDay = '0' + lDay;
+}
+
+if (lMonth < 10) {
+lMonth = '0' + lMonth;
+}
+return lYear + lMonth + lDay;
+}
+return null;
+}
+
 $scope.submit = function() {
 $scope.error.mandatoryMessage = false;
 if($scope.purpose.title == null
@@ -2547,8 +2581,9 @@ $scope.error.text = "ERR_MANDATORY_PURPOSE_TYPE";
 if(!$scope.error.mandatoryMessage){
 $scope.r.assets = [];
 $scope.r.date = $scope.date;
-$scope.r.dayString = $scope.date.getFullYear()+"#"+$scope.date.getMonth()+"#"+$scope.date.getDate();
-console.log("DayString: " + $scope.r.dayString);
+$scope.r.realDate = getRealDateString($scope.date,0);
+
+console.log("Real Date: " + $scope.r.realDate);
 
 console.log($scope.r.date);
 for (var i = 0; i < $scope.sassets.length; i++) {
@@ -2752,10 +2787,27 @@ endpoint.news.delete(id).success(refresh);
 calApp.controller("DevicesStatsCtrl", function($scope, endpoint) {
 $scope.dateFilter = {};
 
+function getRealDateString(date,offset) {
+if(date != null){
+var lDay = date.getDate()+ offset*1;
+var lMonth = date.getMonth() + 1;
+var lYear = date.getFullYear();
 
+if (lDay < 10) {
+lDay = '0' + lDay;
+}
+
+if (lMonth < 10) {
+lMonth = '0' + lMonth;
+}
+return lYear + lMonth + lDay;
+}
+return null;
+}
 
 $scope.submit = function(){
-endpoint.stats.devicesDateFilter($scope.dateFilter.from, $scope.dateFilter.to).success(function(data) {
+endpoint.stats.devicesDateFilter(getRealDateString($scope.dateFilter.from,0),
+getRealDateString($scope.dateFilter.to,1)).success(function(data) {
 $scope.stats = data.items;
 });
 };
@@ -2813,8 +2865,28 @@ $scope.stats = data;
 
 $scope.dateFilter = {};
 
+function getRealDateString(date,offset) {
+if(date != null){
+var lDay = date.getDate()+ offset*1;
+var lMonth = date.getMonth() + 1;
+var lYear = date.getFullYear();
+
+if (lDay < 10) {
+lDay = '0' + lDay;
+}
+
+if (lMonth < 10) {
+lMonth = '0' + lMonth;
+}
+return lYear + lMonth + lDay;
+}
+return null;
+}
+
 $scope.submit = function(){
-endpoint.stats.personDateFilter(endpoint.me().mail, $scope.dateFilter.from, $scope.dateFilter.to).success(function(data) {
+endpoint.stats.personDateFilter(endpoint.me().mail,
+getRealDateString($scope.dateFilter.from,0),
+getRealDateString($scope.dateFilter.to,1)).success(function(data) {
 $scope.stats = data;
 });
 };
@@ -2866,6 +2938,24 @@ $scope.locations = data;
 $scope.locations.selected = [];
 });
 
+function getRealDateString(date,offset) {
+if(date != null){
+var lDay = date.getDate()+ offset*1;
+var lMonth = date.getMonth() + 1;
+var lYear = date.getFullYear();
+
+if (lDay < 10) {
+lDay = '0' + lDay;
+}
+
+if (lMonth < 10) {
+lMonth = '0' + lMonth;
+}
+return lYear + lMonth + lDay;
+}
+return null;
+}
+
 $scope.submit = function () {
 
 if($scope.locations.selected.length <= 0){
@@ -2879,14 +2969,18 @@ return;
 }
 
 if('REPORT_GLOBAL_LOCATION_DEVICE_REPORT' == $scope.reportType){
-endpoint.rep.globalLocationDevicesReport($scope.locations.selected, $scope.dateFilter.from, $scope.dateFilter.to)
+endpoint.rep.globalLocationDevicesReport($scope.locations.selected,
+getRealDateString($scope.dateFilter.from,0),
+getRealDateString($scope.dateFilter.to,1))
 .success(function (data) {
 $rootScope.reportResult = data;
 $window.location.href = "#/report/globalLocationDevicesReport";
 });
 }
 else if('REPORT_TESTED_PURPOSES' == $scope.reportType){
-endpoint.rep.testedPurposes($scope.locations.selected, $scope.dateFilter.from, $scope.dateFilter.to)
+endpoint.rep.testedPurposes($scope.locations.selected,
+getRealDateString($scope.dateFilter.from,0),
+getRealDateString($scope.dateFilter.to,1))
 .success(function (data) {
 $rootScope.reportResult = data;
 $window.location.href = "#/report/testedPurposesReport";
@@ -2955,8 +3049,27 @@ filter: '='
 },
 controller: function($scope, $window, $filter, endpoint) {
 
+function getRealDateString(date,offset) {
+if(date != null){
+var lDay = date.getDate()+ offset*1;
+var lMonth = date.getMonth() + 1;
+var lYear = date.getFullYear();
+
+if (lDay < 10) {
+lDay = '0' + lDay;
+}
+
+if (lMonth < 10) {
+lMonth = '0' + lMonth;
+}
+return lYear + lMonth + lDay;
+}
+return null;
+}
+
 function dte(){
-return new Date($scope.date.getFullYear(), $scope.date.getMonth(), $scope.date.getDate() + $scope.offset*1);
+var d = new Date($scope.date.getFullYear(), $scope.date.getMonth(), $scope.date.getDate() + $scope.offset*1);
+return d;
 }
 
 $scope.borderStriped = function(hour){
@@ -3054,10 +3167,8 @@ var w = document.getElementById(id + "_" + begin).offsetWidth;
 var e = document.getElementById(id + "_" + "range");
 e.style.top = (begin - 2*$scope.min) * h + 10;
 e.style.height = (end - begin + 1) * h;
-e.style.left = 51;
-e.style.width = w - 34;
-// e.style.left = 31;
-// e.style.width = w;
+e.style.left = 49;
+e.style.width = w;
 e.style.display = "block";
 }
 
@@ -3080,7 +3191,8 @@ col_inc++;
 
 //Reservations
 function refreshRes() {
-endpoint.res.list(dte()).success(function(data) {
+var realDateNow = getRealDateString($scope.date,$scope.offset);
+endpoint.res.list(realDateNow).success(function(data) {
 if (data.items) {
 for (var i = 0; i < data.items.length; i++) {
 var event = data.items[i];
@@ -3759,6 +3871,22 @@ return postLinkFn;
 }
 };
 }]);
+calApp.directive("selectTimezone", function() {
+return({
+templateUrl: '/directives/selecttimezone/selecttimezone.html',
+restrict: 'E',
+scope: {
+offset: '='
+},
+controller: function($scope, $window, $filter, endpoint) {
+$scope.changeSelection = function(){
+console.log($scope.offset);
+};
+}
+});
+});
+
+
 /*!
 * Bootstrap v3.3.1 (http://getbootstrap.com)
 * Copyright 2011-2014 Twitter, Inc.

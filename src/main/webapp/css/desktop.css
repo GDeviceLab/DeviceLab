@@ -3,7 +3,7 @@
     Created on : 26 mars 2014, 12:00:09
     Author     : Clement <clement.hannicq@revevol.eu>
 */
-@import url(http://fonts.googleapis.com/css?family=Roboto:400,300,500);
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500);
 
 
 html{
@@ -618,6 +618,10 @@ font-size: 40pt;
 font-weight: 300;
 margin-top: -7px;
 }
+
+.reservationpage [class^="icon-"], .reservationpage [class*=" icon-"] {
+    color: gray;
+}
 /*  
     SIDE MENU
 */
@@ -724,6 +728,8 @@ margin-top: -7px;
 
 .checkbox {
     padding-left: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
 
 .cal-title {
@@ -732,6 +738,10 @@ margin-top: -7px;
 
 .devices{
   padding-left: 20;
+}
+
+.devices-select{
+    margin-bottom: 0px;
 }
 
 .devices-select:last-child {
@@ -830,7 +840,7 @@ a:hover,a:focus {
 nav ul,nav li {
     outline:0;
     margin:0;
-    padding: 10px;
+    padding-left: 10px;
 }
 .area {
     float: left;

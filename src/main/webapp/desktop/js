@@ -32,4 +32,5 @@
 ../directives/linkify/linkify.js
 ../directives/devicepicker/devicepicker.js
 ../directives/checkboxes/checkboxes.js
+../directives/selecttimezone/selecttimezone.js
 ../js/bootstrap.js

@@ -52,7 +52,8 @@ position: absolute;
 height: 100vh;
 top: 0;
 bottom: 0;
-overflow: auto;
+overflow-y: auto;
+overflow-x: hidden;
 -webkit-transition: top 0.2s linear;
 -moz-transition: top 0.2s linear;
 -o-transition: top 0.2s linear;
@@ -6574,7 +6575,7 @@ color: #757575;
 Created on : 26 mars 2014, 12:00:09
 Author     : Clement <clement.hannicq@revevol.eu>
 */
-@import url(http://fonts.googleapis.com/css?family=Roboto:400,300,500);
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500);
 
 
 html{
@@ -7189,6 +7190,10 @@ font-size: 40pt;
 font-weight: 300;
 margin-top: -7px;
 }
+
+.reservationpage [class^="icon-"], .reservationpage [class*=" icon-"] {
+color: gray;
+}
 /*
 SIDE MENU
 */
@@ -7295,6 +7300,8 @@ bottom:0;
 
 .checkbox {
 padding-left: 0px;
+margin-top: 0px;
+margin-bottom: 0px;
 }
 
 .cal-title {
@@ -7303,6 +7310,10 @@ padding-left: 20px;
 
 .devices{
 padding-left: 20;
+}
+
+.devices-select{
+margin-bottom: 0px;
 }
 
 .devices-select:last-child {
@@ -7401,7 +7412,7 @@ text-decoration:none;
 nav ul,nav li {
 outline:0;
 margin:0;
-padding: 10px;
+padding-left: 10px;
 }
 .area {
 float: left;

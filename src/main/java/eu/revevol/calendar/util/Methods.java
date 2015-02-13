@@ -1,5 +1,6 @@
 package eu.revevol.calendar.util;
 
+import com.google.appengine.api.utils.SystemProperty;
 import com.google.gson.Gson;
 import java.util.Properties;
 import java.util.logging.Logger;
@@ -57,8 +58,9 @@ public class Methods {
                 /**
                  * Main From
                  */
+                String fromString = String.format("noreply@%s.appspotmail.com", SystemProperty.applicationId.get(),Params.PROJECT_PLACEHOLDER);
                 Message msg = new MimeMessage(session);
-                msg.setFrom(new InternetAddress(Params.SENDER_EMAIL_APPLICATION_NAME + "<" +Params.GAPPS_USER_NAME+">"));
+                msg.setFrom(new InternetAddress(Params.SENDER_EMAIL_APPLICATION_NAME + "<" +fromString+">"));
                 
                 /**
                  * Mail To

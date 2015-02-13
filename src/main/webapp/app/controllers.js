@@ -95,28 +95,37 @@ calApp.controller("CalendarCtrl", function($scope, $rootScope, endpoint, $window
 });
 
 calApp.controller("MenuCtrl", function($scope, endpoint, $timeout) {
-    
     $scope.logo = {
         url:"../css/img/default_logo.png"
     };
     
-    endpoint.then(function(endpoint) {
-        $scope.myName = function() {
-            return endpoint.me().name;
-        };
-        $scope.location = function() {
-            var location = endpoint.loc();
-            return location;
-        };
-        
-        endpoint.location.get($scope.location()).success(function(data) {
-            $scope.getLogoUrl(data.logoUrl);
-        });
-        
-        $timeout(function() {
-            $scope.$apply();
-        }, 500);
+    $scope.$on('reloadLocation', function(event, data) {
+        $scope.initLoad();
     });
+    
+    
+    
+    $scope.initLoad = function(){
+        endpoint.then(function(endpoint) {
+            $scope.myName = function() {
+                return endpoint.me().name;
+            };
+            $scope.location = function() {
+                var location = endpoint.loc();
+                return location;
+            };
+            
+            endpoint.location.get($scope.location()).success(function(data) {
+                $scope.getLogoUrl(data.logoUrl);
+            });
+            
+            $timeout(function() {
+                $scope.$apply();
+            }, 500);
+        });
+    };
+    
+    $scope.initLoad();
     
     $scope.getLogoUrl = function(value){
         $scope.logo.url = "../css/img/default_logo.png";
@@ -126,11 +135,12 @@ calApp.controller("MenuCtrl", function($scope, endpoint, $timeout) {
         }
     };
 });
-calApp.controller("LocationDrawer", function($scope, endpoint, $window) {
+calApp.controller("LocationDrawer", function($scope, endpoint, $window, $rootScope) {
     endpoint.then(function(endpoint) {
         $scope.set = function(loc) {
             endpoint.setLoc(loc);
-            $window.location.href = "#/reload"
+            $rootScope.$broadcast('reloadLocation', "");
+            $window.location.href = "#/reload";
         };
         
         $scope.active = function(loc) {

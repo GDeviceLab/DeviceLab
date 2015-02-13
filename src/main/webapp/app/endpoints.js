@@ -1,4 +1,5 @@
-calApp.factory('endpoint', ['$http', '$rootScope', '$window', '$q', function($http, $scope, $window, $q) {
+calApp.factory('endpoint', ['$http', '$rootScope', '$window', '$q', '$cookieStore',
+    function($http, $scope, $window, $q, $cookieStore) {
         var response = $q.defer();
 
         var service = {};
@@ -10,7 +11,7 @@ calApp.factory('endpoint', ['$http', '$rootScope', '$window', '$q', function($ht
         var redirect = false;
         var show = false;
         var local = "";
-
+        
         ///////////////
         // CALLBACKS //
         ///////////////
@@ -321,7 +322,6 @@ calApp.factory('endpoint', ['$http', '$rootScope', '$window', '$q', function($ht
                 dateTo : dateTo,
                 idPerson:id
             };
-            console.log(pojoReport);
             return $http.post(url("stats", "personDateFilter", {}),pojoReport)
                     .success(success).error(error);
         };
@@ -362,7 +362,14 @@ calApp.factory('endpoint', ['$http', '$rootScope', '$window', '$q', function($ht
                         if (location == -1) {
                             if (data.favorite) {
                                 service.favorite = data.favorite;
-                                location = data.favorite;
+                                if($cookieStore.get('location') != null){
+                                    console.log("Location taken from cache");
+                                    location = $cookieStore.get('location');
+                                }
+                                else{
+                                    console.log("No Location from cache... take the favourite");
+                                    location = data.favorite;
+                                }
                             }
                         }
                     });
@@ -378,6 +385,7 @@ calApp.factory('endpoint', ['$http', '$rootScope', '$window', '$q', function($ht
 
         service.setLoc = function(newLocation) {
             location = newLocation;
+            $cookieStore.put('location',location);
         };
 
         service.me = function() {

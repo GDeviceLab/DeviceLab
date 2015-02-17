@@ -66,6 +66,7 @@ calApp.controller("EditLocationCtrl", function($scope, $stateParams, endpoint, $
         endpoint.location.put({
             name: $scope.name,
             gmtOffset: $scope.offset,
+            logoUrl: $scope.logoUrl,
             id: $scope.id
         }).success(function() {
             $window.location.href = "#/location/list";

@@ -12,7 +12,7 @@ public class Params {
     private static String getApplicationAddress(){
         if (SystemProperty.environment.value() == SystemProperty.Environment.Value.Production) {
             // do something that's production-only
-            return "https://"+SystemProperty.applicationId+".appspot.com";
+            return "https://"+SystemProperty.applicationId.get()+".appspot.com";
         }
         return "http://localhost:8080";
     }

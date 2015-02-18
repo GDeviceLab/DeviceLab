@@ -1,9 +1,17 @@
+<div class="pull-right" ng-if="news.length > 0">
+    <i class="icon-chevron-left" ng-class="prevPageDisabled()" ng-click="prevPage()"></i>
+    <span>{{currentPage+1}}</span>
+    <span>{{'OF' | translate}}</span>
+    <span>{{pageCount()+1}}</span>
+    <i class="icon-chevron-right" ng-class="nextPageDisabled()" ng-click="nextPage()"></i>
+</div>
 <div class="row">
     <div class="col-md-12">
         <div class="panel panel-default">
             <div class="panel-heading">{{'NEWS' | translate}}</div>
             <ul class="list-group">
-                <li class="list-group-item" ng-repeat="n in news">
+                <li class="list-group-item" ng-repeat="n in news 
+                            | offset: currentPage*itemsPerPage | limitTo: itemsPerPage">
                     <h4 class="list-group-item-heading">
                         {{n.title}}
                         <span class="actions">

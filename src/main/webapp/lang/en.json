@@ -139,5 +139,6 @@
     "NAME":"Name",
     "CANCEL":"Cancel",
     "PREFERRED_LOGO_SIZE":"*preferred size: width 230px, height 120px",
-    "GMT_OFFSET":"- Select GMT Offset -"
+    "GMT_OFFSET":"- Select GMT Offset -",
+    "OF":"of"
 }

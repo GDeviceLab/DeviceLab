@@ -160,6 +160,7 @@ calApp.controller("NewReservationCtrl", function($scope, $stateParams, $window, 
                     $scope.error.mandatoryMessage = true;
                     $scope.error.text = "ERR_MANDATORY_DEVICE";
                 }
+                console.log($scope.error);
             });
         }
     };

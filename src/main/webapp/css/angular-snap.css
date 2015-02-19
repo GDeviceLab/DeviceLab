@@ -22,6 +22,7 @@ snap-drawers,
   width: auto;
   left: 0;
   right: 0;
+  overflow-x: hidden;
 }
 snap-drawer,
 [snap\:drawer],

@@ -39,6 +39,7 @@ top: 0;
 width: auto;
 left: 0;
 right: 0;
+overflow-x: hidden;
 }
 snap-drawer,
 [snap\:drawer],
@@ -6650,6 +6651,7 @@ white-space: nowrap;
 /*overflow: hidden;*/
 background-color: #FFA70F;
 margin-bottom: 10px;
+box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.26);
 }
 
 #header a{
@@ -6682,6 +6684,16 @@ color: black;
 #header .dropdown li {
 font-size: 16pt;
 padding: 5px;
+}
+
+#header .dropdown-menu li {
+display: block;
+}
+#header .dropdown-menu #drop-loc-text {
+display: inline-block;
+max-width: 80%;
+overflow-x: hidden;
+text-overflow: ellipsis;
 }
 
 #header .dropdown li:hover {
@@ -6794,12 +6806,12 @@ margin-top: -7px;
 text-align: left;
 margin-left: 20px;
 }
-
-h1.weekcal{
+h1.weekcalday{
 font-size: 40pt;
 font-weight: 300;
 margin-top: -7px;
 text-align: left;
+margin-left: 0px;
 }
 .weekcal-day{
 font-size: 14pt;
@@ -6824,8 +6836,18 @@ font-size: 50%;
 #ack-image{
 position:fixed;
 bottom: 0;
+background: #EEEEEE;
+width: 266px;
 }
 
+#ack-image img{
+max-height: 120px;
+max-width: 230px;
+margin: 0 auto;
+position: relative;
+display: block;
+margin-top: 25px;
+}
 #title{
 color: white;
 font-weight: 400;
@@ -7209,6 +7231,7 @@ white-space: nowrap;
 overflow: hidden;
 background-color: #FFA70F;
 margin-bottom: 10px;
+box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.26);
 
 }
 
@@ -7306,6 +7329,11 @@ bottom:0;
 padding-left: 0px;
 margin-top: 0px;
 margin-bottom: 0px;
+display: block;
+max-width: 90%;
+white-space: nowrap;
+overflow-x: hidden;
+text-overflow: ellipsis;
 }
 
 .cal-title {

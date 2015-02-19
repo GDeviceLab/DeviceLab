@@ -1,5 +1,9 @@
 <div class="row">
-    <news-feed class="col-md-12 news" p-class="col-md-6" rank="0" limit="2" id="news-sec"></news-feed>
+    <news-feed class="col-md-12 news" p-class="col-md-6" rank="0" limit="2" id="news-sec">
+    </news-feed>
+    <div class="pull-right">
+        <button type="button" ng-click="goTo('#/news')" class="btn btn-link">{{'SEE_MORE_NEWS' | translate}}</button>
+    </div>
 </div>
 <div class="row">
     <div class="col-md-12 ng-isolate-scope" id="week-select">

@@ -306,6 +306,7 @@ h1.weekcalday{
 .news {
     background-color: white;
     margin-top: -10px;
+    z-index: -1;
 }
 
 

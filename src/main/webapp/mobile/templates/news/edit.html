@@ -31,11 +31,11 @@
     <div class="padded" ng-show="n.date">
         <input type="text" class="topcoat-text-input" placeholder="{{'NEWS_TITLE'| translate}}" value="{{n.date|date: 'EEEE d MMMM'}}" disabled>
     </div>
-    <div class="topcoat-navigation-bar mid" ng-click="expire = !expire">
+   <!--  <div class="topcoat-navigation-bar mid" ng-click="expire = !expire">
     <div class="topcoat-navigation-bar__item center">
         <h1 class="topcoat-navigation-bar__title">Expires : {{n.expire|date: 'EEEE d MMMM'}}</h1>
     </div>
-</div>
+</div> -->
 <div class="topcoat-list__header" ng-show="expire" cal-show-local>
     <cal-endar date="n.expire" class="cal" btn-class="topcoat-button--cta" />
 </div>

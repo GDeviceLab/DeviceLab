@@ -56,3 +56,10 @@ calApp.filter('localize', function() {
         return d.toLocaleTimeString(window.navigator.language,options);
     };
 });
+
+calApp.filter('offset', function() {
+    return function(input, start) {
+        start = parseInt(start, 10);
+        return input.slice(start);
+    };
+});

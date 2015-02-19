@@ -872,12 +872,15 @@ nav h3 {
 .edit-location-page .panel-title{
     display: block;
     width: 100%;
-    padding: 0;
-    margin-bottom: 20px;
+    padding: 0 !important;
+    margin-bottom: 0px;
     font-size: 21px;
     line-height: inherit;
     color: #333;
     border: 0;
+}
+.edit-location-page .panel-body{
+    padding-top: 0 !important; 
 }
 
 .icon-star {

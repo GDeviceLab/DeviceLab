@@ -72,6 +72,14 @@
             drop_open = !drop_open;
         } 
     }
+    $(document).bind( "touchend", function(e){
+            var menu = $(".dropdown-menu");
+            var menu_star = $(".dropdown-menu .icon-star-o");
+            if (!menu_star.is(e.target) && menu_star.has(e.target).length === 0 && drop_open)
+            {
+                menu.css("display","none");
+            }
+    });
     </script>
     <body ng-app="cal" data-snap-ignore="true">
         
@@ -90,7 +98,7 @@
                     </h1>
                     <div id="title-location">
                     <div class="dropdown">
-                      <a id="drop" class="dropdown-toggle" data-toggle="dropdown" onClick="showDrop()">
+                      <a id="drop" class="dropdown-toggle" data-toggle="dropdown" onClick="event.preventDefault(); showDrop()">
                         <span id ="drop-title" ng-controller="TitleCtrl"><span class="icon-globe"></span>
                       </a>
                     </div>

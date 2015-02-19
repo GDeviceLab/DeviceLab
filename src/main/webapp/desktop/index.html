@@ -43,7 +43,8 @@
     });
     $(document).mouseup(function(e){
             var menu = $(".dropdown-menu");
-            if (!menu.is(e.target) && menu.has(e.target).length === 0 && drop_open)
+            var menu_star = $(".dropdown-menu .icon-star-o");
+            if (!menu_star.is(e.target) && menu_star.has(e.target).length === 0 && drop_open)
             {
                 menu.css("display","none");
             }

@@ -6,15 +6,15 @@
          style="
          z-index: 99999999;
          ">
-        <div class="padded padding-top">
+        <div class="padded">
             <select multiple ng-options="a.id as a.name for a in data" ng-model="search.assets" class="form-control">
                 <option value="">{{'CAL_FILTER' | translate}}</option>
             </select>
         </div>
-        <div class="padded">
-             <div class="checkbox">
+        <div class="padded padding-top">
+            <div class="checkbox">
                 <label>
-                    <input type="checkbox" ng-click="toggle()"><span class="check"></span> {{ 'CAL_FILTER_MINE' | translate}}
+                    <input type="checkbox" ng-model="togglePerson"><span class="check"></span> {{ 'CAL_FILTER_MINE' | translate}}
                 </label>
             </div>
             <div class="button-right" ng-click="toggle()">

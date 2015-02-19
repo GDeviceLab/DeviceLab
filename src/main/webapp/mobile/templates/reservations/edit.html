@@ -157,7 +157,7 @@
     <table class="multiselect">
         <tr ng-repeat="asset in sassets">
             <td ng-click="removeAsset(asset.number)" cal-show-owner="{{r.person}}">
-                <span class="icon-x-altx-alt"></span>
+                <span class="actions icon-x-altx-alt"></span>
             </td>
             <td>
                 <select ng-show="!asset.raw || asset.raw.active" cal-enable-owner="{{r.person}}" class="form-control" ng-model="asset.value" ng-options="t.id as t.name for t in assets"></select>
@@ -166,7 +166,7 @@
         </tr>
         <tr cal-show-owner="{{r.person}}">
             <td ng-click="addAsset()">
-                <span class="icon-plus-square"></span>
+                <span class="actions icon-plus-square"></span>
             </td>
             <td>
                 <select class="topcoat-text-input" ng-options="t.id as t.name for t in assets" disabled></select>

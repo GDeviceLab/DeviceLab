@@ -29,8 +29,9 @@ public class EmailTemplate {
         pojo.setEmails(emailArrayString);
         pojo.setSubject("New user asks to access to location");
         String message = "Dear location Admin,<br>"+
-                "the user "+ Methods.notNullText(p.name) + 
-                " <" + Methods.notNullText(p.mail) +"> from " +  
+                "the user BB <a href='mailto:"+Methods.notNullText(p.mail)+"'>"+
+                Methods.notNullText(p.name)+"</a> "+ 
+                "from " +  
                 Methods.notNullText(p.startupName) +" asks to apply to " + 
                 Methods.notNullText(locationObj.name) + ".<br>" +
                 "Please, access to <a href='"+Params.APPLICATION_ADDRESS+"/desktop/#/location/edit/"+locationObj.id+"' target='_blank'>"+Params.SENDER_EMAIL_APPLICATION_NAME+"</a> to approve or reject the user." +

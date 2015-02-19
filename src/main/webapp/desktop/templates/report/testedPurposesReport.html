@@ -8,6 +8,7 @@
             <table class="table table-hover results">
                 <tr>
                     <th><h5>{{'PURPOSE_TITLE' | translate}}</h5></th>
+                    <th><h5>{{'PURPOSE' | translate}}</h5></th>
                     <th><h5>{{ 'REPORT_BOOKING_HOUR' | translate }}</h5></th>
                     <th><h5>{{ 'REPORT_BOOKING_NUM' | translate }}</h5></th>
                 </tr>
@@ -15,6 +16,7 @@
                     <td style="width: 200px;">
                         {{purpose.purpose.title}}
                     </td>
+                    <td>{{purpose.purpose.type | translate}}</td>
                     <td>{{purpose.hoursPast | hours}} <!--(+{{purpose.hoursFuture | hours}})--></td>
                     <td>{{purpose.count}}</td>
                 </tr>

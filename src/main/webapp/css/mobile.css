@@ -33,7 +33,8 @@ input, select, textarea{
 
 textarea{
     line-height: 1em !important;
-    padding: 1em !important;
+    padding: 0em !important;
+    padding-top: 1em !important;
 }
 
 select{

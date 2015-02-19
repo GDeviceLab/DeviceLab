@@ -139,6 +139,6 @@
     "NAME":"Nom",
     "CANCEL":"Annuler",
     "PREFERRED_LOGO_SIZE":"*taille préférée: largeur 230px, hauteur 120px",
-    "GMT_OFFSET":"GMT Offset"
-   
+    "GMT_OFFSET":"GMT Offset",
+    "OF":"de"
 }

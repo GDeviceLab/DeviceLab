@@ -10,8 +10,8 @@
                     <div class="col-md-6">
                         <img src="{{logoUrl}}" style="width: 74px;">
                     </div>
-                    <div class="col-md-8" style="margin-top: 20px;">
-                        <span class="btn btn-default btn-file">
+                    <div class="col-md-6" style="margin-top: 20px;">
+                        <span class="btn btn-primary btn-file">
                             <img src="/css/button-loader.gif" style="height: 20px;" ng-show="uploading"/>
                             {{'UPLOAD_LOGO' | translate}}
                             <input type="file" ng-file-select="onFileSelect($files)" class="uploadBtn" accept="image/*"/>
@@ -35,7 +35,7 @@
                         <span class="material-input"></span>
                         </div>
                         <br>
-                        <select-timezone offset="offset" ></select-timezone>
+                        <select-timezone class="form-control" offset="offset" ></select-timezone>
                     </div>
                     <div class="col-md-4">
                         <button cal-show-global class="btn btn-primary btn-block" ng-click="submit()">{{'BUTTON_SAVE' | translate}}</button>
@@ -44,7 +44,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-4" ng-show="id">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">{{'DEVICE_OVERVIEW' | translate}}</h3>

@@ -1086,7 +1086,7 @@ angular.module("pascalprecht.translate",["ng"]).run(["$translate",function(a){va
 angular.module("pascalprecht.translate").factory("$translateStaticFilesLoader",["$q","$http",function(a,b){return function(c){if(!c||!angular.isString(c.prefix)||!angular.isString(c.suffix))throw new Error("Couldn't load static files, no prefix or suffix specified!");var d=a.defer();return b({url:[c.prefix,c.key,c.suffix].join(""),method:"GET",params:""}).success(function(a){d.resolve(a)}).error(function(){d.reject(c.key)}),d.promise}}]);
 /*! 1.6.5 */
 !function(){var a=angular.module("angularFileUpload",[]);a.service("$upload",["$http","$q","$timeout",function(a,b,c){function d(d){d.method=d.method||"POST",d.headers=d.headers||{},d.transformRequest=d.transformRequest||function(b,c){return window.ArrayBuffer&&b instanceof window.ArrayBuffer?b:a.defaults.transformRequest[0](b,c)};var e=b.defer();window.XMLHttpRequest.__isShim&&(d.headers.__setXHR_=function(){return function(a){a&&(d.__XHR=a,d.xhrFn&&d.xhrFn(a),a.upload.addEventListener("progress",function(a){e.notify(a)},!1),a.upload.addEventListener("load",function(a){a.lengthComputable&&e.notify(a)},!1))}}),a(d).then(function(a){e.resolve(a)},function(a){e.reject(a)},function(a){e.notify(a)});var f=e.promise;return f.success=function(a){return f.then(function(b){a(b.data,b.status,b.headers,d)}),f},f.error=function(a){return f.then(null,function(b){a(b.data,b.status,b.headers,d)}),f},f.progress=function(a){return f.then(null,null,function(b){a(b)}),f},f.abort=function(){return d.__XHR&&c(function(){d.__XHR.abort()}),f},f.xhr=function(a){return d.xhrFn=function(b){return function(){b&&b.apply(f,arguments),a.apply(f,arguments)}}(d.xhrFn),f},f}this.upload=function(b){b.headers=b.headers||{},b.headers["Content-Type"]=void 0,b.transformRequest=b.transformRequest||a.defaults.transformRequest;var c=new FormData,e=b.transformRequest,f=b.data;return b.transformRequest=function(a,c){if(f)if(b.formDataAppender)for(var d in f){var g=f[d];b.formDataAppender(a,d,g)}else for(var d in f){var g=f[d];if("function"==typeof e)g=e(g,c);else for(var h=0;h<e.length;h++){var i=e[h];"function"==typeof i&&(g=i(g,c))}a.append(d,g)}if(null!=b.file){var j=b.fileFormDataName||"file";if("[object Array]"===Object.prototype.toString.call(b.file))for(var k="[object String]"===Object.prototype.toString.call(j),h=0;h<b.file.length;h++)a.append(k?j:j[h],b.file[h],b.fileName&&b.fileName[h]||b.file[h].name);else a.append(j,b.file,b.fileName||b.file.name)}return a},b.data=c,d(b)},this.http=function(a){return d(a)}}]),a.directive("ngFileSelect",["$parse","$timeout",function(a,b){return function(c,d,e){var f=a(e.ngFileSelect);if("input"!==d[0].tagName.toLowerCase()||"file"!==(d.attr("type")&&d.attr("type").toLowerCase())){for(var g=angular.element('<input type="file">'),h=0;h<d[0].attributes.length;h++)g.attr(d[0].attributes[h].name,d[0].attributes[h].value);d.attr("data-multiple")&&g.attr("multiple","true"),g.css("top",0).css("bottom",0).css("left",0).css("right",0).css("width","100%").css("opacity",0).css("position","absolute").css("filter","alpha(opacity=0)"),d.append(g),(""===d.css("position")||"static"===d.css("position"))&&d.css("position","relative"),d=g}d.bind("change",function(a){var d,e,g=[];if(d=a.__files_||a.target.files,null!=d)for(e=0;e<d.length;e++)g.push(d.item(e));b(function(){f(c,{$files:g,$event:a})})})}}]),a.directive("ngFileDropAvailable",["$parse","$timeout",function(a,b){return function(c,d,e){if("draggable"in document.createElement("span")){var f=a(e.ngFileDropAvailable);b(function(){f(c)})}}}]),a.directive("ngFileDrop",["$parse","$timeout","$location",function(a,b,c){return function(d,e,f){function g(a){return/^[\000-\177]*$/.test(a)}function h(a,d){var e=[],f=a.dataTransfer.items;if(f&&f.length>0&&f[0].webkitGetAsEntry&&"file"!=c.protocol())for(var h=0;h<f.length;h++){var j=f[h].webkitGetAsEntry();null!=j&&(g(j.name)?i(e,j):f[h].webkitGetAsEntry().isDirectory||e.push(f[h].getAsFile()))}else{var k=a.dataTransfer.files;if(null!=k)for(var h=0;h<k.length;h++)e.push(k.item(h))}!function m(a){b(function(){l?m(10):d(e)},a||0)}()}function i(a,b,c){if(null!=b)if(b.isDirectory){var d=b.createReader();l++,d.readEntries(function(d){for(var e=0;e<d.length;e++)i(a,d[e],(c?c:"")+b.name+"/");l--})}else l++,b.file(function(b){l--,b._relativePath=(c?c:"")+b.name,a.push(b)})}if("draggable"in document.createElement("span")){var j=null;e[0].addEventListener("dragover",function(c){if(c.stopPropagation(),c.preventDefault(),b.cancel(j),!e[0].__drag_over_class_)if(f.ngFileDragOverClass.search(/\) *$/)>-1){dragOverClassFn=a(f.ngFileDragOverClass);var g=dragOverClassFn(d,{$event:c});e[0].__drag_over_class_=g}else e[0].__drag_over_class_=f.ngFileDragOverClass||"dragover";e.addClass(e[0].__drag_over_class_)},!1),e[0].addEventListener("dragenter",function(a){a.stopPropagation(),a.preventDefault()},!1),e[0].addEventListener("dragleave",function(){j=b(function(){e.removeClass(e[0].__drag_over_class_),e[0].__drag_over_class_=null},f.ngFileDragOverDelay||1)},!1);var k=a(f.ngFileDrop);e[0].addEventListener("drop",function(a){a.stopPropagation(),a.preventDefault(),e.removeClass(e[0].__drag_over_class_),e[0].__drag_over_class_=null,h(a,function(b){k(d,{$files:b,$event:a})})},!1);var l=0}}}])}();
-var calApp = angular.module('cal', ['ui.router', 'snap', 'ngSanitize', 'pascalprecht.translate','angularFileUpload'])
+var calApp = angular.module('cal', ['ngCookies','ui.router', 'snap', 'ngSanitize', 'pascalprecht.translate','angularFileUpload'])
 .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 $urlRouterProvider.otherwise('/calendar');
 $stateProvider.state('reload', {
@@ -1366,6 +1366,13 @@ var options = { hour:'numeric'};
 return d.toLocaleTimeString(window.navigator.language,options);
 };
 });
+
+calApp.filter('offset', function() {
+return function(input, start) {
+start = parseInt(start, 10);
+return input.slice(start);
+};
+});
 calApp.config(function($translateProvider) {
 $translateProvider.useStaticFilesLoader({
 prefix: '/lang/',
@@ -1385,7 +1392,8 @@ return langs[i];
 return fallback;
 });
 });
-calApp.factory('endpoint', ['$http', '$rootScope', '$window', '$q', function($http, $scope, $window, $q) {
+calApp.factory('endpoint', ['$http', '$rootScope', '$window', '$q', '$cookieStore',
+function($http, $scope, $window, $q, $cookieStore) {
 var response = $q.defer();
 
 var service = {};
@@ -1708,7 +1716,6 @@ dateFrom : dateFrom,
 dateTo : dateTo,
 idPerson:id
 };
-console.log(pojoReport);
 return $http.post(url("stats", "personDateFilter", {}),pojoReport)
 .success(success).error(error);
 };
@@ -1749,7 +1756,14 @@ redirect = true;
 if (location == -1) {
 if (data.favorite) {
 service.favorite = data.favorite;
+if($cookieStore.get('location') != null){
+console.log("Location taken from cache");
+location = $cookieStore.get('location');
+}
+else{
+console.log("No Location from cache... take the favourite");
 location = data.favorite;
+}
 }
 }
 });
@@ -1765,6 +1779,7 @@ return show;
 
 service.setLoc = function(newLocation) {
 location = newLocation;
+$cookieStore.put('location',location);
 };
 
 service.me = function() {
@@ -1913,11 +1928,17 @@ $scope.$apply();
 });
 
 calApp.controller("MenuCtrl", function($scope, endpoint, $timeout) {
-
 $scope.logo = {
 url:"../css/img/default_logo.png"
 };
 
+$scope.$on('reloadLocation', function(event, data) {
+$scope.initLoad();
+});
+
+
+
+$scope.initLoad = function(){
 endpoint.then(function(endpoint) {
 $scope.myName = function() {
 return endpoint.me().name;
@@ -1935,6 +1956,9 @@ $timeout(function() {
 $scope.$apply();
 }, 500);
 });
+};
+
+$scope.initLoad();
 
 $scope.getLogoUrl = function(value){
 $scope.logo.url = "../css/img/default_logo.png";
@@ -1944,11 +1968,12 @@ $scope.logo.url = value;
 }
 };
 });
-calApp.controller("LocationDrawer", function($scope, endpoint, $window) {
+calApp.controller("LocationDrawer", function($scope, endpoint, $window, $rootScope) {
 endpoint.then(function(endpoint) {
 $scope.set = function(loc) {
 endpoint.setLoc(loc);
-$window.location.href = "#/reload"
+$rootScope.$broadcast('reloadLocation', "");
+$window.location.href = "#/reload";
 };
 
 $scope.active = function(loc) {
@@ -1999,6 +2024,7 @@ $window.location.hash = "/";
 }
 });
 calApp.controller("ListAssetCtrl", function($scope, endpoint, $window) {
+
 function refresh() {
 endpoint.asset.list().success(function(data) {
 $scope.assets = data.items;
@@ -2290,6 +2316,7 @@ $scope.submit = function() {
 endpoint.location.put({
 name: $scope.name,
 gmtOffset: $scope.offset,
+logoUrl: $scope.logoUrl,
 id: $scope.id
 }).success(function() {
 $window.location.href = "#/location/list";
@@ -2605,6 +2632,7 @@ else{
 $scope.error.mandatoryMessage = true;
 $scope.error.text = "ERR_MANDATORY_DEVICE";
 }
+console.log($scope.error);
 });
 }
 };
@@ -2775,6 +2803,39 @@ $window.history.back();
 };
 });
 calApp.controller("ListNewsCtrl", function($scope, endpoint) {
+
+$scope.itemsPerPage = 4;
+$scope.currentPage = 0;
+$scope.news = [];
+
+$scope.prevPage = function() {
+if ($scope.currentPage > 0) {
+$scope.currentPage--;
+}
+};
+
+$scope.prevPageDisabled = function() {
+return $scope.currentPage === 0 ? "disabled" : "";
+};
+
+$scope.pageCount = function() {
+return Math.ceil($scope.news.length/$scope.itemsPerPage)-1;
+};
+
+$scope.nextPage = function() {
+if ($scope.currentPage < $scope.pageCount()) {
+$scope.currentPage++;
+}
+};
+
+$scope.setPage = function(n) {
+$scope.currentPage = n;
+};
+
+$scope.nextPageDisabled = function() {
+return $scope.currentPage === $scope.pageCount() ? "disabled" : "";
+};
+
 function refresh() {
 endpoint.news.fetch(0, 30).success(function(data) {
 $scope.news = data.items;

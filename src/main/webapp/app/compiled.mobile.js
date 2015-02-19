@@ -1084,7 +1084,7 @@ angular.module("pascalprecht.translate",["ng"]).run(["$translate",function(a){va
 * Copyright (c) 2014 ; Licensed MIT
 */
 angular.module("pascalprecht.translate").factory("$translateStaticFilesLoader",["$q","$http",function(a,b){return function(c){if(!c||!angular.isString(c.prefix)||!angular.isString(c.suffix))throw new Error("Couldn't load static files, no prefix or suffix specified!");var d=a.defer();return b({url:[c.prefix,c.key,c.suffix].join(""),method:"GET",params:""}).success(function(a){d.resolve(a)}).error(function(){d.reject(c.key)}),d.promise}}]);
-var calApp = angular.module('cal', ['ui.router', 'snap', 'ngSanitize', 'pascalprecht.translate','angularFileUpload'])
+var calApp = angular.module('cal', ['ngCookies','ui.router', 'snap', 'ngSanitize', 'pascalprecht.translate','angularFileUpload'])
 .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 $urlRouterProvider.otherwise('/calendar');
 $stateProvider.state('reload', {
@@ -1364,6 +1364,13 @@ var options = { hour:'numeric'};
 return d.toLocaleTimeString(window.navigator.language,options);
 };
 });
+
+calApp.filter('offset', function() {
+return function(input, start) {
+start = parseInt(start, 10);
+return input.slice(start);
+};
+});
 calApp.config(function($translateProvider) {
 $translateProvider.useStaticFilesLoader({
 prefix: '/lang/',
@@ -1383,7 +1390,8 @@ return langs[i];
 return fallback;
 });
 });
-calApp.factory('endpoint', ['$http', '$rootScope', '$window', '$q', function($http, $scope, $window, $q) {
+calApp.factory('endpoint', ['$http', '$rootScope', '$window', '$q', '$cookieStore',
+function($http, $scope, $window, $q, $cookieStore) {
 var response = $q.defer();
 
 var service = {};
@@ -1706,7 +1714,6 @@ dateFrom : dateFrom,
 dateTo : dateTo,
 idPerson:id
 };
-console.log(pojoReport);
 return $http.post(url("stats", "personDateFilter", {}),pojoReport)
 .success(success).error(error);
 };
@@ -1747,7 +1754,14 @@ redirect = true;
 if (location == -1) {
 if (data.favorite) {
 service.favorite = data.favorite;
+if($cookieStore.get('location') != null){
+console.log("Location taken from cache");
+location = $cookieStore.get('location');
+}
+else{
+console.log("No Location from cache... take the favourite");
 location = data.favorite;
+}
 }
 }
 });
@@ -1763,6 +1777,7 @@ return show;
 
 service.setLoc = function(newLocation) {
 location = newLocation;
+$cookieStore.put('location',location);
 };
 
 service.me = function() {
@@ -1911,11 +1926,17 @@ $scope.$apply();
 });
 
 calApp.controller("MenuCtrl", function($scope, endpoint, $timeout) {
-
 $scope.logo = {
 url:"../css/img/default_logo.png"
 };
 
+$scope.$on('reloadLocation', function(event, data) {
+$scope.initLoad();
+});
+
+
+
+$scope.initLoad = function(){
 endpoint.then(function(endpoint) {
 $scope.myName = function() {
 return endpoint.me().name;
@@ -1933,6 +1954,9 @@ $timeout(function() {
 $scope.$apply();
 }, 500);
 });
+};
+
+$scope.initLoad();
 
 $scope.getLogoUrl = function(value){
 $scope.logo.url = "../css/img/default_logo.png";
@@ -1942,11 +1966,12 @@ $scope.logo.url = value;
 }
 };
 });
-calApp.controller("LocationDrawer", function($scope, endpoint, $window) {
+calApp.controller("LocationDrawer", function($scope, endpoint, $window, $rootScope) {
 endpoint.then(function(endpoint) {
 $scope.set = function(loc) {
 endpoint.setLoc(loc);
-$window.location.href = "#/reload"
+$rootScope.$broadcast('reloadLocation', "");
+$window.location.href = "#/reload";
 };
 
 $scope.active = function(loc) {
@@ -1997,6 +2022,7 @@ $window.location.hash = "/";
 }
 });
 calApp.controller("ListAssetCtrl", function($scope, endpoint, $window) {
+
 function refresh() {
 endpoint.asset.list().success(function(data) {
 $scope.assets = data.items;
@@ -2288,6 +2314,7 @@ $scope.submit = function() {
 endpoint.location.put({
 name: $scope.name,
 gmtOffset: $scope.offset,
+logoUrl: $scope.logoUrl,
 id: $scope.id
 }).success(function() {
 $window.location.href = "#/location/list";
@@ -2603,6 +2630,7 @@ else{
 $scope.error.mandatoryMessage = true;
 $scope.error.text = "ERR_MANDATORY_DEVICE";
 }
+console.log($scope.error);
 });
 }
 };
@@ -2773,6 +2801,39 @@ $window.history.back();
 };
 });
 calApp.controller("ListNewsCtrl", function($scope, endpoint) {
+
+$scope.itemsPerPage = 4;
+$scope.currentPage = 0;
+$scope.news = [];
+
+$scope.prevPage = function() {
+if ($scope.currentPage > 0) {
+$scope.currentPage--;
+}
+};
+
+$scope.prevPageDisabled = function() {
+return $scope.currentPage === 0 ? "disabled" : "";
+};
+
+$scope.pageCount = function() {
+return Math.ceil($scope.news.length/$scope.itemsPerPage)-1;
+};
+
+$scope.nextPage = function() {
+if ($scope.currentPage < $scope.pageCount()) {
+$scope.currentPage++;
+}
+};
+
+$scope.setPage = function(n) {
+$scope.currentPage = n;
+};
+
+$scope.nextPageDisabled = function() {
+return $scope.currentPage === $scope.pageCount() ? "disabled" : "";
+};
+
 function refresh() {
 endpoint.news.fetch(0, 30).success(function(data) {
 $scope.news = data.items;

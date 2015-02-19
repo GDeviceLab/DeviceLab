@@ -6836,7 +6836,7 @@ font-size: 50%;
 #ack-image{
 position:fixed;
 bottom: 0;
-background: #EEEEEE;
+/*background: #EEEEEE;*/
 width: 266px;
 }
 
@@ -6879,6 +6879,7 @@ border-bottom: 2px solid #E1E0E2;
 .news {
 background-color: white;
 margin-top: -10px;
+z-index: -1;
 }
 
 
@@ -6940,6 +6941,10 @@ background-color: #EFEFEF;
 border-bottom: 2px solid #E1E0E2;
 border-top: 0px;
 box-shadow: 0 0px 0px rgba(0, 0, 0, 0.12), 0 0px 0px rgba(0, 0, 0, 0.12);
+}
+.open-cal .cal-close:hover{
+text-decoration: underline;
+cursor: pointer; cursor: hand;
 }
 .light {
 color: #A5A5A5;
@@ -7440,6 +7445,35 @@ margin-top: -4px;
 cursor: pointer; cursor: hand;
 }
 
+.arrow-right-cal {
+display: inline-block;
+vertical-align: middle;
+width: 0;
+height: 0;
+border-top: 8px solid transparent;
+border-bottom: 8px solid transparent;
+border-left: 8px solid #A5A5A5;
+margin-left: 10px;
+margin-top: -4px;
+cursor: pointer;
+cursor: hand;
+padding-right: 5px;
+}
+
+.arrow-left-cal {
+display: inline-block;
+vertical-align: middle;
+width: 0;
+height: 0;
+border-top: 8px solid transparent;
+border-bottom: 8px solid transparent;
+border-right: 8px solid #A5A5A5;
+margin-right: 0;
+margin-top: -4px;
+cursor: pointer;
+cursor: hand;
+}
+
 a:hover,a:focus {
 text-decoration:none;
 }
@@ -7472,12 +7506,15 @@ padding:20px;
 .edit-location-page .panel-title{
 display: block;
 width: 100%;
-padding: 0;
-margin-bottom: 20px;
+padding: 0 !important;
+margin-bottom: 0px;
 font-size: 21px;
 line-height: inherit;
 color: #333;
 border: 0;
+}
+.edit-location-page .panel-body{
+padding-top: 0 !important;
 }
 
 .icon-star {
@@ -7497,6 +7534,12 @@ cursor: pointer; cursor: hand;
 /*
 MOBILE
 */
+
+@media (max-width: 1256px){
+h1.weekcalday {
+font-size: 31pt;
+}
+}
 
 @media (max-width: 991px){
 .news {

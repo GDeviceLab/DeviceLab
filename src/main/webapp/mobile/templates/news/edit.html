@@ -26,10 +26,10 @@
     </div>
 --> 
     <div class="padded" ng-show="n.author">
-        <input type="text" class="topcoat-text-input" placeholder="{{'USER'| translate}}" ng-model="n.authorName" disabled>
+        <input type="text" class="form-control" placeholder="{{'USER'| translate}}" ng-model="n.authorName" disabled>
     </div>
     <div class="padded" ng-show="n.date">
-        <input type="text" class="topcoat-text-input" placeholder="{{'NEWS_TITLE'| translate}}" value="{{n.date|date: 'EEEE d MMMM'}}" disabled>
+        <input type="text" class="form-control" placeholder="{{'NEWS_TITLE'| translate}}" value="{{n.date|date: 'EEEE d MMMM'}}" disabled>
     </div>
    <!--  <div class="topcoat-navigation-bar mid" ng-click="expire = !expire">
     <div class="topcoat-navigation-bar__item center">

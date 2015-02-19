@@ -1,4 +1,5 @@
 calApp.controller("ListAssetCtrl", function($scope, endpoint, $window) {
+    
     function refresh() {
         endpoint.asset.list().success(function(data) {
             $scope.assets = data.items;

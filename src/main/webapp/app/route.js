@@ -1,4 +1,4 @@
-var calApp = angular.module('cal', ['ui.router', 'snap', 'ngSanitize', 'pascalprecht.translate','angularFileUpload'])
+var calApp = angular.module('cal', ['ngCookies','ui.router', 'snap', 'ngSanitize', 'pascalprecht.translate','angularFileUpload'])
         .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
                 $urlRouterProvider.otherwise('/calendar');
         $stateProvider.state('reload', {

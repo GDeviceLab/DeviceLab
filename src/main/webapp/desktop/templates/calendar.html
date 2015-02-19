@@ -1,7 +1,11 @@
-<div class="row">
+<div class="row" style="background: white; z-index: -999999; position: relative;">
     <news-feed class="col-md-12 news" p-class="col-md-6" rank="0" limit="2" id="news-sec">
     </news-feed>
-    <div class="pull-right">
+    <div class="pull-right" style="
+        width: 50%;
+        text-align: right;
+        border-left: 2px solid #EFEFEF;
+        margin-right: 2px;">
         <button type="button" ng-click="goTo('#/news')" class="btn btn-link">{{'SEE_MORE_NEWS' | translate}}</button>
     </div>
 </div>

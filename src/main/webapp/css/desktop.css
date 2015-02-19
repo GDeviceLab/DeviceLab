@@ -844,27 +844,30 @@ background-color: #FFFFFF;
 .arrow-right {
     display: inline-block;
     vertical-align: middle;
-    width: 0; 
-    height: 0; 
+    width: 0;
+    height: 0;
     border-top: 8px solid transparent;
     border-bottom: 8px solid transparent;
     border-left: 8px solid #A5A5A5;
     margin-left: 10px;
-    margin-top: -4px; 
-    cursor: pointer; cursor: hand;
+    margin-top: -4px;
+    cursor: pointer;
+    cursor: hand;
+    padding-right: 5px;
 }
 
 .arrow-left {
     display: inline-block;
     vertical-align: middle;
-    width: 0; 
-    height: 0; 
+    width: 0;
+    height: 0;
     border-top: 8px solid transparent;
-    border-bottom: 8px solid transparent; 
-    border-right: 8px solid #A5A5A5; 
-    margin-right: 10px;
-    margin-top: -4px; 
-    cursor: pointer; cursor: hand;
+    border-bottom: 8px solid transparent;
+    border-right: 8px solid #A5A5A5;
+    margin-right: 0;
+    margin-top: -4px;
+    cursor: pointer;
+    cursor: hand;
 }
 
 a:hover,a:focus {

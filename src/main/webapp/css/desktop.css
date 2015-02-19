@@ -369,6 +369,10 @@ height: 20%;
     border-top: 0px;
     box-shadow: 0 0px 0px rgba(0, 0, 0, 0.12), 0 0px 0px rgba(0, 0, 0, 0.12);
 }
+.open-cal .cal-close:hover{
+    text-decoration: underline;
+    cursor: pointer; cursor: hand;
+}
 .light {
     color: #A5A5A5;
 }

@@ -263,7 +263,7 @@ h1.weekcalday{
 #ack-image{
     position:fixed;
     bottom: 0;
-    background: #EEEEEE;
+    /*background: #EEEEEE;*/
     width: 266px;
 }
 

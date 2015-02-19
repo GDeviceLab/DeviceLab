@@ -928,6 +928,12 @@ nav h3 {
     MOBILE
 */
 
+@media (max-width: 1256px){
+    h1.weekcalday {
+        font-size: 31pt; 
+    }
+}
+
 @media (max-width: 991px){
     .news {
         background-color: transparent;

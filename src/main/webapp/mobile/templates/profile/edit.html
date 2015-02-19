@@ -1,18 +1,18 @@
 <div class="topcoat-list">
     <h3 class="topcoat-list__header">{{'PROFILE_EDIT'| translate}}</h3>
     <div class="padded">
-        <input type="text" class="topcoat-text-input" ng-disabled="true"
+        <input type="text" class="form-control" ng-disabled="true"
                placeholder="{{'PROFILE_EMAIL'| translate}}" ng-model="me.mail">
     </div>
     <div class="padded">
-        <input type="text" class="topcoat-text-input" 
+        <input type="text" class="form-control" 
                placeholder="{{'REGISTER_USERNAME'| translate}}" ng-model="me.name">
     </div>
     <div class="padded">
-        <input type="text" class="topcoat-text-input" 
+        <input type="text" class="form-control" 
                placeholder="{{'REGISTER_STARTUP_NAME'| translate}}" ng-model="me.startupName">
     </div>
 </div>
 <div class="padded">
-    <button cal-show-local  class="topcoat-button--cta" ng-click="submit()">{{'PROFILE_UPDATE'| translate}}</button>
+    <button cal-show-local  class="btn btn-block btn-primary" ng-click="submit()">{{'PROFILE_UPDATE'| translate}}</button>
 </div>

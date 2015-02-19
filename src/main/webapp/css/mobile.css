@@ -536,7 +536,8 @@ textarea{
 }
 
 .alert, .alert-default {
-    background-color: #ec514e;
+    background-color: #ec514e !important;
+    padding: 5;
 }
 a, a:hover, a:focus {
     color: white;

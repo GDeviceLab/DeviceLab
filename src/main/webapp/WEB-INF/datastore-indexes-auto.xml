@@ -1,0 +1,14 @@
+<datastore-indexes>
+    <datastore-index kind="Purpose" ancestor="false">
+        <property name="person" direction="asc" />
+        <property name="dateUpdate" direction="desc" />
+    </datastore-index>
+    <datastore-index kind="Reservation" ancestor="false">
+        <property name="person" direction="asc" />
+		<property name="date" direction="asc" />
+    </datastore-index>
+	<datastore-index kind="Reservation" ancestor="false">
+        <property name="person" direction="asc" />
+		<property name="realDate" direction="asc" />
+    </datastore-index>	
+</datastore-indexes>

@@ -1,9 +1,9 @@
+<h3 class="page-title">{{'LOCATION_APPLY' | translate}}</h3>
 <div class="topcoat-list">
-    <h3 class="topcoat-list__header">{{'LOCATION_APPLY' | translate}}</h3>
     <ul class="topcoat-list__container">
         <li class="topcoat-list__item" ng-repeat="l in locations" 
             ng-click="apply(l.id)">
-            {{l.name}}
+            <span class="title">{{l.name}}</span>
             <span ng-show="pending(l.id)" class="actions">{{'STATUS_PENDING' | translate}}</span>
             <span ng-show="user(l.id)" class="actions">{{'STATUS_REGISTERED' | translate}}</span>
         </li>

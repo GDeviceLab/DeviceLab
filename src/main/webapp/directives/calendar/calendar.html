@@ -1,4 +1,4 @@
-<table class="{{class}}" style="width: 100%">
+<table class="{{class}} cal-top" style="width: 100%">
     <colgroup>
         <col style="width:20%">
         <col style="width:60%">
@@ -6,22 +6,21 @@
     </colgroup>
     <tbody>
         <tr>
-            <td class="cal-to-left" ng-click="changeMonth(-1)">
-                <span class="icon-chevron-left"></span>
+            <td class="cal-to-left" ng-click="visibilityCalendar()">
+                <p class="weekcal-day cal-title light">{{date | date: "yyyy"}}</p>
+                <h1 class="weekcal cal-close">{{date | date: "MMM"}}</h1>
             </td>
-            <td class="cal-to-center">
-                <!--<span ng-click="visibilityCalendar()">{{date | date: "MMM yyyy"}}</span>-->
-                <button type="button" class="btn btn-link" ng-click="visibilityCalendar()" style="padding: 0px;">
-                    <h4 style="margin: 0px; padding: 0px;">{{date | date: "MMM yyyy"}}</h4>
-                </button>
+            <td class="cal-to-center" ng-click="visibilityCalendar()">
             </td>
-            <td class="cal-to-right" ng-click="changeMonth(1)">
-                <span class="icon-chevron-right"></span>
+            <td class="cal-to-right" >
+                <span class="arrow-left-cal" ng-click="changeMonth(-1)"></span>
+                <span class="arrow-right-cal" ng-click="changeMonth(1)"></span>
             </td>
         </tr>
     </tbody>
 </table>
-<table class="{{class}}" width="98%">
+<div style="backgound-color: #EFEFEF">
+<table class="{{class}}" width="100%">
     <colgroup>
         <col style="width:14%">
         <col style="width:14%">
@@ -41,17 +40,19 @@
             <td>{{"SATURDAY" | translate}}</td>
             <td>{{"SUNDAY" | translate}}</td>
         </tr>
-        <tr ng-repeat="week in cal">
+        <tr ng-repeat="week in cal" class="week-in-cal">
             <td ng-repeat="cell in week" 
-                ng-class="{
+                ng-click="select(cell.id)"
+                ><span ng-class="{
                     today : cell.today, 
                             selected: cell.number === date.getDate() && !cell.otherMonth, 
                             other_month : cell.otherMonth}"
-                ng-click="select(cell.id)"
-                >
-                {{cell.number}}
+                ng-click="select(cell.id)">{{cell.number}}</span>
             </td>
         </tr>
     </tbody>
 </table>
-<button class="{{btnClass}}" ng-click="today()">{{"TODAY"| translate}}</button>
+</div>
+<!-- <button class="{{btnClass}}" ng-click="today()">{{"TODAY"| translate}}</button> -->
+<a href="" class="" ng-click="today()" style="padding: 10 10 10 5%; color: #4CCFE0;">{{"Jump to Today"| translate}}</a>
+

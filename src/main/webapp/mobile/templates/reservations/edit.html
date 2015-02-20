@@ -3,7 +3,7 @@
         <h1 class="topcoat-navigation-bar__title">{{date| date : 'EEEE d MMM'}}</h1>
     </div>
 </div>
-<div class="topcoat-list__header" ng-show="pick" cal-show-owner>
+<div class="topcoat-list__header" style="padding: 0px 0px;" ng-show="pick" cal-show-owner>
     <cal-endar date="date" class="cal" btn-class="topcoat-button--cta" />
 </div>
 <div class="topcoat-navigation-bar mid" ng-click="show_hours = !show_hours">
@@ -11,124 +11,126 @@
         <h1 class="topcoat-navigation-bar__title">{{ 'FROM' | translate }} {{r.start | hours}} {{ 'TO' | translate }} {{r.end | hours}}</h1>
     </div>
 </div>
-<div ng-show="show_hours" class="topcoat-list__header" cal-show-owner>
-    <div class="padded">
+<div ng-show="show_hours" class="topcoat-list__header padding-top" cal-show-owner>
+    <div class="padded padded-top">
         <label for="from">{{ 'FROM' | translate }}</label>
-        <select ng-model="r.start" class="topcoat-text-input" id="from">
-            <option value="0">{{"00:00" | localize}}</option>
-            <option value="1">{{"00:30" | localize}}</option>
-            <option value="2">{{"01:00" | localize}}</option>
-            <option value="3">{{"01:30" | localize}}</option>
-            <option value="4">{{"02:00" | localize}}</option>
-            <option value="5">{{"02:30" | localize}}</option>
-            <option value="6">{{"03:00" | localize}}</option>
-            <option value="7">{{"03:30" | localize}}</option>
-            <option value="8">{{"04:00" | localize}}</option>
-            <option value="9">{{"04:30" | localize}}</option>
-            <option value="10">{{"05:00" | localize}}</option>
-            <option value="11">{{"05:30" | localize}}</option>
-            <option value="12">{{"06:00" | localize}}</option>
-            <option value="13">{{"06:30" | localize}}</option>
-            <option value="14">{{"07:00" | localize}}</option>
-            <option value="15">{{"07:30" | localize}}</option>
-            <option value="16">{{"08:00" | localize}}</option>
-            <option value="17">{{"08:30" | localize}}</option>
-            <option value="18">{{"09:00" | localize}}</option>
-            <option value="19">{{"09:30" | localize}}</option>
-            <option value="20">{{"10:00" | localize}}</option>
-            <option value="21">{{"10:30" | localize}}</option>
-            <option value="22">{{"11:00" | localize}}</option>
-            <option value="23">{{"11:30" | localize}}</option>
-            <option value="24">{{"12:00" | localize}}</option>
-            <option value="25">{{"12:30" | localize}}</option>
-            <option value="26">{{"13:00" | localize}}</option>
-            <option value="27">{{"13:30" | localize}}</option>
-            <option value="28">{{"14:00" | localize}}</option>
-            <option value="29">{{"14:30" | localize}}</option>
-            <option value="30">{{"15:00" | localize}}</option>
-            <option value="31">{{"15:30" | localize}}</option>
-            <option value="32">{{"16:00" | localize}}</option>
-            <option value="33">{{"16:30" | localize}}</option>
-            <option value="34">{{"17:00" | localize}}</option>
-            <option value="35">{{"17:30" | localize}}</option>
-            <option value="36">{{"18:00" | localize}}</option>
-            <option value="37">{{"18:30" | localize}}</option>
-            <option value="38">{{"19:00" | localize}}</option>
-            <option value="39">{{"19:30" | localize}}</option>
-            <option value="40">{{"20:00" | localize}}</option>
-            <option value="41">{{"20:30" | localize}}</option>
-            <option value="42">{{"21:00" | localize}}</option>
-            <option value="43">{{"21:30" | localize}}</option>
-            <option value="44">{{"22:00" | localize}}</option>
-            <option value="45">{{"22:30" | localize}}</option>
-            <option value="46">{{"23:00" | localize}}</option>
-            <option value="47">{{"23:30" | localize}}</option>
+
+        <select ng-model="r.start" class="form-control" id="from">
+            <option value="0">{{"00:00" | localizeres}}</option>
+            <option value="1">{{"00:30" | localizeres}}</option>
+            <option value="2">{{"01:00" | localizeres}}</option>
+            <option value="3">{{"01:30" | localizeres}}</option>
+            <option value="4">{{"02:00" | localizeres}}</option>
+            <option value="5">{{"02:30" | localizeres}}</option>
+            <option value="6">{{"03:00" | localizeres}}</option>
+            <option value="7">{{"03:30" | localizeres}}</option>
+            <option value="8">{{"04:00" | localizeres}}</option>
+            <option value="9">{{"04:30" | localizeres}}</option>
+            <option value="10">{{"05:00" | localizeres}}</option>
+            <option value="11">{{"05:30" | localizeres}}</option>
+            <option value="12">{{"06:00" | localizeres}}</option>
+            <option value="13">{{"06:30" | localizeres}}</option>
+            <option value="14">{{"07:00" | localizeres}}</option>
+            <option value="15">{{"07:30" | localizeres}}</option>
+            <option value="16">{{"08:00" | localizeres}}</option>
+            <option value="17">{{"08:30" | localizeres}}</option>
+            <option value="18">{{"09:00" | localizeres}}</option>
+            <option value="19">{{"09:30" | localizeres}}</option>
+            <option value="20">{{"10:00" | localizeres}}</option>
+            <option value="21">{{"10:30" | localizeres}}</option>
+            <option value="22">{{"11:00" | localizeres}}</option>
+            <option value="23">{{"11:30" | localizeres}}</option>
+            <option value="24">{{"12:00" | localizeres}}</option>
+            <option value="25">{{"12:30" | localizeres}}</option>
+            <option value="26">{{"13:00" | localizeres}}</option>
+            <option value="27">{{"13:30" | localizeres}}</option>
+            <option value="28">{{"14:00" | localizeres}}</option>
+            <option value="29">{{"14:30" | localizeres}}</option>
+            <option value="30">{{"15:00" | localizeres}}</option>
+            <option value="31">{{"15:30" | localizeres}}</option>
+            <option value="32">{{"16:00" | localizeres}}</option>
+            <option value="33">{{"16:30" | localizeres}}</option>
+            <option value="34">{{"17:00" | localizeres}}</option>
+            <option value="35">{{"17:30" | localizeres}}</option>
+            <option value="36">{{"18:00" | localizeres}}</option>
+            <option value="37">{{"18:30" | localizeres}}</option>
+            <option value="38">{{"19:00" | localizeres}}</option>
+            <option value="39">{{"19:30" | localizeres}}</option>
+            <option value="40">{{"20:00" | localizeres}}</option>
+            <option value="41">{{"20:30" | localizeres}}</option>
+            <option value="42">{{"21:00" | localizeres}}</option>
+            <option value="43">{{"21:30" | localizeres}}</option>
+            <option value="44">{{"22:00" | localizeres}}</option>
+            <option value="45">{{"22:30" | localizeres}}</option>
+            <option value="46">{{"23:00" | localizeres}}</option>
+            <option value="47">{{"23:30" | localizeres}}</option>
         </select>
     </div>
-    <div class="padded">
+    <div class="padded padded-top">
         <label for="to">{{ 'TO' | translate }}</label>
-        <select ng-model="r.end" class="topcoat-text-input" id="to">
-            <option value="1">{{"00:30" | localize}}</option>
-            <option value="2">{{"01:00" | localize}}</option>
-            <option value="3">{{"01:30" | localize}}</option>
-            <option value="4">{{"02:00" | localize}}</option>
-            <option value="5">{{"02:30" | localize}}</option>
-            <option value="6">{{"03:00" | localize}}</option>
-            <option value="7">{{"03:30" | localize}}</option>
-            <option value="8">{{"04:00" | localize}}</option>
-            <option value="9">{{"04:30" | localize}}</option>
-            <option value="10">{{"05:00" | localize}}</option>
-            <option value="11">{{"05:30" | localize}}</option>
-            <option value="12">{{"06:00" | localize}}</option>
-            <option value="13">{{"06:30" | localize}}</option>
-            <option value="14">{{"07:00" | localize}}</option>
-            <option value="15">{{"07:30" | localize}}</option>
-            <option value="16">{{"08:00" | localize}}</option>
-            <option value="17">{{"08:30" | localize}}</option>
-            <option value="18">{{"09:00" | localize}}</option>
-            <option value="19">{{"09:30" | localize}}</option>
-            <option value="20">{{"10:00" | localize}}</option>
-            <option value="21">{{"10:30" | localize}}</option>
-            <option value="22">{{"11:00" | localize}}</option>
-            <option value="23">{{"11:30" | localize}}</option>
-            <option value="24">{{"12:00" | localize}}</option>
-            <option value="25">{{"12:30" | localize}}</option>
-            <option value="26">{{"13:00" | localize}}</option>
-            <option value="27">{{"13:30" | localize}}</option>
-            <option value="28">{{"14:00" | localize}}</option>
-            <option value="29">{{"14:30" | localize}}</option>
-            <option value="30">{{"15:00" | localize}}</option>
-            <option value="31">{{"15:30" | localize}}</option>
-            <option value="32">{{"16:00" | localize}}</option>
-            <option value="33">{{"16:30" | localize}}</option>
-            <option value="34">{{"17:00" | localize}}</option>
-            <option value="35">{{"17:30" | localize}}</option>
-            <option value="36">{{"18:00" | localize}}</option>
-            <option value="37">{{"18:30" | localize}}</option>
-            <option value="38">{{"19:00" | localize}}</option>
-            <option value="39">{{"19:30" | localize}}</option>
-            <option value="40">{{"20:00" | localize}}</option>
-            <option value="41">{{"20:30" | localize}}</option>
-            <option value="42">{{"21:00" | localize}}</option>
-            <option value="43">{{"21:30" | localize}}</option>
-            <option value="44">{{"22:00" | localize}}</option>
-            <option value="45">{{"22:30" | localize}}</option>
-            <option value="46">{{"23:00" | localize}}</option>
-            <option value="47">{{"23:30" | localize}}</option>
-            <option value="48">{{"24:00" | localize}}</option>
+        <select ng-model="r.end" class="form-control" id="to">
+            <option value="1">{{"00:30" | localizeres}}</option>
+            <option value="2">{{"01:00" | localizeres}}</option>
+            <option value="3">{{"01:30" | localizeres}}</option>
+            <option value="4">{{"02:00" | localizeres}}</option>
+            <option value="5">{{"02:30" | localizeres}}</option>
+            <option value="6">{{"03:00" | localizeres}}</option>
+            <option value="7">{{"03:30" | localizeres}}</option>
+            <option value="8">{{"04:00" | localizeres}}</option>
+            <option value="9">{{"04:30" | localizeres}}</option>
+            <option value="10">{{"05:00" | localizeres}}</option>
+            <option value="11">{{"05:30" | localizeres}}</option>
+            <option value="12">{{"06:00" | localizeres}}</option>
+            <option value="13">{{"06:30" | localizeres}}</option>
+            <option value="14">{{"07:00" | localizeres}}</option>
+            <option value="15">{{"07:30" | localizeres}}</option>
+            <option value="16">{{"08:00" | localizeres}}</option>
+            <option value="17">{{"08:30" | localizeres}}</option>
+            <option value="18">{{"09:00" | localizeres}}</option>
+            <option value="19">{{"09:30" | localizeres}}</option>
+            <option value="20">{{"10:00" | localizeres}}</option>
+            <option value="21">{{"10:30" | localizeres}}</option>
+            <option value="22">{{"11:00" | localizeres}}</option>
+            <option value="23">{{"11:30" | localizeres}}</option>
+            <option value="24">{{"12:00" | localizeres}}</option>
+            <option value="25">{{"12:30" | localizeres}}</option>
+            <option value="26">{{"13:00" | localizeres}}</option>
+            <option value="27">{{"13:30" | localizeres}}</option>
+            <option value="28">{{"14:00" | localizeres}}</option>
+            <option value="29">{{"14:30" | localizeres}}</option>
+            <option value="30">{{"15:00" | localizeres}}</option>
+            <option value="31">{{"15:30" | localizeres}}</option>
+            <option value="32">{{"16:00" | localizeres}}</option>
+            <option value="33">{{"16:30" | localizeres}}</option>
+            <option value="34">{{"17:00" | localizeres}}</option>
+            <option value="35">{{"17:30" | localizeres}}</option>
+            <option value="36">{{"18:00" | localizeres}}</option>
+            <option value="37">{{"18:30" | localizeres}}</option>
+            <option value="38">{{"19:00" | localizeres}}</option>
+            <option value="39">{{"19:30" | localizeres}}</option>
+            <option value="40">{{"20:00" | localizeres}}</option>
+            <option value="41">{{"20:30" | localizeres}}</option>
+            <option value="42">{{"21:00" | localizeres}}</option>
+            <option value="43">{{"21:30" | localizeres}}</option>
+            <option value="44">{{"22:00" | localizeres}}</option>
+            <option value="45">{{"22:30" | localizeres}}</option>
+            <option value="46">{{"23:00" | localizeres}}</option>
+            <option value="47">{{"23:30" | localizeres}}</option>
+            <option value="48">{{"24:00" | localizeres}}</option>
         </select>
     </div>
 </div>
-<div class="padded">
-    
-    <input cal-enable-owner="{{r.person}}" type="text" class="topcoat-text-input" placeholder="{{ 'TITLE' | translate }}" ng-model="r.title">
-    <input ng-show="r.person" type="text" class="topcoat-text-input" placeholder="{{ 'USER' | translate }}" ng-model="r.person" disabled>
+<div class="padded padding-top">
+
+    <input cal-enable-owner="{{r.person}}" type="text" class="form-control" placeholder="{{ 'TITLE' | translate }}" ng-model="r.title">
+
+    <input ng-show="r.person" type="text" class="form-control" placeholder="{{ 'USER' | translate }}" ng-model="r.person" disabled>
     
 </div>
 <h3 class="topcoat-list__header">{{ 'PURPOSE_TITLE_PANEL' | translate }}</h3>
 <div class="padded">
     <label for="to">{{ 'PURPOSE' | translate }}</label>
-    <select class="topcoat-text-input" ng-model="purpose.type" ng-change="changePurposeType()">
+    <select class="form-control" ng-model="purpose.type" ng-change="changePurposeType()">
         <option value="MOBILE_APP">{{'MOBILE_APP' | translate}}</option>
         <option value="WEB_SITE">{{'WEB_SITE' | translate}}</option>
         <option value="OTHER">{{'OTHER' | translate}}</option>
@@ -137,14 +139,14 @@
 
 <div class="padded">
     <label for="to">{{ 'PURPOSE_TITLE' | translate }}</label>
-    <input type="text" class="topcoat-text-input" 
+    <input type="text" class="form-control" 
            placeholder="{{purpose.titlePlaceHolder| translate}}" ng-model="purpose.title"
            ng-change="changePurposeTitle()">   
 </div>
 
 <div class="padded">
     <label for="to">{{ 'PURPOSE_YOUR_LIST' | translate }}</label>
-    <select ng-model="selectedPurDS" class="topcoat-text-input" ng-change="selectPurpose()">
+    <select ng-model="selectedPurDS" class="form-control" ng-change="selectPurpose()">
         <option value='' disabled selected style='display:none;'>{{'PURPOSE_CHOOSE' | translate}}</option>
         <option value="{{purDS}}" ng-repeat="purDS in listPurpose">{{purDS.type | translate}} - {{purDS.title}}</option>
     </select>
@@ -155,16 +157,16 @@
     <table class="multiselect">
         <tr ng-repeat="asset in sassets">
             <td ng-click="removeAsset(asset.number)" cal-show-owner="{{r.person}}">
-                <span class="icon-x-altx-alt"></span>
+                <span class="actions icon-x-altx-alt"></span>
             </td>
             <td>
-                <select ng-show="!asset.raw || asset.raw.active" cal-enable-owner="{{r.person}}" class="topcoat-text-input" ng-model="asset.value" ng-options="t.id as t.name for t in assets"></select>
-                <input ng-hide="!asset.raw || asset.raw.active" class="topcoat-text-input"  type="text" value="{{asset.raw.name}} (device deleted)" disabled />
+                <select ng-show="!asset.raw || asset.raw.active" cal-enable-owner="{{r.person}}" class="form-control" ng-model="asset.value" ng-options="t.id as t.name for t in assets"></select>
+                <input ng-hide="!asset.raw || asset.raw.active" class="form-control"  type="text" value="{{asset.raw.name}} (device deleted)" disabled />
             </td>
         </tr>
         <tr cal-show-owner="{{r.person}}">
             <td ng-click="addAsset()">
-                <span class="icon-plus-square"></span>
+                <span class="actions icon-plus-square"></span>
             </td>
             <td>
                 <select class="topcoat-text-input" ng-options="t.id as t.name for t in assets" disabled></select>
@@ -176,13 +178,15 @@
 <div class="alert" ng-show="error.mandatoryMessage">
     <p>{{error.text | translate}}</p>
 </div>
-<div class="padded" cal-show-owner="{{r.person}}">
-    <button class="topcoat-button--cta" ng-click="submit()">{{'BUTTON_SAVE'| translate}}</button>
-</div>
 <div class="padded">
-    <a class="topcoat-button" href="#/calendar">{{'BUTTON_CANCEL'| translate}}</a>
-</div>
-<div class="padded" ng-show="r.id" cal-show-owner="{{r.person}}">
-    <button class="topcoat-button" ng-click="delete()">{{'BUTTON_DELETE'| translate}}</button>
+    <div class="padded" cal-show-owner="{{r.person}}">
+        <button class="btn btn-primary" ng-click="submit()">{{'BUTTON_SAVE'| translate}}</button>
+    </div>
+    <div class="padded">
+        <a class="btn btn-danger btn-block" href="#/calendar">{{'BUTTON_CANCEL'| translate}}</a>
+    </div>
+    <div class="padded" ng-show="r.id" cal-show-owner="{{r.person}}">
+        <button class="btn btn-danger" ng-click="delete()">{{'BUTTON_DELETE'| translate}}</button>
+    </div>
 </div>
 

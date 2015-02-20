@@ -1,5 +1,11 @@
 <div ng-controller="RegisterCtrl">
     <div ng-show="loading()" class='modal'>
-        <p class="modal-content"><img class="modal-content" src="/css/ajax-loader.gif" /> {{'LOADING' | translate}}</p>
+      <!--   <img class="modal-content" src="/css/ajax-loader.gif" /> -->
+      <div class="loader" style="margin-top: 50vh">
+  <svg class="circular">
+    <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+  </svg>
+</div>
+        <!-- <p class="modal-content"><img class="modal-content" src="/css/ajax-loader.gif" /> {{'LOADING' | translate}}</p> -->
     </div>
 </div>

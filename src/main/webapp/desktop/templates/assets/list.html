@@ -1,24 +1,26 @@
-<div class="row">
-    <div class="col-md-6 col-md-offset-3">
-        <div class="panel panel-default">
-            <div class="panel-heading">{{'DEVICES' | translate}}</div>
-            <div class="panel-body">
-                <a href="#/asset/new" class="btn btn-primary btn-block">{{'BUTTON_NEW' | translate}}</a>
+<div class="container">
+    <div class="row">
+        <h1 class="page-title">{{'DEVICES' | translate}}</h1>
+        <div class="col-md-12 devices-page">
+            <div class="panel panel-default">
+                <ul class="list-group">
+                    <li class="list-group-item clickable" ng-repeat="a in assets">
+                        <a href="#/asset/edit/{{a.id}}">{{a.name}} <span ng-if="a.os">({{a.os | translate}})</span></a>
+                             <div style="
+                                height:14px;
+                                width: 14px;
+                                margin:7px;
+                                float:left;
+                                margin-right: 10px;
+                                background-color:rgb({{a.r}},{{a.g}},{{a.b}});"
+                                ></div>
+                        <cal-delete action="delete(a.id)" b-class="icon-x-altx-alt actions"></cal-delete>
+                    </li>
+                </ul>
+                <div class="panel-body">
+                    <a href="#/asset/new" class="btn btn-primary btn-block">{{'BUTTON_NEW' | translate}}</a>
+                </div>
             </div>
-            <ul class="list-group">
-                <li class="list-group-item clickable" ng-repeat="a in assets" ng-click="goTo('#/asset/edit/'+a.id)">
-                    <a href="#/asset/edit/{{a.id}}">{{a.name}} <span ng-if="a.os">({{a.os | translate}})</span></a>
-                         <div style="
-                            height:14px;
-                            width: 14px;
-                            margin:3px;
-                            float:left;
-                            margin-right: 10px;
-                            background-color:rgb({{a.r}},{{a.g}},{{a.b}});"
-                            ></div>
-                    <cal-delete propagation="true" action="delete(a.id)" b-class="icon-x-altx-alt actions"></cal-delete>
-                </li>
-            </ul>
         </div>
     </div>
 </div>

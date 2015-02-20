@@ -38,12 +38,21 @@ calApp.filter('hours', function() {
     };
 });
 
+calApp.filter('localizeres', function() {
+     return function(input){
+         var hours = input.split(":")[0];
+         var minutes = input.split(":")[1];
+         var d = new Date(2015, 0, 21, hours, minutes);
+         var options = { hour:'numeric', minute: 'numeric'};
+         return d.toLocaleTimeString(window.navigator.language,options);
+     };
+ });
+
 calApp.filter('localize', function() {
     return function(input){
-        var hours = input.split(":")[0];
-        var minutes = input.split(":")[1];
-        var d = new Date(2015, 0, 21, hours, minutes);
-        var options = { hour:'numeric', minute: 'numeric'};
+        var hours = input;
+        var d = new Date(2015, 0, 21, hours);
+        var options = { hour:'numeric'};
         return d.toLocaleTimeString(window.navigator.language,options);
     };
 });

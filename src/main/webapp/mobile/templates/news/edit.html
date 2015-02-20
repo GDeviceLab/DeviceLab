@@ -1,37 +1,49 @@
+<h3 class="page-title">{{'NEWS'| translate}}</h3>
 <div class="topcoat-list">
-    <h3 class="topcoat-list__header">{{'NEWS'| translate}}</h3>
-    <div class="padded">
-        <input type="text" class="topcoat-text-input" placeholder="{{'NEWS_TITLE'| translate}}" ng-model="n.title">
+    <div class="padded padding-top">
+        <input type="text" class="form-control" placeholder="{{'NEWS_TITLE'| translate}}" ng-model="n.title">
     </div>
-    <div class="padded" cal-show-global ng-hide="n.id">
-        <label class="topcoat-checkbox">
+
+    <div cal-show-global ng-hide="n.id" class="form-group">
+        <label class="col-lg-2 control-label"></label>
+        <div class="col-lg-10">
+            <div class="checkbox">
+                            <label>
+                                <input type="checkbox" ng-model="n.broadcast"><!-- <span class="ripple"></span> --><span class="check"></span>{{'NEWS_GLOBAL' | translate}}
+                            </label>
+                        </div>
+        </div>
+    </div>
+   <!--  <div class="padded" cal-show-global ng-hide="n.id">
+        <label class="checkbox">
             <input type="checkbox" ng-model="n.broadcast">
             <div class="topcoat-checkbox__checkmark"></div>
             {{'NEWS_GLOBAL'| translate}}
         </label>
-    </div>
-    <div class="padded" ng-show="n.id && n.broadcast">
+    </div> 
+        <div class="padded" ng-show="n.id && n.broadcast">
         <p>{{'NEWS_GLOBAL'| translate}}</p>
     </div>
+--> 
     <div class="padded" ng-show="n.author">
-        <input type="text" class="topcoat-text-input" placeholder="{{'USER'| translate}}" ng-model="n.authorName" disabled>
+        <input type="text" class="form-control" placeholder="{{'USER'| translate}}" ng-model="n.authorName" disabled>
     </div>
     <div class="padded" ng-show="n.date">
-        <input type="text" class="topcoat-text-input" placeholder="{{'NEWS_TITLE'| translate}}" value="{{n.date|date: 'EEEE d MMMM'}}" disabled>
+        <input type="text" class="form-control" placeholder="{{'NEWS_TITLE'| translate}}" value="{{n.date|date: 'EEEE d MMMM'}}" disabled>
     </div>
-    <div class="topcoat-navigation-bar mid" ng-click="expire = !expire">
+   <!--  <div class="topcoat-navigation-bar mid" ng-click="expire = !expire">
     <div class="topcoat-navigation-bar__item center">
         <h1 class="topcoat-navigation-bar__title">Expires : {{n.expire|date: 'EEEE d MMMM'}}</h1>
     </div>
-</div>
+</div> -->
 <div class="topcoat-list__header" ng-show="expire" cal-show-local>
     <cal-endar date="n.expire" class="cal" btn-class="topcoat-button--cta" />
 </div>
 <div class="padded">
-    <textarea class="topcoat-textarea" rows="5" placeholder="{{'NEWS_CONTENT'| translate}}" ng-model="n.content"></textarea>
+    <textarea class="form-control" rows="5" placeholder="{{'NEWS_CONTENT'| translate}}" ng-model="n.content"></textarea>
 </div>
 <div class="padded">
-    <button cal-show-local  class="topcoat-button--cta" ng-click="submit()">{{'BUTTON_SAVE'| translate}}</button>
-    <button class="topcoat-button--quiet" ng-click="goTo()">{{'CANCEL' | translate}}</button>
+    <button cal-show-local  class="btn btn-primary" ng-click="submit()">{{'BUTTON_SAVE'| translate}}</button>
+    <button class="btn btn-danger" ng-click="goTo()">{{'CANCEL' | translate}}</button>
 </div>
 </div>

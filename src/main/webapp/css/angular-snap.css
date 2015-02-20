@@ -15,13 +15,14 @@ snap-drawers,
 .snap-drawers,
 .snap-content {
   position: absolute;
-  //height: 100%;
-  min-height: 100%;
+  height: 100%;
+  //min-height: 100%;
   top: 0;
   //bottom: 0;
   width: auto;
   left: 0;
   right: 0;
+  overflow-x: hidden;
 }
 snap-drawer,
 [snap\:drawer],
@@ -32,10 +33,11 @@ snap-drawer,
 .x-snap-drawer,
 .snap-drawer {
   position: absolute;
-  height: auto;
+  height: 100vh;
   top: 0;
   bottom: 0;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
   -webkit-transition: top 0.2s linear;
   -moz-transition: top 0.2s linear;
   -o-transition: top 0.2s linear;
@@ -48,7 +50,7 @@ snap-drawer,
   -moz-overflow-scrolling: touch;
   -o-overflow-scrolling: touch;
   overflow-scrolling: touch;
-  width: 265px;
+  width: 266px;
 }
 .snap-content {
   z-index: 2;

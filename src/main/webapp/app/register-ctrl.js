@@ -12,6 +12,9 @@ calApp.controller("RegisterCtrl", function($scope, endpoint, $window) {
         $scope.show = endpoint.show()
         
         $scope.loading = function() {
+            if(!endpoint.loading()){
+               
+            }
             return endpoint.loading();
         }
         $scope.submit = function() {

@@ -1,5 +1,5 @@
+<h3 class="page-title">{{'NEWS' | translate}}</h3>
 <div class="topcoat-list">
-    <h3 class="topcoat-list__header">{{'NEWS' | translate}}</h3>
     <ul class="topcoat-list__container">
         <h3 class="topcoat-list__header">
             <span class="pull-left" ng-class="prevPageDisabled()" ng-click="prevPage()">&lt;</span>
@@ -12,7 +12,7 @@
             
         </h3>
         <li class="topcoat-list__item" ng-repeat="n in news | offset: currentPage*itemsPerPage | limitTo: itemsPerPage">
-            <a href="#/news/edit/{{n.id}}">{{n.title}}</a>
+            <a class="title" href="#/news/edit/{{n.id}}">{{n.title}}</a>
             <span class="actions">
                 <span ng-show="n.broadcast" cal-show-global>
                     <cal-delete b-class="icon-x-altx-alt" action="delete(n.id)"></cal-delete>

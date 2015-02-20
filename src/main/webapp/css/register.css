@@ -25,20 +25,16 @@
 .modal-pane{
     text-align: justify;
     padding: 15px;
-    max-width: 300px;
+    max-width: 450px;
     margin-right: auto;
     margin-left: auto;
-    margin-top: 30px;
+    margin-top: 100px;
     margin-bottom: auto;
-    border: 1px solid rgb(10,10,10);
     border-radius: 7px;
-    background:#4a4d4e;
-    color: white;
+    background:white;
+    color: black;
 }
 
-.modal div h1{
-    text-align: center;
-}
 
 .modal div input{
     width: 100%

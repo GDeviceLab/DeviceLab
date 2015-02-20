@@ -1,8 +1,11 @@
 ../css/bootstrap/bootstrap.min.css
+../css/bootstrap/bootstrap2.min.css
 ../css/angular-snap.css
 ../directives/calendar/calendar.css
 ../directives/hourpicker/hourpicker.css
 ../directives/colorpicker/colorpicker.css
 ../css/icomoon/style.css
 ../css/register.css
+../css/material.css
+../css/ripples.min.css
 ../css/desktop.css

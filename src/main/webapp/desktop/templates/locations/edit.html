@@ -1,3 +1,4 @@
+<div class="edit-location-page">
 <div class="row">
     <div class="col-md-4" ng-show="id">
         <div class="panel panel-default">
@@ -6,11 +7,11 @@
             </div>
             <div class="panel-body">
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <img src="{{logoUrl}}" style="width: 74px;">
                     </div>
-                    <div class="col-md-8" style="margin-top: 20px;">
-                        <span class="btn btn-default btn-file">
+                    <div class="col-md-6" style="margin-top: 20px;">
+                        <span class="btn btn-primary btn-file">
                             <img src="/css/button-loader.gif" style="height: 20px;" ng-show="uploading"/>
                             {{'UPLOAD_LOGO' | translate}}
                             <input type="file" ng-file-select="onFileSelect($files)" class="uploadBtn" accept="image/*"/>
@@ -26,10 +27,13 @@
             <div class="panel-heading">
                 <h3 class="panel-title">{{'LOCATION_NAME' | translate}}</h3>
             </div>
-            <div class="panel-body" style="height: 105px;">
-                <div class="row">
+            <div class="panel-body">
+                <div class="row form-group">
                     <div class="col-md-8">
+                        <div class="form-control-wrapper">
                         <input cal-enable-global type="text" ng-model="name" placeholder="{{'LOCATION_NAME' | translate}}" class="form-control"/>
+                        <span class="material-input"></span>
+                        </div>
                         <br>
                         <select-timezone offset="offset" ></select-timezone>
                     </div>
@@ -45,7 +49,7 @@
             <div class="panel-heading">
                 <h3 class="panel-title">{{'DEVICE_OVERVIEW' | translate}}</h3>
             </div>
-            <div class="panel-body" style="height: 105px;">
+            <div class="panel-body">
                 <div class="pull-left">
                     <button type="button" ng-click="goTo('#/location/history/'+id)" class="btn btn-link">{{'RESERVATION_HISTORY' | translate}}</button><br>
                     <button type="button" ng-click="goTo('#/location/currentStatusReservation/'+id)" class="btn btn-link">{{'CURRENT_STATUS_RESERVATIONS' | translate}}</button>
@@ -64,8 +68,8 @@
                 <li class="list-group-item" ng-repeat="user in pendings">
                     {{user.name}} ({{user.mail}})
                     <span class="actions">
-                        <span class="icon-check-alt" ng-click="toUser(user.mail)"></span>
-                        <span class="icon-x-altx-alt" ng-click="delete(user.mail)"></span>
+                        <span class="icon-check-alt" style="color:gray;" ng-click="toUser(user.mail)"></span>
+                        <span class="icon-x-altx-alt" style="color:gray;" ng-click="delete(user.mail)"></span>
                     </span>
                 </li>
             </ul>
@@ -76,21 +80,26 @@
             <div class="panel-heading">
                 <h3 class="panel-title">{{'LOCATION_USERS' | translate}}</h3>
             </div>
-            <div class="panel-body">
+            <div class="panel-body form-group">
                 <p>
+                    <div class="form-control-wrapper">
                     <input type="text" ng-model="user" placeholder="{{'LOCATION_USER_NEW' | translate}}" class="form-control"/>
+                    <span class="material-input">
+                    </div>
                 </p>
-                <button class="btn btn-block" ng-click="toUser(user)">{{'BUTTON_ADD' | translate}}</button>
             </div>
             <ul class="list-group">
                 <li ng-repeat="user in users" class="list-group-item">
                     {{user.name}} ({{user.mail}})
                     <span class="actions">
-                        <span class="icon-arrow-up-alt1" ng-click="toAdmin(user.mail)"></span>
-                        <cal-delete action="delete(user.mail)" b-class="icon-x-altx-alt"></cal-delete>
+                        <span class="icon-arrow-up-alt1" style="color: gray;" ng-click="toAdmin(user.mail)"></span>
+                        <cal-delete action="delete(user.mail)" style="color: gray;" class="icon-x-altx-alt"></cal-delete>
                     </span>
                 </li>
             </ul>
+            <div class="panel-body">
+                <button class="btn btn-primary btn-block" ng-click="toUser(user)">{{'BUTTON_ADD' | translate}}</button>
+            </div>
         </div>
     </div>
     <div class="col-md-4">
@@ -98,23 +107,29 @@
             <div class="panel-heading">
                 <h3 class="panel-title">{{'LOCATION_ADMINS' | translate}}</h3>
             </div>
-            <div class="panel-body">
+            <div class="panel-body form-group">
                 <p>
+                    <div class="form-control-wrapper">
                     <input type="text" ng-model="admin" placeholder="{{'LOCATION_ADMIN_NEW' | translate}}" class="form-control"/>
+                    <span class="material-input">
+                    </div>
                 </p>
-                <button class="btn btn-block" ng-click="toAdmin(admin)">{{'BUTTON_ADD' | translate}}</button>
             </div>
             <ul class="list-group">
                 <li ng-repeat="admin in admins" class="list-group-item">
                     <span>
                         <a href="#/profile/edit/{{admin.mail}}/{{id}}">{{admin.name}} ({{admin.mail}})</a>
                         <span class="actions">
-                            <span class="icon-arrow-down-alt1" ng-click="toUser(admin.mail)"></span>
-                            <cal-delete action="delete(admin.mail)" b-class="icon-x-altx-alt"></cal-delete>
+                            <span class="icon-arrow-down-alt1" style="color: gray" ng-click="toUser(admin.mail)"></span>
+                            <cal-delete action="delete(admin.mail)" class="icon-x-altx-alt"  style="color: gray"></cal-delete>
                         </span>
                     </span>
                 </li>  
             </ul>
+            <div class="panel-body">
+                <button class="btn btn-primary btn-block" ng-click="toAdmin(admin)">{{'BUTTON_ADD' | translate}}</button>
+            </div>
         </div>
     </div>
+</div>
 </div>

@@ -1,51 +1,124 @@
-<div snap-drawer ng-controller="MenuCtrl" style="overflow-x: hidden">
-    <div>
-        <h2>{{myName()}}</h2>
-        <p>
-            <a href="#/calendar" snap-close><span class="icon-calendar"></span> {{'MENU_CALENDAR' | translate}}</a>
-        </p>
-        <p>
-            <a href="#/news" snap-close><span class="icon-comment"></span> {{'MENU_NEWS' | translate}}</a>
-        </p>
-        <p cal-show-local>
-            <a href="#/news/new" snap-close><span class="icon-edit"></span> {{'MENU_NEWS_ADD' | translate}}</a>
-        </p>
-        <p cal-show-local>
-            <a href="#/stats" snap-close><span class="icon-globe"></span> {{'MENU_STATS_LOCATION' | translate}}</a>
-        </p>
-        <p>
-            <a href="#/stats/me" snap-close><span class="icon-profile"></span> {{'MENU_STATS' | translate}}</a>
-        </p>
-        <p>
-            <a href="#/apply" snap-close><span class="icon-bookmark"></span> {{'MENU_APPLY' | translate}}</a>
-        </p>
-        <h3 cal-show-local>{{'MENU_SETTINGS' | translate}}</h3>
-        <p cal-show-local>
-            <a href="#/location/edit/{{location()}}" snap-close><span class="icon-user"></span> {{'MENU_LOCATION' | translate}}</a>
-        </p>
-        <p cal-show-global>
-            <a href="#/location/list" snap-close><span class="icon-globe"></span> {{'MENU_LOCATIONS' | translate}}</a>
-        </p>
-        <p cal-show-local>
-            <a href="#/devices/list" snap-close><span class="icon-mobile-phone"></span> {{'MENU_DEVICES' | translate}}</a>
-        </p>
-        <p>
-            <a href="#/profile/edit/me/-1" snap-close><span class="icon-profile"></span> {{'PROFILE' | translate}}</a>
-        </p>
-        <p cal-show-global>
-            <a href="#/report/glob" snap-close><span class="icon-bars"></span> {{'REPORT' | translate}}</a>
-        </p>
-        <p>
-            <a href="/logout" snap-close><span class="icon-times"></span> {{'MENU_LOGOUT' | translate}}</a>
-        </p>
-        <div style="height: 160px;"></div>
+<div snap-drawer>
+    <div ng-controller="MenuCtrl">
+        <div id="menu-header">
+            <p id="menu-name">{{myName()}}<p>
+        </div>
+            <nav class="main-menu">
+                <ul>
+                    <li>
+                        <a href="#/calendar" snap-close>
+                            <i class="fa icon-calendar"></i>
+                            <span class="nav-text">
+                                {{'MENU_CALENDAR' | translate}}
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#/news" snap-close>
+                            <i class="fa icon-comment"></i>
+                            <span class="nav-text">
+                                {{'MENU_NEWS' | translate}}
+                            </span>
+                        </a>
+
+                    </li>
+                    <li cal-show-local>
+                        <a href="#/news/new" snap-close>
+                            <i class="fa icon-edit"></i>
+                            <span class="nav-text">
+                                {{'MENU_NEWS_ADD' | translate}}
+                            </span>
+                        </a>
+
+                    </li>
+                    <li cal-show-local>
+                        <a href="#/stats" snap-close>
+                            <i class="fa icon-globe"></i>
+                            <span class="nav-text">
+                                {{'MENU_STATS_LOCATION' | translate}}
+                            </span>
+                        </a>
+
+                    </li>
+                    <li cal-show-local>
+                        <a href="#/stats/me" snap-close>
+                            <i class="fa icon-profile"></i>
+                            <span class="nav-text">
+                                {{'MENU_STATS' | translate}}
+                            </span>
+                        </a>
+
+                    </li>
+                    <li>
+                        <a href="#/apply" snap-close>
+                            <i class="fa icon-bookmark"></i>
+                            <span class="nav-text">
+                                {{'MENU_APPLY' | translate}}
+                            </span>
+                        </a>
+
+                    </li>
+                </ul>
+                <h3 style="font-size: 16pt; padding-left: 30;">{{'MENU_SETTINGS' | translate}}</h3>
+                <ul>
+                    <li cal-show-local>
+                        <a href="#/location/edit/{{location()}}" snap-close>
+                            <i class="fa icon-user"></i>
+                            <span class="nav-text">
+                                {{'MENU_LOCATION' | translate}}
+                            </span>
+                        </a>
+
+                    </li>
+                    <li cal-show-global>
+                        <a href="#/location/list" snap-close>
+                            <i class="fa icon-globe"></i>
+                            <span class="nav-text">
+                                {{'MENU_LOCATIONS' | translate}}
+                            </span>
+                        </a>
+
+                    </li>
+                    <li cal-show-local>
+                        <a href="#/devices/list" snap-close>
+                            <i class="fa icon-mobile-phone"></i>
+                            <span class="nav-text">
+                                {{'MENU_DEVICES' | translate}}</a>
+                            </span>
+                        </a>
+
+                    </li>
+                    <li>
+                        <a href="#/profile/edit/me/-1" snap-close>
+                            <i class="fa icon-profile"></i>
+                            <span class="nav-text">
+                                {{'PROFILE' | translate}}
+                            </span>
+                        </a>
+
+                    </li>
+                    <li cal-show-global>
+                        <a href="#/report/glob" snap-close>
+                            <i class="fa icon-bars"></i>
+                            <span class="nav-text">
+                                {{'REPORT' | translate}}
+                            </span>
+                        </a>
+
+                    </li>
+                    <li>
+                        <a href="/logout" snap-close>
+                            <i class="fa icon-bookmark"></i>
+                            <span class="nav-text">
+                                {{'MENU_LOGOUT' | translate}} 
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+    <div id="ack-image">
+            <img ng-src="{{logo.url}}" style="max-height: 120px; max-width: 230px;"><br
     </div>
-    <div id="ack-image" style="background-color: #fafafa">
-        <img ng-src="{{logo.url}}" style="max-height: 120px; max-width: 230px;"><br
-        <p id="ack">
-            <font size="1">Developed by Google</font>
-            <br>
-            <font size="1">with the support of Revevol, Intel</font>
-        </p>
-    </div>
+</div>
 </div>

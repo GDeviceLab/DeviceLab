@@ -1,15 +1,15 @@
 <div class="topcoat-list">
-    <h3 class="topcoat-list__header">
-        <span class="pull-left" ng-click="yesterday()">&lt;</span>
-        <span class="pull-right" ng-click="tomorrow()">&gt;</span>
-        <span class="center" ng-click="changeDate()">
-            {{date | date : 'EEEE d MMMM'}}
+    <h3 class="topcoat-list__header calendar-head">
+        <span class="pull-left arrow-left" ng-click="yesterday()"></span>
+        <span class="pull-right arrow-right" ng-click="tomorrow()"></span>
+        <span class="center" style="margin-left: 0; margin-right: 0;" ng-click="changeDate()">
+            {{date | date : 'EEEE d MMMM'}}<span style="margin-top: 0px;" class="caret"></span>
         </span>
 
     </h3>
     <div id="datePicker" ng-show="pick">
         <cal-endar date="date" class="cal" btn-class="topcoat-button--cta" />
     </div>
-    <cal-hour-picker min="0" max="24" marginmobile="20px" id="calhour" class="topcoat-list__container day" date="date" offset="0" filter="search" />
+     <cal-hour-picker min="0" max="24" marginmobile="20px" id="calhour" class="topcoat-list__container day" date="date" offset="0" filter="search" />
 </div>
 <cal-menu search="search" in="devices"></cal-menu>

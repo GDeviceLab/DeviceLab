@@ -130,7 +130,7 @@ calApp.directive("calHourPicker", function() {
                     var h = document.getElementById(id + "_" + begin).offsetHeight;
                     var w = document.getElementById(id + "_" + begin).offsetWidth;
                     var e = document.getElementById(id + "_" + "range");
-                    e.style.top = (begin - 2*$scope.min) * h;
+                    e.style.top = (begin - 2*$scope.min) * h + 10;
                     e.style.height = (end - begin + 1) * h;
                     e.style.left = 49;
                     e.style.width = w;
@@ -144,11 +144,11 @@ calApp.directive("calHourPicker", function() {
                         if(event.num_collision === 0){
                             event.width = pecentageWidthTotal; 
                             event.width_perc = event.width + "%"; 
-                            event.right = 0;
+                            event.right = 5 + "%";
                         }else{
                             event.width = pecentageWidthTotal / events.length; 
                             event.width_perc = event.width + "%";                             
-                            event.right = pecentageWidthTotal - (event.width * col_inc ) + "%";
+                            event.right = pecentageWidthTotal - (event.width * col_inc ) + 5 + "%";
                             col_inc++;
                         }
                     });  
@@ -164,12 +164,12 @@ calApp.directive("calHourPicker", function() {
                                 event.collision_index = -1;
                                 var h = document.getElementById($scope.id + "_" + event.start).offsetHeight;
                                 var w = document.getElementById($scope.id + "_" + event.start).offsetWidth;
-                                event.top = h * (event.start - 2*$scope.min)
+                                event.top = h * (event.start - 2*$scope.min) + 10;
                                 event.height = (event.end - event.start) * h;
                                 event.width = w;
                                 var colors = [];
                                 for (var j = 0; j < event.assets.length; j++) {
-                                    colors.push('rgba(' + event.assets[j].r + ',' + event.assets[j].g + ',' + event.assets[j].b + ',0.6)');
+                                    colors.push('rgba(' + event.assets[j].r + ',' + event.assets[j].g + ',' + event.assets[j].b + ',1.0)');
                                 }
                                 event.gradient = colors.join(',');
                                 if (colors.length == 1) {
@@ -229,5 +229,3 @@ calApp.directive("calHourPicker", function() {
         }
     });
 });
-
-

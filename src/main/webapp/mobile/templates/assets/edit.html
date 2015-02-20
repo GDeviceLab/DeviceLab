@@ -1,11 +1,22 @@
 <h3 class="topcoat-list__header">{{'DEVICE' | translate}}</h3>
 <div class="padded">
-    <input type="text" ng-model="a.name" placeholder="{{'DEVICE_NAME' | translate}}" class="topcoat-text-input"/>
+    <input type="text" ng-model="a.name" placeholder="{{'DEVICE_NAME' | translate}}" class="form-control"/>
 </div>
 <div class="padded">
-    <input type="text" ng-model="a.type" placeholder="{{'DEVICE_TYPE' | translate}}" class="topcoat-text-input"/>
+    <input type="text" ng-model="a.type" placeholder="{{'DEVICE_TYPE' | translate}}" class="form-control"/>
 </div>
-
+<div class="padded">
+ <div class="form-group">
+                 <label for="sl_os">{{ 'OS' | translate }}</label>
+                 <select ng-model="a.os" class="form-control" id="sl_os">                   
+                     <option value="ANDROID">{{'ANDROID' | translate}}</option>
+                     <option value="IOS">{{'IOS' | translate}}</option>
+                     <option value="WINDOWS_PHONE">{{'WINDOWS_PHONE' | translate}}</option> 
+                     <option value="ANDROID_WEAR">{{'ANDROID_WEAR' | translate}}</option>
+                     <option value="OS_OTHERS">{{'OS_OTHERS' | translate}}</option>
+                 </select>
+             </div>
+</div>
 <h3 class="topcoat-list__header">{{'DEVICE_COLOR' | translate}}</h3>
 <div class="padded">
     <div style="
@@ -23,6 +34,6 @@
     <p class="padded">{{error | translate}}</p>
 </div>
 <div class="padded">
-    <button class="topcoat-button--cta" ng-click="submit()">{{'BUTTON_SAVE' | translate}}</button>
-    <button class="topcoat-button--quiet" ng-click="goTo()">{{'CANCEL' | translate}}</button>
+    <button class="btn btn-primary" ng-click="submit()">{{'BUTTON_SAVE' | translate}}</button>
+    <button class="btn btn-danger" ng-click="goTo()">{{'CANCEL' | translate}}</button>
 </div>

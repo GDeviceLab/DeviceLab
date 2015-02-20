@@ -264,6 +264,7 @@ n = 0;
 if( utils.canTransform() ){
 var theTranslate = 'translate3d(' + n + 'px, 0,0)';
 settings.element.style[cache.vendor+'Transform'] = theTranslate;
+console.log("here");
 } else {
 settings.element.style.width = (win.innerWidth || doc.documentElement.clientWidth)+'px';
 
@@ -1083,7 +1084,7 @@ angular.module("pascalprecht.translate",["ng"]).run(["$translate",function(a){va
 * Copyright (c) 2014 ; Licensed MIT
 */
 angular.module("pascalprecht.translate").factory("$translateStaticFilesLoader",["$q","$http",function(a,b){return function(c){if(!c||!angular.isString(c.prefix)||!angular.isString(c.suffix))throw new Error("Couldn't load static files, no prefix or suffix specified!");var d=a.defer();return b({url:[c.prefix,c.key,c.suffix].join(""),method:"GET",params:""}).success(function(a){d.resolve(a)}).error(function(){d.reject(c.key)}),d.promise}}]);
-var calApp = angular.module('cal', ['ui.router', 'snap', 'ngSanitize', 'pascalprecht.translate'])
+var calApp = angular.module('cal', ['ngCookies','ui.router', 'snap', 'ngSanitize', 'pascalprecht.translate','angularFileUpload'])
 .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 $urlRouterProvider.otherwise('/calendar');
 $stateProvider.state('reload', {
@@ -1162,8 +1163,24 @@ resolve: {
 endpoint: "endpoint"
 }
 });
+$stateProvider.state('location_history', {
+url: '/location/history/:id',
+controller: 'LocationHistoryCtrl',
+templateUrl: 'templates/locations/history.html',
+resolve: {
+endpoint: "endpoint"
+}
+});
+$stateProvider.state('location_currentStatusReservation', {
+url: '/location/currentStatusReservation/:id',
+controller: 'LocationCurrentStatusReservationCtrl',
+templateUrl: 'templates/locations/currentStatusReservation.html',
+resolve: {
+endpoint: "endpoint"
+}
+});
 $stateProvider.state('asset_list', {
-url: '/asset/list',
+url: '/devices/list',
 controller: 'ListAssetCtrl',
 templateUrl: 'templates/assets/list.html',
 resolve: {
@@ -1251,8 +1268,43 @@ endpoint: "endpoint"
 }
 });
 
-}]);
+$stateProvider.state('report_global', {
+url: '/report/glob',
+controller: 'ReportGlobalCtrl',
+templateUrl: 'templates/report/report.html',
+resolve: {
+endpoint: "endpoint"
+}
+});
 
+$stateProvider.state('globalLocationDevicesReport', {
+url: '/report/globalLocationDevicesReport',
+controller: 'ResultReportCtrl',
+templateUrl: 'templates/report/globalLocationDevicesReport.html',
+resolve: {
+endpoint: "endpoint"
+}
+});
+
+$stateProvider.state('testedPurposesReport', {
+url: '/report/testedPurposesReport',
+controller: 'ResultReportCtrl',
+templateUrl: 'templates/report/testedPurposesReport.html',
+resolve: {
+endpoint: "endpoint"
+}
+});
+
+$stateProvider.state('profile_edit', {
+url: '/profile/edit/:id/:location',
+controller: 'ProfileCtrl',
+templateUrl: 'templates/profile/edit.html',
+resolve: {
+endpoint: "endpoint"
+}
+});
+
+}]);
 
 calApp.filter('reservations', function() {
 return function(reservations, search) {
@@ -1293,6 +1345,32 @@ return Math.floor(input/2) + "h30";
 }
 };
 });
+
+calApp.filter('localizeres', function() {
+return function(input){
+var hours = input.split(":")[0];
+var minutes = input.split(":")[1];
+var d = new Date(2015, 0, 21, hours, minutes);
+var options = { hour:'numeric', minute: 'numeric'};
+return d.toLocaleTimeString(window.navigator.language,options);
+};
+});
+
+calApp.filter('localize', function() {
+return function(input){
+var hours = input;
+var d = new Date(2015, 0, 21, hours);
+var options = { hour:'numeric'};
+return d.toLocaleTimeString(window.navigator.language,options);
+};
+});
+
+calApp.filter('offset', function() {
+return function(input, start) {
+start = parseInt(start, 10);
+return input.slice(start);
+};
+});
 calApp.config(function($translateProvider) {
 $translateProvider.useStaticFilesLoader({
 prefix: '/lang/',
@@ -1312,7 +1390,8 @@ return langs[i];
 return fallback;
 });
 });
-calApp.factory('endpoint', ['$http', '$rootScope', '$window', '$q', function($http, $scope, $window, $q) {
+calApp.factory('endpoint', ['$http', '$rootScope', '$window', '$q', '$cookieStore',
+function($http, $scope, $window, $q, $cookieStore) {
 var response = $q.defer();
 
 var service = {};
@@ -1403,13 +1482,21 @@ return $http.get(url("person", "list/admins", {location: loc}))
 /////////////////
 //     ACL     //
 /////////////////
-service.person.register = function(pseudo) {
+service.person.register = function(pseudo,startupName) {
 loading++;
 redirect = true; //redirect was false is the user wasn't registered, now it's true
-return $http.get(url("person", "register", {username: pseudo}))
+return $http.get(url("person", "register", {username: pseudo, startupName:startupName}))
 .success(success).error(error).success(function() {
 user.name = pseudo;
 user.mail = origin;
+user.startupName = startupName;
+});
+};
+service.person.updateProfile = function(locationId,mail,pseudo,startupName) {
+loading++;
+redirect = true; //redirect was false is the user wasn't registered, now it's true
+return $http.get(url("person", "update/profile", {locationId:locationId, mail:mail, username: pseudo, startupName:startupName}))
+.success(success).error(error).success(function() {
 });
 };
 service.person.promote = function(usr, loc) {
@@ -1453,13 +1540,14 @@ loading++;
 return $http.get(url("reservation", "get", {location: location, id: id}))
 .success(success).error(error);
 };
-service.res.list = function(date) {
+service.res.list = function(realDateNow) {
 loading++;
-return $http.get(url("reservation", "list", {location: location, date: new Date(date).toJSON()}))
+return $http.get(url("reservation", "list", {location: location, date: realDateNow}))
 .success(success).error(error);
 };
-service.res.put = function(reservation) {
+service.res.put = function(reservation,purpose) {
 loading++;
+reservation.purpose = purpose;
 return $http.post(url("reservation", "put", {location: location}), reservation)
 .success(success).error(error);
 };
@@ -1473,6 +1561,28 @@ loading++;
 return $http.get(url("reservation", "history", {location: location, user: user}))
 .success(success).error(error);
 };
+service.res.totalhistory = function(locationId) {
+loading++;
+return $http.get(url("reservation", "totalhistory", {location: locationId}))
+.success(success).error(error);
+};
+service.res.devicesStatusList = function(locationId,totalHalfHour) {
+loading++;
+return $http.get(url("reservation", "devicesStatusList", {location: locationId, totalHalfHour:totalHalfHour}))
+.success(success).error(error);
+};
+
+//////////////////
+//   PURPOSES   //
+//////////////////
+service.pur = {};
+service.pur.list = function() {
+loading++;
+return $http.get(url("purpose", "list", {location: location}))
+.success(success).error(error);
+};
+
+
 //////////////////
 //    ASSETS    //
 //////////////////
@@ -1516,6 +1626,11 @@ return $http.get(url("location", "list/actives", {}))
 service.location.put = function(locat) {
 loading++;
 return $http.post(url("location", "put", {}), locat)
+.success(success).error(error);
+};
+service.location.delete = function(locationId) {
+loading++;
+return $http.post(url("location", "delete", {}), {id:locationId})
 .success(success).error(error);
 };
 service.location.get = function(id) {
@@ -1571,6 +1686,16 @@ loading++;
 return $http.get(url("stats", "devices", {location: location}))
 .success(success).error(error);
 };
+service.stats.devicesDateFilter = function(dateFrom,dateTo) {
+loading++;
+var pojoReport  = {
+location:location,
+dateFrom : dateFrom,
+dateTo : dateTo
+};
+return $http.post(url("stats", "devicesDateFilter", {}),pojoReport)
+.success(success).error(error);
+};
 service.stats.device = function(id) {
 loading++;
 return $http.get(url("stats", "device", {location: location, id: id}))
@@ -1579,6 +1704,42 @@ return $http.get(url("stats", "device", {location: location, id: id}))
 service.stats.person = function(id) {
 loading++;
 return $http.get(url("stats", "person", {location: location, id: id}))
+.success(success).error(error);
+};
+service.stats.personDateFilter = function(id,dateFrom,dateTo) {
+loading++;
+var pojoReport  = {
+location:location,
+dateFrom : dateFrom,
+dateTo : dateTo,
+idPerson:id
+};
+return $http.post(url("stats", "personDateFilter", {}),pojoReport)
+.success(success).error(error);
+};
+
+//////////////
+//  REPORT   //
+//////////////
+service.rep = {};
+service.rep.globalLocationDevicesReport = function(listLocation,dateFrom,dateTo) {
+loading++;
+var pojoReport = {
+listLocation : listLocation,
+dateFrom : dateFrom,
+dateTo : dateTo
+};
+return $http.post(url("report", "globalLocationDevicesReport", {}), pojoReport)
+.success(success).error(error);
+};
+service.rep.testedPurposes = function(listLocation,dateFrom,dateTo) {
+loading++;
+var pojoReport = {
+listLocation : listLocation,
+dateFrom : dateFrom,
+dateTo : dateTo
+};
+return $http.post(url("report", "testedPurposes", {}), pojoReport)
 .success(success).error(error);
 };
 
@@ -1593,7 +1754,14 @@ redirect = true;
 if (location == -1) {
 if (data.favorite) {
 service.favorite = data.favorite;
+if($cookieStore.get('location') != null){
+console.log("Location taken from cache");
+location = $cookieStore.get('location');
+}
+else{
+console.log("No Location from cache... take the favourite");
 location = data.favorite;
+}
 }
 }
 });
@@ -1609,6 +1777,7 @@ return show;
 
 service.setLoc = function(newLocation) {
 location = newLocation;
+$cookieStore.put('location',location);
 };
 
 service.me = function() {
@@ -1664,8 +1833,13 @@ calApp.controller("ReloadCtrl", function($window) {
 $window.location.hash = "#/calendar";
 });
 
-calApp.controller("CalendarCtrl", function($scope, $rootScope, endpoint) {
+calApp.controller("CalendarCtrl", function($scope, $rootScope, endpoint, $window, $timeout) {
+var heightDeviceMax = 275;
+var heightDeviceMin = 80;
 $scope.search = {};
+$scope.isCalendarVisible = false;
+$scope.wellDeviceHeight = heightDeviceMax;
+
 $scope.search.person = '';
 if(!$rootScope.appState){
 $rootScope.appState = {};
@@ -1687,6 +1861,20 @@ $scope.date = new Date(d.getFullYear(), d.getMonth(), d.getDate());
 
 $scope.datePlus = function(offset){
 return new Date($scope.date).setDate($scope.date.getDate() + offset);
+};
+
+$scope.visibilityCalendar = function(){
+$scope.isCalendarVisible = !$scope.isCalendarVisible;
+if($scope.isCalendarVisible){
+$scope.wellDeviceHeight = heightDeviceMin;
+}
+else{
+$scope.wellDeviceHeight = heightDeviceMax;
+}
+};
+
+$scope.goTo = function(value){
+$window.location.href = value;
 };
 
 $scope.toggle = function() {
@@ -1724,23 +1912,66 @@ return new Date(y, m - 1, d);
 endpoint.asset.list().success(function(data) {
 $scope.devices = data.items;
 });
+
+$scope.addDays = function(value){
+$scope.date.setDate($scope.date.getDate() + value);
+};
+
+
+$timeout(function() {
+$(".hour-picker-v-scroll-bar").scrollTop(460);
+$scope.$apply();
+}, 500);
+
 });
 
-calApp.controller("MenuCtrl", function($scope, endpoint) {
+calApp.controller("MenuCtrl", function($scope, endpoint, $timeout) {
+$scope.logo = {
+url:"../css/img/default_logo.png"
+};
+
+$scope.$on('reloadLocation', function(event, data) {
+$scope.initLoad();
+});
+
+
+
+$scope.initLoad = function(){
 endpoint.then(function(endpoint) {
 $scope.myName = function() {
 return endpoint.me().name;
 };
 $scope.location = function() {
-return endpoint.loc();
+var location = endpoint.loc();
+return location;
+};
+
+endpoint.location.get($scope.location()).success(function(data) {
+$scope.getLogoUrl(data.logoUrl);
+});
+
+$timeout(function() {
+$scope.$apply();
+}, 500);
+});
+};
+
+$scope.initLoad();
+
+$scope.getLogoUrl = function(value){
+$scope.logo.url = "../css/img/default_logo.png";
+if(value != null
+&& value.trim() != ""){
+$scope.logo.url = value;
+}
 };
 });
-});
-calApp.controller("LocationDrawer", function($scope, endpoint, $window) {
+calApp.controller("LocationDrawer", function($scope, endpoint, $window, $rootScope) {
 endpoint.then(function(endpoint) {
 $scope.set = function(loc) {
 endpoint.setLoc(loc);
-$window.location.href = "#/reload"
+$rootScope.$broadcast('reloadLocation', "");
+$window.location.href = "#/reload";
 };
 
 $scope.active = function(loc) {
@@ -1765,18 +1996,72 @@ $scope.feedback = "GLOBAL_FAILURE";
 });
 }
 });
-calApp.controller("ListAssetCtrl", function($scope, endpoint) {
+
+calApp.controller("ProfileCtrl", function($scope, $stateParams, endpoint, $window) {
+
+$scope.me = {};
+if($stateParams.id.trim() == "me"){
+$scope.me = endpoint.me();
+}
+else{
+endpoint.person.get($stateParams.id).success(function(data){
+$scope.me = data;
+});
+}
+
+$scope.submit = function() {
+if($scope.me.name != null
+&& $scope.me.name.trim() != ""
+&& $scope.me.startupName != null
+&& $scope.me.startupName.trim() != ""){
+endpoint.person.updateProfile($stateParams.location,$scope.me.mail,$scope.me.name,$scope.me.startupName)
+.success(function() {
+$window.location.hash = "/";
+});
+}
+}
+});
+calApp.controller("ListAssetCtrl", function($scope, endpoint, $window) {
+
 function refresh() {
 endpoint.asset.list().success(function(data) {
 $scope.assets = data.items;
 });
 }
 refresh();
+
 $scope.delete = function(id) {
 endpoint.asset.delete(id).success(refresh);
 };
+
+$scope.goTo = function(value){
+$window.location.hash = value;
+};
 });
-calApp.controller("NewAssetCtrl", function($scope, endpoint) {
+calApp.controller("NewAssetCtrl", function($scope, endpoint, $window) {
+
+$scope.initpalettecolors = function() {
+var container = $('.colors-palette');
+var colors = [[5,40,58],[4,16,75],[13,2,45],[34,0,47],[48,2,20],[75,0,2],[70,20,1],[70,39,3],[67,47,3],[82,80,4],[62,71,6],[31,51,12],[11,89,123],[6,44,154],[32,4,99],[75,1,103],[100,14,48],[165,6,6],[154,44,5],[150,84,5],[148,106,6],[183,177,8],[135,153,14],[63,104,29],[18,145,207],[7,67,254],[57,0,164],[129,1,171],[168,24,75],[252,39,17],[251,83,8],[253,154,9],[250,189,9],[255,255,50],[209,234,42],[101,178,51],[71,204,252],[98,148,254],[113,42,253],[197,50,254],[231,87,142],[253,116,111],[252,147,104],[254,186,98],[253,209,98],[253,251,131],[229,242,125],[162,216,122],[191,238,255],[201,219,255],[206,187,255],[237,185,253],[246,201,219],[252,208,204],[254,218,205],[254,232,202],[255,239,202],[253,254,211],[248,250,211],[216,234,201],[255,255,255],[255,255,255],[255,255,255],[239,239,239],[208,208,208],[176,176,176],[149,149,149],[108,108,108],[70,70,70],[49,49,49],[29,29,29],[0,0,0]];
+$.each(colors, function() {
+var r = this[0];
+var g = this[1];
+var b = this[2];
+var elem = $('<div class="color-single-box">');
+elem.css('background', 'rgb(' + r + ',' + g + ',' + b + ')');
+elem.appendTo(container);
+
+elem.click(function() {
+var rgb = elem.css('background').match(/\d+/g);
+$scope.rgb = {};
+$scope.rgb.r = rgb[0];
+$scope.rgb.g = rgb[1];
+$scope.rgb.b = rgb[2];
+$scope.$apply();
+});
+});
+};
+
 $scope.a = {};
 $scope.submit = function() {
 if(!$scope.rgb){
@@ -1787,22 +2072,53 @@ if(!$scope.a.name){
 $scope.error = "ERROR_ASSET_NAME";
 return;
 }
+if(!$scope.a.os){
+$scope.error = "ERROR_ASSET_OS";
+return;
+}
 $scope.a.r = $scope.rgb.r;
 $scope.a.g = $scope.rgb.g;
 $scope.a.b = $scope.rgb.b;
 endpoint.asset.put($scope.a).success(function() {
-window.location.href = "#/asset/list";
+window.location.href = "#/devices/list";
 });
 };
+
+$scope.goTo = function(){
+$window.history.back();
+};
 });
-calApp.controller("EditAssetCtrl", function($scope, $stateParams, endpoint) {
+calApp.controller("EditAssetCtrl", function($scope, $stateParams, endpoint, $window) {
+
+$scope.initpalettecolors = function() {
+var container = $('.colors-palette');
+var colors = [[5,40,58],[4,16,75],[13,2,45],[34,0,47],[48,2,20],[75,0,2],[70,20,1],[70,39,3],[67,47,3],[82,80,4],[62,71,6],[31,51,12],[11,89,123],[6,44,154],[32,4,99],[75,1,103],[100,14,48],[165,6,6],[154,44,5],[150,84,5],[148,106,6],[183,177,8],[135,153,14],[63,104,29],[18,145,207],[7,67,254],[57,0,164],[129,1,171],[168,24,75],[252,39,17],[251,83,8],[253,154,9],[250,189,9],[255,255,50],[209,234,42],[101,178,51],[71,204,252],[98,148,254],[113,42,253],[197,50,254],[231,87,142],[253,116,111],[252,147,104],[254,186,98],[253,209,98],[253,251,131],[229,242,125],[162,216,122],[191,238,255],[201,219,255],[206,187,255],[237,185,253],[246,201,219],[252,208,204],[254,218,205],[254,232,202],[255,239,202],[253,254,211],[248,250,211],[216,234,201],[255,255,255],[255,255,255],[255,255,255],[239,239,239],[208,208,208],[176,176,176],[149,149,149],[108,108,108],[70,70,70],[49,49,49],[29,29,29],[0,0,0]];
+$.each(colors, function() {
+var r = this[0];
+var g = this[1];
+var b = this[2];
+var elem = $('<div class="color-single-box">');
+elem.css('background', 'rgb(' + r + ',' + g + ',' + b + ')');
+elem.appendTo(container);
+
+elem.click(function() {
+var rgb = elem.css('background').match(/\d+/g);
+$scope.rgb = {};
+$scope.rgb.r = rgb[0];
+$scope.rgb.g = rgb[1];
+$scope.rgb.b = rgb[2];
+$scope.$apply();
+});
+});
+};
+
 $scope.a = {};
 $scope.submit = function() {
 $scope.a.r = $scope.rgb.r;
 $scope.a.g = $scope.rgb.g;
 $scope.a.b = $scope.rgb.b;
 endpoint.asset.put($scope.a).success(function() {
-window.location.href = "#/asset/list";
+window.location.href = "#/devices/list";
 });
 };
 
@@ -1810,6 +2126,10 @@ endpoint.asset.get($stateParams.id).success(function(data) {
 $scope.a = data;
 $scope.rgb = {r: data.r, g: data.g, b: data.b}
 });
+
+$scope.goTo = function(){
+$window.history.back();
+};
 });
 calApp.controller("TypeListCtrl", function($scope, $http){
 $http.get('/_ah/api/type/v1/list').success(function(data){
@@ -1838,19 +2158,38 @@ $scope.show = false;
 $scope.loading = function() {
 return true;
 };
+
+$scope.error = {
+mandatoryMessage:false
+};
+
 endpoint.then(function(endpoint) {
 $scope.show = endpoint.show()
 
 $scope.loading = function() {
+if(!endpoint.loading()){
+var cal_height = $(window).height() - $("#header").height() - $("#news-sec").height() - $("#week-select").height() - 2;
+//console.log("here" + cal_height);
+$('.cal-day').height(cal_height);
+}
 return endpoint.loading();
 }
 $scope.submit = function() {
-endpoint.person.register($scope.name)
+$scope.error.mandatoryMessage = false;
+if($scope.name != null
+&& $scope.name.trim() != ""
+&& $scope.startupName != null
+&& $scope.startupName.trim() != ""){
+endpoint.person.register($scope.name,$scope.startupName)
 .success(function() {
 $window.location.hash = "/apply"
 $scope.show = false;
 ndp.callMe();
 });
+}
+else{
+$scope.error.mandatoryMessage = true;
+}
 }
 });
 });
@@ -1864,10 +2203,33 @@ var loc = $window.location.hash.split('/');
 if(loc.length < 2){
 return "home";
 } else {
+if(loc[1] === 'news'){
+if(loc[2] != null
+&& loc[2] == "new"){
+$scope.page = "Add News";
+}
+else{
+$scope.page = "News";
+}
+}
+else if(loc[1] === 'stats'){
+if(loc[2] != null
+&& loc[2] == "me"){
+$scope.page = "My Stats";
+}
+else{
+$scope.page = "Location stats";
+}
+}
 return loc[1];
 }
 }, function(n){
-$scope.page = n.charAt(0).toUpperCase() + n.slice(1);
+var value = n.charAt(0).toUpperCase() + n.slice(1);
+if(value == 'Asset'){
+value = 'Device';
+}
+
+$scope.page = value;
 });
 
 endpoint.then(function(endpoint) {
@@ -1908,17 +2270,51 @@ $scope.state[data.items[i].location] = data.items[i].status;
 }
 });
 });
-calApp.controller("ListLocationCtrl", function($scope, endpoint) {
+calApp.controller("ListLocationCtrl", function($scope, endpoint, $window) {
+
+$scope.getList = function(){
 endpoint.location.list().success(function(data) {
 $scope.locations = data;
 });
+};
+
+$scope.delete = function(locationId){
+endpoint.location.delete(locationId).success(function(data) {
+$scope.getList();
 });
-calApp.controller("EditLocationCtrl", function($scope, $stateParams, endpoint, $window) {
+};
+
+$scope.goTo = function(value){
+$window.location.hash = value;
+};
+
+$scope.test = function(event){
+console.log(event);
+
+};
+
+$scope.getList();
+console.log("test!");
+});
+calApp.controller("EditLocationCtrl", function($scope, $stateParams, endpoint, $window, $upload, $http, $timeout) {
 $scope.id = $stateParams.id;
 $scope.state = 'pending';
+$scope.uploading = false;
+$scope.logoUrl = "../css/img/default_logo.png";
+
+$scope.offset = 'no-value';
+
+$scope.showDeleteLocationButton = endpoint.me().globalAdmin;
+
+$scope.goTo = function(value){
+$window.location.href = value;
+};
+
 $scope.submit = function() {
 endpoint.location.put({
 name: $scope.name,
+gmtOffset: $scope.offset,
+logoUrl: $scope.logoUrl,
 id: $scope.id
 }).success(function() {
 $window.location.href = "#/location/list";
@@ -1926,15 +2322,41 @@ $window.location.href = "#/location/list";
 };
 endpoint.location.get($scope.id).success(function(data) {
 $scope.name = data.name;
+if(!isNaN(data.gmtOffset)){
+$scope.offset = data.gmtOffset;
+}
+$scope.getLogoUrl(data.logoUrl);
 });
 
 $scope.toUser = function(user) {
 endpoint.person.promote(user, $scope.id)
 .success(refresh);
 };
+
+removeFromList = function(list,user){
+if(list != null
+&& list.length > 0
+&& user != null){
+var tempList = [];
+for (var i = 0; i < list.length; i++) {
+if(user != list[i].mail){
+tempList.push(list[i]);
+}
+}
+return tempList;
+}
+};
+
+removeUser = function(user){
+$scope.admins = removeFromList($scope.admins,user);
+$scope.pendings = removeFromList($scope.pendings,user);
+$scope.users = removeFromList($scope.users,user);
+};
+
+
 $scope.delete = function(user) {
 endpoint.person.demote(user, $scope.id)
-.success(refresh);
+.success(removeUser(user));
 };
 $scope.toAdmin = function(user) {
 endpoint.person.grantLocal(user, $scope.id)
@@ -1956,23 +2378,148 @@ $scope.pendings = data.items;
 endpoint.person.listActives($scope.id).success(function(data) {
 $scope.users = data.items;
 });
+
+$scope.loadUploadUrl();
+};
+
+$scope.onFileSelect = function($files) {
+console.log($files);
+$scope.uploading = true;
+//$files: an array of files selected, each file has name, size, and type.
+for (var i = 0; i < $files.length; i++) {
+var file = $files[i];
+$scope.upload = $upload.upload({
+url: $scope.uploadUrl,
+method: 'POST',
+headers: {'locationId': $scope.id},
+file: file
+}).progress(function(evt) {
+var percent = parseInt(100.0 * evt.loaded / evt.total);
+console.log('percent: ' + percent);
+}).success(function(data, status, headers, config) {
+console.log("File Uploaded Successfully!");
+console.log(status);
+$files = [];
+$timeout(function() {
+$scope.uploading = false;
+location.reload();
+}, 2000);
+});
+}
+};
+
+$scope.loadUploadUrl = function(){
+$http.get("LogoUpload").success(function(output){
+$scope.uploadUrl = output;
+});
+};
+
+$scope.getLogoUrl = function(value){
+$scope.logoUrl = "../css/img/default_logo.png";
+if(value != null
+&& value.trim() != ""){
+$scope.logoUrl = value;
+}
 };
 
 refresh();
+
 });
 calApp.controller("NewLocationCtrl", function($scope, endpoint, $window) {
+$scope.offset = 'no-value';
+
 $scope.submit = function() {
 endpoint.location.put({
-name: $scope.name
+name: $scope.name,
+gmtOffset: $scope.offset
 }).success(function() {
 $window.location.href = "#/location/list";
 });
 };
 });
+
+calApp.controller("LocationHistoryCtrl", function($scope, endpoint, $window, $stateParams) {
+$scope.resList = [];
+
+endpoint.res.totalhistory($stateParams.id).success(function(output) {
+if(output != null){
+$scope.resList = output.items;
+}
+});
+});
+
+calApp.controller("LocationCurrentStatusReservationCtrl", function($scope, endpoint, $window, $stateParams) {
+$scope.pojoResult = [];
+
+var dateNow = new Date();
+var numHour = dateNow.getHours()*2;
+console.log("NumHour: " + numHour);
+var numMinutes = 0;
+if(dateNow.getMinutes() > 29){
+numMinutes = 1;
+console.log("NumMin if magg di 30: " + numMinutes);
+}
+var totalHalfHour = numHour + numMinutes;
+console.log("TotalHour: " + totalHalfHour);
+
+endpoint.res.devicesStatusList($stateParams.id,totalHalfHour).success(function(output) {
+if(output != null){
+$scope.pojoResult = output.items;
+}
+});
+});
 calApp.controller("NewReservationCtrl", function($scope, $stateParams, $window, endpoint) {
 var hashmap = {};
-$scope.error = {}
+$scope.error = {};
 $scope.sassets = [{value: "", number: 0}];
+$scope.purpose = {};
+$scope.listPurpose = [];
+$scope.r = {};
+
+endpoint.pur.list().success(function(data) {
+if(data != null
+&& data.items != null
+&& data.items.length > 0){
+$scope.listPurpose = data.items;
+// set the last purpose created or edited as the default purpose
+$scope.purpose.id = $scope.listPurpose[0].id;
+$scope.purpose.person = $scope.listPurpose[0].person;
+$scope.purpose.type = $scope.listPurpose[0].type;
+$scope.purpose.title = $scope.listPurpose[0].title;
+$scope.r.idPurpose = $scope.purpose.id;
+}
+});
+
+$scope.selectPurpose = function(){
+var objCopy = JSON.parse($scope.selectedPurDS);
+console.log(objCopy);
+$scope.r.idPurpose = objCopy.id;
+$scope.purpose.id = objCopy.id;
+$scope.purpose.person = objCopy.person;
+$scope.purpose.type = objCopy.type;
+$scope.purpose.title = objCopy.title;
+};
+
+$scope.changePurposeType = function(){
+$scope.purpose.title = null;
+$scope.r.idPurpose = null;
+$scope.purpose.id = null;
+var type = $scope.purpose.type;
+if("MOBILE_APP" == type){
+$scope.purpose.titlePlaceHolder = "MOBILE_APP_TITLE_PH";
+}
+else if("WEB_SITE" == type){
+$scope.purpose.titlePlaceHolder = "WEB_SITE_TITLE_PH";
+}
+else if("OTHER" == type){
+$scope.purpose.titlePlaceHolder = "OTHER_TITLE_PH";
+}
+};
+
+$scope.changePurposeTitle = function(){
+$scope.purpose.id = null;
+$scope.r.idPurpose = null;
+};
 
 $scope.addAsset = function() {
 $scope.sassets.push({value: "", number: $scope.sassets.length});
@@ -1992,7 +2539,15 @@ hashmap[data.items[i].id] = data.items[i];
 }
 });
 
-$scope.r = {};
+// set default name of the startup
+if(endpoint !== null){
+var personObj = endpoint.me();
+if(personObj !== null
+&& personObj.startupName !== null){
+$scope.r.title = personObj.startupName;
+}
+}
+
 $scope.date = new Date($stateParams.date);
 $scope.r.date = new Date($stateParams.date);
 
@@ -2018,21 +2573,66 @@ $scope.r.start = $scope.r.end * 1 - 1;
 }
 });
 
+function getRealDateString(date,offset) {
+if(date != null){
+var lDay = date.getDate()+ offset*1;
+var lMonth = date.getMonth() + 1;
+var lYear = date.getFullYear();
+
+if (lDay < 10) {
+lDay = '0' + lDay;
+}
+
+if (lMonth < 10) {
+lMonth = '0' + lMonth;
+}
+return lYear + lMonth + lDay;
+}
+return null;
+}
+
 $scope.submit = function() {
+$scope.error.mandatoryMessage = false;
+if($scope.purpose.title == null
+|| $scope.purpose.title == ""){
+$scope.error.mandatoryMessage = true;
+$scope.error.text = "ERR_MANDATORY_PURPOSE_NAME";
+}
+else if($scope.purpose.type == null
+|| $scope.purpose.type == ""){
+$scope.error.mandatoryMessage = true;
+$scope.error.text = "ERR_MANDATORY_PURPOSE_TYPE";
+}
+
+if(!$scope.error.mandatoryMessage){
 $scope.r.assets = [];
 $scope.r.date = $scope.date;
+$scope.r.realDate = getRealDateString($scope.date,0);
+
+console.log("Real Date: " + $scope.r.realDate);
+
+console.log($scope.r.date);
 for (var i = 0; i < $scope.sassets.length; i++) {
 $scope.r.assets.push(hashmap[$scope.sassets[i].value]);
 }
-endpoint.res.put($scope.r).success(function() {
+console.log("SAVING");
+console.log($scope.r);
+console.log($scope.purpose);
+endpoint.res.put($scope.r,$scope.purpose).success(function() {
 $window.location.href = "#/";
 }).error(function(data) {
 if (data.error && data.error.message === "java.lang.Exception: RESERVATION COLLISION") {
-$scope.error.collision = true;
+//$scope.error.collision = true;
+$scope.error.mandatoryMessage = true;
+$scope.error.text = "ERR_COLLISION";
 }
-;
+else{
+$scope.error.mandatoryMessage = true;
+$scope.error.text = "ERR_MANDATORY_DEVICE";
+}
+console.log($scope.error);
 });
-
+}
 };
 });
 calApp.controller("EditReservationCtrl", function($scope, $stateParams, endpoint, $window) {
@@ -2040,6 +2640,46 @@ var hashmap = {};
 var deleted = false;
 $scope.error = {};
 $scope.sassets = [];
+$scope.purpose = {};
+$scope.listPurpose = [];
+
+endpoint.pur.list().success(function(data) {
+if(data != null
+&& data.items != null
+&& data.items.length > 0){
+$scope.listPurpose = data.items;
+}
+});
+
+$scope.selectPurpose = function(){
+var objCopy = JSON.parse($scope.selectedPurDS);
+$scope.r.idPurpose = objCopy.id;
+$scope.purpose.person = objCopy.person;
+$scope.purpose.type = objCopy.type;
+$scope.purpose.title = objCopy.title;
+};
+
+$scope.changePurposeType = function(){
+$scope.purpose.title = null;
+$scope.r.idPurpose = null;
+$scope.purpose.id = null;
+var type = $scope.purpose.type;
+if("MOBILE_APP" == type){
+$scope.purpose.titlePlaceHolder = "MOBILE_APP_TITLE_PH";
+}
+else if("WEB_SITE" == type){
+$scope.purpose.titlePlaceHolder = "WEB_SITE_TITLE_PH";
+}
+else if("OTHER" == type){
+$scope.purpose.titlePlaceHolder = "OTHER_TITLE_PH";
+}
+};
+
+$scope.changePurposeTitle = function(){
+$scope.purpose.id = null;
+$scope.r.idPurpose = null;
+};
+
 $scope.addAsset = function() {
 $scope.sassets.push({value: "", number: $scope.sassets.length});
 };
@@ -2065,6 +2705,7 @@ hashmap[data.items[i].id] = data.items[i];
 }
 endpoint.res.get($stateParams.id).success(function(data) {
 $scope.r = data;
+$scope.purpose = $scope.r.purpose;
 $scope.$watch(function() {
 return $scope.r.start;
 }, function() {
@@ -2094,24 +2735,43 @@ $scope.getDate = function(y, m, d) {
 return new Date(y, m - 1, d);
 };
 $scope.submit = function() {
+$scope.error.mandatoryMessage = false;
+if($scope.purpose.title == null
+|| $scope.purpose.title == ""){
+$scope.error.mandatoryMessage = true;
+$scope.error.text = "ERR_MANDATORY_PURPOSE_NAME";
+}
+else if($scope.purpose.type == null
+|| $scope.purpose.type == ""){
+$scope.error.mandatoryMessage = true;
+$scope.error.text = "ERR_MANDATORY_PURPOSE_TYPE";
+}
+
+if(!$scope.error.mandatoryMessage){
 $scope.r.assets = [];
 $scope.r.date = $scope.date;
 for (var i = 0; i < $scope.sassets.length; i++) {
 $scope.r.assets.push(hashmap[$scope.sassets[i].value]);
 }
-endpoint.res.put($scope.r).success(function() {
+console.log("SAVING");
+console.log($scope.r);
+console.log($scope.purpose);
+endpoint.res.put($scope.r,$scope.purpose).success(function() {
 window.location.href = "#/";
 }).error(function(data) {
 if (data.error && data.error.message === "java.lang.Exception: RESERVATION COLLISION") {
-$scope.error.collision = true;
+//$scope.error.collision = true;
+$scope.error.mandatoryMessage = true;
+$scope.error.text = "ERR_COLLISION";
 }
-;
-if (deleted) {
-$scope.error.deleted = true;
+else{
+$scope.error.mandatoryMessage = true;
+$scope.error.text = "ERR_MANDATORY_DEVICE";
 }
-;
 });
 ;
+}
+
 };
 });
 calApp.controller("NewNewsCtrl", function($scope, $window, endpoint) {
@@ -2120,6 +2780,10 @@ $scope.submit = function() {
 endpoint.news.put($scope.n).success(function() {
 $window.location.hash = "/";
 });
+};
+
+$scope.goTo = function(){
+$window.location.hash = "/";
 };
 });
 calApp.controller("EditNewsCtrl", function($scope, $window, $stateParams, endpoint) {
@@ -2131,8 +2795,45 @@ endpoint.news.put($scope.n).success(function() {
 $window.location.hash = "/";
 });
 };
+
+$scope.goTo = function(){
+$window.history.back();
+};
 });
 calApp.controller("ListNewsCtrl", function($scope, endpoint) {
+
+$scope.itemsPerPage = 4;
+$scope.currentPage = 0;
+$scope.news = [];
+
+$scope.prevPage = function() {
+if ($scope.currentPage > 0) {
+$scope.currentPage--;
+}
+};
+
+$scope.prevPageDisabled = function() {
+return $scope.currentPage === 0 ? "disabled" : "";
+};
+
+$scope.pageCount = function() {
+return Math.ceil($scope.news.length/$scope.itemsPerPage)-1;
+};
+
+$scope.nextPage = function() {
+if ($scope.currentPage < $scope.pageCount()) {
+$scope.currentPage++;
+}
+};
+
+$scope.setPage = function(n) {
+$scope.currentPage = n;
+};
+
+$scope.nextPageDisabled = function() {
+return $scope.currentPage === $scope.pageCount() ? "disabled" : "";
+};
+
 function refresh() {
 endpoint.news.fetch(0, 30).success(function(data) {
 $scope.news = data.items;
@@ -2144,9 +2845,68 @@ endpoint.news.delete(id).success(refresh);
 }
 });
 calApp.controller("DevicesStatsCtrl", function($scope, endpoint) {
-endpoint.stats.devices().success(function(data) {
+$scope.dateFilter = {};
+
+function getRealDateString(date,offset) {
+if(date != null){
+var lDay = date.getDate()+ offset*1;
+var lMonth = date.getMonth() + 1;
+var lYear = date.getFullYear();
+
+if (lDay < 10) {
+lDay = '0' + lDay;
+}
+
+if (lMonth < 10) {
+lMonth = '0' + lMonth;
+}
+return lYear + lMonth + lDay;
+}
+return null;
+}
+
+$scope.submit = function(){
+endpoint.stats.devicesDateFilter(getRealDateString($scope.dateFilter.from,0),
+getRealDateString($scope.dateFilter.to,1)).success(function(data) {
 $scope.stats = data.items;
 });
+};
+/*endpoint.stats.devices().success(function(data) {
+$scope.stats = data.items;
+});*/
+$scope.submit();
+
+$scope.filterDateThisYear = function () {
+var firstDate = new Date();
+firstDate.setMonth(0);
+firstDate.setDate(1);
+$scope.dateFilter.from = firstDate;
+var lastDate = new Date();
+lastDate.setMonth(11);
+lastDate.setDate(31);
+$scope.dateFilter.to = lastDate;
+};
+
+$scope.filterDateThisQuarter = function () {
+var currentDate = new Date();
+var quarter = Math.floor((currentDate.getMonth() / 3));
+$scope.dateFilter.from =  new Date(currentDate.getFullYear(), quarter * 3, 1);
+$scope.dateFilter.to = new Date( $scope.dateFilter.from.getFullYear(),
+$scope.dateFilter.from.getMonth() + 3, 0);
+};
+
+$scope.filterDateLastQuarter = function () {
+var d = new Date();
+var quarter = Math.floor((d.getMonth() / 3));
+$scope.dateFilter.from = new Date(d.getFullYear(), quarter * 3 - 3, 1);
+$scope.dateFilter.to =  new Date($scope.dateFilter.from.getFullYear(),
+$scope.dateFilter.from.getMonth() + 3, 0);
+};
+
+$scope.reset = function () {
+$scope.dateFilter.from = null;
+$scope.dateFilter.to = null;
+};
 });
 calApp.controller("DeviceStatsCtrl", function($scope, $stateParams, endpoint) {
 endpoint.stats.device($stateParams.id).success(function(data) {
@@ -2159,9 +2919,73 @@ $scope.stats = data;
 });
 });
 calApp.controller("MyStatsCtrl", function($scope, endpoint){
-endpoint.stats.person(endpoint.me().mail).success(function(data){
+/*endpoint.stats.person(endpoint.me().mail).success(function(data){
+$scope.stats = data;
+});*/
+
+$scope.dateFilter = {};
+
+function getRealDateString(date,offset) {
+if(date != null){
+var lDay = date.getDate()+ offset*1;
+var lMonth = date.getMonth() + 1;
+var lYear = date.getFullYear();
+
+if (lDay < 10) {
+lDay = '0' + lDay;
+}
+
+if (lMonth < 10) {
+lMonth = '0' + lMonth;
+}
+return lYear + lMonth + lDay;
+}
+return null;
+}
+
+$scope.submit = function(){
+endpoint.stats.personDateFilter(endpoint.me().mail,
+getRealDateString($scope.dateFilter.from,0),
+getRealDateString($scope.dateFilter.to,1)).success(function(data) {
 $scope.stats = data;
 });
+};
+/*endpoint.stats.devices().success(function(data) {
+$scope.stats = data.items;
+});*/
+$scope.submit();
+
+$scope.filterDateThisYear = function () {
+var firstDate = new Date();
+firstDate.setMonth(0);
+firstDate.setDate(1);
+$scope.dateFilter.from = firstDate;
+var lastDate = new Date();
+lastDate.setMonth(11);
+lastDate.setDate(31);
+$scope.dateFilter.to = lastDate;
+};
+
+$scope.filterDateThisQuarter = function () {
+var currentDate = new Date();
+var quarter = Math.floor((currentDate.getMonth() / 3));
+$scope.dateFilter.from =  new Date(currentDate.getFullYear(), quarter * 3, 1);
+$scope.dateFilter.to = new Date( $scope.dateFilter.from.getFullYear(),
+$scope.dateFilter.from.getMonth() + 3, 0);
+};
+
+$scope.filterDateLastQuarter = function () {
+var d = new Date();
+var quarter = Math.floor((d.getMonth() / 3));
+$scope.dateFilter.from = new Date(d.getFullYear(), quarter * 3 - 3, 1);
+$scope.dateFilter.to =  new Date($scope.dateFilter.from.getFullYear(),
+$scope.dateFilter.from.getMonth() + 3, 0);
+};
+
+$scope.reset = function () {
+$scope.dateFilter.from = null;
+$scope.dateFilter.to = null;
+};
 });
 calApp.directive("calHourPicker", function() {
 return({
@@ -2170,16 +2994,50 @@ restrict: 'E',
 scope: {
 min: '@',
 max: '@',
+marginmobile: '@',
 id: '@',
 date: '=',
 offset: '@',
 class: '@',
 filter: '='
 },
-controller: function($scope, $window, endpoint) {
+controller: function($scope, $window, $filter, endpoint) {
+
+function getRealDateString(date,offset) {
+if(date != null){
+var lDay = date.getDate()+ offset*1;
+var lMonth = date.getMonth() + 1;
+var lYear = date.getFullYear();
+
+if (lDay < 10) {
+lDay = '0' + lDay;
+}
+
+if (lMonth < 10) {
+lMonth = '0' + lMonth;
+}
+return lYear + lMonth + lDay;
+}
+return null;
+}
 
 function dte(){
-return new Date($scope.date.getFullYear(), $scope.date.getMonth(), $scope.date.getDate() + $scope.offset*1);
+var d = new Date($scope.date.getFullYear(), $scope.date.getMonth(), $scope.date.getDate() + $scope.offset*1);
+return d;
+}
+
+$scope.borderStriped = function(hour){
+if(hour%2 === 1){
+return "solid";
+}
+return "dashed";
+};
+
+$scope.zeroPadding = function(hour){
+if(10 > hour){
+return "0"+hour;
+}
+return hour;
 }
 
 endpoint.then(function(endpoint) {
@@ -2191,6 +3049,8 @@ $window.location.href = "#/reservation/edit/" + id;
 var start;
 var end;
 var active = false;
+var pecentageWidthTotal = 70;
+
 function down(event) {
 start = event.target.attributes["data-value"].value;
 end = event.target.attributes["data-value"].value;
@@ -2202,6 +3062,7 @@ function up(event) {
 if (!active) {
 return;
 }
+
 var s = Math.min(start * 1, end * 1);
 var e = Math.max(start * 1, end * 1);
 active = false;
@@ -2217,10 +3078,35 @@ function join(event) {
 if (!active) {
 return;
 }
+if(angular.isDefined(event.target.attributes["data-value"])){
 end = event.target.attributes["data-value"].value;
 draw($scope.id, start, end);
 }
+}
 
+function collide( a,  b) {
+//Reservations have to be valid
+if(a.end <= a.start){
+return true;
+}
+if(b.end <= b.start){
+return true;
+}
+//A reservation cannot collide with herself
+if (a.id === b.id) {
+return false;
+}
+//Just in case : a reservation can oly collide on a reservation on the same day
+if (a.date !== b.date) {
+return false;
+}
+//Checking if hours does overlap
+if(a.end <= b.start || b.end <= a.start){
+//Doesn't overlap
+return false;
+}
+return true;
+}
 
 var trg = document.getElementById($scope.id);
 trg.addEventListener("pointerdown", down, false);
@@ -2228,33 +3114,51 @@ trg.addEventListener("pointerup", up, false);
 trg.addEventListener("pointerleave", leave, false);
 trg.addEventListener("pointermove", join, false);
 function draw(id, s, f) {
-
 var begin = Math.min(s, f);
 var end = Math.max(s, f);
 var h = document.getElementById(id + "_" + begin).offsetHeight;
 var w = document.getElementById(id + "_" + begin).offsetWidth;
 var e = document.getElementById(id + "_" + "range");
-e.style.top = (begin - 2*$scope.min + 1) * h;
+e.style.top = (begin - 2*$scope.min) * h + 10;
 e.style.height = (end - begin + 1) * h;
-e.style.left = 26;
+e.style.left = 49;
 e.style.width = w;
 e.style.display = "block";
 }
 
+function calculate_space(events){
+var col_inc = 1;
+angular.forEach(events, function(event) {
+//calculate width
+if(event.num_collision === 0){
+event.width = pecentageWidthTotal;
+event.width_perc = event.width + "%";
+event.right = 5 + "%";
+}else{
+event.width = pecentageWidthTotal / events.length;
+event.width_perc = event.width + "%";
+event.right = pecentageWidthTotal - (event.width * col_inc ) + 5 + "%";
+col_inc++;
+}
+});
+}
+
 //Reservations
 function refreshRes() {
-endpoint.res.list(dte()).success(function(data) {
+var realDateNow = getRealDateString($scope.date,$scope.offset);
+endpoint.res.list(realDateNow).success(function(data) {
 if (data.items) {
 for (var i = 0; i < data.items.length; i++) {
 var event = data.items[i];
+event.collision_index = -1;
 var h = document.getElementById($scope.id + "_" + event.start).offsetHeight;
 var w = document.getElementById($scope.id + "_" + event.start).offsetWidth;
-event.top = h * (event.start - 2*$scope.min + 1)
+event.top = h * (event.start - 2*$scope.min) + 10;
 event.height = (event.end - event.start) * h;
 event.width = w;
 var colors = [];
 for (var j = 0; j < event.assets.length; j++) {
-colors.push('rgba(' + event.assets[j].r + ',' + event.assets[j].g + ',' + event.assets[j].b + ',0.5)');
+colors.push('rgba(' + event.assets[j].r + ',' + event.assets[j].g + ',' + event.assets[j].b + ',1.0)');
 }
 event.gradient = colors.join(',');
 if (colors.length == 1) {
@@ -2262,7 +3166,41 @@ event.gradient = event.gradient + ', ' + event.gradient;
 }
 }
 }
+
 $scope.events = data.items;
+$scope.events = $filter('orderBy')($scope.events, 'start');
+
+var max_collision = 0;
+var collision_index = 0;
+//Calculate the collisions betweens the reservations
+angular.forEach($scope.events, function(event) {
+event.num_collision = 0;
+if(event.collision_index < 0){
+event.collision_index =  collision_index;
+collision_index ++;
+}
+angular.forEach($scope.events, function(eventCompare) {
+if(collide(event,eventCompare)){
+event.num_collision += 1;
+eventCompare.collision_index = event.collision_index;
+}
+});
+if(event.num_collision > max_collision){
+max_collision = event.num_collision;
+}
+});
+
+//Put the connections components
+var connectionsComponents = [];
+angular.forEach($scope.events, function(event) {
+if(!angular.isDefined(connectionsComponents[event.collision_index])){
+connectionsComponents[event.collision_index] = [];
+}
+connectionsComponents[event.collision_index].push(event);
+});
+angular.forEach(connectionsComponents, function(comp) {
+calculate_space(comp);
+});
 });
 }
 refreshRes();
@@ -2280,8 +3218,6 @@ $scope.hours.push(i);
 }
 });
 });
-
-
 //Year is yyyy
 //Month is in the form 0-11
 //Day is 1-31
@@ -2317,19 +3253,40 @@ restrict: 'E',
 scope: {
 date: '=',
 class: '@',
-btnClass: '@'
+btnClass: '@',
+viscalmethod: '&'
 },
 controller: function($scope) {
+
+$scope.expireDate;
+
 $scope.changeMonth = function(offset){
 $scope.date = new Date($scope.date.getFullYear(), $scope.date.getMonth() + offset, 1 );
 }
-
+$scope.changeWeek = function(offset){
+$scope.date = new Date($scope.date.getFullYear(), $scope.date.getMonth(), $scope.date.getDay() + offset);
+}
 $scope.today = function(){
 $scope.date = new Date();
 }
 
+$scope.visibilityCalendar = function(){
+$scope.viscalmethod();
+}
+
+$scope.select = function(day) {
+try{
+$scope.date.setDate(day);
+}
+catch(e){
+$scope.date = $scope.expireDate;
+}
+};
+
 function refreshCal() {
 var d = new Date($scope.date);
+$scope.expireDate = d;
+$scope.select($scope.expireDate.getDate());
 $scope.cal = getCalendar(d.getFullYear(), d.getMonth(), d.getDate());
 }
 
@@ -2337,10 +3294,6 @@ refreshCal();
 $scope.$watch(function(){
 return new Date($scope.date).toJSON();
 }, refreshCal);
-
-$scope.select = function(day) {
-$scope.date.setDate(day);
-};
 }
 };
 });
@@ -2657,7 +3610,8 @@ calApp.directive("calDelete", function(){
 return {
 scope: {
 action: '&',
-bClass: '@'
+bClass: '@',
+propagation: '='
 },
 restrict: 'E',
 templateUrl: "/directives/delete/delete.html",
@@ -2666,7 +3620,193 @@ controller: function($scope){
 $scope.delete = function(){
 $scope.action();
 $scope.show = false;
+event.stopPropagation();
+};
+
+$scope.changeShow = function(value){
+$scope.show = value;
+if($scope.propagation){
+event.stopPropagation();
+}
 };
 }
 };
 });
+/*!
+* Bootstrap v3.3.1 (http://getbootstrap.com)
+* Copyright 2011-2014 Twitter, Inc.
+* Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+*/
+
+if (typeof jQuery === 'undefined') {
+throw new Error('Bootstrap\'s JavaScript requires jQuery')
+}
+
++function ($) {
+var version = $.fn.jquery.split(' ')[0].split('.')
+if ((version[0] < 2 && version[1] < 9) || (version[0] == 1 && version[1] == 9 && version[2] < 1)) {
+throw new Error('Bootstrap\'s JavaScript requires jQuery version 1.9.1 or higher')
+}
+}(jQuery);
+
+/* ========================================================================
+* Bootstrap: dropdown.js v3.3.1
+* http://getbootstrap.com/javascript/#dropdowns
+* ========================================================================
+* Copyright 2011-2014 Twitter, Inc.
+* Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+* ======================================================================== */
+
+
++function ($) {
+'use strict';
+
+// DROPDOWN CLASS DEFINITION
+// =========================
+
+var backdrop = '.dropdown-backdrop'
+var toggle   = '[data-toggle="dropdown"]'
+var Dropdown = function (element) {
+$(element).on('click.bs.dropdown', this.toggle)
+}
+
+Dropdown.VERSION = '3.3.1'
+
+Dropdown.prototype.toggle = function (e) {
+var $this = $(this)
+
+if ($this.is('.disabled, :disabled')) return
+
+var $parent  = getParent($this)
+var isActive = $parent.hasClass('open')
+
+clearMenus()
+
+if (!isActive) {
+if ('ontouchstart' in document.documentElement && !$parent.closest('.navbar-nav').length) {
+// if mobile we use a backdrop because click events don't delegate
+$('<div class="dropdown-backdrop"/>').insertAfter($(this)).on('click', clearMenus)
+}
+
+var relatedTarget = { relatedTarget: this }
+$parent.trigger(e = $.Event('show.bs.dropdown', relatedTarget))
+
+if (e.isDefaultPrevented()) return
+
+$this
+.trigger('focus')
+.attr('aria-expanded', 'true')
+
+$parent
+.toggleClass('open')
+.trigger('shown.bs.dropdown', relatedTarget)
+}
+
+return false
+}
+
+Dropdown.prototype.keydown = function (e) {
+if (!/(38|40|27|32)/.test(e.which) || /input|textarea/i.test(e.target.tagName)) return
+
+var $this = $(this)
+
+e.preventDefault()
+e.stopPropagation()
+
+if ($this.is('.disabled, :disabled')) return
+
+var $parent  = getParent($this)
+var isActive = $parent.hasClass('open')
+
+if ((!isActive && e.which != 27) || (isActive && e.which == 27)) {
+if (e.which == 27) $parent.find(toggle).trigger('focus')
+return $this.trigger('click')
+}
+
+var desc = ' li:not(.divider):visible a'
+var $items = $parent.find('[role="menu"]' + desc + ', [role="listbox"]' + desc)
+
+if (!$items.length) return
+
+var index = $items.index(e.target)
+
+if (e.which == 38 && index > 0)                 index--                        // up
+if (e.which == 40 && index < $items.length - 1) index++                        // down
+if (!~index)                                      index = 0
+
+$items.eq(index).trigger('focus')
+}
+
+function clearMenus(e) {
+if (e && e.which === 3) return
+$(backdrop).remove()
+$(toggle).each(function () {
+var $this         = $(this)
+var $parent       = getParent($this)
+var relatedTarget = { relatedTarget: this }
+
+if (!$parent.hasClass('open')) return
+
+$parent.trigger(e = $.Event('hide.bs.dropdown', relatedTarget))
+
+if (e.isDefaultPrevented()) return
+
+$this.attr('aria-expanded', 'false')
+$parent.removeClass('open').trigger('hidden.bs.dropdown', relatedTarget)
+})
+}
+
+function getParent($this) {
+var selector = $this.attr('data-target')
+
+if (!selector) {
+selector = $this.attr('href')
+selector = selector && /#[A-Za-z]/.test(selector) && selector.replace(/.*(?=#[^\s]*$)/, '') // strip for ie7
+}
+
+var $parent = selector && $(selector)
+
+return $parent && $parent.length ? $parent : $this.parent()
+}
+
+
+// DROPDOWN PLUGIN DEFINITION
+// ==========================
+
+function Plugin(option) {
+return this.each(function () {
+var $this = $(this)
+var data  = $this.data('bs.dropdown')
+
+if (!data) $this.data('bs.dropdown', (data = new Dropdown(this)))
+if (typeof option == 'string') data[option].call($this)
+})
+}
+
+var old = $.fn.dropdown
+
+$.fn.dropdown             = Plugin
+$.fn.dropdown.Constructor = Dropdown
+
+
+// DROPDOWN NO CONFLICT
+// ====================
+
+$.fn.dropdown.noConflict = function () {
+$.fn.dropdown = old
+return this
+}
+
+
+// APPLY TO STANDARD DROPDOWN ELEMENTS
+// ===================================
+
+$(document)
+.on('click.bs.dropdown.data-api', clearMenus)
+.on('click.bs.dropdown.data-api', '.dropdown form', function (e) { e.stopPropagation() })
+.on('click.bs.dropdown.data-api', toggle, Dropdown.prototype.toggle)
+.on('keydown.bs.dropdown.data-api', toggle, Dropdown.prototype.keydown)
+.on('keydown.bs.dropdown.data-api', '[role="menu"]', Dropdown.prototype.keydown)
+.on('keydown.bs.dropdown.data-api', '[role="listbox"]', Dropdown.prototype.keydown)
+
+}(jQuery);

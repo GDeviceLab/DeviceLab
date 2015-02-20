@@ -528,7 +528,15 @@ textarea{
     margin-top: 10px; 
 }
 .hp-picker-lines{
-    height: 9px;
+    height: 7px;
+}
+.hp-hours{
+    user-select: none; 
+    width: 46px; 
+    float: left; 
+    font-size: 7.5pt; 
+    margin-top: -6px !important;
+
 }
 .label {
     border-radius: 3px;

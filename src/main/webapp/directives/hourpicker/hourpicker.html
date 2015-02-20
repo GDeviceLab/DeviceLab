@@ -25,7 +25,7 @@
      >
     <p style="text-align: center; color: white;">{{event.title}}</p>
 </div>
-<ul id="{{id}}_h" style="user-select: none; width: 46px; float: left; font-size: 10pt; margin-top: -10px;" class="hp-hours">
+<ul id="{{id}}_h" class="hp-hours">
     <li ng-repeat="hour in hours" data-value="{{hour}}" ng-if="hour < 24" style="text-align: center;" class="light hp-hours-time">
         {{hour | localize}}
     </li>

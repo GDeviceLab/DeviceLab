@@ -1,4 +1,4 @@
-<div class="{{pClass}}" ng-repeat="n in news | limitTo: 2">
+<div class="{{pClass}}" ng-repeat="n in news | limitTo: 2" style="min-height: 122px;">
     <div class="panel panel-default">
         <div class="panel-body">
             <h4 class="panel-title">{{n.title}}</h4>
@@ -6,7 +6,7 @@
             <p><small>{{n.authorName}} - {{n.date| date: 'EEEE d MMMM'}}</small></p>
         </div>
     </div>
-    
+
 </div>
 <div ng-hide="news" class="{{pClass}}">
     <div class="panel panel-default">

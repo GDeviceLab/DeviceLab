@@ -88,6 +88,9 @@ calApp.controller("CalendarCtrl", function($scope, $rootScope, endpoint, $window
     
     
     $timeout(function() {
+        var cal_height = $(window).height() - $("#header").height() - $("#news-sec").height() - $("#week-select").height() - $(".more-news").height() - 2;
+        //console.log("here" + cal_height);
+        $('.cal-day').height(cal_height);
         $(".hour-picker-v-scroll-bar").scrollTop(460);
         $scope.$apply();
     }, 500);

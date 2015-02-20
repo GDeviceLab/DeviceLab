@@ -135,7 +135,7 @@ input.small{
 #header .dropdown-menu {
     position: relative;
     z-index: 1000;
-    display: none;
+    display: block;
     max-width: 90%;
     margin: -17px auto;
     list-style: none;
@@ -164,7 +164,9 @@ input.small{
     overflow-x: hidden;
     text-overflow: ellipsis;
 }
-
+.hidden {
+  display: none;
+}
 .icon-star-o {
 color: #E1E0E2;
 }
@@ -288,7 +290,8 @@ color: #E1E0E2;
 }
 
 .main-menu>ul {
-    margin:7px 0;
+    margin: 2px 0;
+    padding-left: 10px;
 }
 
 .main-menu li {

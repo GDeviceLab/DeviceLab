@@ -61,25 +61,10 @@
         <link rel="stylesheet" href="../css/compiled.mobile.css">-->
     </head>
     <script type="text/javascript">
-    var drop_open = false;
-    function showDrop() {
-        if(drop_open){
-            $(".dropdown-menu").css("display","none");
-            drop_open = !drop_open;
-        }
-        else {
-            $(".dropdown-menu").css("display","block");
-            drop_open = !drop_open;
-        } 
-    }
-    $(document).bind( "touchend", function(e){
-            var menu = $(".dropdown-menu");
-            var menu_star = $(".dropdown-menu .icon-star-o");
-            if (!menu_star.is(e.target) && menu_star.has(e.target).length === 0 && drop_open)
-            {
-                menu.css("display","none");
-                drop_open = false;
-            }
+    $( document ).ready(function() {
+        $('.dropdown').click(function() {
+            $('.dropdown-menu').toggleClass("hidden");
+        });
     });
     </script>
     <body ng-app="cal" data-snap-ignore="true">
@@ -99,13 +84,13 @@
                     </h1>
                     <div id="title-location">
                     <div class="dropdown">
-                      <a id="drop" class="dropdown-toggle" data-toggle="dropdown" onClick="event.preventDefault(); showDrop()">
+                      <a href="#" id="drop" class="dropdown-toggle" data-toggle="dropdown">
                         <span id ="drop-title" ng-controller="TitleCtrl"><span class="icon-globe"></span>
                       </a>
                     </div>
                 </div> 
                 <div class="dropdown">
-                      <ul class="dropdown-menu" role="menu">
+                      <ul class="dropdown-menu hidden" role="menu">
                         <div ng-controller="LocationDrawer">
                             <li ng-repeat="location in locations" ng-click="set(location.id)" role="menuitem" tabindex="-1"><span id="drop-loc-text">{{location.name}}</span><!-- <span class="icon-star" style="color: #E1E0E2; float: right; padding-top: 5px; padding-right: 7px;">
                             </span> -->

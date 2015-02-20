@@ -595,6 +595,7 @@ body {
 }
 
 .loader {
+    margin-top: 10vh !important;
   position: relative;
   margin: 0px auto;
   width: 100px;

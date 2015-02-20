@@ -360,6 +360,7 @@ h1.weekcalday{
     cursor: pointer; cursor: hand;
 }
 .panel.cal-day {
+    min-height: 720px;
     height: 2000px;
     padding-bottom: 0px !important;
     margin-bottom: 0px !important;
@@ -988,6 +989,7 @@ body {
 }
 
 .loader {
+    margin-top: 50vh !important;
   position: relative;
   margin: 0px auto;
   width: 100px;

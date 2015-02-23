@@ -17,7 +17,8 @@
     </div>
 </div>
 <div class="padded">
-    <color-pick model="rgb" />
+    <!--<color-pick model="rgb" />-->
+    <div ng-init="initpalettecolors()" class="colors-palette"></div>
 </div>
 <div class="alert" ng-show="error">
     <p class="padded">{{error | translate}}</p>

@@ -131,6 +131,7 @@
     "ERR_MANDATORY_PURPOSE_TYPE":"Purpose type field is mandatory",
     "ERR_MANDATORY_PURPOSE_NAME":"Purpose name field is mandatory",
     "ERR_MANDATORY_DEVICE":"At least a device is mandatory",
+    "ERR_MANDATORY_STARTUP_NAME":"Startup Name is mandatory, add it to your profile to have it filled automatically",
     "PURPOSE_TITLE_PANEL":"You want to test...",
     "REPORT_BOOKING_NUM":"Reservation number",
     "REPORT_BOOKING_HOUR":"Reservation Hours",

@@ -133,6 +133,11 @@ calApp.controller("NewReservationCtrl", function($scope, $stateParams, $window, 
             $scope.error.mandatoryMessage = true;
             $scope.error.text = "ERR_MANDATORY_PURPOSE_TYPE";
         }
+        else if($scope.r.title == null
+                || $scope.r.title == ""){
+            $scope.error.mandatoryMessage = true;
+            $scope.error.text = "ERR_MANDATORY_STARTUP_NAME";
+        }
         
         if(!$scope.error.mandatoryMessage){
             $scope.r.assets = [];

@@ -12,7 +12,7 @@
 </div>
 <div class="row">
     <div class="col-md-12 ng-isolate-scope" id="week-select">
-        <h2 id="week-dates"><span class="arrow-left" ng-click="addDays(-5)"></span>{{date | date : 'MMM d'}} - {{datePlus(5) | date : 'MMM d'}} <span class="light">{{date | date : 'yyyy'}}</span><span class="arrow-right" ng-click="addDays(5)"></span></h2>
+        <h2 id="week-dates"><span class="arrow-left" ng-click="addDays(-5)"></span>{{date | date : 'MMM d'}} - {{datePlus(4) | date : 'MMM d'}} <span class="light">{{date | date : 'yyyy'}}</span><span class="arrow-right" ng-click="addDays(5)"></span></h2>
     </div>
 </div>
 <div class="row">
@@ -42,7 +42,7 @@
             <hr style="margin-left: 0px; width: 90%; border-top: 1px solid #E1E0E2;"/>
             <div class="checkbox">
                 <label>
-                    <input type="checkbox" ng-click="toggle()"><span class="check"></span> {{ 'CAL_FILTER_MINE' | translate}}
+                    <input type="checkbox" ng-click="toggle()"><span class="check"></span>{{ 'CAL_FILTER_MINE' | translate}}
                 </label>
             </div>
         </div>

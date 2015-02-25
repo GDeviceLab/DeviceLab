@@ -32,6 +32,7 @@ calApp.directive("calEndar", function() {
         restrict: 'E',
         scope: {
             date: '=',
+            pick: '=',
             class: '@',
             btnClass: '@',
             viscalmethod: '&'
@@ -61,6 +62,7 @@ calApp.directive("calEndar", function() {
                 catch(e){
                     $scope.date = $scope.expireDate;
                 }
+                $scope.pick = false;
             };
             
             function refreshCal() {

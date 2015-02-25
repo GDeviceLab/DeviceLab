@@ -57,6 +57,17 @@ calApp.filter('localize', function() {
     };
 });
 
+calApp.filter('localizeConverter', function() {
+    return function(input){
+        input = hourConverter[input];
+        var hours = input.split(":")[0];
+        var minutes = input.split(":")[1];
+        var d = new Date(2015, 0, 21, hours, minutes);
+        var options = { hour:'numeric', minute: 'numeric'};
+        return d.toLocaleTimeString(window.navigator.language,options);
+    };
+});
+
 calApp.filter('offset', function() {
     return function(input, start) {
         start = parseInt(start, 10);

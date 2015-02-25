@@ -5,14 +5,14 @@
                 <h1 class="panel-title">{{date| date : 'EEEE d MMMM'}}</h1>
             </div>
             <div class="panel-body no-padding">
-                <cal-endar date="date" class="cal" btn-class="btn btn-primary btn-block" />
+                <cal-endar date="date" class="cal" pick="pick" btn-class="btn btn-primary btn-block" />
             </div>
         </div>
     </div>
     <div class="col-md-4">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h1 class="panel-title">{{ 'FROM' | translate }} {{r.start | hours}} {{ 'TO' | translate }} {{r.end | hours}}</h1>
+                <h1 class="panel-title">{{ 'FROM' | translate }} {{r.start | localizeConverter}} {{ 'TO' | translate }} {{r.end | localizeConverter}}</h1>
             </div>
 
             <!-- <div class="form-group">
@@ -235,7 +235,19 @@
     <div class="col-sm-12">
         <button cal-show-owner="{{r.person}}" class="btn btn-primary" ng-click="submit()" style="float:right">{{'BUTTON_SAVE' | translate}}</button>
         <a class="btn btn-danger" href="#/calendar" style="float:right">{{'BUTTON_CANCEL' | translate}}</a>
-        <button cal-show-owner="{{r.person}}" ng-show="r.id" class="btn btn-danger" ng-click="delete()" style="float:right">{{'BUTTON_DELETE' | translate}}</button>
+        <button cal-show-owner="{{r.person}}" ng-show="r.id" class="btn btn-danger" ng-click="showDeleteModal = true" style="float:right">{{'BUTTON_DELETE' | translate}}</button>
     </div>
 </div>
+</div>
+<div class="modal" ng-click="showDeleteModal = false" ng-show="showDeleteModal">
+    <div class="modal-pane">
+        <h1>{{'DELETE_TITLE' | translate}}</h1>
+        <p>{{'DELETE_HELP' | translate}}</p>
+        <div class="padded">
+            <button class="topcoat-button--cta btn btn-danger btn-block" ng-click="delete()">{{'BUTTON_YES' | translate}}</button>
+        </div>
+        <div class="padded">
+            <button class="topcoat-button btn btn-default btn-block" ng-click="showDeleteModal = false">{{'BUTTON_CANCEL' | translate}}</button>
+        </div>
+    </div>
 </div>

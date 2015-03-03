@@ -414,6 +414,9 @@ h1.weekcalday{
     height: 30px;
 }
 
+.devicepicker-check{
+    padding-top: 0px !important;
+}
 /*
     PAGE STYLES
 */

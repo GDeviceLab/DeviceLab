@@ -769,6 +769,9 @@ background-color: #FFFFFF;
     bottom:0;
 }
 
+.check {
+    padding-top: 0px !important;
+}
 
 .checkbox {
     padding-left: 0px;

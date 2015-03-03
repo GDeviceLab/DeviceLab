@@ -119,10 +119,10 @@ ul{
     display: block;
 }
 #header .dropdown-menu #drop-loc-text {
-    display: inline-block;
     max-width: 80%;
     overflow-x: hidden;
     text-overflow: ellipsis;
+    float: left;
 }
 
 #header .dropdown li:hover {

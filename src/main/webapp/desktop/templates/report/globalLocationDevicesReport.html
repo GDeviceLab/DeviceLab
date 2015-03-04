@@ -2,15 +2,12 @@
     <div class="row">
         <div class="col-md-12 reports-page">
             <div class="panel panel-default" ng-repeat="globLocation in reportResult.globalLocationResList">
-                <div class="panel-heading">
-                    <h5 class="panel-title">{{ 'DEVICES' | translate }} - {{globLocation[0].location.name}}</h5>
-                </div>
-                </div>
+                    <h5 style="padding-bottom: 0px;">{{ 'DEVICES' | translate }} - {{globLocation[0].location.name}}</h5>
                 <table class="table table-hover results">
                     <tr>
-                        <th><h5>{{'Name' | translate}}</h5></th>
-                        <th><h5>{{ 'REPORT_BOOKING_HOUR' | translate }}</h5></th>
-                        <th><h5>{{ 'REPORT_BOOKING_NUM' | translate }}</h5></th>
+                        <th><h5 style="padding-bottom: 0px; padding-top: 10px;">{{'Name' | translate}}</h5></th>
+                        <th><h5 style="padding-bottom: 0px; padding-top: 10px;">{{ 'REPORT_BOOKING_HOUR' | translate }}</h5></th>
+                        <th><h5 style="padding-bottom: 0px; padding-top: 10px;">{{ 'REPORT_BOOKING_NUM' | translate }}</h5></th>
                     </tr>
                     <tr ng-repeat="line in globLocation" class="results">
                         <td>

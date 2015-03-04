@@ -302,7 +302,7 @@ h1.weekcalday{
 }
 
 #week-select{
-    height: 68px;
+    height: 48px;
     border-bottom: 2px solid #E1E0E2;
 }
 .news {
@@ -361,7 +361,6 @@ h1.weekcalday{
     cursor: pointer; cursor: hand;
 }
 .panel.cal-day {
-    min-height: 720px;
     height: 2000px;
     padding-bottom: 0px !important;
     margin-bottom: 0px !important;
@@ -983,11 +982,6 @@ nav h3 {
     MOBILE
 */
 
-@media (max-width: 1256px){
-    h1.weekcalday {
-        font-size: 31pt; 
-    }
-}
 
 @media (max-width: 991px){
     .news {
@@ -998,6 +992,14 @@ nav h3 {
 @media (max-width: 1300px){
     .checkbox label span {
         width: 70%;
+    }
+    h1.weekcalday {
+        font-size: 31pt;
+        margin-bottom: 10px; 
+    }
+    h1.weekcal {
+        font-size: 30pt;
+        margin-bottom: 0px;
     }
 }
 /* Spinner */

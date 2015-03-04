@@ -6,13 +6,13 @@
         text-align: right;
         border-left: 2px solid #EFEFEF;
         margin-right: 2px;
-        height: 35px;">
-        <button type="button" style="padding-top: 0;" ng-click="goTo('#/news')" class="btn btn-link">{{'SEE_MORE_NEWS' | translate}}</button>
+        height: 20px;">
+        <button type="button" style="padding-top: 0px; margin-top: 0px;" ng-click="goTo('#/news')" class="btn btn-link">{{'SEE_MORE_NEWS' | translate}}</button>
     </div>
 </div>
 <div class="row">
     <div class="col-md-12 ng-isolate-scope" id="week-select">
-        <h2 id="week-dates"><span class="arrow-left" ng-click="addDays(-5)"></span>{{date | date : 'MMM d'}} - {{datePlus(4) | date : 'MMM d'}} <span class="light">{{date | date : 'yyyy'}}</span><span class="arrow-right" ng-click="addDays(5)"></span></h2>
+        <h2 id="week-dates" style="margin-top: 10px;"><span class="arrow-left" ng-click="addDays(-5)"></span>{{date | date : 'MMM d'}} - {{datePlus(4) | date : 'MMM d'}} <span class="light">{{date | date : 'yyyy'}}</span><span class="arrow-right" ng-click="addDays(5)"></span></h2>
     </div>
 </div>
 <div class="row">

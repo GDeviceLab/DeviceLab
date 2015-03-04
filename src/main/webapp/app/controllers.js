@@ -90,10 +90,21 @@ calApp.controller("CalendarCtrl", function($scope, $rootScope, endpoint, $window
     $timeout(function() {
         var cal_height = $(window).height() - $("#header").height() - $("#news-sec").height() - $("#week-select").height() - $(".more-news").height() - 2;
         //console.log("here" + cal_height);
-        $('.cal-day').height(cal_height);
-         var scroll_height = $(".cal-day").height() - $(".cal-day .panel-heading").height() - 30;
+        if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1){
+            console.log("mozilla");
+            $('.cal-day').height(750);
+        }
+        else {
+            $('.cal-day').height(cal_height);
+        }
+        var scroll_height = $(".cal-day").height() - $(".cal-day .panel-heading").height() - 30;
         if(!$(".calendar-head").length){
-            $(".hour-picker-v-scroll-bar").height(scroll_height);
+            if(scroll_height != 0){
+                $(".hour-picker-v-scroll-bar").height(scroll_height);
+            }
+            else {
+                $(".hour-picker-v-scroll-bar").height(600);
+            }    
         }
         $(".hour-picker-v-scroll-bar").scrollTop(460);
         $scope.$apply();

@@ -2,8 +2,8 @@
 <div class="topcoat-list">
     <ul class="topcoat-list__container">
         <h3 class="topcoat-list__header">
-            <span class="pull-left" ng-class="prevPageDisabled()" ng-click="prevPage()">&lt;</span>
-            <span class="pull-right" ng-class="nextPageDisabled()" ng-click="nextPage()">&gt;</span>
+            <span class="pull-left arrow-left" style="margin-top: 5px;" ng-class="prevPageDisabled()" ng-click="prevPage()"></span>
+            <span class="pull-right arrow-right" style="margin-top: 5px;" ng-class="nextPageDisabled()" ng-click="nextPage()"></span>
             <span class="center">
                 <span>{{currentPage+1}}</span>
                 <span>{{'OF' | translate}}</span>

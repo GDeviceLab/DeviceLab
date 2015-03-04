@@ -72,7 +72,7 @@ table.cal.cal-top tbody {
     background-color: #EFEFEF;
     padding-bottom: 20px;
 }
-@media (max-width: 1300px){
+@media (max-width: 1300px) and (min-width : 600px) {
     .week-in-cal{
         height: 30px;
         font-size: 10pt;

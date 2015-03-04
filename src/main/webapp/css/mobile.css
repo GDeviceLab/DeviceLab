@@ -447,6 +447,9 @@ padding-left: 10px;
     font-size: 16pt;
     font-weight: 400;
     color: black;
+    width: 70%;
+    position: relative;
+    display: inline-block;
 }
 input {
     color: black;
@@ -581,6 +584,26 @@ a, a:hover, a:focus {
     position: relative;
     display: block;
     margin-top: 25px;
+}
+
+.modal-pane {
+    text-align: justify;
+    padding: 15px;
+    max-width: 450px;
+    margin-right: auto;
+    margin-left: auto;
+    /* margin-top: 190px; */
+    /* margin-bottom: auto; */
+    border-radius: 7px;
+    background: white;
+    color: black;
+    padding-left: 45px;
+    padding-right: 45px;
+    top: 50%;
+    left: 50%; 
+    position: fixed;
+    margin-top: -200px;
+    margin-left: -200px;
 }
 
 @media (max-width: 500px){

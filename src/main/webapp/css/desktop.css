@@ -30,6 +30,9 @@ h5{
     font-size: 20pt !important;
     font-weight: 200;
 }
+select{
+    -moz-appearance: none; 
+}
 .light{
     font-weight: 300; 
 }
@@ -119,10 +122,10 @@ ul{
     display: block;
 }
 #header .dropdown-menu #drop-loc-text {
-    display: inline-block;
     max-width: 80%;
     overflow-x: hidden;
     text-overflow: ellipsis;
+    float: left;
 }
 
 #header .dropdown li:hover {
@@ -302,7 +305,7 @@ h1.weekcalday{
 }
 
 #week-select{
-    height: 68px;
+    height: 48px;
     border-bottom: 2px solid #E1E0E2;
 }
 .news {
@@ -346,6 +349,7 @@ h1.weekcalday{
     padding: 20px 0px;
     padding-bottom:  0px;
     padding-top: 0px;
+    box-shadow: 0px 0px !important;
 }
 .panel-default {
     border: 0px; 
@@ -360,7 +364,6 @@ h1.weekcalday{
     cursor: pointer; cursor: hand;
 }
 .panel.cal-day {
-    min-height: 720px;
     height: 2000px;
     padding-bottom: 0px !important;
     margin-bottom: 0px !important;
@@ -414,6 +417,9 @@ h1.weekcalday{
     height: 30px;
 }
 
+.devicepicker-check{
+    padding-top: 0px !important;
+}
 /*
     PAGE STYLES
 */
@@ -653,9 +659,10 @@ background-color: #FFFFFF;
 /* 
     RESERVATION PAGE
 */
-.reservationpage h1{
+.reservationpage h5{
     font-weight: 300;
     font-size: 21px;
+    text-align: center;
 }
 .reservationpage [class^="icon-"], .reservationpage [class*=" icon-"] {
     color: gray;
@@ -765,6 +772,9 @@ background-color: #FFFFFF;
     bottom:0;
 }
 
+.check {
+    padding-top: 0px !important;
+}
 
 .checkbox {
     padding-left: 0px;
@@ -969,18 +979,13 @@ nav h3 {
     display: inline-block;
     left: inherit;
     position: static;
-    width: 83%;
+    width: 70%;
     padding-top: 5px;
 }
 /*
     MOBILE
 */
 
-@media (max-width: 1256px){
-    h1.weekcalday {
-        font-size: 31pt; 
-    }
-}
 
 @media (max-width: 991px){
     .news {
@@ -991,6 +996,14 @@ nav h3 {
 @media (max-width: 1300px){
     .checkbox label span {
         width: 70%;
+    }
+    h1.weekcalday {
+        font-size: 31pt;
+        margin-bottom: 10px; 
+    }
+    h1.weekcal {
+        font-size: 30pt;
+        margin-bottom: 0px;
     }
 }
 /* Spinner */

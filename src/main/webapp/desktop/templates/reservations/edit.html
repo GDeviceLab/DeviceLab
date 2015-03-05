@@ -2,7 +2,7 @@
     <div class="col-md-4">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h1 class="panel-title">{{date| date : 'EEEE d MMMM'}}</h1>
+                <h5 class="panel-title">{{date| date : 'EEEE d MMMM'}}</h5>
             </div>
             <div class="panel-body no-padding">
                 <cal-endar date="date" class="cal" pick="pick" btn-class="btn btn-primary btn-block" />
@@ -162,7 +162,7 @@
     <div class="col-md-4">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h1 class="panel-title">{{'PURPOSE_TITLE_PANEL' | translate}}</h1>
+                <h5 class="panel-title">{{'PURPOSE_TITLE_PANEL' | translate}}</h5>
             </div>
             <div class="panel-body">
                 <form role="form">
@@ -201,7 +201,7 @@
         </div>
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h1 class="panel-title">{{'DEVICES' | translate}}</h1>
+                <h5 class="panel-title">{{'DEVICES' | translate}}</h5>
             </div>
             <div class="panel-body">
                 <table class="multiselect">
@@ -241,13 +241,13 @@
 </div>
 <div class="modal" ng-click="showDeleteModal = false" ng-show="showDeleteModal">
     <div class="modal-pane">
-        <h1>{{'DELETE_TITLE' | translate}}</h1>
+        <h5>{{'DELETE_TITLE' | translate}}</h5>
         <p>{{'DELETE_HELP' | translate}}</p>
         <div class="padded">
-            <button class="topcoat-button--cta btn btn-danger btn-block" ng-click="delete()">{{'BUTTON_YES' | translate}}</button>
+            <button class="btn btn-danger btn-block" ng-click="delete()">{{'BUTTON_YES' | translate}}</button>
         </div>
         <div class="padded">
-            <button class="topcoat-button btn btn-default btn-block" ng-click="showDeleteModal = false">{{'BUTTON_CANCEL' | translate}}</button>
+            <button class="btn btn-primary btn-block" ng-click="showDeleteModal = false">{{'BUTTON_CANCEL' | translate}}</button>
         </div>
     </div>
 </div>

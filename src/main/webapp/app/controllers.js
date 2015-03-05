@@ -90,7 +90,7 @@ calApp.controller("CalendarCtrl", function($scope, $rootScope, endpoint, $window
     $timeout(function() {
         var cal_height = $(window).height() - $("#header").height() - $("#news-sec").height() - $("#week-select").height() - $(".more-news").height() - 2;
         //console.log("here" + cal_height);
-        if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1){
+        if($.browser.mozilla){
             console.log("mozilla");
             $('.cal-day').height(750);
         }

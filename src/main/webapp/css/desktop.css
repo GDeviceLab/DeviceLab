@@ -857,7 +857,9 @@ background-color: #FFFFFF;
     color: gray; 
     margin-top: 7px;
 }
-
+.actions-no-margin{
+    color: gray; 
+}
 .actions:hover {
     color: #EFEFEF;
 }

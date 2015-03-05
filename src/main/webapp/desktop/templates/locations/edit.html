@@ -98,7 +98,7 @@
                 </li>
             </ul>
             <div class="panel-body">
-                <button class="btn btn-primary btn-block" ng-click="toUser(user)">{{'BUTTON_ADD' | translate}}</button>
+                <button class="btn btn-primary btn-block" ng-click="toUser(user)" onClick="$('.form-control-wrapper').children('input').val('');">{{'BUTTON_ADD' | translate}}</button>
             </div>
         </div>
     </div>
@@ -127,7 +127,7 @@
                 </li>  
             </ul>
             <div class="panel-body">
-                <button class="btn btn-primary btn-block" ng-click="toAdmin(admin)">{{'BUTTON_ADD' | translate}}</button>
+                <button class="btn btn-primary btn-block" ng-click="toAdmin(admin)" onClick="$('.form-control-wrapper').children('input').val('');">{{'BUTTON_ADD' | translate}}</button>
             </div>
         </div>
     </div>

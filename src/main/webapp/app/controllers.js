@@ -90,12 +90,12 @@ calApp.controller("CalendarCtrl", function($scope, $rootScope, endpoint, $window
     $timeout(function() {
         var cal_height = $(window).height() - $("#header").height() - $("#news-sec").height() - $("#week-select").height() - $(".more-news").height() - 2;
         //console.log("here" + cal_height);
-        if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1){
-            console.log("mozilla");
-            $('.cal-day').height(750);
+        if(cal_height < 0){
+            cal_height = $( document ).height() - $("#header").height() - $("#news-sec").height() - $("#week-select").height() - $(".more-news").height() - 2;
+            $('.cal-day').height(cal_height);
         }
         else {
-            $('.cal-day').height(cal_height);
+            $('.cal-day').height(750);
         }
         var scroll_height = $(".cal-day").height() - $(".cal-day .panel-heading").height() - 30;
         if(!$(".calendar-head").length){

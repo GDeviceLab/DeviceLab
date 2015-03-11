@@ -93,12 +93,12 @@
                     {{user.name}} ({{user.mail}})
                     <span class="actions">
                         <span class="icon-arrow-up-alt1" style="color: gray;" ng-click="toAdmin(user.mail)"></span>
-                        <cal-delete ng-click="delete(user.mail)" style="color: gray;" class="icon-x-altx-alt"></cal-delete>
+                        <cal-delete action="delete(user.mail)" class="icon-x-altx-alt actions-no-margin"></cal-delete>
                     </span>
                 </li>
             </ul>
             <div class="panel-body">
-                <button class="btn btn-primary btn-block" ng-click="toUser(user)">{{'BUTTON_ADD' | translate}}</button>
+                <button class="btn btn-primary btn-block" ng-click="toUser(user)" onClick="$('.form-control-wrapper').children('input').val('');">{{'BUTTON_ADD' | translate}}</button>
             </div>
         </div>
     </div>
@@ -121,13 +121,13 @@
                         <a href="#/profile/edit/{{admin.mail}}/{{id}}">{{admin.name}} ({{admin.mail}})</a>
                         <span class="actions">
                             <span class="icon-arrow-down-alt1" style="color: gray" ng-click="toUser(admin.mail)"></span>
-                            <cal-delete ng-click="delete(admin.mail)" class="icon-x-altx-alt"  style="color: gray"></cal-delete>
+                            <cal-delete action="delete(admin.mail)" b-class="icon-x-altx-alt actions-no-margin"></cal-delete>
                         </span>
                     </span>
                 </li>  
             </ul>
             <div class="panel-body">
-                <button class="btn btn-primary btn-block" ng-click="toAdmin(admin)">{{'BUTTON_ADD' | translate}}</button>
+                <button class="btn btn-primary btn-block" ng-click="toAdmin(admin)" onClick="$('.form-control-wrapper').children('input').val('');">{{'BUTTON_ADD' | translate}}</button>
             </div>
         </div>
     </div>

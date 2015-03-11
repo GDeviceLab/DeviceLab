@@ -29,7 +29,7 @@ public class EmailTemplate {
         pojo.setEmails(emailArrayString);
         pojo.setSubject("New user asks to access to location");
         String message = "Dear location Admin,<br>"+
-                "the user BB <a href='mailto:"+Methods.notNullText(p.mail)+"'>"+
+                "the user <a href='mailto:"+Methods.notNullText(p.mail)+"'>"+
                 Methods.notNullText(p.name)+"</a> "+ 
                 "from " +  
                 Methods.notNullText(p.startupName) +" asks to apply to " + 

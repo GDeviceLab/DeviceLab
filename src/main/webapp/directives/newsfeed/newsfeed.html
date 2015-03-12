@@ -2,7 +2,23 @@
     <div class="panel panel-default">
         <div class="panel-body">
             <h4 class="panel-title">{{n.title}}</h4>
-            <p ng-bind-html="n.content | linky:'_blank'"></p>
+                <p class="clamped clamped-2">
+                    <span class="text">
+                        <span ng-bind-html="n.content | linky:'_blank'"></span>
+                        <span class="ellipsis">
+                        <a href="#/news">&#133;</a>
+                        </span>
+                        <span class="fill"></span>
+                    </span>
+                </p>
+
+        <!--     <div class="clamped clamped-2">
+                <p ng-bind-html="n.content | linky:'_blank'"></p>
+                <span class="ellipsis">
+            &#133;
+        </span>
+        <span class="fill"></span>
+            </div> -->
             <p><small>{{n.authorName}} - {{n.date| date: 'EEEE d MMMM'}}</small></p>
         </div>
     </div>

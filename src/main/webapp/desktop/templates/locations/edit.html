@@ -92,8 +92,8 @@
                 <li ng-repeat="user in users" class="list-group-item">
                     {{user.name}} ({{user.mail}})
                     <span class="actions">
-                        <span class="icon-arrow-up-alt1" style="color: gray;" ng-click="toAdmin(user.mail)"></span>
-                        <cal-delete action="delete(user.mail)" class="icon-x-altx-alt actions-no-margin"></cal-delete>
+                        <span class="icon-arrow-up-alt1" style="color: gray" ng-click="toAdmin(user.mail)"></span>
+                        <cal-delete action="delete(user.mail)" b-class="icon-x-altx-alt gray"></cal-delete>
                     </span>
                 </li>
             </ul>

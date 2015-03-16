@@ -91,11 +91,11 @@ calApp.controller("CalendarCtrl", function($scope, $rootScope, endpoint, $window
         var cal_height = $(window).height() - $("#header").height() - $("#news-sec").height() - $("#week-select").height() - $(".more-news").height() - 2;
         //console.log("here" + cal_height);
         if(cal_height < 0){
-            cal_height = $( document ).height() - $("#header").height() - $("#news-sec").height() - $("#week-select").height() - $(".more-news").height() - 2;
+            cal_height = $( document ).height() - $("#header").height() - $("#news-sec").height() - $("#week-select").height() - $(".more-news").height() - 92;
             $('.cal-day').height(cal_height);
         }
         else {
-            $('.cal-day').height(750);
+            $('.cal-day').height(cal_height);
         }
         var scroll_height = $(".cal-day").height() - $(".cal-day .panel-heading").height() - 30;
         if(!$(".calendar-head").length){

@@ -4,7 +4,7 @@
         <div class="news-item" ng-repeat="n in news">
             <h1>{{n.title}}</h1>
             <div class="padded">
-                <p class="news" ng-bind-html="n.content | linky:'_blank'"></p>
+                	<p class="news" ng-bind-html="n.content | linky:'_blank'"></p>
                 <p><small>{{n.authorName}} - {{n.date| date: 'EEEE d MMMM'}}</small></p>
             </div>
         </div>

@@ -3,7 +3,7 @@ calApp.controller("ReloadCtrl", function($window) {
 });
 
 calApp.controller("CalendarCtrl", function($scope, $rootScope, endpoint, $window, $timeout) {
-    var heightDeviceMax = 250;
+    var heightDeviceMax = 200;
     var heightDeviceMin = 60;
     $scope.search = {};
     $scope.isCalendarVisible = false;

@@ -85,6 +85,12 @@
                 menu.css("display","none");
             }
     });
+    $( window ).resize(function() {
+        var cal_height = $(document).height() - $("#header").height() - $("#news-sec").height() - $("#week-select").height() - $(".more-news").height() - 2;
+        $('.cal-day').height(cal_height);   
+        var scroll_height = $(".cal-day").height() - $(".cal-day .panel-heading").height() - 30;
+        $(".hour-picker-v-scroll-bar").height(scroll_height);
+    });
     </script>
     <body ng-app="cal" data-snap-ignore="true">
         <div ng-controller="RegisterCtrl">

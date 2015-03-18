@@ -1,11 +1,11 @@
 <span>
     <span class="{{bClass}}" ng-click="changeShow(true)"></span>
-    <div class="modal" ng-click="show = false" ng-show="show">
+    <div class="modal delete-modal" ng-click="show = false" ng-show="show">
         <div class="modal-pane">
             <h1>{{'DELETE_TITLE' | translate}}</h1>
             <p>{{'DELETE_HELP' | translate}}</p>
             <div class="padded">
-                <button class="btn btn-danger btn-block" ng-click="delete()">{{'BUTTON_YES' | translate}}</button>
+                <button class="btn btn-danger btn-block test" ng-click="delete()">{{'BUTTON_YES' | translate}}</button>
             </div>
             <div class="padded">
                 <button class="btn btn-primary btn-block" ng-click="changeShow(false)">{{'BUTTON_CANCEL' | translate}}</button>

@@ -16,6 +16,7 @@ calApp.directive("calDelete", function(){
             };
             
             $scope.changeShow = function(value){
+                $(".delete-modal").appendTo("body");
                 $scope.show = value;
                 if($scope.propagation){
                     event.stopPropagation();
